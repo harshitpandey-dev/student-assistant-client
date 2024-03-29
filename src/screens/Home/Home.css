@@ -1,0 +1,565 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
+
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    border: 0;
+  }
+
+body{
+  min-height: 100vh;
+  background-color: white;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #7563BD;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+nav .title{
+  color: white;
+  font-family: 'Gluten', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem;
+  text-decoration: none;
+}
+  
+nav ul {
+  display: flex;
+  align-items: center;
+  position: relative;
+  list-style: none;
+}
+
+nav ul li{
+  margin-right: 10px;
+}
+
+nav ul input {
+  font-size: 25px;
+  font-family: 'Faustina', sans-serif;
+  border-radius: 30px;
+  margin: 2rem;
+}
+
+nav ul .search{
+  background-color: white;
+  color: black;
+  width: 2rem;
+  padding: 4px;
+  border-radius: 7dvw;
+  margin: 0.5rem;
+  justify-content: center;
+}
+
+nav ul button {
+  height: auto;
+  width: 150px;
+  border-radius: 30px;
+  margin: 2rem;
+  color: #7563BD;
+  font-family: 'Faustina', sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
+  line-height: 40px;
+}
+
+nav .burger{
+  color: white;
+}
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Faustina', sans-serif;
+    font-size: 20px;
+  }
+  
+  .profile i {
+    font-size: 30px;
+  }
+  
+  .panel {
+    height: 40px;
+    background-color: #8991E4;
+    display: flex;
+    justify-content: space-between;
+  }
+  .panel a{
+    text-decoration: none;
+    color: white;
+  }
+  .back2home {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+    width: 970px;
+    margin-left: 20px;
+  }
+  
+  .back2home p {
+    margin-left: 10px;
+  }
+  
+
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    justify-content: space-evenly;
+  }
+  
+  .wishlist {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+  }
+  
+  .wishlist p {
+    margin-left: 10px;
+  }
+  
+  .mycart {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+  }
+  
+  .mycart p {
+    margin-left: 10px;
+  }
+  
+  .contactus {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+  }
+  
+  .contactus p {
+    margin-left: 10px;
+  }
+  
+  .logout {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+    margin-right: 20px;
+  }
+  
+  .logout p {
+    margin-right: 10px;
+  }
+  
+  main{
+    margin-top: 20px;
+    padding: 20px;
+}
+.cards-container{
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    align-items: start;
+}
+.card{
+    width: 400px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 20px;
+    background-color: white
+}
+.cardactions{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px;
+    align-items: center;
+    color: white;
+    font-family: 'Faustina',sans-serif;
+    font-size: 20px;
+    width: 100%;
+    height: 30px;
+    background-color: #8991E4;
+
+}
+.cardactions p{
+    margin-bottom: 5px;
+}
+.cardimg{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+.cardcontent{
+    padding: 12px;
+    margin-top: 25px;
+}
+
+#productcost{
+    font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-weight: bolder;
+    font-size: 30px;
+
+}
+#producttitle{
+    font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-size: 20px;
+}
+.parameters{
+  margin-top: 9px;
+  font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-size: 15px;
+}
+#usedfor{
+    font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-size: 15px;
+}
+#originalcost{
+  font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-size: 15px;
+}
+#prodDescp{
+    font-family: 'Faustina',sans-serif;
+    color: #7563BD;
+    font-size: 15px
+}
+
+.footpanel{
+  background-color: #7563BD;
+  height: 30px;
+  color: white;
+  font-family: 'Gluten',sans-serif;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+}
+.footpanel a{
+  color: white;
+  text-decoration: none;
+}
+ 
+/* @media (max-width: 1788px){
+  .navbar {
+    height: 80px;
+    
+  }
+  
+  .logo {
+    
+    font-size: 35px;
+    width: 250px;
+    height: 40px;
+  }
+  
+  .logo p {
+    line-height: 40px;
+  }
+  
+  .nav-search {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 1000px;
+    height: 50px;
+    border-radius: 30px;
+  }
+
+}
+@media (max-width: 1601px){
+  .logout {
+   
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .logout p {
+    margin-right: 10px;
+  }
+}
+  @media (max-width: 1591px){
+    .back2home {
+      font-size: 16px;
+    }
+    
+    .back2home p {
+      margin-left: 10px;
+    }
+    .menu {
+      width: 400px;
+      
+      justify-content: space-evenly;
+    }
+    
+    .wishlist {
+      
+      font-size: 16px;
+    }
+    
+    .wishlist p {
+      margin-left: 10px;
+    }
+    
+    .mycart {
+      
+      font-size: 16px;
+      
+    }
+    
+    .mycart p {
+      margin-left: 10px;
+    }
+    
+    .contactus {
+      font-size: 16px;
+    }
+    
+    .contactus p {
+      margin-left: 10px;
+    }
+    
+    .logout {
+      font-size: 16px;
+      margin-right: 20px;
+    }
+    
+    .logout p {
+      margin-right: 10px;
+    }
+    
+  }
+  @media (max-width: 1485px){
+    
+    .logo {
+      font-size: 50px;
+      width: 350px;
+      height: 60px;
+    }
+    
+    .logo p {
+      line-height: 60px;
+    }
+    
+    .nav-search {
+     
+      width: 600px;
+    }
+  
+    .back2home {
+      width: 600px;
+      margin-left: 20px;
+    }
+  
+  } */
+  @media (max-width: 1185px){
+    
+    .logo {
+      display: flex;
+      color: white;
+      font-family: 'Gluten', sans-serif;
+      font-size: 50px;
+      width: 350px;
+      height: 60px;
+    }
+    
+    .logo p {
+      line-height: 60px;
+    }
+    
+    .nav-search {
+      display: flex;
+      justify-content: space-evenly;
+      background-color: white;
+      width: 500px;
+      height: 50px;
+      border-radius: 30px;
+    }
+    
+    
+    .searchbtn {
+      width: 50px;
+    }
+    
+    .sellbtn {
+      height: 50px;
+      width: 130px;
+      font-size: 20px;
+      line-height: 40px;
+    }
+    
+    .profile {
+      font-size: 15px;
+    }
+    
+    .profile i {
+      font-size: 25px;
+    }
+
+    .back2home {
+      width: 400px;
+      margin-left: 20px;
+    }
+    
+    .back2home p {
+      margin-left: 10px;
+    }
+  
+  }
+
+@media (max-width: 550px){
+
+  
+  .logo {
+    font-size: 20px;
+    width: 150px;
+    height: 20px;
+  }
+  
+  .logo p {
+    line-height: 20px;
+  }
+  
+  .nav-search {
+    width: 350px;
+    height: 40px;
+  }
+  
+  .search-input {
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Faustina', sans-serif;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    outline: none;
+  }
+  
+  .searchbtn {
+    width: 50px;
+    font-size: 25px;
+    padding: 10px;
+  }
+  
+  .sellbtn{
+    display: none;
+
+  }
+  .plusicon{
+    display: inline;
+    color: #7563BD;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    font-family: 'Faustina', sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .profile p{
+    font-size: 20px;
+    display: none;
+  }
+  
+  .profile i {
+    font-size: 20px;
+  }
+  
+  .back2home {
+    font-size: 20px;
+    width: 950px;
+    margin-left: 20px;
+  }
+  
+  .back2home p {
+    display: none;
+  }
+  
+
+  
+  .menu {
+    width: 500px;
+  }
+  
+  .wishlist {
+    font-size: 20px;
+  }
+  
+  .wishlist p {
+    display: none;
+  }
+  
+  .mycart {
+    font-size: 20px;
+  }
+  
+  .mycart p {
+    display: none;
+  }
+  
+  .contactus {
+    font-size: 20px;
+  }
+  
+  .contactus p {
+    display: none;
+  }
+  
+  .logout {
+    font-size: 20px;
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+  
+  .logout p {
+    display: none;
+  }
+  
+}
+@media (max-width: 516px){
+  .nav-search {
+    width: 250px;
+    height: 40px;
+  }
+  
+}
+@media (max-width: 415px){
+  .nav-search{
+    width: 150px;
+    
+  }
+   
+  .search-input {
+    width: 100%;
+    font-size: 10px;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    outline: none;
+  }
+}
