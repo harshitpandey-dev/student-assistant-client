@@ -35,3 +35,9 @@ button {
     cursor: pointer;
 
 }
+
+.auth{
+    width: 100%;
+    height: auto !important;
+    background: linear-gradient(135deg,white,#8991E4);
+}

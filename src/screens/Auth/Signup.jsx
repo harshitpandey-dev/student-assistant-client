@@ -67,7 +67,7 @@ function Signup() {
   return (
 
 
-    <section class="vh-100">
+    <section class="vh-100 auth">
       <div class="container py-5 h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily: "'Gluten', sans-serif" }}>Student <span style={{ color: "#8991E4" }}>Assistant</span></div>
@@ -76,7 +76,8 @@ function Signup() {
             <img src="/src/assets/studentass1.png"
               class="img-fluid" alt="Phone image" />
           </div>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4" style={{ background: "#8991E4" }}>
+          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
+            <h1 className="mb-5 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Signup</h1>
             <form>
 
               <div className="form-outline mb-4">
@@ -140,19 +141,19 @@ function Signup() {
                 <label className="form-label" for="form3Example4">Password</label>
               </div>
 
-              <div className="form-check d-flex justify-content-center mb-4">
+              <div className="form-check d-flex flex-column justify-content-center mb-4">
 
-                <button type="submit" className="btn btn-primary btn-block mb-4"
+                <div type="submit" className="btn btn-success btn-block mb-4 w-100 h-100 p-3"
                   onClick={(event) => {
                     handleSignUp(event);
                   }}
                 >
                   Submit
-                </button>
+                </div>
 
-                <button className="btn btn-success">
-                  <a href="/" className="btn btn-success">Login</a>
-                </button>
+                <a href="/" className="btn btn-dark btn-block mb-4 w-100 h-100 p-3 text-light">
+                 Login
+                </a>
 
               </div>
               

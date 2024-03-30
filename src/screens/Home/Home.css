@@ -7,10 +7,7 @@
     border: 0;
   }
 
-body{
-  min-height: 100vh;
-  background-color: white;
-}
+
 
 nav{
   display: flex;
