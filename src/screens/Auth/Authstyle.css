@@ -120,8 +120,8 @@ color: white;
     font-size: 20px;
     display: flex;
     justify-content: space-evenly;
-    width: 250px;
-    margin-left: 200px;
+    width: 100%;
+    /* margin-left: 200px; */
     margin-top: 20px;
     color: #646060;
     font-family: 'Faustina',sans-serif;
@@ -179,9 +179,7 @@ color: white;
   border: 0;
 }
 
-body{
-    background-color: #7563BD;
-}
+
 .forgotpsswrd{
     height: 600px;
     width: 720px;
@@ -294,21 +292,4 @@ a{
   padding-left: 30px;
   font-family: 'Faustina', sans-serif;
 }
-button{
-  border: 0;
-  outline: 0;
-  background-color: #8991E4;
-  color: white;
-  font-weight: bolder;
-  height: 60px;
-  width: 170px;
-  border-radius: 40px;
-  margin-left: auto;
-  margin-top: 50px;
-  margin-right: auto;
-  font-size: 30px;
-  font-family: 'Faustina', sans-serif;
-  text-align: center;
-  cursor: pointer;
 
-}

@@ -6,6 +6,7 @@ import AddProduct from "./screens/Addproduct/Addproduct";
 import ChangePassword from "./screens/Auth/Changepassword";
 import ForgotPassword from "./screens/Auth/Forgotpassword";
 import PasswordReset from "./screens/Auth/Resetpassword";
+import './index.css'
 
 function App() {
   return (

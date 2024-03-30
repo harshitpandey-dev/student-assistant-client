@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css);
+
+html,body{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.logo-login{
+        height: 500px;
+        width: 100%;
+        overflow: hidden;
+}
+.logo-login img{
+    width: 100%;
+    height: 500px;
+    object-fit:contain;
+
+}
+.card{
+    background: #8991E4;
+        backdrop-filter: blur(30px);
+        width: 60%;
+        height: auto;
+        box-shadow: 2px 2px 5px 5px rgb(0, 255, 251);
+        border-radius: 10%;
+}
+
+label{
+    font-size: 25px;
+    font-family: 'Gluten', sans-serif;
+}
+
+input[type=text]:focus ,input[type=password]:focus,input[type=email]:focus {
+    background-color: lightblue;
+}
+
+@media (max-width: 750px) {
+    label{
+        font-size: 15px !important;
+    }
+    .box-title{
+        font-size: 20px!important;
+    }
+    .card{
+        width: 80% !important;
+    }
+}
+@media (max-width: 450px) {
+   .card{
+    margin-top: -260px !important;
+    width: 100% !important;
+   }
+}
+
+button {
+    border: 0;
+    outline: 0;
+    background-color: #8991E4;
+    color: white;
+    font-weight: bolder;
+    height: 60px;
+    width: 170px;
+    border-radius: 40px;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: auto;
+    font-size: 30px;
+    font-family: 'Faustina', sans-serif;
+    text-align: center;
+    cursor: pointer;
+
+}
