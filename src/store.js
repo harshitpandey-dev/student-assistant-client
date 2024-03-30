@@ -1,6 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+// // import { createStore, applyMiddleware } from 'redux'
+// // import thunk from 'redux-thunk'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+// // import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer } from './reducers/productReducers'
 import {
   productDetailsReducer,
@@ -40,13 +41,12 @@ const userDataFromStorage = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData'))
   : null
 
-const middleware = [thunk]
+// const middleware = [thunk]
 const initialState = {
   userLogin: { userData: userDataFromStorage },
 }
-const store = createStore(
+const store = configureStore({
   reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+  initialState
+})
 export default store

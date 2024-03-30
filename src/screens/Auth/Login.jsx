@@ -50,7 +50,7 @@ function Login() {
   };
   return (
 
-    <section class="vh-100 auth" >
+    <section class="auth" >
       <div class="container py-5 h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily:"'Gluten', sans-serif"}}>Student <span style={{ color:"#8991E4"}}>Assistant</span></div>
