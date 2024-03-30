@@ -10,9 +10,12 @@ import Paginate from "../components/Paginate";
 import Meta from "../components/Meta";
 import { listProducts } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../types/productConstants";
-const Landing = ({ match }) => {
-  const keyword = match.params.keyword;
-  const pageNumber = match.params.pageNumber || 1;
+
+export default function Landing({match}) {
+  if(match){
+    var pageNumber = match.params.pageNumber || 1;
+    var keyword = match.params.keyword;
+  }
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
@@ -21,12 +24,13 @@ const Landing = ({ match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
-
-    dispatch(listProducts(keyword, pageNumber));
+   if(match){
+     dispatch(listProducts(keyword, pageNumber));
+   }
   }, [dispatch, keyword, pageNumber]);
 
   return (
-    <>
+    <div className="py-5 container-fluid d-flex justify-content-center">
       <Meta />
       {keyword && (
         <Link className="btn btn-success" to="/">
@@ -38,7 +42,7 @@ const Landing = ({ match }) => {
           <h3> Latest Items On Sale</h3>
         </Col>
         <Col className="text-right">
-          <LinkContainer to={userData ? "/createproduct" : "/login"}>
+          <LinkContainer to= "/createproduct">
             <Button className="btn-primary  ">
               <i style={{ color: "white" }} className="fas fa-plus"></i>{" "}
               <span className="textcolor">List Your Property</span>
@@ -67,7 +71,6 @@ const Landing = ({ match }) => {
           />
         </>
       )}
-    </>
-  );
-};
-export default Landing;
+    </div>
+  )
+}

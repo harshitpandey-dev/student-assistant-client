@@ -11,8 +11,9 @@ import AboutUsScreen from "./screens/AboutUsScreen";
 import ProductScreen from "./screens/ProductScreen";
 // import UserListScreen from "./screens/UserListScreen";
 import NotFoundScreen from "./screens/NotFoundScreen";
+import Landing from "./screens/Landing";
 // import ProductListScreen from "./screens/ProductListScreen";
-// import ProductCreateScreen from "./screens/ProductCreateScreen";
+import ProductCreateScreen from "./screens/ProductCreateScreen";
 // import ProductEditScreen from "./screens/ProductEditScreen";
 // import UserUpdateScreen from "./screens/UserUpdateScreen";
 // import EmailVerificationScreen from "./screens/EmailVerificationScreen";
@@ -24,19 +25,23 @@ function App() {
     <Router>
     <>
     <Header />
-     <main className="pt-3">
+    
       <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/home" element={<Home />} /> */}
-            <Route path="/addProduct" element={<AddProduct />} />
-            <Route path="/changepassword" element={<ChangePassword />} />
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/passwordReset" element={<PasswordReset />} />
+          <Route path="/" element={<Login />} exact />
+          <Route path="/signup" element={<Signup />} exact />
+          <Route path="/home" element={<Landing />} exact />
+          <Route path="/search/:keyword" element={<Landing />} exact />
+          <Route path="/page/:pageNumber" element={<Landing />} exact />
+          <Route path="'/search/:keyword/page/:pageNumber'" element={<Landing />} exact />
+          <Route path="/addProduct" element={<AddProduct />} exact />
+          <Route path="/changepassword" element={<ChangePassword />} exact />
+          <Route path="/forgotpassword" element={<ForgotPassword />} exact />
+          <Route path="/passwordReset" element={<PasswordReset />} exact />
 
             {/* --------- */}
             <Route path='/about' element={<AboutUsScreen />} exact />
             <Route path='/product/:id' element={<ProductScreen />} exact />
+          <Route path='/createproduct' element={<ProductCreateScreen />} />
             {/* <Route
               path='/admin/userlist'
               element={<UserListScreen />}
@@ -52,7 +57,6 @@ function App() {
               element={<ProductListScreen />}
               exact
             /> */}
-            {/* <Route path='/createproduct' element={<ProductCreateScreen />} /> */}
             {/* <Route
               path='/admin/product/:id/edit'
               element={<ProductEditScreen />}
@@ -70,7 +74,7 @@ function App() {
             /> */}
         <Route path="*" element={<NotFoundScreen />} />
       </Routes>
-        </main>
+      
       </>
     </Router>
   );

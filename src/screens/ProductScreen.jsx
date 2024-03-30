@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Meta from '../components/Meta'
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
@@ -12,7 +12,8 @@ import {
 } from '../actions/productActions'
 import { sendEmail } from '../actions/userActions'
 import { PRODUCT_REVIEW_RESET } from '../types/productConstants'
-const ProductScreen = ({ match, history }) => {
+
+const ProductScreen = ({ match }) => {
   const [text, setText] = useState('')
   const [comment, setComment] = useState('')
 
@@ -36,15 +37,15 @@ const ProductScreen = ({ match, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userData } = userLogin
-  useEffect(() => {
-    if (successReview) {
-      setComment('')
-      dispatch({
-        type: PRODUCT_REVIEW_RESET,
-      })
-    }
-    dispatch(listProductDetails(match.params.id))
-  }, [match.params.id, dispatch, successReview])
+  // useEffect(() => {
+  //   if (successReview) {
+  //     setComment('')
+  //     dispatch({
+  //       type: PRODUCT_REVIEW_RESET,
+  //     })
+  //   }
+  //   dispatch(listProductDetails(match.params.id))
+  // }, [match.params.id, dispatch, successReview])
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
@@ -82,7 +83,7 @@ const ProductScreen = ({ match, history }) => {
     setSendMail(false)
   }
   return (
-    <>
+    <div className='py-2'>
       <Link to='/' className='btn btn-success my-3'>
         Go Back
       </Link>
@@ -381,7 +382,7 @@ const ProductScreen = ({ match, history }) => {
           </Row>
         </>
       )}
-    </>
+    </div>
   )
 }
 

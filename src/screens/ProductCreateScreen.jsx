@@ -27,11 +27,11 @@ const ProductCreateScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userData } = userLogin
 
-  useEffect(() => {
-    if (success || !userData) {
-      history.push('/')
-    }
-  }, [history, success, userData])
+  // useEffect(() => {
+  //   if (success || !userData) {
+  //     history.push('/')
+  //   }
+  // }, [history, success, userData])
 
   const uploadFileHandler = async (e) => {
     // let cloudinaryUrl = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload", cloudinarySecret="qwdzopo4"
@@ -80,9 +80,9 @@ const ProductCreateScreen = ({ history }) => {
     )
   }
   return (
-    <>
-      <FormContainer>
-        <h1>Upload Your Property</h1>
+    <div className = "py-5">
+      <FormContainer >
+        <h1 className='text-danger py-2 text-center'>Upload Your Property</h1>
         {loading ? (
           <Loader />
         ) : (
@@ -201,7 +201,7 @@ const ProductCreateScreen = ({ history }) => {
           </Form>
         )}
       </FormContainer>
-    </>
+    </div>
   )
 }
 
