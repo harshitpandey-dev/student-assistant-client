@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { createProduct } from '../actions/productActions'
 import FormContainer from '../components/FormContainer'
+import Header from '../components/Header'
 const ProductCreateScreen = ({ history }) => {
   const [name, setName] = useState('')
   const [images, setImages] = useState('')
@@ -80,6 +81,8 @@ const ProductCreateScreen = ({ history }) => {
     )
   }
   return (
+    <>
+    <Header />
     <div className = "py-5">
       <FormContainer >
         <h1 className='text-danger py-2 text-center'>Upload Your Property</h1>
@@ -202,6 +205,7 @@ const ProductCreateScreen = ({ history }) => {
         )}
       </FormContainer>
     </div>
+    </>
   )
 }
 

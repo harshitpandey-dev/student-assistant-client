@@ -51,7 +51,7 @@ function Login() {
   return (
 
     <section class="auth" >
-      <div class="container py-5 h-100">
+      <div class="container h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily:"'Gluten', sans-serif"}}>Student <span style={{ color:"#8991E4"}}>Assistant</span></div>
 
@@ -60,35 +60,32 @@ function Login() {
               class="img-fluid" alt="Phone image" />
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" } }>
-            <h1 className="mb-5 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif"}}>Login</h1>
+            <h1 className="mb-1 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif"}}>Login</h1>
             <form>
    
-              <div class="form-outline mb-4" >
-                <input type="email" id="form1Example13" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13" 
-                  placeholder="Enter Email"
+              <div class="form-outline mb-2" >
+                <input type="email" id="form1Example13" class="form-control form-control-lg" placeholder="Enter Email"
                   value={userDetails.email}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
                       email: event.currentTarget.value,
                     });
-                  }}>Email address</label>
+                  }} />
+                
               </div>
 
  
-              <div class="form-outline mb-4">
-                <input type="password" id="form1Example23" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example23"
-                  placeholder="Enter Password"
+              <div class="form-outline mb-2">
+                <input type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Enter Password"
                   value={userDetails.password}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
                       password: event.currentTarget.value,
                     });
-                  }}
-                >Password</label>
+                  }} />
+               
               </div>
 
               <div class="d-flex justify-content-around align-items-center mb-4">
@@ -98,9 +95,9 @@ function Login() {
                                        </a>
            
               </div>
-                        <div className="form-check d-flex flex-column justify-content-center mb-4">
+                        <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
 
-                <div type="submit" className="btn btn-success btn-block mb-4 w-100 h-100 p-3"
+                <div type="submit" className="btn btn-success btn-block mb-4 w-50 h-100 p-3"
                          onClick={(event) => {
                            handleLogin(event);
                          }}
@@ -108,7 +105,7 @@ function Login() {
                  Submit
                </div>
                
-                <a className="btn btn-primary btn-block mb-4 w-100 h-100 p-3" href="/signup">
+                <a className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light" href="/signup">
                           Signup
                      </a>
 

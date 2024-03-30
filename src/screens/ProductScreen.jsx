@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Carousel from 'react-bootstrap/Carousel'
+import Header from '../components/Header'
 import {
   listProductDetails,
   createProductReview,
@@ -83,6 +84,8 @@ const ProductScreen = ({ match }) => {
     setSendMail(false)
   }
   return (
+    <>
+    <Header />
     <div className='py-2'>
       <Link to='/' className='btn btn-success my-3'>
         Go Back
@@ -383,6 +386,7 @@ const ProductScreen = ({ match }) => {
         </>
       )}
     </div>
+    </>
   )
 }
 

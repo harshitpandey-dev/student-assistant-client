@@ -7,8 +7,12 @@ import Loader from '../components/Loader'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import FormContainer from '../components/FormContainer'
 import { PRODUCT_UPDATE_RESET } from '../types/productConstants'
-const ProductEditScreen = ({ match, history }) => {
-  const productId = match.params.id
+import Header from '../components/Header'
+const ProductEditScreen = ({ match }) => {
+  if(match){
+
+    var productId = match.params.id
+  }
   const [name, setName] = useState('')
 
   const [images, setImages] = useState('')
@@ -35,32 +39,32 @@ const ProductEditScreen = ({ match, history }) => {
 
     success: successUpdate,
   } = productUpdate
-  useEffect(() => {
-    dispatch({
-      type: PRODUCT_UPDATE_RESET,
-    })
-    if (!userData || successUpdate) {
-      history.push('/')
-    }
-    if (successUpdate && userData.isAdmin) {
-      history.push('/admin/productlist')
-    }
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId))
-    } else {
-      setName(product.name)
-      setImages(product.images.map((image) => image.image1).toString())
+  // useEffect(() => {
+  //   dispatch({
+  //     type: PRODUCT_UPDATE_RESET,
+  //   })
+  //   if (!userData || successUpdate) {
+  //     history.push('/')
+  //   }
+  //   if (successUpdate && userData.isAdmin) {
+  //     history.push('/admin/productlist')
+  //   }
+  //   if (!product.name || product._id !== productId) {
+  //     dispatch(listProductDetails(productId))
+  //   } else {
+  //     setName(product.name)
+  //     setImages(product.images.map((image) => image.image1).toString())
 
-      setDescription(product.description)
-      setCategory(product.category)
-      setExpiresOn(product.expiresOn.substring(0, 10))
-      setShippingAddress(product?.shippingAddress?.address)
-      setShippingCharge(product?.shippingAddress?.shippingCharge)
+  //     setDescription(product.description)
+  //     setCategory(product.category)
+  //     setExpiresOn(product.expiresOn.substring(0, 10))
+  //     setShippingAddress(product?.shippingAddress?.address)
+  //     setShippingCharge(product?.shippingAddress?.shippingCharge)
 
-      setPrice(product?.Cost?.price)
-      setNegotiable(product?.Cost?.negotiable)
-    }
-  }, [history, dispatch, productId, product, successUpdate, userData])
+  //     setPrice(product?.Cost?.price)
+  //     setNegotiable(product?.Cost?.negotiable)
+  //   }
+  // }, [history, dispatch, productId, product, successUpdate, userData])
   const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dh3bp7vbd/upload'
   const CLOUDINARY_UPLOAD_PRESET = 'qwdzopo4'
   const uploadFileHandler = async (e) => {
@@ -105,8 +109,10 @@ const ProductEditScreen = ({ match, history }) => {
   }
   return (
     <>
+    <Header />
+    <div className='py-2'>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1 className='text-center'>Edit Product</h1>
 
         {loading ? (
           <Loader />
@@ -223,6 +229,7 @@ const ProductEditScreen = ({ match, history }) => {
       </FormContainer>
       {loadingUpdate && <Loader />}
       {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+      </div>
     </>
   )
 }

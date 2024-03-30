@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
 import Paginate from "../components/Paginate";
+import Header from '../components/Header'
 import Meta from "../components/Meta";
 import { listProducts } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../types/productConstants";
@@ -30,6 +31,8 @@ export default function Landing({match}) {
   }, [dispatch, keyword, pageNumber]);
 
   return (
+    <>
+    <Header />
     <div className="py-5 container-fluid d-flex justify-content-center">
       <Meta />
       {keyword && (
@@ -72,5 +75,6 @@ export default function Landing({match}) {
         </>
       )}
     </div>
+    </>
   )
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import Header from '../components/Header'
 
 const AboutUsScreen = () => {
   return (
+    <>
+    <Header />
     <div className="aboutbody">
       <Row md={3}>
         <Col md={3}></Col>
@@ -38,6 +41,7 @@ const AboutUsScreen = () => {
         <Col md={3}></Col>
       </Row>
     </div>
+    </>
   );
 };
 

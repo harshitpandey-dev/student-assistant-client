@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Header from '../components/Header'
 import { listUsers, deleteUser } from '../actions/userActions'
-const UserListScreen = ({ history }) => {
+const UserListScreen = () => {
   const dispatch = useDispatch()
   const usersList = useSelector((state) => state.usersList)
   const { users, loading, error } = usersList
@@ -18,13 +19,13 @@ const UserListScreen = ({ history }) => {
     error: errorDelete,
   } = userDelete
   var i = 1
-  useEffect(() => {
-    if (userData && userData.isAdmin) {
-      dispatch(listUsers())
-    } else {
-      history.push('/login')
-    }
-  }, [dispatch, history, successDelete, userData])
+  // useEffect(() => {
+  //   if (userData && userData.isAdmin) {
+  //     dispatch(listUsers())
+  //   } else {
+  //     history.push('/login')
+  //   }
+  // }, [dispatch, history, successDelete, userData])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
@@ -33,11 +34,13 @@ const UserListScreen = ({ history }) => {
   }
   return (
     <>
-      <h1>Users</h1>
+    <Header />
+    <div className='py-3 d-flex flex-column p-2'>
+        <h1 className='text-center pb-2 ' style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4"}}>Users</h1>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
-      {loading ? (
+      {loading ? ( 
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
@@ -89,7 +92,8 @@ const UserListScreen = ({ history }) => {
             ))}
           </tbody>
         </Table>
-      )}
+      )} 
+      </div>
     </>
   )
 }

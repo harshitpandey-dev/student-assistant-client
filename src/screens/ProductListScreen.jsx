@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import Paginate from '../components/Paginate'
@@ -7,8 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts, deleteProduct } from '../actions/productActions'
-const ProductListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1
+import Header from '../components/Header'
+const ProductListScreen = ({ match }) => {
+  if(match){
+
+    var pageNumber = match.params.pageNumber || 1
+  }
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { products, loading, error, page, pages } = productList
@@ -21,13 +25,13 @@ const ProductListScreen = ({ history, match }) => {
     error: errorDelete,
   } = productDelete
   var i = 1
-  useEffect(() => {
-    if (userData && userData.isAdmin) {
-      dispatch(listProducts('', pageNumber))
-    } else {
-      history.push('/login')
-    }
-  }, [dispatch, history, successDelete, userData, pageNumber])
+  // useEffect(() => {
+  //   if (userData && userData.isAdmin) {
+  //     dispatch(listProducts('', pageNumber))
+  //   } else {
+  //     history.push('/login')
+  //   }
+  // }, [dispatch, history, successDelete, userData, pageNumber])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
@@ -37,7 +41,10 @@ const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
-      <h1>Products</h1>
+      <Header />
+      <div className='py-3 d-flex flex-column p-2'>
+        <h1 className='text-center pb-2 ' style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}>Products</h1>
+   
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
@@ -90,6 +97,7 @@ const ProductListScreen = ({ history, match }) => {
           <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
+      </div>
     </>
   )
 }

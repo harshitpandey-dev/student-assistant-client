@@ -67,7 +67,7 @@ function Signup() {
 
 
     <section class="auth">
-      <div class="container py-5 h-100">
+      <div class="container h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily: "'Gluten', sans-serif" }}>Student <span style={{ color: "#8991E4" }}>Assistant</span></div>
 
@@ -76,10 +76,10 @@ function Signup() {
               class="img-fluid" alt="Phone image" />
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
-            <h1 className="mb-5 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Signup</h1>
+            <h1 className="mb-2 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Signup</h1>
             <form>
 
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-2">
                 <input type="text" id="form3Example1" className="form-control form-control-lg"
 
                   placeholder="Enter Name"
@@ -92,9 +92,9 @@ function Signup() {
                     });
                   }}
                 />
-                <label className="form-label" for="form3Example1">Name</label>
+                
               </div>
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-2">
                 <input type="email" id="form3Example3" className="form-control"
                   placeholder="Enter Email"
                   size="md"
@@ -106,9 +106,8 @@ function Signup() {
                     });
                   }}
                 />
-                <label className="form-label" for="form3Example3">Email address</label>
               </div>
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-2">
                 <input id="form3Example3" className="form-control"
                   type="text"
                   placeholder="Enter Username"
@@ -121,11 +120,10 @@ function Signup() {
                     });
                   }}
                 />
-                <label className="form-label" for="form3Example3">Username</label>
               </div>
 
 
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-2">
                 <input type="password" id="form3Example4" className="form-control"
                   placeholder="Enter Password"
                   size="md"
@@ -137,12 +135,11 @@ function Signup() {
                     });
                   }}
                 />
-                <label className="form-label" for="form3Example4">Password</label>
               </div>
 
-              <div className="form-check d-flex flex-column justify-content-center mb-4">
+              <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
 
-                <div type="submit" className="btn btn-success btn-block mb-4 w-100 h-100 p-3"
+                <div type="submit" className="btn btn-success btn-block mb-4 w-50 h-100 p-3"
                   onClick={(event) => {
                     handleSignUp(event);
                   }}
@@ -150,7 +147,7 @@ function Signup() {
                   Submit
                 </div>
 
-                <a href="/" className="btn btn-dark btn-block mb-4 w-100 h-100 p-3 text-light">
+                <a href="/" className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light ">
                  Login
                 </a>
 

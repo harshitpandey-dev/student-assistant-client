@@ -9,8 +9,12 @@ import Loader from "../components/Loader";
 import { updateUser, getUserDetails } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
-const UserUpdateScreen = ({ history, match }) => {
-  const userId = match.params.id;
+import Header from "../components/Header";
+const UserUpdateScreen = ({  match }) => {
+  if(match){
+    var userId = match.params.id;
+
+  }
   var i = 1;
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -34,28 +38,28 @@ const UserUpdateScreen = ({ history, match }) => {
   const productDelete = useSelector((state) => state.productDelete);
 
   const { success: successDelete } = productDelete;
-  useEffect(() => {
-    dispatch(listProducts());
-    if (!userData || success) {
-      dispatch({ type: USER_UPDATE_RESET });
-      dispatch({ type: USER_DETAILS_RESET });
+  // useEffect(() => {
+  //   dispatch(listProducts());
+  //   if (!userData || success) {
+  //     dispatch({ type: USER_UPDATE_RESET });
+  //     dispatch({ type: USER_DETAILS_RESET });
 
-      if (userData && userData.isAdmin) {
-        history.push("/admin/userlist");
-      } else {
-        history.push("/");
-      }
-    } else {
-      if (!user?.name) {
-        dispatch(getUserDetails(userId));
-      } else {
-        setName(user.name);
-        setAddress(user.address);
-        setPhone_no(user?.contact?.phone_no);
-        setEmail(user.email);
-      }
-    }
-  }, [history, userData, user, success, dispatch, userId, successDelete]);
+  //     if (userData && userData.isAdmin) {
+  //       history.push("/admin/userlist");
+  //     } else {
+  //       history.push("/");
+  //     }
+  //   } else {
+  //     if (!user?.name) {
+  //       dispatch(getUserDetails(userId));
+  //     } else {
+  //       setName(user.name);
+  //       setAddress(user.address);
+  //       setPhone_no(user?.contact?.phone_no);
+  //       setEmail(user.email);
+  //     }
+  //   }
+  // }, [history, userData, user, success, dispatch, userId, successDelete]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
@@ -84,8 +88,10 @@ const UserUpdateScreen = ({ history, match }) => {
   };
   return (
     <>
+    <Header />
+    <div className="py-2 ">
       <FormContainer>
-        <h1>Details</h1>
+        <h1 className="text-center">Details</h1>
 
         {loadingDetails && <Loader />}
         <Form onSubmit={submitHandler} className="mt-5 mb-2">
@@ -250,6 +256,7 @@ const UserUpdateScreen = ({ history, match }) => {
         </Col>
         <Col md={2}></Col>
       </Row>
+      </div>
     </>
   );
 };

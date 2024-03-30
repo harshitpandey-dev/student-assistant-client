@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Addproduct.css";
 import productService from "../../services/Product.services";
 import { notifications } from "@mantine/notifications";
+import Header from '../../components/Header'
 
 function AddProduct() {
   const [productDetails, setProductDetails] = useState({
@@ -41,7 +42,10 @@ function AddProduct() {
   };
 
   return (
+    <>
+    <Header />
     <div>
+
       <nav>
         <div className="navbar1">
           <p>Post Your Product</p>
@@ -123,6 +127,7 @@ function AddProduct() {
         </button>
       </div>
     </div>
+    </>
   );
 }
 
