@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
-
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,300,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 html,body{
     width: 100vw;
@@ -378,9 +379,7 @@ li {
     font-size: 20px;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Merriweather:400,300,700);
 
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 
 /* background: #fbfbfb;
