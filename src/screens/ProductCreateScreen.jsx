@@ -83,9 +83,9 @@ const ProductCreateScreen = ({ history }) => {
   return (
     <>
     <Header />
-    <div className = "py-5">
+    <div className = "py-5 ">
       <FormContainer >
-        <h1 className='text-danger py-2 text-center'>Upload Your Property</h1>
+          <h1 className=' py-2 text-center' style={{ fontFamily: "'Gluten', sans-serif", color:"#8991E4"}}>Upload Your Property</h1>
         {loading ? (
           <Loader />
         ) : (
@@ -197,7 +197,7 @@ const ProductCreateScreen = ({ history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button className='mb-1' type='submit' variant='primary'>
+            <Button className='mt-3 w-100' type='submit' variant='primary'>
               Upload your property
             </Button>
             {error && <Message variant='danger'>{error}</Message>}

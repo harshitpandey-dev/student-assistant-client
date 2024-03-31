@@ -342,22 +342,13 @@ li {
 
 }
 
-.aboutpage {
-    border: 2px solid rgb(0, 223, 11);
-    border-bottom: none;
-    border-radius: 10px;
+.aboutpage,.aboutpage1 {
+ 
     background: rgb(216, 216, 190);
-    /* color:white; */
+    box-shadow: 2px 2px 5px 6px rgb(106, 188, 224);
 }
-
-.aboutpage1 {
-    border: 2px solid rgb(0, 223, 11);
-    border-radius: 10px;
-    background: rgb(216, 216, 190);
-    /* color:white; */
-
-
-
+.aboutpage:hover ,.aboutpage1:hover{
+        box-shadow: 2px 2px 6px 5px rgb(12, 188, 74);
 }
 
 
@@ -380,4 +371,131 @@ li {
     width: 100%;
     height: 300px;
     object-fit: contain;
+}
+
+.Nav_Bar{
+    color: black;
+    font-size: 20px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,300,700);
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+/* background: #fbfbfb;
+font-family: 'Merriweather',
+serif;
+font-size: 16px;
+color:#777; */
+
+h1,
+h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.row {
+    padding: 50px 0;
+}
+
+.seperator {
+    margin-bottom: 30px;
+    width: 35px;
+    height: 3px;
+    background: #777;
+    border: none;
+}
+
+.title {
+    text-align: center;
+
+    .row {
+        padding: 50px 0 0;
+    }
+
+    h1 {
+       
+    }
+
+    .seperator {
+        margin: 0 auto 10px;
+    }
+}
+
+.item {
+    position: relative;
+    margin-bottom: 30px;
+    min-height: 1px;
+    float: left;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .item-in {
+        background: #fff;
+        padding: 40px;
+        position: relative;
+
+        &:hover:before {
+            width: 100%;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            height: 2px;
+            width: 0%;
+            background: #333333;
+            right: 0px;
+            -webkit-transition: width 0.4s;
+            transition: width 0.4s;
+        }
+    }
+}
+
+.item {
+
+    h4 {
+        font-size: 18px;
+        margin-top: 25px;
+        letter-spacing: 2px;
+       
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+       
+        color: #666666;
+        margin-top: 10px;
+
+        i {
+            opacity: 0;
+            padding-left: 0px;
+            transition: 0.4s;
+            font-size: 24px;
+            display: inline-block;
+            top: 5px;
+            position: relative;
+        }
+
+        &:hover {
+            text-decoration: none;
+
+            i {
+                padding-left: 10px;
+                opacity: 1;
+                font-weight: 300;
+            }
+        }
+    }
 }

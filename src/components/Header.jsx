@@ -3,10 +3,10 @@ import { logout } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-// import SearchBox from "./SearchBox";
+import SearchBox from "./SearchBox";
 
 
-const Header = () => {
+const Header = ({history}) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
@@ -15,14 +15,15 @@ const Header = () => {
   };
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar className="Nav_Bar"  expand="lg" collapseOnSelect style={{ height: "90px", backgroundColor: "#8991E4", fontFamily:"'Gluten', sans-serif"}}>
         <Container>
           <LinkContainer to="/home">
-            <Navbar.Brand>Student-Assistant</Navbar.Brand>
+            <Navbar.Brand className="text-light">Student-Assistant</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
+           
 
             <Nav className="ml-auto">
               {userData ? (

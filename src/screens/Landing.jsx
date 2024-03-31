@@ -33,7 +33,7 @@ export default function Landing({match}) {
   return (
     <>
     <Header />
-    <div className="py-5 container-fluid d-flex justify-content-center">
+    <div className="py-5 container-fluid p-5">
       <Meta />
       {keyword && (
         <Link className="btn btn-success" to="/">
@@ -41,15 +41,15 @@ export default function Landing({match}) {
         </Link>
       )}
       <Row className="align-items-center">
-        <Col>
-          <h3> Latest Items On Sale</h3>
+        <Col xs={6}>
+            <h3 style={{ fontFamily: "'Gluten', sans-serif", color:"#8991E4"}}> Latest Items On Sale</h3>
         </Col>
         <Col className="text-right">
           <LinkContainer to= "/createproduct">
-            <Button className="btn-primary  ">
+              <div className="btn btn-danger" >
               <i style={{ color: "white" }} className="fas fa-plus"></i>{" "}
-              <span className="textcolor">List Your Property</span>
-            </Button>
+              <span className="textcolor" >List Your Property</span>
+            </div>
           </LinkContainer>
         </Col>
       </Row>

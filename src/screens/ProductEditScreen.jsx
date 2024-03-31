@@ -112,7 +112,7 @@ const ProductEditScreen = ({ match }) => {
     <Header />
     <div className='py-2'>
       <FormContainer>
-        <h1 className='text-center'>Edit Product</h1>
+          <h1 className='text-center' style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}>Edit Product</h1>
 
         {loading ? (
           <Loader />

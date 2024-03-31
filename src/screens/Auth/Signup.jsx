@@ -1,67 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import "./Authstyle.css";
-import authService from "../../services/Auth.services";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function Signup() {
   const navigate = useNavigate();
 
   const [userDetails, setUserDetails] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
-    fullname: "",
+    confirmPassword:"",
+    contact: "",
+    address:""
   });
+  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const [message, setMessage] = useState(null)
+  const dispatch = useDispatch()
+  const userVerification = useSelector((state) => state.userVerification)
+  const { verification, loading, error } = userVerification
+  const userRegister = useSelector((state) => state.userRegister)
+  const {
+    userData,
+    loading: loadingRegister,
+    error: errorRegister,
+  } = userRegister
 
-  const handleSignUp = (event) => {
-    event.preventDefault();
-    if (
-      userDetails.username === "" ||
-      userDetails.email === "" ||
-      userDetails.password === "" ||
-      userDetails.fullname === ""
-    ) {
-      notifications.show({
-        title: "Error",
-        message: "Please fill all the required details.",
-        color: "red",
-      });
-      console.log("notifications");
-      return;
+
+  useEffect(() => {
+    if (userData) {
+      navigate.push("/home")
     }
+  }, [userData, redirect])
 
-    authService
-      .register(
-        userDetails.username,
-        userDetails.fullname,
-        userDetails.email,
-        userDetails.password
-      )
-      .then((response) => {
-        console.log(response);
-        if (response.statusCode === 200) {
-          notifications.show({
-            title: "success",
-            message: "user registered successfully",
-            color: "green",
-          });
-          navigate("/");
-        } else if (response.statusCode === 400) {
-          notifications.show({
-            title: "Error",
-            message: "Please provide all the required details.",
-            color: "red",
-          });
-        } else if (response.statusCode === 409) {
-          notifications.show({
-            title: "success",
-            message: "you are already registered",
-            color: "yellow",
-          });
-        }
-      });
-  };
+  const handleSignUp = (e) => {
+    e.preventDefault()
+    if (userDetails.password !== userDetails.confirmPassword) {
+      setMessage('Passwords do not match')
+      setTimeout(() => {
+        setMessage(null)
+      }, 3000)
+    } else {
+      dispatch(verify(userDetails.name, userDetails.email, userDetails.password, userDetails.contact, userDetails.address))
+    }
+  }
 
   return (
 
@@ -80,15 +63,15 @@ function Signup() {
             <form>
 
               <div className="form-outline mb-2">
-                <input type="text" id="form3Example1" className="form-control form-control-lg"
+                <input type="text" id="form3Example1" className="form-control form-control"
 
                   placeholder="Enter Name"
                   size="md"
-                  value={userDetails.fullname}
+                  value={userDetails.name}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
-                      fullname: event.currentTarget.value,
+                      name: event.currentTarget.value,
                     });
                   }}
                 />
@@ -110,13 +93,27 @@ function Signup() {
               <div className="form-outline mb-2">
                 <input id="form3Example3" className="form-control"
                   type="text"
-                  placeholder="Enter Username"
+                  placeholder="Enter Contact"
                   size="md"
-                  value={userDetails.username}
+                  value={userDetails.contact}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
-                      username: event.currentTarget.value,
+                      contact: event.currentTarget.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-outline mb-2">
+                <input id="form3Example3" className="form-control"
+                  type="text"
+                  placeholder="Enter Address"
+                  size="md"
+                  value={userDetails.address}
+                  onChange={(event) => {
+                    setUserDetails({
+                      ...userDetails,
+                      address: event.currentTarget.value,
                     });
                   }}
                 />
@@ -132,6 +129,19 @@ function Signup() {
                     setUserDetails({
                       ...userDetails,
                       password: event.currentTarget.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-outline mb-2">
+                <input type="password" id="form3Example4" className="form-control"
+                  placeholder="Confirm Password"
+                  size="md"
+                  value={userDetails.confirmPassword}
+                  onChange={(event) => {
+                    setUserDetails({
+                      ...userDetails,
+                      confirmPassword: event.currentTarget.value,
                     });
                   }}
                 />

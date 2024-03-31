@@ -89,9 +89,9 @@ const UserUpdateScreen = ({  match }) => {
   return (
     <>
     <Header />
-    <div className="py-2 ">
+    <div className="py-5 ">
       <FormContainer>
-        <h1 className="text-center">Details</h1>
+          <h1 className="text-center" style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}>Details</h1>
 
         {loadingDetails && <Loader />}
         <Form onSubmit={submitHandler} className="mt-5 mb-2">
