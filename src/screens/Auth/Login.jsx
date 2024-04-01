@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Authstyle.css";
-import { notifications } from "@mantine/notifications";
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
 // import authService from "../../services/Auth.services";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/userActions";
@@ -13,7 +14,7 @@ function Login() {
     email: "",
     password: "",
   });
-
+  const [vaild,setValid]=useState(null);
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { userData, loading, error } = userLogin
@@ -24,24 +25,24 @@ function Login() {
     if (userData) {
       navigate.push("/home")
     }
-  }, [userData, redirect])
+  }, [userData, redirect,error])
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    setValid(true)
     if (userDetails.email === "" || userDetails.password === "") {
-      notifications.show({
-        title: "Error",
-        message: "Email and password is required",
-        color: "red",
-      });
-      dispatch(login(userDetails.email, userDetails.password))
-      alert("ads")
+      setValid(false)
+     return;
     }
+      dispatch(login(userDetails.email, userDetails.password))
+     
   }
+
 
   return (
 
     <section class="auth" >
+   
       <div class="container h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily: "'Gluten', sans-serif" }}>Student <span style={{ color: "#8991E4" }}>Assistant</span></div>
@@ -52,6 +53,9 @@ function Login() {
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
             <h1 className="mb-1 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Login</h1>
+            {error && <Message variant='danger'>{error}</Message>}
+            {vaild===false && <Message variant='danger'>Invalid Input</Message>}
+            {loading && <Loader />}
             <form>
 
               <div class="form-outline mb-2" >
@@ -88,10 +92,8 @@ function Login() {
               </div>
               <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
 
-                <div type="submit" className="btn btn-success btn-block mb-4 w-50 h-100 p-3"
-                  onClick={(event) => {
-                    handleLogin(event);
-                  }}
+                <div type="submit" className="btn btn-success btn mb-4 w-50 h-100 p-3"
+                  onClick={(e)=>handleLogin(e)}
                 >
                   Submit
                 </div>

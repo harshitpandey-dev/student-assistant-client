@@ -140,20 +140,32 @@ li {
 
 .borderaround {
 
-    border: 1px solid rgb(190, 190, 211);
-    max-height: 500px;
+    box-shadow: 5px 5px 17px 1px rgb(2, 1, 1);
+    height: auto;
+
     /* margin:0.1rem; */
     margin-top: 1rem;
-    overflow: hidden;
-    /* width:200px; */
+    width: 100%;
+    /* overflow: hidden; */
+    font-family: 'Gluten', sans-serif;
+    font-size: 15px;
+    overflow-x: scroll;
+
+}
+
+.product {
+    width: 100%;
+    height: auto;
 }
 
 .details {
     padding: 0.3rem;
-    background: rgb(13, 122, 150);
-    margin-left: -15px;
-    margin-right: -16px;
+    background-color: #8991E4;
+    position: relative;
     color: white;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: 'Gluten', sans-serif;
     /* min-height: 1000px; */
 }
 
@@ -163,13 +175,14 @@ li {
     /* overflow: scroll; */
 }
 
-.setheight {
-    max-height: 160px;
-}
 
 @media screen and (max-width: 700px) {
-    .setheight {
-        max-height: 400px;
+    .borderaround {
+        font-size: 10px;
+    }
+
+    .details {
+        font-size: 12px;
     }
 }
 

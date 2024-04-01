@@ -33,6 +33,7 @@ import {
 
 export const login = (email, password) => async (dispatch) => {
   try {
+    console.log(email);
     dispatch({
       type: USER_LOGIN_REQUEST,
     })
@@ -50,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
-
+    
     localStorage.setItem('userData', JSON.stringify(data))
   } catch (error) {
     dispatch({
@@ -97,6 +98,7 @@ export const verify = (name, email, password, phone_no, address) => async (
         'Content-Type': 'application/json',
       },
     }
+
     // console.log(phone_no)
 
     const { data } = await axios.post(

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { notifications } from "@mantine/notifications";
 import "./Authstyle.css";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from 'react-bootstrap'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
+import { verify } from '../../actions/userActions'
 import { useDispatch, useSelector } from "react-redux";
 
 function Signup() {
@@ -42,6 +45,7 @@ function Signup() {
         setMessage(null)
       }, 3000)
     } else {
+      console.log("reg");
       dispatch(verify(userDetails.name, userDetails.email, userDetails.password, userDetails.contact, userDetails.address))
     }
   }
@@ -60,6 +64,26 @@ function Signup() {
           </div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
             <h1 className="mb-2 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Signup</h1>
+            {loading && (
+              <Spinner
+                animation='border'
+                role='status'
+                variant='danger'
+                style={{
+                  width: '100px',
+                  margin: 'auto',
+                  height: '100px',
+                  display: 'block',
+                }}
+              />
+            )}
+            {verification && (
+              <Message variant='success'>{verification.response}</Message>
+            )}
+            {error && <Message variant='danger'>{error}</Message>}
+            {message && <Message variant='danger'>{message}</Message>}
+            {errorRegister && <Message variant='danger'>{errorRegister}</Message>}
+            {loadingRegister && <Loader />}
             <form>
 
               <div className="form-outline mb-2">
@@ -150,9 +174,7 @@ function Signup() {
               <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
 
                 <div type="submit" className="btn btn-success btn-block mb-4 w-50 h-100 p-3"
-                  onClick={(event) => {
-                    handleSignUp(event);
-                  }}
+                  onClick={(e)=>handleSignUp(e)}
                 >
                   Submit
                 </div>
@@ -170,6 +192,7 @@ function Signup() {
             </form>
           </div>
         </div>
+       
       </div>
     </section>
 

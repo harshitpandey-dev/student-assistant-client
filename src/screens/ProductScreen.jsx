@@ -122,7 +122,7 @@ const ProductScreen = ({ match }) => {
               </Carousel>
             </Col>
 
-            <Col className='borderaround setheight' md={6}>
+            <Col className='borderaround ' md={6}>
               <p className='details'>
                 <i className='fas fa-info'></i> General Details
               </p>
