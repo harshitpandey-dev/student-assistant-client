@@ -33,9 +33,9 @@ function Signup() {
 
   useEffect(() => {
     if (userData) {
-      navigate.push("/home")
+      navigate("/home")
     }
-  }, [userData, redirect])
+  }, [userRegister, redirect])
 
   const handleSignUp = (e) => {
     e.preventDefault()
@@ -45,7 +45,7 @@ function Signup() {
         setMessage(null)
       }, 3000)
     } else {
-      console.log("reg");
+  
       dispatch(verify(userDetails.name, userDetails.email, userDetails.password, userDetails.contact, userDetails.address))
     }
   }

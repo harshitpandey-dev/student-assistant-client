@@ -6,7 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 
 
-const Header = ({history}) => {
+const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;

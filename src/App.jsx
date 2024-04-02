@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
-import ChangePassword from "./screens/Auth/Changepassword";
-import ForgotPassword from "./screens/Auth/Forgotpassword";
-import PasswordReset from "./screens/Auth/Resetpassword";
+// import ChangePassword from "./screens/Auth/Changepassword";
+// import ForgotPassword from "./screens/Auth/Forgotpassword";
+// import PasswordReset from "./screens/Auth/Resetpassword";
 import './index.css'
 import AboutUsScreen from "./screens/AboutUsScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -32,9 +32,9 @@ function App() {
           <Route path="/search/:keyword" element={<Landing />} exact />
           <Route path="/page/:pageNumber" element={<Landing />} exact />
           <Route path="'/search/:keyword/page/:pageNumber'" element={<Landing />} exact />
-          <Route path="/changepassword" element={<ChangePassword />} exact />
+          {/* <Route path="/changepassword" element={<ChangePassword />} exact />
           <Route path="/forgotpassword" element={<ForgotPassword />} exact />
-          <Route path="/passwordReset" element={<PasswordReset />} exact />
+          <Route path="/passwordReset" element={<PasswordReset />} exact /> */}
 
           {/* --------- */}
           <Route path='/about' element={<AboutUsScreen />} exact />

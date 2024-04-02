@@ -1,43 +1,43 @@
-import apiUtil from "../utils/Apiutils";
+// // import apiUtil from "../utils/Apiutils";
 
-class AuthService {
-  route = "/users";
+// class AuthService {
+//   route = "/users";
 
-  register = async (username, password, email, fullname) =>
-    apiUtil.post(this.route + "/register", {
-      username,
-      email,
-      password,
-      fullname,
-    });
+//   register = async (username, password, email, fullname) =>
+//     apiUtil.post(this.route + "/register", {
+//       username,
+//       email,
+//       password,
+//       fullname,
+//     });
 
-  login = async (email, password) =>
-    apiUtil.post(this.route + "/login", {
-      email,
-      password,
-    });
+//   login = async (email, password) =>
+//     apiUtil.post(this.route + "/login", {
+//       email,
+//       password,
+//     });
 
-  logout = async (refreshToken) =>
-    apiUtil.post(this.route + "/logout", {
-      refreshToken,
-    });
+//   logout = async (refreshToken) =>
+//     apiUtil.post(this.route + "/logout", {
+//       refreshToken,
+//     });
 
-  refreshToken = async (refreshToken) =>
-    apiUtil.post(this.route + "/refresh-token", {
-      refreshToken,
-    });
+//   refreshToken = async (refreshToken) =>
+//     apiUtil.post(this.route + "/refresh-token", {
+//       refreshToken,
+//     });
 
-  forgotPassword = async (email) =>
-    apiUtil.post(this.route + "/requestpasswordreset", {
-      email,
-    });
+//   forgotPassword = async (email) =>
+//     apiUtil.post(this.route + "/requestpasswordreset", {
+//       email,
+//     });
 
-  resetPassword = async (email, token, password) =>
-    apiUtil.post(this.route + "/passwordReset", {
-      email,
-      token,
-      password,
-    });
-}
+//   resetPassword = async (email, token, password) =>
+//     apiUtil.post(this.route + "/passwordReset", {
+//       email,
+//       token,
+//       password,
+//     });
+// }
 
-export default new AuthService();
+// export default new AuthService();

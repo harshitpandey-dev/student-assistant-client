@@ -13,8 +13,10 @@ import {
 } from '../actions/productActions'
 import { sendEmail } from '../actions/userActions'
 import { PRODUCT_REVIEW_RESET } from '../types/productConstants'
+import { useParams } from 'react-router-dom'
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = () => {
+  const match=useParams();
   const [text, setText] = useState('')
   const [comment, setComment] = useState('')
 
@@ -38,21 +40,21 @@ const ProductScreen = ({ match }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userData } = userLogin
-  // useEffect(() => {
-  //   if (successReview) {
-  //     setComment('')
-  //     dispatch({
-  //       type: PRODUCT_REVIEW_RESET,
-  //     })
-  //   }
-  //   dispatch(listProductDetails(match.params.id))
-  // }, [match.params.id, dispatch, successReview])
+  useEffect(() => {
+    if (successReview) {
+      setComment('')
+      dispatch({
+        type: PRODUCT_REVIEW_RESET,
+      })
+    }
+    dispatch(listProductDetails(match.id))
+  }, [match.id, dispatch, successReview])
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(createProductReview(match.params.id, comment))
+    dispatch(createProductReview(match.id, comment))
   }
   const emailSubmit = (e) => {
     e.preventDefault()
@@ -86,14 +88,14 @@ const ProductScreen = ({ match }) => {
   return (
     <>
     <Header />
-    <div className='py-2'>
-      <Link to='/' className='btn btn-success my-3'>
+    <div className='py-2 '>
+      <Link to='/home' className='btn btn-success my-3 ms-2'>
         Go Back
       </Link>
       <br />
       {userData && userData._id === product.user && (
         <Link
-          to={`/admin/product/${match.params.id}/edit`}
+          to={`/admin/product/${match.id}/edit`}
           className='btn btn-primary my-3'
         >
           Edit Product
@@ -122,7 +124,7 @@ const ProductScreen = ({ match }) => {
               </Carousel>
             </Col>
 
-            <Col className='borderaround ' md={6}>
+            <Col className='borderaround ps-5 ' md={6}>
               <p className='details'>
                 <i className='fas fa-info'></i> General Details
               </p>
@@ -156,7 +158,7 @@ const ProductScreen = ({ match }) => {
             <Message variant='success'>{dataEmail.response}</Message>
           )}
           {sendMail && userData && (
-            <Row id='email' className='mt-5'>
+            <Row id='email' className='mt-5 ps-3'>
               <Col md={10} sm={12} className='formAround'>
                 <Form onSubmit={emailSubmit}>
                   <div className='text-area1'>
@@ -203,7 +205,7 @@ const ProductScreen = ({ match }) => {
                         />
                       </li>
                     </Col>
-                    <button className='button ' type='submit'>
+                    <button className='button '  type='submit'>
                       Send Email
                     </button>
                   </Row>
@@ -212,7 +214,7 @@ const ProductScreen = ({ match }) => {
             </Row>
           )}
           <Row>
-            <Col className='borderaround mt-5' md={10}>
+            <Col className='borderaround ps-5 mt-5' md={10}>
               <p className='details'>
                 <i className='fas fa-info'></i> Seller Details
               </p>
@@ -236,7 +238,7 @@ const ProductScreen = ({ match }) => {
                       {/* {product?.seller?.selleremail}{' '} */}
                       <span>
                         <button
-                          className='emailbutton btn-success'
+                          className='emailbutton btn-success' style={{height:"30px"}}
                           onClick={sendEMAIL}
                         >
                           Send Email
@@ -275,7 +277,7 @@ const ProductScreen = ({ match }) => {
             </Col>
           </Row>
           <Row className='mt-3'>
-            <Col className='borderaround mt-5 ' md={10}>
+            <Col className='borderaround ps-5 mt-5 ' md={10}>
               <p className='details'>
                 <i className='fas fa-info'></i> Pricing Details
               </p>
@@ -296,7 +298,7 @@ const ProductScreen = ({ match }) => {
             </Col>
           </Row>
           <Row>
-            <Col className='borderaround mt-5' md={10} sm={12} xs={12}>
+            <Col className='borderaround ps-5 mt-5' md={10} sm={12} xs={12}>
               <p className='details '>
                 <i className='fas fa-info'></i> Description
               </p>
@@ -304,7 +306,7 @@ const ProductScreen = ({ match }) => {
             </Col>
           </Row>
           <Row>
-            <Col className='borderaround mt-5' md={10}>
+            <Col className='borderaround ps-5 mt-5' md={10}>
               <p className='details'>
                 <i className='fas fa-info'></i> Delivery Information
               </p>

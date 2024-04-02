@@ -8,11 +8,12 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts, deleteProduct } from '../actions/productActions'
 import Header from '../components/Header'
-const ProductListScreen = ({ match }) => {
-  if(match){
+import { useNavigate, useParams } from 'react-router'
 
-    var pageNumber = match.params.pageNumber || 1
-  }
+const ProductListScreen = () => {
+  const navigate=useNavigate();
+  const match=useParams();
+  var pageNumber = match.pageNumber || 1
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { products, loading, error, page, pages } = productList
@@ -25,13 +26,13 @@ const ProductListScreen = ({ match }) => {
     error: errorDelete,
   } = productDelete
   var i = 1
-  // useEffect(() => {
-  //   if (userData && userData.isAdmin) {
-  //     dispatch(listProducts('', pageNumber))
-  //   } else {
-  //     history.push('/login')
-  //   }
-  // }, [dispatch, history, successDelete, userData, pageNumber])
+  useEffect(() => {
+    if (userData && userData.isAdmin) {
+      dispatch(listProducts('', pageNumber))
+    } else {
+      navigate('/login')
+    }
+  }, [dispatch, successDelete, userData, pageNumber])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {

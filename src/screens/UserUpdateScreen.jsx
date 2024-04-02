@@ -10,11 +10,14 @@ import { updateUser, getUserDetails } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
 import Header from "../components/Header";
-const UserUpdateScreen = ({  match }) => {
-  if(match){
-    var userId = match.params.id;
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
+const UserUpdateScreen = () => {
+  const navigate=useNavigate()
+  const match=useParams();
 
-  }
+    var userId = match.id;
+
   var i = 1;
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -38,28 +41,28 @@ const UserUpdateScreen = ({  match }) => {
   const productDelete = useSelector((state) => state.productDelete);
 
   const { success: successDelete } = productDelete;
-  // useEffect(() => {
-  //   dispatch(listProducts());
-  //   if (!userData || success) {
-  //     dispatch({ type: USER_UPDATE_RESET });
-  //     dispatch({ type: USER_DETAILS_RESET });
+  useEffect(() => {
+    dispatch(listProducts());
+    if (!userData || success) {
+      dispatch({ type: USER_UPDATE_RESET });
+      dispatch({ type: USER_DETAILS_RESET });
 
-  //     if (userData && userData.isAdmin) {
-  //       history.push("/admin/userlist");
-  //     } else {
-  //       history.push("/");
-  //     }
-  //   } else {
-  //     if (!user?.name) {
-  //       dispatch(getUserDetails(userId));
-  //     } else {
-  //       setName(user.name);
-  //       setAddress(user.address);
-  //       setPhone_no(user?.contact?.phone_no);
-  //       setEmail(user.email);
-  //     }
-  //   }
-  // }, [history, userData, user, success, dispatch, userId, successDelete]);
+      if (userData && userData.isAdmin) {
+        navigate("/admin/userlist");
+      } else {
+        navigate("/");
+      }
+    } else {
+      if (!user?.name) {
+        dispatch(getUserDetails(userId));
+      } else {
+        setName(user.name);
+        setAddress(user.address);
+        setPhone_no(user?.contact?.phone_no);
+        setEmail(user.email);
+      }
+    }
+  }, [ userData, user, success, dispatch, userId, successDelete]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));

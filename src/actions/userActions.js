@@ -33,13 +33,15 @@ import {
 
 export const login = (email, password) => async (dispatch) => {
   try {
-    console.log(email);
+    // console.log(email);
     dispatch({
       type: USER_LOGIN_REQUEST,
     })
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
     }
     const { data } = await axios.post(
@@ -96,6 +98,9 @@ export const verify = (name, email, password, phone_no, address) => async (
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        
       },
     }
 
@@ -131,6 +136,8 @@ export const register = (token) => async (dispatch) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
     }
 
@@ -179,6 +186,8 @@ export const sendEmail = (
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${userData.token}`,
       },
     }
@@ -215,6 +224,8 @@ export const listUsers = () => async (dispatch, getState) => {
     } = getState()
     const config = {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${userData.token}`,
       },
     }
@@ -251,6 +262,8 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     } = getState()
     const config = {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${userData.token}`,
       },
     }
@@ -287,6 +300,8 @@ export const updateUser = (user) => async (dispatch, getState) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 
         Authorization: `Bearer ${userData.token}`,
       },
@@ -323,6 +338,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 
     const config = {
       headers: {
+
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${userData.token}`,
       },
     }

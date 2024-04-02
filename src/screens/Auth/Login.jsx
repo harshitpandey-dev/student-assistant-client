@@ -23,7 +23,7 @@ function Login() {
 
   useEffect(() => {
     if (userData) {
-      navigate.push("/home")
+      navigate("/home")
     }
   }, [userData, redirect,error])
 

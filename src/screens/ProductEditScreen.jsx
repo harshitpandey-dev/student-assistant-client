@@ -8,11 +8,14 @@ import { listProductDetails, updateProduct } from '../actions/productActions'
 import FormContainer from '../components/FormContainer'
 import { PRODUCT_UPDATE_RESET } from '../types/productConstants'
 import Header from '../components/Header'
-const ProductEditScreen = ({ match }) => {
-  if(match){
+import { useNavigate, useParams } from 'react-router'
 
-    var productId = match.params.id
-  }
+
+const ProductEditScreen = () => {
+  const navigate = useNavigate()
+  const match=useParams();
+    var productId = match.id
+  
   const [name, setName] = useState('')
 
   const [images, setImages] = useState('')
@@ -39,32 +42,32 @@ const ProductEditScreen = ({ match }) => {
 
     success: successUpdate,
   } = productUpdate
-  // useEffect(() => {
-  //   dispatch({
-  //     type: PRODUCT_UPDATE_RESET,
-  //   })
-  //   if (!userData || successUpdate) {
-  //     history.push('/')
-  //   }
-  //   if (successUpdate && userData.isAdmin) {
-  //     history.push('/admin/productlist')
-  //   }
-  //   if (!product.name || product._id !== productId) {
-  //     dispatch(listProductDetails(productId))
-  //   } else {
-  //     setName(product.name)
-  //     setImages(product.images.map((image) => image.image1).toString())
+  useEffect(() => {
+    dispatch({
+      type: PRODUCT_UPDATE_RESET,
+    })
+    if (!userData || successUpdate) {
+      navigate('/')
+    }
+    if (successUpdate && userData.isAdmin) {
+      navigate('/admin/productlist')
+    }
+    if (!product.name || product._id !== productId) {
+      dispatch(listProductDetails(productId))
+    } else {
+      setName(product.name)
+      setImages(product.images.map((image) => image.image1).toString())
 
-  //     setDescription(product.description)
-  //     setCategory(product.category)
-  //     setExpiresOn(product.expiresOn.substring(0, 10))
-  //     setShippingAddress(product?.shippingAddress?.address)
-  //     setShippingCharge(product?.shippingAddress?.shippingCharge)
+      setDescription(product.description)
+      setCategory(product.category)
+      setExpiresOn(product.expiresOn.substring(0, 10))
+      setShippingAddress(product?.shippingAddress?.address)
+      setShippingCharge(product?.shippingAddress?.shippingCharge)
 
-  //     setPrice(product?.Cost?.price)
-  //     setNegotiable(product?.Cost?.negotiable)
-  //   }
-  // }, [history, dispatch, productId, product, successUpdate, userData])
+      setPrice(product?.Cost?.price)
+      setNegotiable(product?.Cost?.negotiable)
+    }
+  }, [ dispatch, productId, product, successUpdate, userData])
   const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dh3bp7vbd/upload'
   const CLOUDINARY_UPLOAD_PRESET = 'qwdzopo4'
   const uploadFileHandler = async (e) => {

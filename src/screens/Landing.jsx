@@ -11,12 +11,14 @@ import Header from '../components/Header'
 import Meta from "../components/Meta";
 import { listProducts } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../types/productConstants";
+import { useParams } from 'react-router-dom'
 
-export default function Landing({match}) {
-  if(match){
-    var pageNumber = match.params.pageNumber || 1;
-    var keyword = match.params.keyword;
-  }
+export default function Landing() {
+    const match=useParams();
+
+    var pageNumber = match.pageNumber || 1;
+    var keyword = match.keyword;
+
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
@@ -25,9 +27,9 @@ export default function Landing({match}) {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
-   if(match){
+   
      dispatch(listProducts(keyword, pageNumber));
-   }
+   
   }, [dispatch, keyword, pageNumber]);
 
   return (

@@ -6,7 +6,9 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Header from '../components/Header'
 import { listUsers, deleteUser } from '../actions/userActions'
+import { useNavigate } from 'react-router'
 const UserListScreen = () => {
+  const navigate=useNavigate();
   const dispatch = useDispatch()
   const usersList = useSelector((state) => state.usersList)
   const { users, loading, error } = usersList
@@ -19,13 +21,13 @@ const UserListScreen = () => {
     error: errorDelete,
   } = userDelete
   var i = 1
-  // useEffect(() => {
-  //   if (userData && userData.isAdmin) {
-  //     dispatch(listUsers())
-  //   } else {
-  //     history.push('/login')
-  //   }
-  // }, [dispatch, history, successDelete, userData])
+  useEffect(() => {
+    if (userData && userData.isAdmin) {
+      dispatch(listUsers())
+    } else {
+      navigate('/login')
+    }
+  }, [dispatch,  successDelete, userData])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {

@@ -8,7 +8,10 @@ import Loader from '../components/Loader'
 import { createProduct } from '../actions/productActions'
 import FormContainer from '../components/FormContainer'
 import Header from '../components/Header'
-const ProductCreateScreen = ({ history }) => {
+import { useNavigate } from 'react-router'
+
+const ProductCreateScreen = () => {
+  const navigate=useNavigate();
   const [name, setName] = useState('')
   const [images, setImages] = useState('')
   const [uploading, setUploading] = useState(false)
@@ -28,11 +31,11 @@ const ProductCreateScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userData } = userLogin
 
-  // useEffect(() => {
-  //   if (success || !userData) {
-  //     history.push('/')
-  //   }
-  // }, [history, success, userData])
+  useEffect(() => {
+    if (success || !userData) {
+      navigate('/')
+    }
+  }, [ success, userData])
 
   const uploadFileHandler = async (e) => {
     // let cloudinaryUrl = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload", cloudinarySecret="qwdzopo4"

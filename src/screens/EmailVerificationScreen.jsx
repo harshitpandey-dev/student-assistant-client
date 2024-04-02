@@ -5,22 +5,24 @@ import { register } from '../actions/userActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Header from '../components/Header'
-const EmailVerificationScreen = ({ location, match }) => {
-  if(match){
-    var token = match.params.token
+import { useNavigate, useParams } from 'react-router'
+const EmailVerificationScreen = ({ location }) => {
+  const navigate=useNavigate()
+  const match=useParams();
 
-  }
+    var token = match.token
+
   const dispatch = useDispatch()
   const userRegister = useSelector((state) => state.userRegister)
   const { userData, loading, error } = userRegister
   // const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  // useEffect(() => {
-  //   if (userData) {
-  //     history.push(redirect)
-  //   }
-  //   dispatch(register(token))
-  // }, [history, userData, redirect, token])
+  useEffect(() => {
+    if (userData) {
+      navigate(redirect)
+    }
+    dispatch(register(token))
+  }, [ userData, redirect, token])
 
   return (
     <>
