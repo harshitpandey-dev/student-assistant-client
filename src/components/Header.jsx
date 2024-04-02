@@ -15,7 +15,7 @@ const Header = ({history}) => {
   };
   return (
     <header>
-      <Navbar className="Nav_Bar"  expand="lg" collapseOnSelect style={{ height: "90px", backgroundColor: "#8991E4", fontFamily:"'Gluten', sans-serif"}}>
+      <Navbar className="Nav_Bar"  expand="lg" collapseOnSelect style={{ height: "auto", backgroundColor: "#8991E4", fontFamily:"'Gluten', sans-serif"}}>
         <Container>
           <LinkContainer to="/home">
             <Navbar.Brand className="text-light">Student-Assistant</Navbar.Brand>

@@ -11,7 +11,7 @@ html,body{
 }
 
 label{
-    font-size: 25px;
+
     font-family: 'Gluten', sans-serif;
 }
 
@@ -390,6 +390,7 @@ li {
 .Nav_Bar{
     color: black;
     font-size: 20px;
+    height: 400px;
 }
 
 
