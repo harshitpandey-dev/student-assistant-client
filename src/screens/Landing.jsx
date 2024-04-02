@@ -33,7 +33,7 @@ export default function Landing({match}) {
   return (
     <>
     <Header />
-    <div className="py-5 container-fluid p-5">
+    <div className="py-4 container-fluid p-5">
       <Meta />
       {keyword && (
         <Link className="btn btn-success" to="/">

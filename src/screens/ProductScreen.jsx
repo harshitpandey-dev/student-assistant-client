@@ -111,7 +111,7 @@ const ProductScreen = ({ match }) => {
             <Col md={6} className='image-area'>
               <Carousel>
                 {product.images.map((image) => (
-                  <Carousel.Item key={image._id}>
+                  <Carousel.Item key={image._id} >
                     <Image
                       className='d-block w-100'
                       src={image?.image1}

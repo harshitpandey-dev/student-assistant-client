@@ -83,7 +83,7 @@ const ProductCreateScreen = ({ history }) => {
   return (
     <>
     <Header />
-    <div className = "py-5 ">
+    <div className = "py-3 ">
       <FormContainer >
           <h1 className=' py-2 text-center' style={{ fontFamily: "'Gluten', sans-serif", color:"#8991E4"}}>Upload Your Property</h1>
         {loading ? (
