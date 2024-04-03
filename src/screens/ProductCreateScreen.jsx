@@ -9,6 +9,7 @@ import { createProduct } from '../actions/productActions'
 import FormContainer from '../components/FormContainer'
 import Header from '../components/Header'
 import { useNavigate } from 'react-router'
+import { login } from '../actions/userActions'
 
 const ProductCreateScreen = () => {
   const navigate=useNavigate();
@@ -32,7 +33,9 @@ const ProductCreateScreen = () => {
   const { userData } = userLogin
 
   useEffect(() => {
-    if (success || !userData) {
+ 
+  
+      if (success || !localStorage.getItem('userData')) {
       navigate('/')
     }
   }, [ success, userData])

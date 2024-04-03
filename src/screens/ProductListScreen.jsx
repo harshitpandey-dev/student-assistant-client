@@ -9,6 +9,7 @@ import Loader from '../components/Loader'
 import { listProducts, deleteProduct } from '../actions/productActions'
 import Header from '../components/Header'
 import { useNavigate, useParams } from 'react-router'
+import { login } from '../actions/userActions'
 
 const ProductListScreen = () => {
   const navigate=useNavigate();
@@ -27,6 +28,7 @@ const ProductListScreen = () => {
   } = productDelete
   var i = 1
   useEffect(() => {
+
     if (userData && userData.isAdmin) {
       dispatch(listProducts('', pageNumber))
     } else {

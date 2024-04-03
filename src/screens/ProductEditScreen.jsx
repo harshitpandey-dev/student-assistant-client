@@ -9,6 +9,7 @@ import FormContainer from '../components/FormContainer'
 import { PRODUCT_UPDATE_RESET } from '../types/productConstants'
 import Header from '../components/Header'
 import { useNavigate, useParams } from 'react-router'
+import { login } from '../actions/userActions'
 
 
 const ProductEditScreen = () => {
@@ -43,10 +44,11 @@ const ProductEditScreen = () => {
     success: successUpdate,
   } = productUpdate
   useEffect(() => {
+
     dispatch({
       type: PRODUCT_UPDATE_RESET,
     })
-    if (!userData || successUpdate) {
+    if (!localStorage.getItem('userData') || successUpdate) {
       navigate('/')
     }
     if (successUpdate && userData.isAdmin) {

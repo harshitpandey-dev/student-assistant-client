@@ -6,7 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { updateUser, getUserDetails } from "../actions/userActions";
+import { updateUser, getUserDetails, login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
 import Header from "../components/Header";
@@ -43,7 +43,8 @@ const UserUpdateScreen = () => {
   const { success: successDelete } = productDelete;
   useEffect(() => {
     dispatch(listProducts());
-    if (!userData || success) {
+
+    if (!localStorage.getItem('userData') || success) {
       dispatch({ type: USER_UPDATE_RESET });
       dispatch({ type: USER_DETAILS_RESET });
 
@@ -244,6 +245,7 @@ const UserUpdateScreen = () => {
                               <Button
                                 variant="danger"
                                 className="btn-sm"
+                                style={{width:"35px",height:"30px"}}
                                 onClick={() => deleteHandler(product._id)}
                               >
                                 <i className="fas fa-trash"></i>
