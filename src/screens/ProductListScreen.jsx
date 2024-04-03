@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import Paginate from '../components/Paginate'
@@ -19,7 +19,7 @@ const ProductListScreen = () => {
   const productList = useSelector((state) => state.productList)
   const { products, loading, error, page, pages } = productList
   const userLogin = useSelector((state) => state.userLogin)
-  const { userData } = userLogin
+  var { userData } = userLogin
   const productDelete = useSelector((state) => state.productDelete)
   const {
     success: successDelete,
@@ -28,11 +28,14 @@ const ProductListScreen = () => {
   } = productDelete
   var i = 1
   useEffect(() => {
-
+   if(localStorage.getItem('userData')){
+    userData=JSON.parse(localStorage.getItem('userData'))
+   }
     if (userData && userData.isAdmin) {
       dispatch(listProducts('', pageNumber))
     } else {
-      navigate('/login')
+      navigate('/home')
+      
     }
   }, [dispatch, successDelete, userData, pageNumber])
 

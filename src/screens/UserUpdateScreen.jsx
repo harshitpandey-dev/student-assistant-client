@@ -30,7 +30,7 @@ const UserUpdateScreen = () => {
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const { userData } = userLogin;
+  var { userData } = userLogin;
   const userUpdate = useSelector((state) => state.userUpdate);
   const { success, loading, error } = userUpdate;
 
@@ -43,8 +43,11 @@ const UserUpdateScreen = () => {
   const { success: successDelete } = productDelete;
   useEffect(() => {
     dispatch(listProducts());
+    if(localStorage.getItem('userData')){
+      userData=JSON.parse(localStorage.getItem('userData'))
+    }
 
-    if (!localStorage.getItem('userData') || success) {
+    if (!userData || success) {
       dispatch({ type: USER_UPDATE_RESET });
       dispatch({ type: USER_DETAILS_RESET });
 

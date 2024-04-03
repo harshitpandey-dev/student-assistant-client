@@ -30,12 +30,14 @@ const ProductCreateScreen = () => {
   const productCreate = useSelector((state) => state.productCreate)
   const { loading, error, success } = productCreate
   const userLogin = useSelector((state) => state.userLogin)
-  const { userData } = userLogin
+  var { userData } = userLogin
 
   useEffect(() => {
- 
+    if (localStorage.getItem('userData')) {
+      userData = JSON.parse(localStorage.getItem('userData'))
+    }
   
-      if (success || !localStorage.getItem('userData')) {
+      if (success || !userData) {
       navigate('/')
     }
   }, [ success, userData])

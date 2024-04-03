@@ -36,7 +36,7 @@ const ProductEditScreen = () => {
   const { loading, error, product } = productDetails
   const productUpdate = useSelector((state) => state.productUpdate)
   const userLogin = useSelector((state) => state.userLogin)
-  const { userData } = userLogin
+  var { userData } = userLogin
   const {
     loading: loadingUpdate,
     error: errorUpdate,
@@ -44,11 +44,14 @@ const ProductEditScreen = () => {
     success: successUpdate,
   } = productUpdate
   useEffect(() => {
+    if (localStorage.getItem('userData')) {
+      userData = JSON.parse(localStorage.getItem('userData'))
+    }
 
     dispatch({
       type: PRODUCT_UPDATE_RESET,
     })
-    if (!localStorage.getItem('userData') || successUpdate) {
+    if (!userData || successUpdate) {
       navigate('/')
     }
     if (successUpdate && userData.isAdmin) {

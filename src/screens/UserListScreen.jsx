@@ -13,7 +13,7 @@ const UserListScreen = () => {
   const usersList = useSelector((state) => state.usersList)
   const { users, loading, error } = usersList
   const userLogin = useSelector((state) => state.userLogin)
-  const { userData } = userLogin
+  var { userData } = userLogin
   const userDelete = useSelector((state) => state.userDelete)
   const {
     success: successDelete,
@@ -22,11 +22,13 @@ const UserListScreen = () => {
   } = userDelete
   var i = 1
   useEffect(() => {
-
+   if(localStorage.getItem('userData')){
+      userData=JSON.parse(localStorage.getItem('userData'))
+   }  
     if (userData && userData.isAdmin) {
       dispatch(listUsers())
     } else {
-      navigate('/login')
+      navigate('/')
     }
   }, [dispatch,  successDelete, userData])
 
