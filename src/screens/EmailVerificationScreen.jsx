@@ -15,7 +15,7 @@ const EmailVerificationScreen = ({ location }) => {
   const dispatch = useDispatch()
   const userRegister = useSelector((state) => state.userRegister)
   const { userData, loading, error } = userRegister
-  // const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
     if (userData) {

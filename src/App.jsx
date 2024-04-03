@@ -16,10 +16,20 @@ import Footer from "./components/Footer";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import UserUpdateScreen from "./screens/UserUpdateScreen";
 import EmailVerificationScreen from "./screens/EmailVerificationScreen";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./actions/userActions";
 
 
 
 function App() {
+   const dispatch=useDispatch();
+  useEffect(()=>{
+    if (localStorage.getItem('userData')){
+      dispatch(login("",""));
+    }
+  })
+
   return (
     <Router>
       <>

@@ -16,7 +16,7 @@ function Login() {
   });
   const [vaild,setValid]=useState(null);
   const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.userLogin)
+  var userLogin = useSelector((state) => state.userLogin)
   const { userData, loading, error } = userLogin
 
   const redirect = location.search ? location.search.split('=')[1] : '/';
@@ -25,7 +25,7 @@ function Login() {
     if (userData) {
       navigate("/home")
     }
-  }, [userData, redirect,error])
+  }, [userData, redirect,error,userLogin])
 
   const handleLogin = async (e) => {
     e.preventDefault()

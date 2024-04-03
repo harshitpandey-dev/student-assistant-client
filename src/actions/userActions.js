@@ -34,6 +34,14 @@ import {
 export const login = (email, password) => async (dispatch) => {
   try {
     // console.log(email);
+    
+    if(localStorage.getItem("userData")){
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: JSON.parse(localStorage.getItem("userData")),
+      })
+      return ;
+    }
     dispatch({
       type: USER_LOGIN_REQUEST,
     })
