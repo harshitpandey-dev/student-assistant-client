@@ -17,14 +17,13 @@ const Header = () => {
     <header>
       <Navbar className="Nav_Bar"  expand="lg" collapseOnSelect style={{ height: "auto", backgroundColor: "#8991E4", fontFamily:"'Gluten', sans-serif"}}>
         <Container>
-          <LinkContainer to="/home">
+          <LinkContainer to="/">
             <Navbar.Brand className="text-light">Student-Assistant</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
-           
-
+            {/* <SearchBox /> */}
             <Nav className="ml-auto">
               {userData ? (
                 <NavDropdown
@@ -39,7 +38,7 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to="/">
+                <LinkContainer to="/login">
                   <Nav.Link>
                     <i className="fas fa-user"></i> Sign In
                   </Nav.Link>

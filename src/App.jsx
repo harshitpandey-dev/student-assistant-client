@@ -36,9 +36,9 @@ function App() {
 
 
         <Routes>
-          <Route path="/" element={<Login />} exact />
+          <Route path="/login" element={<Login />} exact />
           <Route path="/signup" element={<Signup />} exact />
-          <Route path="/home" element={<Landing />} exact />
+          <Route path="/" element={<Landing />} exact />
           <Route path="/search/:keyword" element={<Landing />} exact />
           <Route path="/page/:pageNumber" element={<Landing />} exact />
           <Route path="'/search/:keyword/page/:pageNumber'" element={<Landing />} exact />

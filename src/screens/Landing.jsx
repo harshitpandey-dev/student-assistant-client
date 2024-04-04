@@ -47,7 +47,7 @@ export default function Landing() {
             <h3 style={{ fontFamily: "'Gluten', sans-serif", color:"#8991E4"}}> Latest Items On Sale</h3>
         </Col>
         <Col className="text-right">
-          <LinkContainer to= "/createproduct">
+          <LinkContainer to= {userData?"/createproduct":"/login"}>
               <div className="btn btn-danger" >
               <i style={{ color: "white" }} className="fas fa-plus"></i>{" "}
               <span className="textcolor" >List Your Property</span>

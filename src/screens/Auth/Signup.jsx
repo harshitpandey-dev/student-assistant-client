@@ -33,7 +33,7 @@ function Signup() {
 
   useEffect(() => {
     if (userData) {
-      navigate("/home")
+      navigate("/")
     }
   }, [userRegister, redirect])
 
@@ -179,7 +179,7 @@ function Signup() {
                   Submit
                 </div>
 
-                <a href="/" className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light ">
+                <a href="/login" className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light ">
                  Login
                 </a>
 

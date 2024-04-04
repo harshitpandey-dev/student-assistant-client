@@ -54,7 +54,7 @@ const UserUpdateScreen = () => {
       if (userData && userData.isAdmin) {
         navigate("/admin/userlist");
       } else {
-        navigate("/");
+        navigate("/login");
       }
     } else {
       if (!user?.name) {

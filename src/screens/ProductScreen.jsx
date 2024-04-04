@@ -89,7 +89,7 @@ const ProductScreen = () => {
     <>
     <Header />
     <div className='py-2 '>
-      <Link to='/home' className='btn btn-success my-3 ms-2'>
+      <Link to='/' className='btn btn-success my-3 ms-2'>
         Go Back
       </Link>
       <br />

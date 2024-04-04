@@ -34,7 +34,7 @@ const ProductListScreen = () => {
     if (userData && userData.isAdmin) {
       dispatch(listProducts('', pageNumber))
     } else {
-      navigate('/home')
+      navigate('/')
       
     }
   }, [dispatch, successDelete, userData, pageNumber])
