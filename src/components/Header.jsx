@@ -23,8 +23,8 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
-            {/* <SearchBox /> */}
-            <Nav className="ml-auto">
+            <SearchBox />
+            <Nav className="ml-auto text-center">
               {userData ? (
                 <NavDropdown
                   title={`Signed in as ${userData.name}`}
@@ -57,8 +57,8 @@ const Header = () => {
                   </NavDropdown.Item> */}
                 </NavDropdown>
               )}
-              <LinkContainer to="/about">
-                <Nav.Link>
+              <LinkContainer to="/about" >
+                <Nav.Link >
                   {/* <i className='far fa-address-card'></i>  */}
                   About Us
                 </Nav.Link>
