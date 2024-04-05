@@ -19,6 +19,7 @@ import EmailVerificationScreen from "./screens/EmailVerificationScreen";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
+import Chat from "./screens/Chat";
 
 
 
@@ -80,6 +81,7 @@ function App() {
             element={<EmailVerificationScreen />}
             exact
           />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
         <Footer />
