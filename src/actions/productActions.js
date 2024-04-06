@@ -88,7 +88,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
-
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${userData.token}`,
@@ -118,7 +117,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const createProduct =
   (
     name,
-    image1,
+    images,
     description,
     category,
     expiresOn,
@@ -137,7 +136,7 @@ export const createProduct =
       } = getState();
       const config = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           Authorization: `Bearer ${userData.token}`,
@@ -149,7 +148,7 @@ export const createProduct =
         `/api/products`,
         {
           name,
-          images: [{ image1 }],
+          images,
           description,
           category,
           expiresOn,
@@ -200,7 +199,7 @@ export const updateProduct =
       } = getState();
       const config = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           Authorization: `Bearer ${userData.token}`,
@@ -250,7 +249,7 @@ export const createProductReview =
       } = getState();
       const config = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 
