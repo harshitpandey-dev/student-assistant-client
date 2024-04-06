@@ -80,6 +80,7 @@ export const logout = () => async (dispatch, getState) => {
   const {
     userLogin: { userData },
   } = getState();
+  console.log(userData);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -88,7 +89,7 @@ export const logout = () => async (dispatch, getState) => {
       Authorization: `Bearer ${userData.token}`,
     },
   };
-  await axios.post("/api/users/logout", config);
+  await axios.post("/api/users/logout", {}, config);
   localStorage.removeItem("userData");
   dispatch({
     type: USER_LOGOUT,
@@ -172,8 +173,6 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data.data,
       });
-     
-      localStorage.setItem("userData", JSON.stringify(data.data));
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -244,11 +243,7 @@ export const listUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      "/api/users",
-
-      config
-    );
+    const { data } = await axios.get("/api/users", {}, config);
     dispatch({
       type: USER_LIST_SUCCESS,
       payload: data,
@@ -282,11 +277,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(
-      `/api/users/${id}`,
-
-      config
-    );
+    await axios.delete(`/api/users/${id}`, {}, config);
     dispatch({
       type: USER_DELETE_SUCCESS,
     });
@@ -345,7 +336,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-    if(localStorage.getItem("userData")){
+    if (localStorage.getItem("userData")) {
       dispatch({
         type: USER_DETAILS_SUCCESS,
         payload: JSON.parse(localStorage.getItem("userData")),
@@ -364,7 +355,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await axios.get(`/api/users/${id}`, {}, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
