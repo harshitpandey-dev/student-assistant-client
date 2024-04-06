@@ -15,7 +15,6 @@ function Signup() {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
     contact: "",
   });
   const redirect = location.search ? location.search.split("=")[1] : "/";
@@ -41,8 +40,8 @@ function Signup() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    if (userDetails.password !== userDetails.confirmPassword) {
-      setMessage("Passwords do not match");
+    if (userDetails.password ===""|| userDetails.email===""||userDetails.contact===""||userDetails.fullname===""||userDetails.username==="") {
+      setMessage("Invalid Input");
       setTimeout(() => {
         setMessage(null);
       }, 3000);
@@ -117,7 +116,7 @@ function Signup() {
                   className="form-control form-control"
                   placeholder="Enter fullName"
                   size="md"
-                  value={userDetails.name}
+                  value={userDetails.fullname}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
@@ -165,7 +164,7 @@ function Signup() {
                   type="text"
                   placeholder="Enter userName"
                   size="md"
-                  value={userDetails.address}
+                  value={userDetails.username}
                   onChange={(event) => {
                     setUserDetails({
                       ...userDetails,
@@ -191,7 +190,7 @@ function Signup() {
                   }}
                 />
               </div>
-              <div className="form-outline mb-2">
+              {/* <div className="form-outline mb-2">
                 <input
                   type="password"
                   id="form3Example4"
@@ -206,7 +205,7 @@ function Signup() {
                     });
                   }}
                 />
-              </div>
+              </div> */}
 
               <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
                 <div

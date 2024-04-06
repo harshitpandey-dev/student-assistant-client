@@ -64,7 +64,7 @@ const ProductScreen = () => {
       sendEmail(
         product?.seller?.selleremail,
         text,
-        userData?.name,
+        userData?.fullname,
         userData?.address,
         product?.name,
         userData?.email,
@@ -189,7 +189,7 @@ const ProductScreen = () => {
                           <i className='far fa-window-close'></i>
                         </button>
                       </p>
-                      <li>{userData.name}</li>
+                      <li>{userData.fullname}</li>
                       <li>{userData.email}</li>
                       <li>{userData?.contact?.phone_no}</li>
                       <li>

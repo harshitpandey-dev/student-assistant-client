@@ -52,17 +52,17 @@ export const login = (email, password) => async (dispatch) => {
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
     };
-    const { res } = await axios.post(
+    const { data } = await axios.post(
       "/api/users/login",
       { email, password },
       config
     );
     dispatch({
       type: USER_LOGIN_SUCCESS,
-      payload: res.data.user,
+      payload: data.data.user,
     });
 
-    localStorage.setItem("userData", JSON.stringify(res.data.user));
+    localStorage.setItem("userData", JSON.stringify(data.data.user));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -170,8 +170,10 @@ export const register =
 
       dispatch({
         type: USER_REGISTER_SUCCESS,
-        payload: data,
+        payload: data.data,
       });
+     
+      localStorage.setItem("userData", JSON.stringify(data.data));
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -185,45 +187,45 @@ export const register =
 
 //EMAIL SEND
 
-// export const sendEmail =
-//   (receiver, text, name, address, productName, email, phone_no) =>
-//   async (dispatch, getState) => {
-//     try {
-//       dispatch({
-//         type: EMAIL_SEND_REQUEST,
-//       });
-//       const {
-//         userLogin: { userData },
-//       } = getState();
-//       const config = {
-//         headers: {
-//           "Content-Type": "application/json",
-//           "Access-Control-Allow-Origin": "*",
-//           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-//           Authorization: `Bearer ${userData.token}`,
-//         },
-//       };
+export const sendEmail =
+  (receiver, text, name, address, productName, email, phone_no) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: EMAIL_SEND_REQUEST,
+      });
+      const {
+        userLogin: { userData },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          Authorization: `Bearer ${userData.token}`,
+        },
+      };
 
-//       const { data } = await axios.post(
-//         "/api/users/email",
-//         { receiver, text, name, address, productName, email, phone_no },
-//         config
-//       );
-//       console.log(data);
-//       dispatch({
-//         type: EMAIL_SEND_SUCCESS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: EMAIL_SEND_FAIL,
-//         payload:
-//           error.response && error.response.data.message
-//             ? error.response.data.message
-//             : error.message,
-//       });
-//     }
-//   };
+      const { data } = await axios.post(
+        "/api/users/email",
+        { receiver, text, name, address, productName, email, phone_no },
+        config
+      );
+      console.log(data);
+      dispatch({
+        type: EMAIL_SEND_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EMAIL_SEND_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 //get all users by an  admin
 export const listUsers = () => async (dispatch, getState) => {
@@ -343,7 +345,13 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-
+    if(localStorage.getItem("userData")){
+      dispatch({
+        type: USER_DETAILS_SUCCESS,
+        payload: JSON.parse(localStorage.getItem("userData")),
+      });
+      return;
+    }
     const {
       userLogin: { userData },
     } = getState();
@@ -362,6 +370,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       type: USER_DETAILS_SUCCESS,
       payload: data,
     });
+    // console.log(data);
   } catch (error) {
     const message =
       error.response && error.response.data.message

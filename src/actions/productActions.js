@@ -150,10 +150,10 @@ export const createProduct =
           name,
           images,
           description,
-          category,
-          expiresOn,
-          address,
-          shippingCharge,
+          // category,
+          // expiresOn,
+          // address,
+          // shippingCharge,
           price,
           negotiable,
         },
@@ -163,6 +163,7 @@ export const createProduct =
         type: PRODUCT_CREATE_SUCCESS,
         payload: data,
       });
+      console.log(data);
     } catch (error) {
       dispatch({
         type: PRODUCT_CREATE_FAIL,

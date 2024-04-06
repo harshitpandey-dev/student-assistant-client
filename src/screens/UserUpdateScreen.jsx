@@ -57,10 +57,11 @@ const UserUpdateScreen = () => {
         navigate("/login");
       }
     } else {
-      if (!user?.name) {
+      if (!user?.fullname) {
+   
         dispatch(getUserDetails(userId));
       } else {
-        setFullname(user.name);
+        setFullname(user.fullname);
         setUsername(user.username);
         setContact(user?.contact);
         setEmail(user.email);

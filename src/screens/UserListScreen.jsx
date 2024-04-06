@@ -68,7 +68,7 @@ const UserListScreen = () => {
               <tr key={user._id}>
                 <td>{i++}</td>
                 <td>{user._id}</td>
-                <td>{user.name}</td>
+                <td>{user.fullname}</td>
                 <td>{user.email}</td>
                 <td>{user.contact.phone_no}</td>
                 <td>{user.address}</td>
