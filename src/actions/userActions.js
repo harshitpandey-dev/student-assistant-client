@@ -376,3 +376,39 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     });
   }
 };
+
+
+export const updateUserPassword = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    });
+    const {
+      userLogin: { userData },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+
+        Authorization: `Bearer ${userData.token}`,
+      },
+    };
+    // console.log(config);
+    // console.log(id)
+    const { data } = await axios.post(`/api/users/changepassword`, user, config);
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

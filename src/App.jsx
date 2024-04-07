@@ -29,7 +29,7 @@ function App() {
     if (localStorage.getItem('userData')){
       dispatch(login("",""));
     }
-  })
+  },[])
 
   return (
     <Router>

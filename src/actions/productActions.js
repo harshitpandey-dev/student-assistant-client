@@ -119,15 +119,13 @@ export const createProduct =
     name,
     images,
     description,
-    category,
-    expiresOn,
-    address,
-    shippingCharge,
+    formData,
     price,
     negotiable
   ) =>
   async (dispatch, getState) => {
     try {
+      console.log(images, name ,formData  ,description);
       dispatch({
         type: PRODUCT_CREATE_REQUEST,
       });
@@ -150,10 +148,7 @@ export const createProduct =
           name,
           images,
           description,
-          // category,
-          // expiresOn,
-          // address,
-          // shippingCharge,
+          formData,
           price,
           negotiable,
         },

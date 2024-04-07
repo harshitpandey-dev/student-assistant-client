@@ -42,20 +42,20 @@ const ProductCreateScreen = () => {
   const uploadFileHandler = async (e) => {
     const file = Array.from(e.target.files);
     setImages((images) => [...images, ...file]);
+   
     setUploading(false);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', images);
     dispatch(
       createProduct(
         name,
         images,
         description,
-        category,
-        expiresOn,
-        shippingAddress,
-        shippingCharge,
+        formData,
         price,
         negotiable
       )
@@ -115,7 +115,7 @@ const ProductCreateScreen = () => {
                   </div>
                 )}
               </Form.Group>
-              <Form.Group controlId="category">
+              {/* <Form.Group controlId="category">
                 <Form.Label>Category </Form.Label>
                 <Form.Control
                   type="text"
@@ -124,7 +124,7 @@ const ProductCreateScreen = () => {
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="description">
                 <Form.Label>Describe your property </Form.Label>
@@ -139,7 +139,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="expiresOn">
+              {/* <Form.Group controlId="expiresOn">
                 <Form.Label>How long is your product for sale? </Form.Label>
                 <Form.Control
                   type="date"
@@ -147,7 +147,7 @@ const ProductCreateScreen = () => {
                   onChange={(e) => setExpiresOn(e.target.value)}
                   required
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-5" controlId="price">
                 <Form.Label>Price </Form.Label>
@@ -167,7 +167,7 @@ const ProductCreateScreen = () => {
                   onChange={(e) => setNegotiable(e.target.checked)}
                 ></Form.Check>
               </Form.Group>
-              <Form.Group className="mt-5" controlId="shippingaddress">
+              {/* <Form.Group className="mt-5" controlId="shippingaddress">
                 <Form.Label>Shipping Address </Form.Label>
                 <Form.Control
                   type="text"
@@ -176,9 +176,9 @@ const ProductCreateScreen = () => {
                   onChange={(e) => setShippingAddress(e.target.value)}
                   required
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
-              <Form.Group controlId="shippingCharge">
+              {/* <Form.Group controlId="shippingCharge">
                 <Form.Label>Shipping Charge </Form.Label>
                 <Form.Control
                   type="number"
@@ -187,7 +187,7 @@ const ProductCreateScreen = () => {
                   onChange={(e) => setShippingCharge(e.target.value)}
                   required
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Button className="mt-3 w-100" type="submit" variant="primary">
                 Upload your property

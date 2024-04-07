@@ -12,6 +12,8 @@ import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
 import Header from "../components/Header";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import ChangePassword from "../components/ChangePassword";
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
   const match = useParams();
@@ -22,8 +24,6 @@ const UserUpdateScreen = () => {
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState(null);
@@ -42,10 +42,10 @@ const UserUpdateScreen = () => {
 
   const { success: successDelete } = productDelete;
   useEffect(() => {
-    dispatch(listProducts());
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
+    dispatch(listProducts());
 
     if (!userData || success) {
       dispatch({ type: USER_UPDATE_RESET });
@@ -75,12 +75,7 @@ const UserUpdateScreen = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-    } else {
+
       dispatch(
         updateUser({
           _id: userId,
@@ -89,7 +84,7 @@ const UserUpdateScreen = () => {
           contact,
         })
       );
-    }
+    
   };
   return (
     <>
@@ -127,6 +122,7 @@ const UserUpdateScreen = () => {
                 placeholder="Enter Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled
               ></Form.Control>
             </Form.Group>
             <Form.Group controlId="address">
@@ -152,17 +148,19 @@ const UserUpdateScreen = () => {
                 onChange={(e) => setContact(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
-            <Form.Group controlId="password">
+ 
+          
+        <Form.Group controlId="password">
               <Form.Label>Password </Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              ></Form.Control>
+                value={"cfchgvyuvyv"}
+                disabled
+              ></Form.Control>   
             </Form.Group>
-            <Form.Group controlId="confirmpassword">
+        
+            {/* <Form.Group controlId="confirmpassword">
               <Form.Label>Confirm Password </Form.Label>
               <Form.Control
                 type="password"
@@ -170,10 +168,14 @@ const UserUpdateScreen = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
-            </Form.Group>
+            </Form.Group> */}
             {loading && <Loader />}
 
-            <Button type="submit" variant="primary">
+         
+              <ChangePassword />
+         
+
+            <Button type="submit" variant="primary" className="ms-2">
               Update Profile
             </Button>
           </Form>
