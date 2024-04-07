@@ -40,28 +40,26 @@ const ProductCreateScreen = () => {
   }, [success, userData]);
 
   const uploadFileHandler = async (e) => {
-    const file = Array.from(e.target.files);
-    setImages((images) => [...images, ...file]);
-    setUploading(false);
-    
-  };
+    const data = e.target.files[0];
+    const imagesData = [...images];
+    imagesData.push(data);
 
+    setImages(imagesData);
+    setUploading(false);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('name', name);
-    formData.append('description', description);
-    formData.append('price', price);
-    formData.append('negotiable', negotiable);
-    formData.append('images',images);
-
-    console.log(formData);
-    dispatch(
-      createProduct(
-       formData
-      )
-    );
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("negotiable", negotiable);
+    for (let i = 0; i < images.length; i++) {
+      const file = images[i];
+      formData.append("images", file);
+    }
+    dispatch(createProduct(formData));
   };
   return (
     <>
@@ -95,27 +93,27 @@ const ProductCreateScreen = () => {
                 </Form.Label>
 
                 <Form.File
-                  onChange={uploadFileHandler}
                   id="image-file"
                   label="Choose File"
                   multiple
+                  onChange={uploadFileHandler}
                   custom
                 ></Form.File>
 
                 {uploading && <Loader />}
-                {images && (
+                {/*{images && (
                   <div>
                     {images.map((file, index) => (
                       <img
                         key={index}
                         className="mt-2"
-                        src={URL.createObjectURL(file)}
+                        src={file.uri}
                         style={{ height: "100px" }}
                         alt={`image${index + 1}`}
                       />
                     ))}
                   </div>
-                )}
+                )}*/}
               </Form.Group>
               {/* <Form.Group controlId="category">
                 <Form.Label>Category </Form.Label>

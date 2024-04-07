@@ -114,50 +114,40 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 //create the product
 //this function simply does not take anything and creates a sample product only which later can be edited
-export const createProduct =
-  (
-    formData
-  ) =>
-  async (dispatch, getState) => {
-    try {
-    console.log(formData);
-      dispatch({
-        type: PRODUCT_CREATE_REQUEST,
-      });
-      const {
-        userLogin: { userData },
-      } = getState();
-      const config = {
-        headers:{
-          "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          Authorization: `Bearer ${userData.token}`,
-        },
-      };
-      // console.log("reached here");
-      // console.log(config);
-      const { data } = await axios.post(
-        `/api/products`,
-          formData
-        ,
-        config
-      );
-      dispatch({
-        type: PRODUCT_CREATE_SUCCESS,
-        payload: data,
-      });
-      console.log(data);
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_CREATE_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+export const createProduct = (formData) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_CREATE_REQUEST,
+    });
+    const {
+      userLogin: { userData },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${userData.token}`,
+      },
+    };
+    // console.log("reached here");
+    // console.log(config);
+    const { data } = await axios.post(`/api/products`, formData, config);
+    dispatch({
+      type: PRODUCT_CREATE_SUCCESS,
+      payload: data,
+    });
+    console.log(data);
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 //update product
 
