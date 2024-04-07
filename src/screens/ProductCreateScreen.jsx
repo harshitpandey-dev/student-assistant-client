@@ -54,9 +54,8 @@ const ProductCreateScreen = () => {
     formData.append('description', description);
     formData.append('price', price);
     formData.append('negotiable', negotiable);
-    images.forEach((file,index)=>{
-      formData.append(`files${index}`,file);
-    })
+    formData.append('images',images);
+
     console.log(formData);
     dispatch(
       createProduct(

@@ -128,8 +128,8 @@ export const createProduct =
         userLogin: { userData },
       } = getState();
       const config = {
-        headers: {
-          "Content-Type": "application/json",
+        headers:{
+          "Content-Type": "multipart/form-data",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           Authorization: `Bearer ${userData.token}`,
