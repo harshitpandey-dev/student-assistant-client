@@ -45,6 +45,7 @@ const ProductCreateScreen = () => {
    
     setUploading(false);
   };
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
