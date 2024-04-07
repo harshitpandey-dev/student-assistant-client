@@ -45,6 +45,10 @@ const UserUpdateScreen = () => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
+    if(!userData){
+      navigate("/");
+      return;
+    }
     dispatch(listProducts());
 
     if (!userData || success) {
