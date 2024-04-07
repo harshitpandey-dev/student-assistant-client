@@ -42,23 +42,25 @@ const ProductCreateScreen = () => {
   const uploadFileHandler = async (e) => {
     const file = Array.from(e.target.files);
     setImages((images) => [...images, ...file]);
-   
     setUploading(false);
+    
   };
-  
+
 
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('file', images);
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('negotiable', negotiable);
+    images.forEach((file,index)=>{
+      formData.append(`files${index}`,file);
+    })
+    console.log(formData);
     dispatch(
       createProduct(
-        name,
-        images,
-        description,
-        formData,
-        price,
-        negotiable
+       formData
       )
     );
   };

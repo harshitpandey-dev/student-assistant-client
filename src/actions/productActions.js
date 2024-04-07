@@ -116,16 +116,11 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 //this function simply does not take anything and creates a sample product only which later can be edited
 export const createProduct =
   (
-    name,
-    images,
-    description,
-    formData,
-    price,
-    negotiable
+    formData
   ) =>
   async (dispatch, getState) => {
     try {
-      console.log(images, name ,formData  ,description);
+    console.log(formData);
       dispatch({
         type: PRODUCT_CREATE_REQUEST,
       });
@@ -140,18 +135,12 @@ export const createProduct =
           Authorization: `Bearer ${userData.token}`,
         },
       };
-      console.log("reached here");
-      console.log(config);
+      // console.log("reached here");
+      // console.log(config);
       const { data } = await axios.post(
         `/api/products`,
-        {
-          name,
-          images,
-          description,
-          formData,
-          price,
-          negotiable,
-        },
+          formData
+        ,
         config
       );
       dispatch({

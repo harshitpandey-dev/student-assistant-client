@@ -184,25 +184,16 @@
 
 
 .forgotpsswrd {
-    height: 600px;
-    width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
+    margin-top: 10px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
 }
 
 
 .forgottext {
     font-family: 'Gluten', sans-serif;
-    font-size: 60px;
     color: #8991E4;
     text-align: center;
-    margin-top: 80px;
-
+    margin-top: 30px;
 }
 
 .forgotpsswrd input {
@@ -213,12 +204,19 @@
     height: 80px;
     margin-top: 40px;
     border-radius: 20px;
-    width: 450px;
+    width: 50%;
+
     margin-left: auto;
     margin-right: auto;
     font-size: 20px;
     padding-left: 40px;
     font-family: 'Faustina', sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+    .forgotpsswrd input {
+       width: 80%;
+    }
 }
 
 .B2loginbtn {
@@ -228,10 +226,10 @@
     color: #646060;
     font-weight: bolder;
     height: 60px;
-    width: 300px;
+    width: 50%;
     border-radius: 40px;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 1.3rem;
     font-family: 'Faustina', sans-serif;
     text-align: center;
     cursor: pointer;
@@ -245,10 +243,10 @@
     color: white;
     font-weight: bolder;
     height: 60px;
-    width: 300px;
+    width: 50%;
     border-radius: 40px;
     margin-top: 50px;
-    font-size: 30px;
+    font-size: 1.3rem;
     font-family: 'Faustina', sans-serif;
     text-align: center;
     cursor: pointer;

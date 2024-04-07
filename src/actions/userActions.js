@@ -8,9 +8,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_RESET,
-  // EMAIL_SEND_FAIL,
-  // EMAIL_SEND_SUCCESS,
-  // EMAIL_SEND_REQUEST,
+  EMAIL_SEND_FAIL,
+  EMAIL_SEND_SUCCESS,
+  EMAIL_SEND_REQUEST,
   USER_LIST_FAIL,
   USER_LIST_SUCCESS,
   USER_LIST_REQUEST,
@@ -187,9 +187,10 @@ export const register =
 //EMAIL SEND
 
 export const sendEmail =
-  (receiver, text, name, address, productName, email, phone_no) =>
+  (email) =>
   async (dispatch, getState) => {
     try {
+      console.log(email);
       dispatch({
         type: EMAIL_SEND_REQUEST,
       });
@@ -206,8 +207,8 @@ export const sendEmail =
       };
 
       const { data } = await axios.post(
-        "/api/users/email",
-        { receiver, text, name, address, productName, email, phone_no },
+        "/api/users/requestpasswordreset",
+        email ,
         config
       );
       console.log(data);
@@ -386,6 +387,7 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
     dispatch({
       type: USER_UPDATE_REQUEST,
     });
+
     const {
       userLogin: { userData },
     } = getState();
@@ -394,7 +396,6 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-
         Authorization: `Bearer ${userData.token}`,
       },
     };
