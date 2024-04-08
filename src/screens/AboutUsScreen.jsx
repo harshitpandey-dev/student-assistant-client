@@ -7,12 +7,12 @@ const AboutUsScreen = () => {
   return (
     <>
     <Header />
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 item">
-            <div class="item-in">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 item">
+            <div className="item-in">
               <h4>Who are We?</h4>
-              <div class="seperator"></div>
+              <div className="seperator"></div>
               <p>
                 Actually We are not any professionals. This website has been created
                 for the purpose of aiding students for buying and selling the notes
@@ -26,18 +26,18 @@ const AboutUsScreen = () => {
              
             </div>
           </div>
-          <div class="col-md-6 item">
-            <div class="item-in">
+          <div className="col-md-6 item">
+            <div className="item-in">
               <h4>Developer</h4>
-              <div class="seperator"></div>
+              <div className="seperator"></div>
               <h4>Designed and developed by Harshit Pandey </h4>
              
             </div>
           </div>
-          <div class="col-md-6 item">
-            <div class="item-in">
+          <div className="col-md-6 item">
+            <div className="item-in">
               <h4>Contact Details</h4>
-              <div class="seperator"></div>
+              <div className="seperator"></div>
               <i className="fas fa-phone"></i> 8287253559
               <br />
               <i className="fas fa-envelope-square"></i>{" "}

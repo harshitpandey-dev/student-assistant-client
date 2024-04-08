@@ -41,25 +41,25 @@ function Login() {
 
   return (
 
-    <section class="auth" >
+    <section className="auth" >
    
-      <div class="container h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
+      <div className="container h-100">
+        <div className="row d-flex align-items-center justify-content-center h-100">
           <div className="display-1" style={{ fontFamily: "'Gluten', sans-serif" }}>Student <span style={{ color: "#8991E4" }}>Assistant</span></div>
 
-          <div class="col-md-8 col-lg-7 col-xl-6">
+          <div className="col-md-8 col-lg-7 col-xl-6">
             <img src="/src/assets/studentass1.png"
-              class="img-fluid" alt="Phone image" />
+              className="img-fluid" alt="Phone image" />
           </div>
-          <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
+          <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-4 text-center" style={{ background: "#8991E4" }}>
             <h1 className="mb-1 text-light display-3" style={{ fontFamily: "'Gluten', sans-serif" }}>Login</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {vaild===false && <Message variant='danger'>Invalid Input</Message>}
             {loading && <Loader />}
             <form>
 
-              <div class="form-outline mb-2" >
-                <input type="email" id="form1Example13" class="form-control form-control-lg" placeholder="Enter Email"
+              <div className="form-outline mb-2" >
+                <input type="email" id="form1Example13" className="form-control form-control-lg" placeholder="Enter Email"
                   value={userDetails.email}
                   onChange={(event) => {
                     setUserDetails({
@@ -71,8 +71,8 @@ function Login() {
               </div>
 
 
-              <div class="form-outline mb-2">
-                <input type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Enter Password"
+              <div className="form-outline mb-2">
+                <input type="password" id="form1Example23" className="form-control form-control-lg" placeholder="Enter Password"
                   value={userDetails.password}
                   onChange={(event) => {
                     setUserDetails({
@@ -83,7 +83,7 @@ function Login() {
 
               </div>
 
-              <div class="d-flex justify-content-around align-items-center mb-4">
+              <div className="d-flex justify-content-around align-items-center mb-4">
 
                 <a href="/forgotpassword" className="btn btn-danger">
                   Forgot Password ?

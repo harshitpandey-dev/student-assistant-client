@@ -39,8 +39,11 @@ const ProductScreen = () => {
   } = productReviewCreate
 
   const userLogin = useSelector((state) => state.userLogin)
-  const { userData } = userLogin
+  var { userData } = userLogin
   useEffect(() => {
+    if(localStorage.getItem('userData')){
+      userData=JSON.parse(localStorage.getItem('userData'))
+    }
     if (successReview) {
       setComment('')
       dispatch({
@@ -48,7 +51,7 @@ const ProductScreen = () => {
       })
     }
     dispatch(listProductDetails(match.id,userData.token))
-  }, [match.id, dispatch, successReview])
+  }, [match.id, dispatch, successReview,userData])
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
@@ -285,13 +288,13 @@ const ProductScreen = () => {
                 <Col className='product' md={6} sm={6} xs={4}>
                   <ul>
                     <li>Total Price:</li>
-                          {product.cost.negotiable && <li>Negotiable:</li>}
+                          {product?.cost?.negotiable && <li>Negotiable:</li>}
                   </ul>
                 </Col>
                 <Col md={6} sm={6} xs={8}>
                   <ul>
-                    <li> Rs {product.cost.price}</li>
-                    {product.cost.negotiable && <li>Yes</li>}
+                    <li> Rs {product?.cost?.price}</li>
+                    {product?.cost?.negotiable && <li>Yes</li>}
                   </ul>
                 </Col>
               </Row>
