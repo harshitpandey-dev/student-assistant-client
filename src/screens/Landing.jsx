@@ -28,10 +28,9 @@ export default function Landing() {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
    
-     dispatch(listProducts(keyword, pageNumber));
+     dispatch(listProducts());
    
   }, [dispatch, keyword, pageNumber]);
-
   return (
     <>
     <Header />

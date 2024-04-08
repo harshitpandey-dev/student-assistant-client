@@ -26,7 +26,7 @@ import axios from "axios";
 //   USER_DELETE_SUCCESS,
 // } from '../types/userConstants'
 export const listProducts =
-  (keyword = "", pageNumber = "") =>
+  () =>
   async (dispatch) => {
     try {
       dispatch({
@@ -37,11 +37,11 @@ export const listProducts =
       });
 
       const { data } = await axios.get(
-        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `/api/products/`
       );
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
-        payload: data,
+        payload: data.data.products,
       });
     } catch (error) {
       dispatch({
@@ -54,17 +54,25 @@ export const listProducts =
     }
   };
 
-export const listProductDetails = (id) => async (dispatch) => {
+export const listProductDetails = (id,token) => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_DETAILS_REQUEST,
     });
 
-    const { data } = await axios.get(`/api/products/${id}`);
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.get(`/api/products/${id}`, config);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
-      payload: data,
+      payload: data.data,
     });
+  
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,

@@ -47,7 +47,7 @@ const ProductScreen = () => {
         type: PRODUCT_REVIEW_RESET,
       })
     }
-    dispatch(listProductDetails(match.id))
+    dispatch(listProductDetails(match.id,userData.token))
   }, [match.id, dispatch, successReview])
 
   const productDetails = useSelector((state) => state.productDetails)
@@ -112,11 +112,11 @@ const ProductScreen = () => {
           <Row className='row mb-2'>
             <Col md={6} className='image-area'>
               <Carousel>
-                {product.images.map((image) => (
-                  <Carousel.Item key={image._id} >
+                {product.images.map((image,index) => (
+                  <Carousel.Item key={index} >
                     <Image
                       className='d-block w-100'
-                      src={image?.image1}
+                      src={image}
                       alt='First slide'
                     />
                   </Carousel.Item>
@@ -135,7 +135,7 @@ const ProductScreen = () => {
                     <li> Product Id:</li>
 
                     <li> Posted On:</li>
-                    <li> Expires On:</li>
+                    {/* <li> Expires On:</li> */}
                     <li> Product:</li>
                   </ul>
                 </Col>
@@ -144,7 +144,7 @@ const ProductScreen = () => {
                     <li>{product._id}</li>
 
                     <li>{product?.createdAt?.substring(0, 10)}</li>
-                    <li>{product?.expiresOn?.substring(0, 10)}</li>
+                    {/* <li>{product?.expiresOn?.substring(0, 10)}</li> */}
                     <li> {product.name}</li>
                   </ul>
                 </Col>
@@ -191,7 +191,7 @@ const ProductScreen = () => {
                       </p>
                       <li>{userData.fullname}</li>
                       <li>{userData.email}</li>
-                      <li>{userData?.contact?.phone_no}</li>
+                      <li>{userData.contact}</li>
                       <li>
                         <textarea
                           style={{ maxWidth: '100%', borderRadius: '5px' }}
@@ -285,13 +285,13 @@ const ProductScreen = () => {
                 <Col className='product' md={6} sm={6} xs={4}>
                   <ul>
                     <li>Total Price:</li>
-                    {product?.Cost?.negotiable && <li>Negotiable:</li>}
+                          {product.cost.negotiable && <li>Negotiable:</li>}
                   </ul>
                 </Col>
                 <Col md={6} sm={6} xs={8}>
                   <ul>
-                    <li> Rs {product?.Cost?.price}</li>
-                    {product?.Cost?.negotiable && <li>Yes</li>}
+                    <li> Rs {product.cost.price}</li>
+                    {product.cost.negotiable && <li>Yes</li>}
                   </ul>
                 </Col>
               </Row>
@@ -305,8 +305,8 @@ const ProductScreen = () => {
               <p className='detailsdescription'>{product.description}</p>
             </Col>
           </Row>
-          <Row>
-            <Col className='borderaround ps-5 mt-5' md={10}>
+          {/* <Row> */}
+            {/* <Col className='borderaround ps-5 mt-5' md={10}>
               <p className='details'>
                 <i className='fas fa-info'></i> Delivery Information
               </p>
@@ -328,8 +328,8 @@ const ProductScreen = () => {
                   </ul>
                 </Col>
               </Row>
-            </Col>
-          </Row>
+            </Col> */}
+          {/* </Row> */}
           <Row className='mt-3'>
             <Col md={6}>
               <h4>Buyer's Speak</h4>
