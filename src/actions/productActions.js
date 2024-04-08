@@ -166,10 +166,10 @@ export const updateProduct =
     name,
     image1,
     description,
-    category,
-    expiresOn,
-    address,
-    shippingCharge,
+    // category,
+    // expiresOn,
+    // address,
+    // shippingCharge,
     price,
     negotiable
   ) =>
@@ -189,18 +189,18 @@ export const updateProduct =
           Authorization: `Bearer ${userData.token}`,
         },
       };
-      console.log("reached here");
-      console.log(config);
+      // console.log("reached here");
+      // console.log(config);
       const { data } = await axios.put(
         `/api/products/${id}`,
         {
           name,
-          images: [{ image1: image1 }],
+          // images: [{ image1: image1 }],
           description,
-          category,
-          expiresOn,
-          address,
-          shippingCharge,
+          // category,
+          // expiresOn,
+          // address,
+          // shippingCharge,
           price,
           negotiable,
         },
@@ -208,8 +208,9 @@ export const updateProduct =
       );
       dispatch({
         type: PRODUCT_UPDATE_SUCCESS,
-        payload: data,
+        payload: data.data.newProduct,
       });
+      console.log(data.data.newProduct);
     } catch (error) {
       dispatch({
         type: PRODUCT_UPDATE_FAIL,

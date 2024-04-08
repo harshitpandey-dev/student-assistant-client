@@ -17,7 +17,7 @@ const ProductEditScreen = () => {
 
   const [name, setName] = useState("");
 
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
 
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -55,20 +55,20 @@ const ProductEditScreen = () => {
     if (successUpdate && userData.isAdmin) {
       navigate("/admin/productlist");
     }
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId));
+    if (!product ||!product.name || product._id !== productId) {
+      dispatch(listProductDetails(productId,userData.token));
     } else {
       setName(product.name);
-      setImages(product.images.map((image) => image.image1).toString());
-
+      // setImages(product.images.map((image) => image).toString());
+      setImages(product.images);
       setDescription(product.description);
-      setCategory(product.category);
-      setExpiresOn(product.expiresOn.substring(0, 10));
-      setShippingAddress(product?.shippingAddress?.address);
-      setShippingCharge(product?.shippingAddress?.shippingCharge);
+      // setCategory(product.category);
+      // setExpiresOn(product.expiresOn.substring(0, 10));
+      // setShippingAddress(product?.shippingAddress?.address);
+      // setShippingCharge(product?.shippingAddress?.shippingCharge);
 
-      setPrice(product?.Cost?.price);
-      setNegotiable(product?.Cost?.negotiable);
+      setPrice(product?.cost?.price);
+      setNegotiable(product?.cost?.negotiable);
     }
   }, [dispatch, productId, product, successUpdate, userData]);
   const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload";
@@ -104,10 +104,10 @@ const ProductEditScreen = () => {
         name,
         images,
         description,
-        category,
-        expiresOn,
-        shippingAddress,
-        shippingCharge,
+        // category,
+        // expiresOn,
+        // shippingAddress,
+        // shippingCharge,
         price,
         negotiable
       )
@@ -152,17 +152,17 @@ const ProductEditScreen = () => {
                   custom
                   onChange={uploadFileHandler}
                 ></Form.File>
-                {images && (
+                {images && images.map((img)=>(
                   <img
-                    className="mt-2"
-                    src={images}
+                    className="mt-2 ms-2"
+                    src={img}
                     style={{ height: "100px" }}
                     alt="image1"
                   />
-                )}
+                ))}
                 {uploading && <Loader />}
               </Form.Group>
-              <Form.Group controlId="category">
+              {/* <Form.Group controlId="category">
                 <Form.Label>Category </Form.Label>
                 <Form.Control
                   type="text"
@@ -170,7 +170,7 @@ const ProductEditScreen = () => {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="description">
                 <Form.Label>Describe your property </Form.Label>
@@ -184,14 +184,14 @@ const ProductEditScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="expiresOn">
+              {/* <Form.Group controlId="expiresOn">
                 <Form.Label>How long is your product for sale? </Form.Label>
                 <Form.Control
                   type="date"
                   value={expiresOn}
                   onChange={(e) => setExpiresOn(e.target.value)}
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group controlId="price">
                 <Form.Label>Price </Form.Label>
@@ -212,7 +212,7 @@ const ProductEditScreen = () => {
                 ></Form.Check>
               </Form.Group>
 
-              <Form.Group controlId="shippingaddress">
+              {/* <Form.Group controlId="shippingaddress">
                 <Form.Label>Shipping Address </Form.Label>
                 <Form.Control
                   type="text"
@@ -220,9 +220,9 @@ const ProductEditScreen = () => {
                   value={shippingAddress}
                   onChange={(e) => setShippingAddress(e.target.value)}
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
-              <Form.Group controlId="shippingCharge">
+              {/* <Form.Group controlId="shippingCharge">
                 <Form.Label>Shipping Charge </Form.Label>
                 <Form.Control
                   type="number"
@@ -230,7 +230,7 @@ const ProductEditScreen = () => {
                   value={shippingCharge}
                   onChange={(e) => setShippingCharge(e.target.value)}
                 ></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
 
               <Button className="mb-2" type="submit" variant="primary">
                 Update
