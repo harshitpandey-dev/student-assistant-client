@@ -39,6 +39,9 @@ const UserUpdateScreen = () => {
   const productList = useSelector((state) => state.productList);
   const { products, loading: loadinglist } = productList;
   const productDelete = useSelector((state) => state.productDelete);
+  const [update,setUpdate]=useState(false);
+
+
 
   const { success: successDelete } = productDelete;
   useEffect(() => {
@@ -90,6 +93,19 @@ const UserUpdateScreen = () => {
       );
     
   };
+
+  useEffect(() => {
+    if (fullname !== "" || username !== "" || contact !== "") {
+      if (fullname !== userData.fullname || username !== userData.username || contact !== userData.contact) {
+        setUpdate(true)
+      } else {
+        setUpdate(false)
+      }
+    } else {
+      setUpdate(false)
+    }
+  }, [fullname, username, contact])
+
   return (
     <>
       <Header />
@@ -179,9 +195,13 @@ const UserUpdateScreen = () => {
               <ChangePassword />
          
 
-            <Button type="submit" variant="primary" className="ms-2">
+           {update? <Button type="submit" variant="primary" className="ms-2" >
               Update Profile
-            </Button>
+            </Button>:
+              <Button type="submit" variant="primary" className="ms-2" disabled>
+                Update Profile
+              </Button>
+            }
           </Form>
           {message && <Message variant="danger">{message}</Message>}
           {error && <Message variant="danger">{error}</Message>}

@@ -96,7 +96,7 @@ const ProductScreen = () => {
         Go Back
       </Link>
       <br />
-      {userData && userData._id === product.user && (
+      {userData && userData._id === product.owner && (
         <Link
           to={`/admin/product/${match.id}/edit`}
           className='btn btn-primary my-3'
