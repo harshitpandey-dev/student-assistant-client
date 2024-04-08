@@ -230,7 +230,7 @@ const UserUpdateScreen = () => {
                       <th>SN</th>
                       <th>ID</th>
                       <th>Product Name</th>
-                      <th>Category</th>
+                      {/* <th>Category</th> */}
                       <th>Price</th>
                       <th>Negotiable</th>
                       <th></th>
@@ -245,16 +245,16 @@ const UserUpdateScreen = () => {
                       products.map(
                         (product) =>
                           product &&
-                          product.user === userData._id && (
+                          product.owner._id === userData._id && (
                             <tr key={product._id}>
                               <td>{i++}</td>
                               <td>{product._id}</td>
                               <td>{product.name}</td>
 
-                              <td>{product.category}</td>
-                              <td>{product?.Cost.price}</td>
+                              {/* <td>{product.category}</td> */}
+                              <td>{product?.cost?.price}</td>
                               <td>
-                                {product?.Cost.negotiable ? (
+                                {product?.cost?.negotiable ? (
                                   <i
                                     className="fas fa-check"
                                     style={{ color: "green" }}
