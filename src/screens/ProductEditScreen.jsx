@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProductDetails, updateProduct } from "../actions/productActions";
+import { deleteProduct, listProductDetails, updateProduct } from "../actions/productActions";
 import FormContainer from "../components/FormContainer";
 import { PRODUCT_UPDATE_RESET } from "../types/productConstants";
 import Header from "../components/Header";
@@ -112,6 +112,12 @@ const ProductEditScreen = () => {
         negotiable
       )
     );
+  };
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteProduct(id));
+      navigate("/")
+    }
   };
   return (
     <>
@@ -232,8 +238,11 @@ const ProductEditScreen = () => {
                 ></Form.Control>
               </Form.Group> */}
 
-              <Button className="mb-2" type="submit" variant="primary">
+              <Button className="mb-2 ms-2" type="submit" variant="primary">
                 Update
+              </Button>
+                  <Button className="mb-2 ms-2" variant="danger" onClick={() => deleteHandler(product._id)} >
+                Delete
               </Button>
             </Form>
           )}
