@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Meta from '../components/Meta'
 import { Row, Col, Image, ListGroup, Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Carousel from 'react-bootstrap/Carousel'
@@ -16,6 +16,7 @@ import { PRODUCT_REVIEW_RESET } from '../types/productConstants'
 import { useParams } from 'react-router-dom'
 
 const ProductScreen = () => {
+  const navigate=useNavigate();
   const match=useParams();
   const [text, setText] = useState('')
   const [comment, setComment] = useState('')
@@ -49,6 +50,10 @@ const ProductScreen = () => {
       dispatch({
         type: PRODUCT_REVIEW_RESET,
       })
+    }
+    if(!userData){
+      navigate("/login")
+      return;
     }
     dispatch(listProductDetails(match.id,userData.token))
   }, [match.id, dispatch, successReview,userData])
@@ -96,7 +101,7 @@ const ProductScreen = () => {
         Go Back
       </Link>
       <br />
-      {userData && userData._id === product.owner && (
+      {userData && product && userData._id === product?.owner?._id && (
         <Link
           to={`/admin/product/${match.id}/edit`}
           className='btn btn-primary my-3'
@@ -168,7 +173,7 @@ const ProductScreen = () => {
                     <span className='text-area2'>Send Email</span>
 
                     <p className='text-area3'>
-                      Get in touch with {product?.seller?.sellername}
+                      Get in touch with {product?.owner?.username}
                     </p>
                   </div>
                   <Row>
@@ -228,14 +233,14 @@ const ProductScreen = () => {
                     <li> Name:</li>
 
                     <li> Email:</li>
-                    <li> Address:</li>
-                    <li>Phone:</li>
+                    {/* <li> Address:</li> */}
+                    {/* <li>Phone:</li> */}
                     <li></li>
                   </ul>
                 </Col>
                 <Col md={8} sm={10} xs={10}>
                   <ul>
-                    <li>{product?.seller?.sellername}</li>
+                    <li>{product?.owner?.username}</li>
 
                     <li>
                       {/* {product?.seller?.selleremail}{' '} */}
@@ -248,9 +253,9 @@ const ProductScreen = () => {
                         </button>
                       </span>
                     </li>
-                    <li>{product?.seller?.selleraddress}</li>
+                    {/* <li>{product?.seller?.selleraddress}</li> */}
                     <li>
-                      {product?.seller?.phoneNo?.mobile}{' '}
+                      {/* {product?.seller?.phoneNo?.mobile}{' '} */}
                       <span>
                         {product?.seller?.phoneNo?.isVerified ? (
                           <span>

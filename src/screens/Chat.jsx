@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
+import SellerMessage from '../components/SellerMessage'
+import UserMessage from '../components/UserMessage'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Chat() {
+
+  const navigate=useNavigate();
+    const dispatch = useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userData } = userLogin;
+
+    useEffect(()=>{
+          if(localStorage.getItem('userData')){
+            userData=JSON.parse(localStorage.getItem('userData'))
+          }else{
+            navigate("/login")
+          }
+          
+
+    },[])
     return (
         <>
         <Header />
@@ -9,44 +29,12 @@ export default function Chat() {
             <div className="wrapper vw-100 vh-100">
                 <div className="main">
                     <div className="px-2 scroll">
-                        <div className="d-flex align-items-center">
-                            <div className="text-left pr-1"><img src="https://img.icons8.com/color/40/000000/guest-female.png" width="30" className="img1" /></div>
-                            <div className="pr-2 pl-1"> <span className="name">Sarah Anderson</span>
-                                <p className="msg">Hi Dr. Hendrikson, I haven't been falling well for past few days.</p>
-                                <span className='name'>11:00 | 1 April 2024</span>
-                            </div>
-                        </div>
-                        <div className="d-flex align-items-center text-right justify-content-end ">
-                            <div className="pr-2"> <span className="name">Dr. Hendrikson</span>
-                                <p className="msg">Let's jump on a video call</p>
-                                    <span className='name'>12:00 | 1 April 2024</span>
-                            </div>
-                            <div><img src="https://i.imgur.com/HpF4BFG.jpg" width="30" className="img1" /></div>
-                        </div>
-
-                        <div className="d-flex align-items-center">
-                            <div className="text-left pr-1"><img src="https://img.icons8.com/color/40/000000/guest-female.png" width="30" className="img1" /></div>
-                            <div className="pr-2 pl-1"> <span className="name">Sarah Anderson</span>
-                                <p className="msg">How often should i take this?</p>
-                                    <span className='name'>12:00 | 1 April 2024</span>
-                            </div>
-                        </div>
-                        <div className="d-flex align-items-center text-right justify-content-end ">
-                            <div className="pr-2"> <span className="name">Dr. Hendrikson</span>
-                                <p className="msg">Twice a day, at breakfast and before bed</p>
-                                    <span className='name'>14:00 | 1 April 2024</span>
-                            </div>
-                            <div><img src="https://i.imgur.com/HpF4BFG.jpg" width="30" className="img1" /></div>
-                        </div>
-                        <div className="d-flex align-items-center">
-                            <div className="text-left pr-1"><img src="https://img.icons8.com/color/40/000000/guest-female.png" width="30" className="img1" /></div>
-                            <div className="pr-2 pl-1"> <span className="name">Sarah Anderson</span>
-                                <p className="msg">How often should i take this?</p>
-                                    <span className='name'>15:00 | 1 April 2024</span>
-                            </div>
-                        </div>
+                        <SellerMessage />
+                        <SellerMessage />
+                        <UserMessage />
+                        <SellerMessage />
                     </div>
-                    <nav className="navbar bg-white navbar-expand-sm d-flex justify-content-center"> <input type="text number" name="text" className="form-control setWidth" placeholder="Type a message..." />
+                    <nav className="navbar bg-white navbar-expand-sm d-flex justify-content-center"> <input type="text" name="text" className="form-control setWidth" placeholder="Type a message..." />
                         <div className="icondiv d-flex justify-content-end align-content-center text-center ml-2"> <button className='btn '><i className="fa fa-arrow-circle-right icon2"></i> </button></div>
                     </nav>
                 </div>
