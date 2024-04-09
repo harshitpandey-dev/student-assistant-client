@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
 import Chat from "./screens/Chat";
+import ChatScreen from "./screens/ChatScreen";
 
 
 
@@ -82,6 +83,7 @@ function App() {
             exact
           />
           <Route path="/chat/:sellerID" element={<Chat />} />
+          <Route path="/chatScreen" element={<ChatScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
         <Footer />
