@@ -20,6 +20,14 @@ import {
   userDetailsReducer,
   userVerificationReducer,
 } from './reducers/userReducer'
+
+import {
+  getCHAT
+} from './reducers/chatReducers'
+import {
+  getMESSAGE,
+  postMESSAGE
+} from './reducers/messageReducer'
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
@@ -35,6 +43,9 @@ const reducer = combineReducers({
   productReviewCreate: productReviewCreateReducer,
   userUpdate: userUpdateReducer,
   userDetails: userDetailsReducer,
+  getChat:getCHAT,
+  getMessage:getMESSAGE,
+  postMESSAGE:postMESSAGE
 })
 
 const userDataFromStorage = localStorage.getItem('userData')

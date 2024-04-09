@@ -5,32 +5,29 @@ import {
     CHAT_SUCCESS
 } from '../types/chatConstants'
 
-export const get_Chat = (sellerID) => async (dispatch,getState) => {
+export const get_Chat = (sellerID,token) => async (dispatch,getState) => {
     try {
         
         dispatch({
             type: CHAT_REQUEST,
         });
-        const {
-            userLogin: { userData },
-        } = getState();
         const config = {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                Authorization: `Bearer ${userData.token}`,
-
+                Authorization: `Bearer ${token}`,
             },
         };
-        const { data } = await axios.get(
+        const { data } = await axios.post(
             `/api/chat/c/${sellerID}`,
+            {},
             config
         );
         dispatch({
             type: CHAT_SUCCESS,
-            payload: data,
+            payload: data.data,
         });
-      console.log(data);
+ 
     } catch (error) {
         dispatch({
             type: CHAT_FAIL,

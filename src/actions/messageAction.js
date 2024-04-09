@@ -8,30 +8,26 @@ import {
     MESSAGE_SEND_SUCCESS
 } from '../types/messageConstants'
 
-export const getMessage = (chatID) => async (dispatch, getState) => {
+export const getMessage = (chatID,token) => async (dispatch) => {
     try {
         dispatch({
             type: MESSAGE_REQUEST,
         });
-        const {
-            userLogin: { userData },
-        } = getState();
         const config = {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-                Authorization: `Bearer ${userData.token}`,
+                Authorization: `Bearer ${token}`,
             },
         };
         const { data } = await axios.get(
-            `/api/messgae/${chatID}`,
+            `/api/message/${chatID}`,
             config
         );
         dispatch({
             type: MESSAGE_SUCCESS,
-            payload: data,
+            payload: data.data,
         });
-          console.log(data);
 
     } catch (error) {
         dispatch({
@@ -46,24 +42,20 @@ export const getMessage = (chatID) => async (dispatch, getState) => {
 
 //for sending message work left
 
-export const sendMessage = (chatID,content) => async (dispatch, getState) => {
+export const postMessage = (chatID,formData,token) => async (dispatch) => {
    try{
        dispatch({
            type: MESSAGE_SEND_REQUEST,
        });
-    const {
-        userLogin: { userData },
-    } = getState();
-
     const config = {
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            Authorization: `Bearer ${userData.token}`,
+            Authorization: `Bearer ${token}`,
         },
     };
-    await axios.post(`/api/message/${chatID}`, {content}, config);
+       const {data}=await axios.post(`/api/message/${chatID}`, formData, config);
 
     dispatch({
         type: MESSAGE_SEND_SUCCESS,

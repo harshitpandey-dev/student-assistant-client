@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Authstyle.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,11 @@ function ForgotPassword() {
   const navigate = useNavigate();
   const dispatch=useDispatch();
   const [email, setEmail] = useState("");
-
+  useEffect(()=>{
+     if(localStorage.getItem('userData')){
+       setEmail(JSON.parse(localStorage.getItem('userData')).email)
+     }
+  },[])
   const handleResetPassword = async () => {
       dispatch(sendEmail(email))
   };

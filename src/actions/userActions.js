@@ -173,6 +173,7 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data.data,
       });
+      localStorage.setItem("userData", JSON.stringify(data.data));
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -190,7 +191,6 @@ export const sendEmail =
   (email) =>
   async (dispatch, getState) => {
     try {
-      console.log(email);
       dispatch({
         type: EMAIL_SEND_REQUEST,
       });
@@ -201,8 +201,7 @@ export const sendEmail =
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          Authorization: `Bearer ${userData.token}`,
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
         },
       };
 

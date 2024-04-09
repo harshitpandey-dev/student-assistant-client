@@ -4,7 +4,9 @@ import {
     MESSAGE_SUCCESS,
     MESSAGE_SEND_FAIL,
     MESSAGE_SEND_REQUEST,
-    MESSAGE_SEND_SUCCESS
+    MESSAGE_SEND_SUCCESS,
+    MESSAGE_RESET,
+    MESSAGE_SEND_RESET
 } from '../types/messageConstants'
 
 export const getMESSAGE = (state = {}, action) => {
@@ -17,13 +19,15 @@ export const getMESSAGE = (state = {}, action) => {
         case MESSAGE_SUCCESS:
             return {
                 loading: false,
-                userData: action.payload,
+                messageData: action.payload,
             }
         case MESSAGE_FAIL:
             return {
                 loading: false,
                 error: action.payload,
             }
+            case MESSAGE_RESET:
+                return {}
         default:
             return state
     }
@@ -39,13 +43,15 @@ export const postMESSAGE = (state = {}, action) => {
         case MESSAGE_SEND_SUCCESS:
             return {
                 loading: false,
-                userData: action.payload,
+                sendMessage: action.payload,
             }
         case MESSAGE_SEND_FAIL:
             return {
                 loading: false,
                 error: action.payload,
             }
+            case MESSAGE_SEND_RESET:
+                return {}
         default:
             return state
     }

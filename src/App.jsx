@@ -3,7 +3,7 @@ import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
 // import ChangePassword from "./screens/Auth/Changepassword";
 import ForgotPassword from "./screens/Auth/Forgotpassword";
-// import PasswordReset from "./screens/Auth/Resetpassword";
+import PasswordReset from "./screens/Auth/Resetpassword";
 import './index.css'
 import AboutUsScreen from "./screens/AboutUsScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -43,8 +43,8 @@ function App() {
           <Route path="/search/:keyword" element={<Landing />} exact />
           <Route path="/page/:pageNumber" element={<Landing />} exact />
           <Route path="'/search/:keyword/page/:pageNumber'" element={<Landing />} exact />
-          {/* <Route path="/changepassword" element={<ChangePassword />} exact />
-          <Route path="/passwordReset" element={<PasswordReset />} exact /> */}
+          {/* <Route path="/changepassword" element={<ChangePassword />} exact />*/}
+          <Route path="/passwordReset" element={<PasswordReset />} exact /> 
           <Route path="/forgotpassword" element={<ForgotPassword />} exact />
 
           {/* --------- */}
@@ -81,7 +81,7 @@ function App() {
             element={<EmailVerificationScreen />}
             exact
           />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat/:sellerID" element={<Chat />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
         <Footer />
