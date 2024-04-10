@@ -907,7 +907,14 @@ form-control:focus {
 }
 
 .ms-body {
-    background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645))
+    /* background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645)) */
+    /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+        background-blend-mode: multiply, multiply; */
+        /* background-image: linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%); */
+        /* background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%); */
+
+        /* background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%); */
+        background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
 }
 
 #ms-menu-trigger {
@@ -953,7 +960,7 @@ form-control:focus {
     	    margin-bottom: auto;
     	    margin-right: 10px;
     	    border-radius: 25px;
-    	    background-color: #eb5f5f;
+    	    background-color: #2626dfe9;
     	    padding: 10px;
             color: white;
     	    position: relative;
@@ -963,7 +970,7 @@ form-control:focus {
             position: relative;
     	    left: 0;
     	    bottom: -5px;
-    	    color: rgba(18, 17, 17, 0.814);
+    	    color: white;
     	    font-size: 10px;
     	}
     
@@ -972,7 +979,7 @@ form-control:focus {
             position: relative;
     	    right: 0;
     	    bottom: -5px;
-    	    color:rgba(18, 17, 17, 0.814);
+    	    color:white;
     	    font-size: 10px;
     	}
 

@@ -8,7 +8,7 @@ export default function ChatUserList({list,userID,chatID}) {
     const active=(chatID===list._id);
 
     const lastMsg = list?.lastMessage?.content.length > 20 ? list?.lastMessage?.content.substring(0, 20)+"...." : list?.lastMessage?.content;
-  
+    
    
     return (
 
