@@ -653,6 +653,7 @@ form-control:focus {
     color: #767676;
     background-color: #edecec;
     margin-top: 20px;
+    height: 100%;
 }
 
 #messages-main {
@@ -676,6 +677,7 @@ form-control:focus {
     height: 100%;
     width: 240px;
     background: #f3f2f2;
+    height: 100%
 }
 
 @media (min-width:767px) {
@@ -774,9 +776,7 @@ form-control:focus {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.message-feed.right .mf-content {
-    background: #eee;
-}
+
 
 .mf-content {
     padding: 12px 17px 13px;
@@ -844,7 +844,21 @@ form-control:focus {
 }
 
 .list-group.lg-alt .list-group-item {
-    border: 0;
+    width: 100%;
+    border: 1px solid #03a8f460;
+    border-radius: 10%;
+}
+.list-group.lg-alt .list-group-item:hover{
+    background-color: #03a8f460;
+}
+.list-group.lg-alt .list-group-item.active{
+    background-color: #400dd834;
+}
+.list-group-item-heading{
+    font-size: 1.5rem;
+    padding-top: 5px;
+    font-family: 'Gluten', sans-serif;
+    color: #7C4DFF;
 }
 
 .p-15 {
@@ -918,3 +932,45 @@ form-control:focus {
     -moz-user-select: none;
 }
 
+
+.list-group-item-text{
+    font-size: 1rem;
+    color: #777777b7;
+}
+
+.msg-container{
+        margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 10px;
+            border-radius: 25px;
+            background-color: #82ccdd;
+            padding: 10px;
+            position: relative;
+}
+.msg_cotainer_send {
+    	    margin-top: auto;
+    	    margin-bottom: auto;
+    	    margin-right: 10px;
+    	    border-radius: 25px;
+    	    background-color: #eb5f5f;
+    	    padding: 10px;
+            color: white;
+    	    position: relative;
+}
+    	.msg_time {
+    	    /* position: absolute; */
+            position: relative;
+    	    left: 0;
+    	    bottom: -5px;
+    	    color: rgba(18, 17, 17, 0.814);
+    	    font-size: 10px;
+    	}
+    
+    	.msg_time_send {
+    	    /* position: absolute; */
+            position: relative;
+    	    right: 0;
+    	    bottom: -5px;
+    	    color:rgba(18, 17, 17, 0.814);
+    	    font-size: 10px;
+    	}

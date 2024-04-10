@@ -10,19 +10,18 @@ export default function SenderMessageBox({msg}) {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
 
-
-    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    const formattedDate = ` ${hours}:${minutes} | ${day}-${month}-${year}`;
   return (
       <div className="message-feed media">
           <div className="pull-left">
               {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar" /> */}
-              <h5>{msg?.sender?.username}</h5>
+              {/* <span>{msg?.sender?.username}</span> */}
           </div>
           <div className="media-body">
-              <div className="mf-content">
+              <div className="mf-content msg-container">
                   {msg?.content}
               </div>
-              <small className="mf-date text-dark"><i className="fa fa-clock-o"></i> {formattedDate}</small>
+              <small className="mf-date msg_time"><i className="fa fa-clock-o "></i> {formattedDate}</small>
           </div>
       </div>
   )

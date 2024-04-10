@@ -17,18 +17,21 @@ import { MESSAGE_RESET } from '../types/messageConstants'
 export default function ChatScreen() {
     const match = useParams();
     const sellerID = match.sellerID;
+    const chatID = match.chatID;
     const [open, setOpen] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
     var { userData } = userLogin;
     const getCHAT = useSelector((state) => state.getChat);
-    var { chatData, loading } = getCHAT;
+    var { chatData,loading } = getCHAT;
     const Message = useSelector((state) => state.getMessage);
     var { messageData } = Message;
     const chatList = useSelector((state) => state.chatList);
     var { chatListData } = chatList;
     const [sendMessage, setSendMessage] = useState("");
+    const [reload,setReload]=useState(false);
+    const [name,setName]=useState("")
 
     useEffect(() => {
         dispatch({ type: CHAT_RESET })
@@ -36,34 +39,49 @@ export default function ChatScreen() {
     }, [])
 
     useEffect(() => {
-
+     
         if (localStorage.getItem('userData')) {
             userData = JSON.parse(localStorage.getItem('userData'))
         } else {
             navigate("/login")
-            return;
         }
           dispatch(get_All_Chat(userData._id,userData.token))
-        if (userData._id === sellerID) return;
-        if (!chatData) {
+        if (userData._id === sellerID) {
+            
+            return;
+        }
+        if (!chatData && !chatID) {
             dispatch(get_Chat(sellerID, userData.token))
         }
-        if (chatData) {
+        if (chatData && !chatID) {
             dispatch(getMessage(chatData._id, userData.token))
         }
+        if(chatID){
+            dispatch(getMessage(chatID, userData.token))
+        }
+        setSendMessage("")
+        
+    }, [dispatch, sellerID, userData, loading, chatData,chatID,reload])
 
-    }, [dispatch, sellerID, userData, loading, chatData])
+  
 
     function handleSubmit(e) {
         e.preventDefault();
         if (sendMessage !== "") {
             const formData = new FormData();
             formData.append("content", sendMessage)
-            dispatch(postMessage(chatData._id, formData, userData.token))
+            if(chatID){
+                dispatch(postMessage(chatID, formData, userData.token))
+            }else{
+                dispatch(postMessage(chatData._id, formData, userData.token))
+            }
+            
             setSendMessage("")
-            dispatch(getMessage(chatData._id, userData.token))
+            setReload(!reload)
         }
     }
+
+  
 
     return (
         <>
@@ -93,7 +111,7 @@ export default function ChatScreen() {
                             <div className="list-group lg-alt mt-5">
 
                               {chatListData && chatListData.map((list)=>{
-                                return  <ChatUserList list={list} userID={userData._id} key={list._id}/>
+                                return  <ChatUserList list={list} userID={userData._id} key={list._id} chatID={chatID?chatID:chatData ?chatData._id:""} />
                               })}
                                
 
@@ -110,14 +128,14 @@ export default function ChatScreen() {
                                     <i className="fa fa-bars"></i>
                                 </div>
 
-                                {/* <div className="pull-left hidden-xs">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar m-r-10" />
-                                    <div className="lv-avatar pull-left">
-
+                            {name &&   <div className="pull-left hidden-xs">
+                                    {/* <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar m-r-10" /> */}
+                                    <div className="lv-avatar pull-left mt-5">
+                                        
+                                            <h5>Chat With <b>{name}</b></h5>
                                     </div>
-                                    <span>David Parbell</span>
-                                </div> */}
-
+                                </div>}
+                          
                                 <ul className="ah-actions actions">
                                     <li>
                                         <a href="">
@@ -165,20 +183,22 @@ export default function ChatScreen() {
                                 </ul>
                             </div>
 
-                           
                                 {messageData && messageData.map((msg) => {
                                     if (msg.sender._id === userData._id)
                                         return <UserMessgeBox msg={msg} key={msg._id} />
                                     else return <SenderMessageBox msg={msg} key={msg._id} />
                                 })}
                             
-
+                            
+                                {userData && sellerID && userData._id === sellerID ? (<></>) :(
                             <div className="msb-reply">
                             <form onSubmit={handleSubmit} >
-                                <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)}></textarea>
+                                <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)} value={sendMessage}></textarea>
                                 <button type="submit"><i className="fa fa-paper-plane"></i></button>
                                 </form>
                             </div>
+                                )}
+                        
                         </div>
                     </div>
                 </div>

@@ -68,7 +68,7 @@ export const listProductDetails = (id,token) => async (dispatch) => {
       },
     };
     const { data } = await axios.get(`/api/products/${id}`, config);
-    console.log(data);
+    // console.log(data);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data.data,
