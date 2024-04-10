@@ -22,12 +22,14 @@ import {
 } from './reducers/userReducer'
 
 import {
-  getCHAT
+  getCHAT,
+  getAllCHAT
 } from './reducers/chatReducers'
 import {
   getMESSAGE,
   postMESSAGE
 } from './reducers/messageReducer'
+
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
@@ -44,6 +46,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   userDetails: userDetailsReducer,
   getChat:getCHAT,
+  chatList:getAllCHAT,
   getMessage:getMESSAGE,
   postMESSAGE:postMESSAGE
 })

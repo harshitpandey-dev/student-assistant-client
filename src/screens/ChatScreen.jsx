@@ -1,17 +1,75 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import SenderMessageBox from "../components/SenderMessageBox";
 import UserMessgeBox from "../components/UserMessgeBox";
 import ChatUserList from "../components/ChatUserList";
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import Loader from "../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { get_All_Chat, get_Chat } from '../actions/chatActions'
+import { getMessage, postMessage } from '../actions/messageAction'
+import { CHAT_RESET } from '../types/chatConstants'
+import { MESSAGE_RESET } from '../types/messageConstants'
+
 
 
 
 export default function ChatScreen() {
+    const match = useParams();
+    const sellerID = match.sellerID;
     const [open, setOpen] = useState();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    var { userData } = userLogin;
+    const getCHAT = useSelector((state) => state.getChat);
+    var { chatData, loading } = getCHAT;
+    const Message = useSelector((state) => state.getMessage);
+    var { messageData } = Message;
+    const chatList = useSelector((state) => state.chatList);
+    var { chatListData } = chatList;
+    const [sendMessage, setSendMessage] = useState("");
+
+    useEffect(() => {
+        dispatch({ type: CHAT_RESET })
+        dispatch({ type: MESSAGE_RESET })
+    }, [])
+
+    useEffect(() => {
+
+        if (localStorage.getItem('userData')) {
+            userData = JSON.parse(localStorage.getItem('userData'))
+        } else {
+            navigate("/login")
+            return;
+        }
+          dispatch(get_All_Chat(userData._id,userData.token))
+        if (userData._id === sellerID) return;
+        if (!chatData) {
+            dispatch(get_Chat(sellerID, userData.token))
+        }
+        if (chatData) {
+            dispatch(getMessage(chatData._id, userData.token))
+        }
+
+    }, [dispatch, sellerID, userData, loading, chatData])
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (sendMessage !== "") {
+            const formData = new FormData();
+            formData.append("content", sendMessage)
+            dispatch(postMessage(chatData._id, formData, userData.token))
+            setSendMessage("")
+            dispatch(getMessage(chatData._id, userData.token))
+        }
+    }
+
     return (
         <>
             <Header />
-            <div classNameName="chatScreen mt-5">
+            {loading ?<Loader /> :
+            <div className="chatScreen mt-5">
                 <div className="container bootstrap snippets bootdey mt-5">
                     <div className="tile tile-alt" id="messages-main">
                         <div className={open ? "ms-menu toggled" : "ms-menu"}>
@@ -34,8 +92,10 @@ export default function ChatScreen() {
 
                             <div className="list-group lg-alt mt-5">
 
-
-                                <ChatUserList />
+                              {chatListData && chatListData.map((list)=>{
+                                return  <ChatUserList list={list} userID={userData._id} key={list._id}/>
+                              })}
+                               
 
 
 
@@ -106,18 +166,24 @@ export default function ChatScreen() {
                             </div>
 
                            
-                                <SenderMessageBox />
-                                <UserMessgeBox />
+                                {messageData && messageData.map((msg) => {
+                                    if (msg.sender._id === userData._id)
+                                        return <UserMessgeBox msg={msg} key={msg._id} />
+                                    else return <SenderMessageBox msg={msg} key={msg._id} />
+                                })}
                             
 
                             <div className="msb-reply">
-                                <textarea placeholder="What's on your mind..."></textarea>
-                                <button><i className="fa fa-paper-plane"></i></button>
+                            <form onSubmit={handleSubmit} >
+                                <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)}></textarea>
+                                <button type="submit"><i className="fa fa-paper-plane"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            }
         </>
     )
 

@@ -83,7 +83,7 @@ function App() {
             exact
           />
           <Route path="/chat/:sellerID" element={<Chat />} />
-          <Route path="/chatScreen" element={<ChatScreen />} />
+          <Route path="/chatScreen/:sellerID" element={<ChatScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
         <Footer />
