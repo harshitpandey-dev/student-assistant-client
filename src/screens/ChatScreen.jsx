@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import SenderMessageBox from "../components/SenderMessageBox";
 import UserMessgeBox from "../components/UserMessgeBox";
@@ -16,6 +16,8 @@ import { MESSAGE_RESET } from '../types/messageConstants'
 
 export default function ChatScreen() {
     const match = useParams();
+    
+    const messagesEndRef = useRef(null);
     const sellerID = match.sellerID;
     const chatID = match.chatID;
     const [open, setOpen] = useState();
@@ -47,7 +49,7 @@ export default function ChatScreen() {
         }
           dispatch(get_All_Chat(userData._id,userData.token))
         if (userData._id === sellerID) {
-            
+
             return;
         }
         if (!chatData && !chatID) {
@@ -80,6 +82,11 @@ export default function ChatScreen() {
             setReload(!reload)
         }
     }
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messageData]);
 
   
 
@@ -128,13 +135,13 @@ export default function ChatScreen() {
                                     <i className="fa fa-bars"></i>
                                 </div>
 
-                            {name &&   <div className="pull-left hidden-xs">
-                                    {/* <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar m-r-10" /> */}
+                            {/* {name &&   <div className="pull-left hidden-xs">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar m-r-10" />
                                     <div className="lv-avatar pull-left mt-5">
                                         
                                             <h5>Chat With <b>{name}</b></h5>
                                     </div>
-                                </div>}
+                                </div>} */}
                           
                                 <ul className="ah-actions actions">
                                     <li>
@@ -182,12 +189,14 @@ export default function ChatScreen() {
                                     </li> */}
                                 </ul>
                             </div>
-
+                                <div className="show-msg">
                                 {messageData && messageData.map((msg) => {
                                     if (msg.sender._id === userData._id)
                                         return <UserMessgeBox msg={msg} key={msg._id} />
                                     else return <SenderMessageBox msg={msg} key={msg._id} />
                                 })}
+                                    <div ref={messagesEndRef} />
+                                </div>
                             
                             
                                 {userData && sellerID && userData._id === sellerID ? (<></>) :(

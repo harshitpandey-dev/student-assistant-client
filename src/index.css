@@ -653,6 +653,7 @@ form-control:focus {
     color: #767676;
     background-color: #edecec;
     margin-top: 20px;
+    min-height: 100vh;
     height: 100%;
 }
 
@@ -974,3 +975,8 @@ form-control:focus {
     	    color:rgba(18, 17, 17, 0.814);
     	    font-size: 10px;
     	}
+
+        .show-msg{
+            height: 100vh;
+            overflow-y: scroll;
+        }
