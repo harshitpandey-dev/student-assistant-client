@@ -12,6 +12,7 @@ const ProductCreateScreen = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [images, setImages] = useState([]);
+  const [showImages, setShowImages] = useState([]);
   const [uploading, setUploading] = useState(false);
 
   const [description, setDescription] = useState("");
@@ -42,14 +43,25 @@ const ProductCreateScreen = () => {
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
     if(!data) return;
-    const imagesData = [...images];
-    imagesData.push(data);
-    setImages(imagesData);
-    setUploading(false);
+    const file = Array.from(e.target.files);
+    setShowImages((images) => [...images, ...file]);
+ 
+    // const imagesData = [...images];
+    // imagesData.push(data);
+    // setImages(imagesData);
+    // setUploading(false);
   };
-
+  // console.log(showImages);
   const submitHandler = (e) => {
     e.preventDefault();
+    const imagesData=[];
+    showImages.map((file)=>{
+      const data=file;
+      imagesData.push(data);
+    })
+    console.log(imagesData);
+    setImages(imagesData);
+    setUploading(false);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -61,6 +73,14 @@ const ProductCreateScreen = () => {
     }
     dispatch(createProduct(formData));
   };
+
+  const removeImg = (fileToRemove) => {
+    console.log(fileToRemove);
+    const updatedImages = showImages.filter(file => file !== fileToRemove);
+    setShowImages(updatedImages);
+  };
+
+
   return (
     <>
       <Header />
@@ -87,34 +107,44 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="images">
+             {showImages.length<4 && (<Form.Group controlId="images">
                 <Form.Label>
-                  Image <small> *Upload Image only</small>{" "}
+                  Image <small> *Upload Image only</small>
                 </Form.Label>
 
                 <Form.File
                   id="image-file"
                   label="Choose File"
-                  multiple
+                  
                   onChange={uploadFileHandler}
-                  custom
-                ></Form.File>
+                  /></Form.Group>
+          )}
+                  
 
                 {uploading && <Loader />}
-                {/*{images && (
-                  <div>
-                    {images.map((file, index) => (
-                      <img
-                        key={index}
-                        className="mt-2"
-                        src={file.uri}
-                        style={{ height: "100px" }}
-                        alt={`image${index + 1}`}
-                      />
+                {showImages && (
+                  <div className="position-relative mt-5">
+                    {showImages.map((file, index) => (
+                      <div key={index} className="d-inline-block position-relative">
+                        <img
+                          className="mt-2"
+                          src={URL.createObjectURL(file)}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                          style={{ width: "30px", height: "40px" }}
+                          onClick={() => removeImg(file)}
+                        >
+                          X
+                        </button>
+                      </div>
                     ))}
                   </div>
-                )}*/}
-              </Form.Group>
+                )}
+             
               {/* <Form.Group controlId="category">
                 <Form.Label>Category </Form.Label>
                 <Form.Control
