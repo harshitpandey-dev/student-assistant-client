@@ -48,11 +48,11 @@ export default function ChatScreen() {
 
             return;
         }
-        if (!chatData && !chatID && userData) {
+        if ( !chatID && userData) {
             dispatch(get_Chat(sellerID, userData.token))
         }
         
-    },[sellerID,userData,chatID])
+    },[sellerID,userData,chatID,reload])
 
     useEffect(()=>{
         if (userData && sellerID && userData._id === sellerID) {
@@ -66,7 +66,7 @@ export default function ChatScreen() {
             dispatch(getMessage(chatID, userData.token))
         }
         dispatch(get_All_Chat(userData._id, userData.token))
-    },[chatData,chatID,userData])
+    },[chatData,chatID,userData,reload])
     
 
     useEffect(() => {
