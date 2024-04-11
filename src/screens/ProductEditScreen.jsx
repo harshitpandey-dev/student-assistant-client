@@ -148,7 +148,7 @@ const ProductEditScreen = () => {
               </Form.Group>
 
               <Form.Group controlId="images">
-                <Form.Label>
+                    {/* <Form.Label>
                   Image <small> *Upload Image only</small>{" "}
                 </Form.Label>
 
@@ -157,7 +157,7 @@ const ProductEditScreen = () => {
                   label="Choose File"
                   custom
                   onChange={uploadFileHandler}
-                ></Form.File>
+                ></Form.File> */}
                 {images && images.map((img)=>(
                   <img
                     className="mt-2 ms-2"

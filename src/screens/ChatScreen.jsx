@@ -14,10 +14,11 @@ import { MESSAGE_RESET } from '../types/messageConstants'
 
 
 
+
 export default function ChatScreen() {
     const match = useParams();
-    
     const messagesEndRef = useRef(null);
+    const [typeMessage, setTypeMessage] = useState(null);
     const sellerID = match.sellerID;
     const chatID = match.chatID;
     const [open, setOpen] = useState();
@@ -94,7 +95,13 @@ export default function ChatScreen() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (sendMessage !== "" || images.length>0) {
+        if(sendMessage===""){
+            setTypeMessage('Type a message....')
+            setTimeout(() => {
+                setTypeMessage(null)
+            }, 3000)
+        }
+        if (sendMessage !== "") {
             const formData = new FormData();
             formData.append("content", sendMessage)
             for (let i = 0; i < images.length; i++) {
@@ -114,8 +121,10 @@ export default function ChatScreen() {
             }
             setSendMessage("")
             setReload(!reload)
+            setImages([])
         }
     }
+
     useEffect(() => {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -139,6 +148,12 @@ export default function ChatScreen() {
 
         setImages(imagesData);
         setUploading(false);
+    };
+
+    const removeImg = (fileToRemove) => {
+       
+        const updatedImages = images.filter(file => file !== fileToRemove);
+        setImages(updatedImages);
     };
 
   
@@ -251,17 +266,42 @@ export default function ChatScreen() {
                                     <div ref={messagesEndRef} />
                                 </div>
                             
-                            
+                                {images && (
+                                    <div className="position-relative mt-5">
+                                        {images.map((file, index) => (
+                                            <div key={index} className="d-inline-block position-relative">
+                                                <img
+                                                    className="mt-2"
+                                                    src={URL.createObjectURL(file)}
+                                                    style={{ height: "100px" }}
+                                                    alt={`image${index + 1}`}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                                                    style={{ width: "30px", height: "40px" }}
+                                                    onClick={() => removeImg(file)}
+                                                >
+                                                    X
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                {typeMessage && <span className="text-white ms-2">Type a Message.....</span>}
                                 {userData && sellerID && userData._id === sellerID ? (<></>) :(
                             
                                         <div className="card-footer">
                                             <div className="input-group">
                                                 <div className="input-group-append">
                                                     {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
-                                                <label for="fileInput" class="input-group-text attach_btn">
+                                           {images.length<4 &&
+                                           <>
+                                               <label for="fileInput" class="input-group-text attach_btn">
                                                     <i class="fas fa-paperclip"></i>
                                                 </label>
                                                 <input type="file" id="fileInput" style={{ display: "none" }} multiple custom onChange={uploadFileHandler}/>
+                                                </>}
                                                 </div>
                                             <textarea name="" className="form-control type_msg" placeholder="Type your message..." onChange={(e) => setSendMessage(e.target.value)} value={sendMessage}></textarea>
                                                 <div className="input-group-append">
