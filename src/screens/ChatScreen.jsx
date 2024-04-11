@@ -48,7 +48,7 @@ export default function ChatScreen() {
 
             return;
         }
-        if ( !chatID && userData) {
+        if ( !chatID && userData && sellerID) {
             dispatch(get_Chat(sellerID, userData.token))
         }
         
@@ -65,7 +65,9 @@ export default function ChatScreen() {
         if (userData && chatID) {
             dispatch(getMessage(chatID, userData.token))
         }
-        dispatch(get_All_Chat(userData._id, userData.token))
+        if(userData){
+            dispatch(get_All_Chat(userData._id, userData.token))
+        }
     },[chatData,chatID,userData,reload])
     
 
@@ -232,6 +234,7 @@ export default function ChatScreen() {
                                 {userData && sellerID && userData._id === sellerID ? (<></>) :(
                             <div className="msb-reply">
                             <form onSubmit={handleSubmit} >
+                                           
                                 <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)} value={sendMessage}></textarea>
                                 <button type="submit"><i className="fa fa-paper-plane"></i></button>
                                 </form>
