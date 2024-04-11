@@ -6,7 +6,10 @@ import {
     CHAT_LIST_REQUEST,
     CHAT_LIST_SUCCESS,
     CHAT_LIST_FAIL,
-    CHAT_LIST_RESET
+    CHAT_LIST_RESET,
+    CHAT_DELETE_REQUEST,
+    CHAT_DELETE_SUCCESS,
+    CHAT_DELETE_FAIL
 } from '../types/chatConstants'
 
 export const getCHAT = (state = {}, action) => {
@@ -52,6 +55,29 @@ export const getAllCHAT = (state ={}, action) => {
             }
             case CHAT_LIST_RESET:
                 return {}
+        default:
+            return state
+    }
+}
+
+export const deleteChat = (state = {}, action) => {
+    switch (action.type) {
+        case CHAT_DELETE_REQUEST:
+            return {
+                loading: true,
+            }
+
+        case CHAT_DELETE_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+            }
+        case CHAT_DELETE_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+
         default:
             return state
     }

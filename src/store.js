@@ -23,7 +23,8 @@ import {
 
 import {
   getCHAT,
-  getAllCHAT
+  getAllCHAT,
+  deleteChat
 } from './reducers/chatReducers'
 import {
   getMESSAGE,
@@ -48,7 +49,8 @@ const reducer = combineReducers({
   getChat:getCHAT,
   chatList:getAllCHAT,
   getMessage:getMESSAGE,
-  postMESSAGE:postMESSAGE
+  postMESSAGE:postMESSAGE,
+  deleteChat:deleteChat
 })
 
 const userDataFromStorage = localStorage.getItem('userData')

@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+    CHAT_DELETE_FAIL,
+    CHAT_DELETE_REQUEST,
+    CHAT_DELETE_SUCCESS,
     CHAT_FAIL,
     CHAT_LIST_FAIL,
     CHAT_LIST_REQUEST,
@@ -30,7 +33,7 @@ export const get_Chat = (sellerID,token) => async (dispatch,getState) => {
             type: CHAT_SUCCESS,
             payload: data.data,
         });
- 
+        //  console.log(data.data);
     } catch (error) {
         dispatch({
             type: CHAT_FAIL,
@@ -75,3 +78,34 @@ export const get_All_Chat = (userID,token) => async (dispatch,getState) => {
     }
 };
 
+export const delete_Chat = (chatID,token) => async (dispatch,getState) => {
+    try {
+        
+        dispatch({
+            type: CHAT_DELETE_REQUEST,
+        });
+        const config = {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const { data } = await axios.delete(
+            `/api/chat/remove/${chatID}`,{},
+            config
+        );
+        dispatch({
+            type: CHAT_DELETE_SUCCESS,
+        });
+ 
+    } catch (error) {
+        dispatch({
+            type: CHAT_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};

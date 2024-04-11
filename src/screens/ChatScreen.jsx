@@ -6,9 +6,9 @@ import ChatUserList from "../components/ChatUserList";
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { get_All_Chat, get_Chat } from '../actions/chatActions'
+import { delete_Chat, get_All_Chat, get_Chat } from '../actions/chatActions'
 import { getMessage, postMessage } from '../actions/messageAction'
-import { CHAT_RESET } from '../types/chatConstants'
+import { CHAT_LIST_RESET, CHAT_RESET } from '../types/chatConstants'
 import { MESSAGE_RESET } from '../types/messageConstants'
 
 
@@ -32,16 +32,44 @@ export default function ChatScreen() {
     const chatList = useSelector((state) => state.chatList);
     var { chatListData } = chatList;
     const [sendMessage, setSendMessage] = useState("");
+    const deleteChat = useSelector((state) => state.deleteChat);
+    var { success,error } = deleteChat;
     const [reload,setReload]=useState(false);
     const [name,setName]=useState("")
 
     useEffect(() => {
         dispatch({ type: CHAT_RESET })
         dispatch({ type: MESSAGE_RESET })
+        dispatch({type:CHAT_LIST_RESET})
     }, [])
 
+    useEffect(()=>{
+        if (userData && sellerID && userData._id === sellerID) {
+
+            return;
+        }
+        if (!chatData && !chatID && userData) {
+            dispatch(get_Chat(sellerID, userData.token))
+        }
+        
+    },[sellerID,userData,chatID])
+
+    useEffect(()=>{
+        if (userData && sellerID && userData._id === sellerID) {
+
+            return;
+        }
+        if (userData && chatData && !chatID) {
+            dispatch(getMessage(chatData._id, userData.token))
+        }
+        if (userData && chatID) {
+            dispatch(getMessage(chatID, userData.token))
+        }
+        dispatch(get_All_Chat(userData._id, userData.token))
+    },[chatData,chatID,userData])
+    
+
     useEffect(() => {
-     
         if (localStorage.getItem('userData')) {
             userData = JSON.parse(localStorage.getItem('userData'))
         } else {
@@ -52,18 +80,10 @@ export default function ChatScreen() {
 
             return;
         }
-        if (!chatData && !chatID) {
-            dispatch(get_Chat(sellerID, userData.token))
-        }
-        if (chatData && !chatID) {
-            dispatch(getMessage(chatData._id, userData.token))
-        }
-        if(chatID){
-            dispatch(getMessage(chatID, userData.token))
-        }
+       
+       
         setSendMessage("")
-        
-    }, [dispatch, sellerID, userData, loading, chatData,chatID,reload])
+    }, [dispatch, sellerID, userData,chatID])
 
   
 
@@ -87,6 +107,16 @@ export default function ChatScreen() {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [messageData]);
+
+    function handleDelete(){
+        if (window.confirm("Are you sure?")) {
+            if(chatID)
+            dispatch(delete_Chat(chatID,userData.token))
+        else
+           dispatch(delete_Chat(chatData._id,userData.token))
+        }
+        // navigate("/")
+    }
 
   
 
@@ -145,9 +175,9 @@ export default function ChatScreen() {
                           
                                 <ul className="ah-actions actions">
                                     <li>
-                                        <a href="">
+                                        <button onClick={handleDelete}>
                                             <i className="fa fa-trash"></i>
-                                        </a>
+                                        </button>
                                     </li>
                                     {/* <li>
                                         <a href="">
