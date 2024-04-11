@@ -14,10 +14,14 @@ export default function SenderMessageBox({msg}) {
   return (
       <div className="message-feed media">
           <div className="pull-left">
-              {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar" /> */}
-              {/* <span>{msg?.sender?.username}</span> */}
+           
           </div>
-          <div className="media-body">
+          <div className='content-image mf-content receive_img'>
+              {msg.attachments && msg.attachments.map((ele, ind) => {
+                  return <img src={ele.url} alt={ind} />
+              })}
+          </div>
+          <div className="media-body  mt-1">
               <div className="mf-content msg-container">
                   {msg?.content}
               </div>

@@ -771,11 +771,11 @@ form-control:focus {
     margin-left: 15px;
 }
 
-.message-feed:not(.right) .mf-content {
+/* .message-feed:not(.right) {
     background: #03a9f4;
     color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
+} */
 
 
 
@@ -951,8 +951,9 @@ form-control:focus {
             margin-bottom: auto;
             margin-left: 10px;
             border-radius: 25px;
-            background-color: #82ccdd;
+            background-color: #05235c;
             padding: 10px;
+            color:white;
             position: relative;
 }
 .msg_cotainer_send {
@@ -965,25 +966,78 @@ form-control:focus {
             color: white;
     	    position: relative;
 }
-    	.msg_time {
+.msg_time {
     	    /* position: absolute; */
             position: relative;
     	    left: 0;
     	    bottom: -5px;
     	    color: white;
     	    font-size: 10px;
-    	}
+}
     
-    	.msg_time_send {
-    	    /* position: absolute; */
-            position: relative;
-    	    right: 0;
-    	    bottom: -5px;
-    	    color:white;
-    	    font-size: 10px;
-    	}
+.msg_time_send {
+ /* position: absolute; */
+ position: relative;
+ right: 0;
+ bottom: -5px;
+ color:white;
+ font-size: 10px;
+}
 
-        .show-msg{
-            height: 100vh;
-            overflow-y: scroll;
-        }
+.show-msg{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.card-footer {
+     border-radius: 0 0 15px 15px !important;
+     border-top: 0 !important;
+}
+.type_msg {
+    background-color: rgba(0, 0, 0, 0.382) !important;
+    border: 0 !important;
+    color: white !important;
+    height: 60px !important;
+    overflow-y: auto;
+}
+
+.type_msg:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.attach_btn {
+    border-radius: 15px 0 0 15px !important;
+    background-color: rgba(13, 13, 13, 0.773) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+    height: 100%;
+}
+
+.send_btn {
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgb(37, 175, 185) !important;
+    border: 0 !important;
+    color: rgb(235, 237, 239) !important;
+    cursor: pointer;
+    height: 100%;
+}
+.content-image{
+    display: inline;
+    /* display: flex; */
+    width: 300px;
+    height: auto;
+    /* overflow: hidden; */
+   
+}
+.content-image img{
+    width: auto;
+    height: 120px;
+    object-fit: contain;
+}
+.send_img{
+    text-align: right;
+}
+.receive_img{
+    text-align: left;
+}

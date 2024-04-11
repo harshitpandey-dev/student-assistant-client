@@ -15,11 +15,16 @@ export default function UserMessgeBox({msg}) {
   return (
       <div className="message-feed right">
           <div className="pull-right">
-              {/* <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar" /> */}
-              {/* <span >{msg?.sender?.username}</span> */}
+              {/* <img src={msg?.attachments[0]?.url}  alt="" className="img-avatar" /> */}
+          
           </div>
-          <div className="media-body">
-              <div className="mf-content msg_cotainer_send">
+          <div className='content-image mf-content send_img'>
+              {msg.attachments.map((ele,ind)=>{
+                return   <img src={ele.url} alt={ind} />
+              })}
+          </div>
+          <div className="media-body mt-1">
+              <div className="mf-content msg_cotainer_send " >
                   {msg?.content}
               </div>
     

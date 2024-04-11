@@ -35,7 +35,10 @@ export default function ChatScreen() {
     const deleteChat = useSelector((state) => state.deleteChat);
     var { success,error } = deleteChat;
     const [reload,setReload]=useState(false);
-    const [name,setName]=useState("")
+
+    const [images, setImages] = useState([]);
+    const [uploading, setUploading] = useState(false);
+    console.log(images);
 
     useEffect(() => {
         dispatch({ type: CHAT_RESET })
@@ -91,15 +94,24 @@ export default function ChatScreen() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (sendMessage !== "") {
+        if (sendMessage !== "" || images.length>0) {
             const formData = new FormData();
             formData.append("content", sendMessage)
+            for (let i = 0; i < images.length; i++) {
+                const file = images[i];
+                formData.append("attachments", file);
+            }
             if(chatID){
                 dispatch(postMessage(chatID, formData, userData.token))
             }else{
                 dispatch(postMessage(chatData._id, formData, userData.token))
             }
-            
+            if (userData && chatData && !chatID) {
+                dispatch(getMessage(chatData._id, userData.token))
+            }
+            if (userData && chatID) {
+                dispatch(getMessage(chatID, userData.token))
+            }
             setSendMessage("")
             setReload(!reload)
         }
@@ -119,6 +131,15 @@ export default function ChatScreen() {
         }
         navigate("/")
     }
+    const uploadFileHandler = async (e) => {
+        const data = e.target.files[0];
+        if(!data) return;
+        const imagesData = [...images];
+        imagesData.push(data);
+
+        setImages(imagesData);
+        setUploading(false);
+    };
 
   
 
@@ -232,14 +253,29 @@ export default function ChatScreen() {
                             
                             
                                 {userData && sellerID && userData._id === sellerID ? (<></>) :(
-                            <div className="msb-reply">
-                            <form onSubmit={handleSubmit} >
-                                           
+                            
+                                        <div className="card-footer">
+                                            <div className="input-group">
+                                                <div className="input-group-append">
+                                                    {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
+                                                <label for="fileInput" class="input-group-text attach_btn">
+                                                    <i class="fas fa-paperclip"></i>
+                                                </label>
+                                                <input type="file" id="fileInput" style={{ display: "none" }} multiple custom onChange={uploadFileHandler}/>
+                                                </div>
+                                            <textarea name="" className="form-control type_msg" placeholder="Type your message..." onChange={(e) => setSendMessage(e.target.value)} value={sendMessage}></textarea>
+                                                <div className="input-group-append">
+                                                <span className="input-group-text send_btn" onClick={handleSubmit}><i className="fas fa-location-arrow"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                )}
+                            {/* <form onSubmit={handleSubmit} >
+                                            <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span>
                                 <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)} value={sendMessage}></textarea>
                                 <button type="submit"><i className="fa fa-paper-plane"></i></button>
-                                </form>
-                            </div>
-                                )}
+                                </form> */}
+                            {/* </div> */}
                         
                         </div>
                     </div>

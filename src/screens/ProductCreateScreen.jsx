@@ -41,9 +41,9 @@ const ProductCreateScreen = () => {
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
+    if(!data) return;
     const imagesData = [...images];
     imagesData.push(data);
-
     setImages(imagesData);
     setUploading(false);
   };
