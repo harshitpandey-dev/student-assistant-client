@@ -86,13 +86,14 @@ export const delete_Chat = (chatID,token) => async (dispatch,getState) => {
         });
         const config = {
             headers: {
+
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
                 Authorization: `Bearer ${token}`,
             },
         };
         const { data } = await axios.delete(
-            `/api/chat/remove/${chatID}`,{},
+            `/api/chat/remove/${chatID}`,
             config
         );
         dispatch({

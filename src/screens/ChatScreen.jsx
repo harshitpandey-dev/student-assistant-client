@@ -115,7 +115,7 @@ export default function ChatScreen() {
         else
            dispatch(delete_Chat(chatData._id,userData.token))
         }
-        // navigate("/")
+        navigate("/")
     }
 
   
