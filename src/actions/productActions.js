@@ -164,7 +164,7 @@ export const updateProduct =
   (
     id,
     name,
-    image1,
+    images,
     description,
     // category,
     // expiresOn,
@@ -195,7 +195,7 @@ export const updateProduct =
         `/api/products/${id}`,
         {
           name,
-          // images: [{ image1: image1 }],
+          images,
           description,
           // category,
           // expiresOn,

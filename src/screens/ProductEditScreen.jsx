@@ -88,7 +88,7 @@ const ProductEditScreen = () => {
       data: formData,
     })
       .then(function (res) {
-        setImages(res.data.url);
+        setImages([...images,res.data.url]);
       })
       .catch(function (err) {
         console.error(err);
@@ -113,12 +113,19 @@ const ProductEditScreen = () => {
       )
     );
   };
+  console.log(images);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
       navigate("/")
     }
   };
+  const removeImg = (fileToRemove) => {
+    console.log(fileToRemove);
+    const updatedImages = images.filter(file => file !== fileToRemove);
+    setImages(updatedImages);
+  };
+  
   return (
     <>
       <Header />
@@ -148,7 +155,7 @@ const ProductEditScreen = () => {
               </Form.Group>
 
               <Form.Group controlId="images">
-                    {/* <Form.Label>
+                    <Form.Label>
                   Image <small> *Upload Image only</small>{" "}
                 </Form.Label>
 
@@ -157,15 +164,30 @@ const ProductEditScreen = () => {
                   label="Choose File"
                   custom
                   onChange={uploadFileHandler}
-                ></Form.File> */}
-                {images && images.map((img)=>(
-                  <img
-                    className="mt-2 ms-2"
-                    src={img}
-                    style={{ height: "100px" }}
-                    alt="image1"
-                  />
-                ))}
+                ></Form.File>
+                    {images && (
+                      <div className="position-relative mt-5">
+                        {images.map((ele, index) => (
+                          <div key={index} className="d-inline-block position-relative">
+                            <img
+                              className="mt-2"
+                              src={ele}
+                              style={{ height: "100px" }}
+                              alt={`image${index + 1}`}
+                            />
+                            <button
+                              type="button"
+                              className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                              style={{ width: "30px", height: "40px" }}
+                              onClick={() => removeImg(ele)}
+                            >
+                              X
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                 {uploading && <Loader />}
               </Form.Group>
               {/* <Form.Group controlId="category">
