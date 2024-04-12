@@ -68,7 +68,7 @@ const ProductListScreen = () => {
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
-                <th>CATEGORY</th>
+                {/* <th>CATEGORY</th> */}
                 <th>OWNER</th>
                 <th>CREATED ON</th>
                 <th></th>
@@ -76,12 +76,13 @@ const ProductListScreen = () => {
             </thead>
             <tbody>
               {products.map((product) => (
+                (product.owner)?
                 <tr key={product._id}>
                   <td>{i++}</td>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>Rs {product.cost.price}</td>
-                  <td>{product.category}</td>
+                  {/* <td>{product.category}</td> */}
                   <td>{product.owner.username}</td>
                   <td>{product.createdAt.substring(0, 10)}</td>
                   <td>
@@ -99,7 +100,7 @@ const ProductListScreen = () => {
                       <i className='fas fa-trash'></i>
                     </Button>
                   </td>
-                </tr>
+                </tr>:<></>
               ))}
             </tbody>
           </Table>
