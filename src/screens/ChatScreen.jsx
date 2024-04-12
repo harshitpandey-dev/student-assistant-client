@@ -10,18 +10,31 @@ import { delete_Chat, get_All_Chat, get_Chat } from '../actions/chatActions'
 import { getMessage, postMessage } from '../actions/messageAction'
 import { CHAT_LIST_RESET, CHAT_RESET } from '../types/chatConstants'
 import { MESSAGE_RESET } from '../types/messageConstants'
-
+import Lottie from "react-lottie";
+import animationData from "../animations/typing.json";
 
 
 
 
 export default function ChatScreen() {
     const match = useParams();
+    
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+        },
+    };
+
     const messagesEndRef = useRef(null);
     const [typeMessage, setTypeMessage] = useState(null);
     const sellerID = match.sellerID;
     const chatID = match.chatID;
     const [open, setOpen] = useState();
+    const [typing, setTyping] = useState(false);
+    const [istyping, setIsTyping] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
@@ -40,6 +53,14 @@ export default function ChatScreen() {
     const [images, setImages] = useState([]);
     const [uploading, setUploading] = useState(false);
     console.log(images);
+
+    // useEffect(() => {
+      
+    //     socket.on("typing", () => setIsTyping(true));
+    //     socket.on("stop typing", () => setIsTyping(false));
+
+   
+    // }, []);
 
     useEffect(() => {
         dispatch({ type: CHAT_RESET })
@@ -157,6 +178,26 @@ export default function ChatScreen() {
         setImages(updatedImages);
     };
 
+    function typingHandler(e){
+        setSendMessage(e.target.value);
+        if (!typing) {
+            setTyping(true);
+            
+            // socket.emit("typing", selectedChat._id);
+        }
+        let lastTypingTime = new Date().getTime();
+        var timerLength = 3000;
+        setTimeout(() => {
+            var timeNow = new Date().getTime();
+            var timeDiff = timeNow - lastTypingTime;
+            if (timeDiff >= timerLength && typing) {
+                // socket.emit("stop typing", selectedChat._id);
+                setTyping(false);
+                
+            }
+        }, timerLength);
+    }
+    
 
 
     return (
@@ -290,6 +331,18 @@ export default function ChatScreen() {
                                     </div>
                                 )}
                                 {typeMessage && <span className="text-white ms-2">Type a Message.....</span>}
+                                {istyping ? (
+                                    <div>
+                                        <Lottie
+                                            options={defaultOptions}
+                                            // height={50}
+                                            width={70}
+                                            style={{ marginBottom: 15, marginLeft: 0 }}
+                                        />
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
                                 {userData && sellerID && userData._id === sellerID ? (<></>) : (
 
                                     <div className="card-footer">
@@ -304,7 +357,7 @@ export default function ChatScreen() {
                                                         <input type="file" id="fileInput" style={{ display: "none" }} multiple custom onChange={uploadFileHandler} />
                                                     </>}
                                             </div>
-                                            <textarea name="" className="form-control type_msg" placeholder="Type your message..." onChange={(e) => setSendMessage(e.target.value)} value={sendMessage}></textarea>
+                                            <textarea name="" className="form-control type_msg" placeholder="Type your message..." onChange={(e)=>typingHandler(e)} value={sendMessage}></textarea>
                                             <div className="input-group-append">
                                                 <span className="input-group-text send_btn" onClick={handleSubmit}><i className="fas fa-location-arrow"></i></span>
                                             </div>
