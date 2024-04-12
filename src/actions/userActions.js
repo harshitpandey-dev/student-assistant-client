@@ -187,81 +187,74 @@ export const register =
 
 //EMAIL SEND
 
-export const sendEmail =
-  (email) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: EMAIL_SEND_REQUEST,
-      });
-      const {
-        userLogin: { userData },
-      } = getState();
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-        },
-      };
+export const sendEmail = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: EMAIL_SEND_REQUEST,
+    });
 
-      const { data } = await axios.post(
-        "/api/users/requestpasswordreset",
-        {email} ,
-        config
-      );
-      console.log(data);
-      dispatch({
-        type: EMAIL_SEND_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: EMAIL_SEND_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+    };
 
+    const { data } = await axios.post(
+      "/api/users/requestpasswordreset",
+      { email },
+      config
+    );
 
-export const resetPassword =
-  (email,token,password) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: EMAIL_SEND_REQUEST,
-      });
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-        },
-      };
+    dispatch({
+      type: EMAIL_SEND_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: EMAIL_SEND_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
-      const { data } = await axios.post(
-        "/api/users/passwordReset",
-        {email,token,password} ,
-        config
-      );
-      console.log(data);
-      dispatch({
-        type: EMAIL_SEND_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: EMAIL_SEND_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+export const resetPassword = (email, token, password) => async (dispatch) => {
+  try {
+    dispatch({
+      type: EMAIL_SEND_REQUEST,
+    });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+    };
+
+    const { data } = await axios.post(
+      "/api/users/passwordReset",
+      { email, token, password },
+      config
+    );
+
+    dispatch({
+      type: EMAIL_SEND_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: EMAIL_SEND_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 //get all users by an  admin
 export const listUsers = () => async (dispatch, getState) => {
@@ -348,8 +341,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userData.token}`,
       },
     };
-    console.log(config);
-    // console.log(id)
+
     const { data } = await axios.put(`/api/users/${user._id}`, user, config);
     dispatch({
       type: USER_UPDATE_SUCCESS,
@@ -357,7 +349,6 @@ export const updateUser = (user) => async (dispatch, getState) => {
     });
 
     localStorage.setItem("userData", JSON.stringify(data.data.updatedUser));
-    
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
@@ -417,7 +408,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-
 export const updateUserPassword = (user) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -435,9 +425,12 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userData.token}`,
       },
     };
-    // console.log(config);
-    // console.log(id)
-    const { data } = await axios.post(`/api/users/changepassword`, user, config);
+
+    const { data } = await axios.post(
+      `/api/users/changepassword`,
+      user,
+      config
+    );
     dispatch({
       type: USER_UPDATE_SUCCESS,
       payload: data,
