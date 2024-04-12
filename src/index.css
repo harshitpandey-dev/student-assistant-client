@@ -673,11 +673,11 @@ form-control:focus {
     position: absolute;
     left: 0;
     top: 0;
-    border-right: 1px solid #eee;
+    /* border-right: 1px solid #eee; */
     padding-bottom: 50px;
     height: 100%;
     width: 240px;
-    background: #f3f2f2;
+    background: #8991E4;
     height: 100%
 }
 
@@ -846,14 +846,17 @@ form-control:focus {
 
 .list-group.lg-alt .list-group-item {
     width: 100%;
-    border: 1px solid #03a8f460;
-    border-radius: 10%;
+    /* border: 1px solid #03a8f460; */
+    /* border-radius: 10%; */
+    background-color: rgba(255, 255, 255, 0.65);
+    border: 0;
 }
 .list-group.lg-alt .list-group-item:hover{
-    background-color: #03a8f460;
+    background-color: #310b02d7;
 }
 .list-group.lg-alt .list-group-item.active{
-    background-color: #400dd834;
+    background-color: #0c0c0cc8;
+    color: white;
 }
 .list-group-item-heading{
     font-size: 1.5rem;
@@ -872,7 +875,7 @@ form-control:focus {
 
 .action-header {
     position: relative;
-    background: #f8f8f8;
+    background: #8991E4;
     padding: 15px 13px 15px 17px;
 }
 
@@ -907,14 +910,14 @@ form-control:focus {
 }
 
 .ms-body {
-    /* background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645)) */
+    background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645))
     /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
         background-blend-mode: multiply, multiply; */
         /* background-image: linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%); */
         /* background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%); */
 
         /* background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%); */
-        background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
+        /* background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%); */
 }
 
 #ms-menu-trigger {
@@ -1040,4 +1043,7 @@ form-control:focus {
 }
 .receive_img{
     text-align: left;
+}
+.container{
+    width: 100% !important;
 }

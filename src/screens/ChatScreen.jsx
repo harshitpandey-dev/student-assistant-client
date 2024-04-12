@@ -163,7 +163,7 @@ export default function ChatScreen() {
             <Header />
             {loading ?<Loader /> :
             <div className="chatScreen mt-5">
-                <div className="container bootstrap snippets bootdey mt-5">
+                <div className=" bootstrap snippets bootdey mt-5 p-2">
                     <div className="tile tile-alt" id="messages-main">
                         <div className={open ? "ms-menu toggled" : "ms-menu"}>
                             {/* <div className="ms-user clearfix">
@@ -184,7 +184,7 @@ export default function ChatScreen() {
                     </div> */}
 
                             <div className="list-group lg-alt mt-5">
-
+                                    <span className="text-center fs-3 text-white mb-2" style={{ fontFamily: "'Gluten', sans-serif" }}>Chat List</span>
                               {chatListData && chatListData.map((list)=>{
                                 return  <ChatUserList list={list} userID={userData._id} key={list._id} chatID={chatID?chatID:chatData ?chatData._id:""} />
                               })}
@@ -200,7 +200,7 @@ export default function ChatScreen() {
                         <div className="ms-body">
                             <div className="action-header clearfix">
                                 <div className="visible-xs" id="ms-menu-trigger" style={{ zIndex: 10 }} onClick={() => setOpen(!open)}>
-                                    <i className="fa fa-bars"></i>
+                                    <i className="fa fa-bars text-dark"></i>
                                 </div>
 
                             {/* {name &&   <div className="pull-left hidden-xs">
@@ -213,8 +213,8 @@ export default function ChatScreen() {
                           
                                 <ul className="ah-actions actions">
                                     <li>
-                                        <button onClick={handleDelete}>
-                                            <i className="fa fa-trash"></i>
+                                        <button onClick={handleDelete} style={{width:"50px"}}>
+                                            <i className="fa fa-trash text-danger fs-5"></i>
                                         </button>
                                     </li>
                                     {/* <li>
