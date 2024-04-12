@@ -83,7 +83,7 @@ const ProductListScreen = () => {
                   <td>{product.name}</td>
                   <td>Rs {product.cost.price}</td>
                   {/* <td>{product.category}</td> */}
-                  <td>{product.owner.username}</td>
+                  <td>{product.owner?.username}</td>
                   <td>{product.createdAt.substring(0, 10)}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>

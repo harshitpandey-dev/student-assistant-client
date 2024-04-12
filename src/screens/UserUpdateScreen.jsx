@@ -245,7 +245,7 @@ const UserUpdateScreen = () => {
                       products.map(
                         (product) =>
                           product &&
-                          product.owner._id === userData._id && (
+                          product.owner?._id === userData._id && (
                             <tr key={product._id}>
                               <td>{i++}</td>
                               <td>{product._id}</td>
