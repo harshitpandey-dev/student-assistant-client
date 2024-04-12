@@ -11,6 +11,8 @@ function ForgotPassword() {
   useEffect(()=>{
      if(localStorage.getItem('userData')){
        setEmail(JSON.parse(localStorage.getItem('userData')).email)
+     }else{
+      navigate("/")
      }
   },[])
   const handleResetPassword = async () => {

@@ -34,7 +34,6 @@ const ProductCreateScreen = () => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
-
     if (success || !userData) {
       navigate("/");
     }

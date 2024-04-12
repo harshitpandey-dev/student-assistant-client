@@ -80,6 +80,7 @@ export default function ChatScreen() {
             userData = JSON.parse(localStorage.getItem('userData'))
         } else {
             navigate("/login")
+            return;
         }
           dispatch(get_All_Chat(userData._id,userData.token))
         if (userData._id === sellerID) {

@@ -910,7 +910,7 @@ form-control:focus {
 }
 
 .ms-body {
-    background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645))
+    /* background:linear-gradient(45deg,rgba(255, 255, 0, 0.469),rgba(0, 128, 0, 0.645)) */
     /* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
         background-blend-mode: multiply, multiply; */
         /* background-image: linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%); */
@@ -918,6 +918,13 @@ form-control:focus {
 
         /* background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%); */
         /* background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%); */
+        /* background: rgb(0, 0, 0);
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.7433625549829307) 9%, rgba(137, 145, 228, 1) 44%, rgba(8, 8, 5, 0.6285166166075805) 69%, rgba(137, 145, 228, 0.8834185773918942) 100%, rgba(104, 92, 92, 1) 100%); */
+        /* background: rgb(0, 0, 0);
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.7433625549829307) 9%, rgba(133, 26, 186, 0.6985446278120624) 51%, rgba(8, 8, 5, 1) 99%, rgba(0, 212, 255, 1) 100%, rgba(104, 92, 92, 1) 100%); */
+            /* background: rgb(224, 228, 229);
+                background: linear-gradient(173deg, rgba(224, 228, 229, 1) 0%, rgba(133, 142, 149, 1) 100%); */
+                background-color: rgba(0, 0, 0, 0.75);
 }
 
 #ms-menu-trigger {

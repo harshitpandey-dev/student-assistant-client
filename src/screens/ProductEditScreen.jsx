@@ -44,6 +44,8 @@ const ProductEditScreen = () => {
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
+    }else{
+      navigate("/login")
     }
 
     dispatch({

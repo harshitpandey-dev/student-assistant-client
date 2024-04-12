@@ -30,6 +30,8 @@ const ProductListScreen = () => {
   useEffect(() => {
    if(localStorage.getItem('userData')){
     userData=JSON.parse(localStorage.getItem('userData'))
+   }else{
+    navigate("/login")
    }
     if (userData && userData.isAdmin) {
       dispatch(listProducts('', pageNumber))
