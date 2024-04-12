@@ -28,7 +28,7 @@ const UserListScreen = () => {
     navigate("/login")
    }  
     if (userData && userData.isAdmin) {
-      dispatch(listUsers())
+      dispatch(listUsers(userData.token))
     } else {
       navigate('/')
     }
@@ -66,7 +66,7 @@ const UserListScreen = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users && users.map((user) => (
               <tr key={user._id}>
                 <td>{i++}</td>
                 <td>{user._id}</td>
@@ -91,6 +91,7 @@ const UserListScreen = () => {
                     variant='danger'
                     className='btn-sm'
                     onClick={() => deleteHandler(user._id)}
+                    style={{ width: "30px", height: "30px" }}
                   >
                     <i className='fas fa-trash'></i>
                   </Button>

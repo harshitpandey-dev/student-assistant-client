@@ -257,26 +257,26 @@ export const resetPassword = (email, token, password) => async (dispatch) => {
 };
 
 //get all users by an  admin
-export const listUsers = () => async (dispatch, getState) => {
+export const listUsers = (token) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_LIST_REQUEST,
     });
-    const {
-      userLogin: { userData },
-    } = getState();
+    // const {
+    //   userLogin: { userData },
+    // } = getState();
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${userData.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    const { data } = await axios.get("/api/users", {}, config);
+    const { data } = await axios.get("/api/users", config);
     dispatch({
       type: USER_LIST_SUCCESS,
-      payload: data,
+      payload: data.data,
     });
   } catch (error) {
     dispatch({
