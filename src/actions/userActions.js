@@ -291,7 +291,7 @@ export const listUsers = (token) => async (dispatch, getState) => {
 
 //delete user by an admin
 
-export const deleteUser = (id) => async (dispatch, getState) => {
+export const deleteUser = (id,token) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_DELETE_REQUEST,
@@ -301,13 +301,14 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
+
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${userData.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    await axios.delete(`/api/users/${id}`, {}, config);
+    await axios.delete(`/api/users/${id}`, config);
     dispatch({
       type: USER_DELETE_SUCCESS,
     });
