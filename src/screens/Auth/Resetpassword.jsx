@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Message from "../../components/Message";
 import { useLocation } from "react-router-dom";
+import { logout, resetPassword } from "../../actions/userActions";
 
 function Resetpassword() {
     const location = useLocation();
@@ -17,11 +18,17 @@ function Resetpassword() {
     const [message, setMessage] = useState("");
 
     const handleResetPassword = async () => {
-        if(password!==setConPassword){
+        if(password==="" || password!==conPassword){
             setMessage("Passwords do not match");
             setTimeout(() => {
                 setMessage(null);
             }, 3000);
+            
+        }
+        else{
+            dispatch(resetPassword(email,token,password))
+            dispatch(logout())
+            navigate("/login")
         }
     };
 

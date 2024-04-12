@@ -207,7 +207,44 @@ export const sendEmail =
 
       const { data } = await axios.post(
         "/api/users/requestpasswordreset",
-        email ,
+        {email} ,
+        config
+      );
+      console.log(data);
+      dispatch({
+        type: EMAIL_SEND_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EMAIL_SEND_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
+
+export const resetPassword =
+  (email,token,password) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: EMAIL_SEND_REQUEST,
+      });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/users/passwordReset",
+        {email,token,password} ,
         config
       );
       console.log(data);
