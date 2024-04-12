@@ -80,9 +80,9 @@ const ProductListScreen = () => {
                   <td>{i++}</td>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
-                  <td>Rs {product.Cost.price}</td>
+                  <td>Rs {product.cost.price}</td>
                   <td>{product.category}</td>
-                  <td>{product.seller.sellername}</td>
+                  <td>{product.owner.username}</td>
                   <td>{product.createdAt.substring(0, 10)}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
@@ -94,6 +94,7 @@ const ProductListScreen = () => {
                       variant='danger'
                       className='btn-sm'
                       onClick={() => deleteHandler(product._id)}
+                      style={{width:"30px",height:"30px"}}
                     >
                       <i className='fas fa-trash'></i>
                     </Button>
