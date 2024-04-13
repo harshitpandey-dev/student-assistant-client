@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts, deleteProduct } from "../actions/productActions";
+import { listProducts, deleteProduct } from "../../actions/productActions";
 import { LinkContainer } from "react-router-bootstrap";
 
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { updateUser, getUserDetails } from "../actions/userActions";
-import FormContainer from "../components/FormContainer";
-import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
-import Header from "../components/Header";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
+import { updateUser, getUserDetails } from "../../actions/userActions";
+import FormContainer from "../../components/FormContainer";
+import {
+  USER_UPDATE_RESET,
+  USER_DETAILS_RESET,
+} from "../../types/userConstants";
+import Header from "../../components/Header";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import ChangePassword from "../components/ChangePassword";
+import ChangePassword from "../../components/ChangePassword";
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
   const match = useParams();
@@ -39,16 +42,14 @@ const UserUpdateScreen = () => {
   const productList = useSelector((state) => state.productList);
   const { products, loading: loadinglist } = productList;
   const productDelete = useSelector((state) => state.productDelete);
-  const [update,setUpdate]=useState(false);
-
-
+  const [update, setUpdate] = useState(false);
 
   const { success: successDelete } = productDelete;
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
-    if(!userData){
+    if (!userData) {
       navigate("/");
       return;
     }
@@ -65,7 +66,6 @@ const UserUpdateScreen = () => {
       }
     } else {
       if (!user?.fullname) {
-   
         dispatch(getUserDetails(userId));
       } else {
         setFullname(user.fullname);
@@ -83,28 +83,31 @@ const UserUpdateScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-      dispatch(
-        updateUser({
-          _id: userId,
-          fullname,
-          username,
-          contact,
-        })
-      );
-    
+    dispatch(
+      updateUser({
+        _id: userId,
+        fullname,
+        username,
+        contact,
+      })
+    );
   };
 
   useEffect(() => {
     if (fullname !== "" || username !== "" || contact !== "") {
-      if (fullname !== userData.fullname || username !== userData.username || contact !== userData.contact) {
-        setUpdate(true)
+      if (
+        fullname !== userData.fullname ||
+        username !== userData.username ||
+        contact !== userData.contact
+      ) {
+        setUpdate(true);
       } else {
-        setUpdate(false)
+        setUpdate(false);
       }
     } else {
-      setUpdate(false)
+      setUpdate(false);
     }
-  }, [fullname, username, contact])
+  }, [fullname, username, contact]);
 
   return (
     <>
@@ -168,18 +171,17 @@ const UserUpdateScreen = () => {
                 onChange={(e) => setContact(e.target.value)}
               ></Form.Control>
             </Form.Group>
- 
-          
-        <Form.Group controlId="password">
+
+            <Form.Group controlId="password">
               <Form.Label>Password </Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter password"
                 value={"cfchgvyuvyv"}
                 disabled
-              ></Form.Control>   
+              ></Form.Control>
             </Form.Group>
-        
+
             {/* <Form.Group controlId="confirmpassword">
               <Form.Label>Confirm Password </Form.Label>
               <Form.Control
@@ -191,17 +193,17 @@ const UserUpdateScreen = () => {
             </Form.Group> */}
             {loading && <Loader />}
 
-         
-              <ChangePassword />
-         
+            <ChangePassword />
 
-           {update? <Button type="submit" variant="primary" className="ms-2" >
-              Update Profile
-            </Button>:
+            {update ? (
+              <Button type="submit" variant="primary" className="ms-2">
+                Update Profile
+              </Button>
+            ) : (
               <Button type="submit" variant="primary" className="ms-2" disabled>
                 Update Profile
               </Button>
-            }
+            )}
           </Form>
           {message && <Message variant="danger">{message}</Message>}
           {error && <Message variant="danger">{error}</Message>}

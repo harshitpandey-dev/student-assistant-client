@@ -1,12 +1,11 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
-import Header from '../components/Header'
+import Header from "../../components/Header";
 
 const AboutUsScreen = () => {
-
   return (
     <>
-    <Header />
+      <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-6 item">
@@ -14,16 +13,15 @@ const AboutUsScreen = () => {
               <h4>Who are We?</h4>
               <div className="seperator"></div>
               <p>
-                Actually We are not any professionals. This website has been created
-                for the purpose of aiding students for buying and selling the notes
-                and other items that they no longer need which might be useful for
-                other new students. We take no charge for this. What we do is just
-                aid in establishing the communication between buyer and seller.These
-                can include: notes, drawing instruments, utensils & furnitures
-                specially by students who are on the verge of leaving campus sooner
-                or later.
+                Actually We are not any professionals. This website has been
+                created for the purpose of aiding students for buying and
+                selling the notes and other items that they no longer need which
+                might be useful for other new students. We take no charge for
+                this. What we do is just aid in establishing the communication
+                between buyer and seller.These can include: notes, drawing
+                instruments, utensils & furnitures specially by students who are
+                on the verge of leaving campus sooner or later.
               </p>
-             
             </div>
           </div>
           <div className="col-md-6 item">
@@ -31,7 +29,6 @@ const AboutUsScreen = () => {
               <h4>Developer</h4>
               <div className="seperator"></div>
               <h4>Designed and developed by Harshit Pandey </h4>
-             
             </div>
           </div>
           <div className="col-md-6 item">
@@ -48,9 +45,9 @@ const AboutUsScreen = () => {
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default AboutUsScreen;

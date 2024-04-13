@@ -2,12 +2,16 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { deleteProduct, listProductDetails, updateProduct } from "../actions/productActions";
-import FormContainer from "../components/FormContainer";
-import { PRODUCT_UPDATE_RESET } from "../types/productConstants";
-import Header from "../components/Header";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
+import {
+  deleteProduct,
+  listProductDetails,
+  updateProduct,
+} from "../../actions/productActions";
+import FormContainer from "../../components/FormContainer";
+import { PRODUCT_UPDATE_RESET } from "../../types/productConstants";
+import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 
 const ProductEditScreen = () => {
@@ -44,8 +48,8 @@ const ProductEditScreen = () => {
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
-    }else{
-      navigate("/login")
+    } else {
+      navigate("/login");
     }
 
     dispatch({
@@ -57,8 +61,8 @@ const ProductEditScreen = () => {
     if (successUpdate && userData.isAdmin) {
       navigate("/admin/productlist");
     }
-    if (!product ||!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId,userData.token));
+    if (!product || !product.name || product._id !== productId) {
+      dispatch(listProductDetails(productId, userData.token));
     } else {
       setName(product.name);
       // setImages(product.images.map((image) => image).toString());
@@ -90,7 +94,7 @@ const ProductEditScreen = () => {
       data: formData,
     })
       .then(function (res) {
-        setImages([...images,res.data.url]);
+        setImages([...images, res.data.url]);
       })
       .catch(function (err) {
         console.error(err);
@@ -119,15 +123,15 @@ const ProductEditScreen = () => {
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
-      navigate("/")
+      navigate("/");
     }
   };
   const removeImg = (fileToRemove) => {
     console.log(fileToRemove);
-    const updatedImages = images.filter(file => file !== fileToRemove);
+    const updatedImages = images.filter((file) => file !== fileToRemove);
     setImages(updatedImages);
   };
-  
+
   return (
     <>
       <Header />
@@ -157,7 +161,7 @@ const ProductEditScreen = () => {
               </Form.Group>
 
               <Form.Group controlId="images">
-                    <Form.Label>
+                <Form.Label>
                   Image <small> *Upload Image only</small>{" "}
                 </Form.Label>
 
@@ -167,28 +171,31 @@ const ProductEditScreen = () => {
                   custom
                   onChange={uploadFileHandler}
                 ></Form.File>
-                    {images && (
-                      <div className="position-relative mt-5">
-                        {images.map((ele, index) => (
-                          <div key={index} className="d-inline-block position-relative">
-                            <img
-                              className="mt-2"
-                              src={ele}
-                              style={{ height: "100px" }}
-                              alt={`image${index + 1}`}
-                            />
-                            <button
-                              type="button"
-                              className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                              style={{ width: "30px", height: "40px" }}
-                              onClick={() => removeImg(ele)}
-                            >
-                              X
-                            </button>
-                          </div>
-                        ))}
+                {images && (
+                  <div className="position-relative mt-5">
+                    {images.map((ele, index) => (
+                      <div
+                        key={index}
+                        className="d-inline-block position-relative"
+                      >
+                        <img
+                          className="mt-2"
+                          src={ele}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                          style={{ width: "30px", height: "40px" }}
+                          onClick={() => removeImg(ele)}
+                        >
+                          X
+                        </button>
                       </div>
-                    )}
+                    ))}
+                  </div>
+                )}
 
                 {uploading && <Loader />}
               </Form.Group>
@@ -265,7 +272,11 @@ const ProductEditScreen = () => {
               <Button className="mb-2 ms-2" type="submit" variant="primary">
                 Update
               </Button>
-                  <Button className="mb-2 ms-2" variant="danger" onClick={() => deleteHandler(product._id)} >
+              <Button
+                className="mb-2 ms-2"
+                variant="danger"
+                onClick={() => deleteHandler(product._id)}
+              >
                 Delete
               </Button>
             </Form>

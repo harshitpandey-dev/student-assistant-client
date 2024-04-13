@@ -15,9 +15,9 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_REQUEST,
-  PRODUCT_REVIEW_REQUEST,
-  PRODUCT_REVIEW_FAIL,
-  PRODUCT_REVIEW_SUCCESS,
+  // PRODUCT_REVIEW_REQUEST,
+  // PRODUCT_REVIEW_FAIL,
+  // PRODUCT_REVIEW_SUCCESS,
 } from "../types/productConstants";
 import axios from "axios";
 // import {
@@ -25,36 +25,32 @@ import axios from "axios";
 //   USER_DELETE_REQUEST,
 //   USER_DELETE_SUCCESS,
 // } from '../types/userConstants'
-export const listProducts =
-  () =>
-  async (dispatch) => {
-    try {
-      dispatch({
-        type: PRODUCT_DETAILS_RESET,
-      });
-      dispatch({
-        type: PRODUCT_LIST_REQUEST,
-      });
+export const listProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: PRODUCT_DETAILS_RESET,
+    });
+    dispatch({
+      type: PRODUCT_LIST_REQUEST,
+    });
 
-      const { data } = await axios.get(
-        `/api/products/`
-      );
-      dispatch({
-        type: PRODUCT_LIST_SUCCESS,
-        payload: data.data.products,
-      });
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_LIST_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+    const { data } = await axios.get(`/api/products/`);
+    dispatch({
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data.data.products,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
-export const listProductDetails = (id,token) => async (dispatch) => {
+export const listProductDetails = (id, token) => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_DETAILS_REQUEST,
@@ -73,7 +69,6 @@ export const listProductDetails = (id,token) => async (dispatch) => {
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data.data,
     });
-  
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
@@ -223,40 +218,40 @@ export const updateProduct =
   };
 
 //create review
-export const createProductReview =
-  (productId, comment) => async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: PRODUCT_REVIEW_REQUEST,
-      });
-      const {
-        userLogin: { userData },
-      } = getState();
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+// export const createProductReview =
+//   (productId, comment) => async (dispatch, getState) => {
+//     try {
+//       dispatch({
+//         type: PRODUCT_REVIEW_REQUEST,
+//       });
+//       const {
+//         userLogin: { userData },
+//       } = getState();
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 
-          Authorization: `Bearer ${userData.token}`,
-        },
-      };
+//           Authorization: `Bearer ${userData.token}`,
+//         },
+//       };
 
-      await axios.post(
-        `/api/products/${productId}/reviews`,
-        { comment },
-        config
-      );
-      dispatch({
-        type: PRODUCT_REVIEW_SUCCESS,
-      });
-    } catch (error) {
-      dispatch({
-        type: PRODUCT_REVIEW_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+//       await axios.post(
+//         `/api/products/${productId}/reviews`,
+//         { comment },
+//         config
+//       );
+//       dispatch({
+//         type: PRODUCT_REVIEW_SUCCESS,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: PRODUCT_REVIEW_FAIL,
+//         payload:
+//           error.response && error.response.data.message
+//             ? error.response.data.message
+//             : error.message,
+//       });
+//     }
+//   };

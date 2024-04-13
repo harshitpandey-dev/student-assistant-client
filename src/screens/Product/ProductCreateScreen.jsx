@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { createProduct } from "../actions/productActions";
-import FormContainer from "../components/FormContainer";
-import Header from "../components/Header";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
+import { createProduct } from "../../actions/productActions";
+import FormContainer from "../../components/FormContainer";
+import Header from "../../components/Header";
 import { useNavigate } from "react-router";
 
 const ProductCreateScreen = () => {
@@ -41,10 +41,10 @@ const ProductCreateScreen = () => {
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
-    if(!data) return;
+    if (!data) return;
     const file = Array.from(e.target.files);
     setShowImages((images) => [...images, ...file]);
- 
+
     // const imagesData = [...images];
     // imagesData.push(data);
     // setImages(imagesData);
@@ -53,11 +53,11 @@ const ProductCreateScreen = () => {
   // console.log(showImages);
   const submitHandler = (e) => {
     e.preventDefault();
-    const imagesData=[];
-    showImages.map((file)=>{
-      const data=file;
+    const imagesData = [];
+    showImages.map((file) => {
+      const data = file;
       imagesData.push(data);
-    })
+    });
     console.log(imagesData);
     setImages(imagesData);
     setUploading(false);
@@ -75,10 +75,9 @@ const ProductCreateScreen = () => {
 
   const removeImg = (fileToRemove) => {
     console.log(fileToRemove);
-    const updatedImages = showImages.filter(file => file !== fileToRemove);
+    const updatedImages = showImages.filter((file) => file !== fileToRemove);
     setShowImages(updatedImages);
   };
-
 
   return (
     <>
@@ -106,44 +105,47 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-             {showImages.length<4 && (<Form.Group controlId="images">
-                <Form.Label>
-                  Image <small> *Upload Image only</small>
-                </Form.Label>
+              {showImages.length < 4 && (
+                <Form.Group controlId="images">
+                  <Form.Label>
+                    Image <small> *Upload Image only</small>
+                  </Form.Label>
 
-                <Form.File
-                  id="image-file"
-                  label="Choose File"
-                  
-                  onChange={uploadFileHandler}
-                  /></Form.Group>
-          )}
-                  
+                  <Form.File
+                    id="image-file"
+                    label="Choose File"
+                    onChange={uploadFileHandler}
+                  />
+                </Form.Group>
+              )}
 
-                {uploading && <Loader />}
-                {showImages && (
-                  <div className="position-relative mt-5">
-                    {showImages.map((file, index) => (
-                      <div key={index} className="d-inline-block position-relative">
-                        <img
-                          className="mt-2"
-                          src={URL.createObjectURL(file)}
-                          style={{ height: "100px" }}
-                          alt={`image${index + 1}`}
-                        />
-                        <button
-                          type="button"
-                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                          style={{ width: "30px", height: "40px" }}
-                          onClick={() => removeImg(file)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-             
+              {uploading && <Loader />}
+              {showImages && (
+                <div className="position-relative mt-5">
+                  {showImages.map((file, index) => (
+                    <div
+                      key={index}
+                      className="d-inline-block position-relative"
+                    >
+                      <img
+                        className="mt-2"
+                        src={URL.createObjectURL(file)}
+                        style={{ height: "100px" }}
+                        alt={`image${index + 1}`}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                        style={{ width: "30px", height: "40px" }}
+                        onClick={() => removeImg(file)}
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* <Form.Group controlId="category">
                 <Form.Label>Category </Form.Label>
                 <Form.Control
