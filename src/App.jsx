@@ -78,7 +78,7 @@ function App() {
           <Route path="/chatScreen/chatID/:chatID" element={<ChatScreen />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </>
     </Router>
   );

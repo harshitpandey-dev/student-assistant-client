@@ -14,7 +14,7 @@ export default function ChatUserList({list,userID,chatID}) {
 
         <Link to={`/chatScreen/chatID/${list._id}`} className={active ?"list-group-item active  media mb-2":"list-group-item  media mb-2"}>
             <div className="pull-left">
-                <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" />
+                {/* <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" /> */}
             </div>
             <div className="media-body">
                 <div className="list-group-item-heading">

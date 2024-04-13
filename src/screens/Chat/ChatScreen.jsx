@@ -12,6 +12,7 @@ import { CHAT_LIST_RESET, CHAT_RESET } from "../../types/chatConstants";
 import { MESSAGE_RESET } from "../../types/messageConstants";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function ChatScreen() {
   const match = useParams();
@@ -184,7 +185,7 @@ export default function ChatScreen() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {loading ? (
         <Loader />
       ) : (
@@ -192,10 +193,16 @@ export default function ChatScreen() {
           <div className=" bootstrap snippets bootdey p-2">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                {/* <div className="ms-user clearfix">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" />
-                            <div>Signed in as <br/> m-hollaway@gmail.com</div>
-                    </div> */}
+                <div className="ms-user clearfix text-center">
+                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" />
+                            <div>Signed in as <br/> m-hollaway@gmail.com</div> */}
+                    {/* <span
+                      className="text-center fs-5 text-light mb-2"
+                      style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" }}
+                    >
+                      <Link to="/">Student Assistant</Link>
+                    </span> */}
+                    </div>
 
                 {/* <div className="p-15">
                         <div className="dropdown">
@@ -210,12 +217,12 @@ export default function ChatScreen() {
                     </div> */}
 
                 <div className="list-group lg-alt mt-5">
-                  <span
+                  {/* <span
                     className="text-center fs-1 text-light mb-2"
                     style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                    <Link to="/ChatScreen">CHAT</Link> 
-                  </span>
+                  </span> */}
                   {chatListData &&
                     chatListData.map((list) => {
                       return (
@@ -242,21 +249,18 @@ export default function ChatScreen() {
                   >
                     <i className="fa fa-bars text-dark"></i>
                   </div>
-
-                  {/* {name &&   <div className="pull-left hidden-xs">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" className="img-avatar m-r-10" />
-                                    <div className="lv-avatar pull-left mt-5">
-                                        
-                                            <h5>Chat With <b>{name}</b></h5>
-                                    </div>
-                                </div>} */}
-
+                    <span
+                      className="text-center fs-2 text-light mb-2 "
+                      style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" ,marginLeft:"40px"}}
+                    >
+                      <Link to="/">Student Assistant</Link>
+                    </span>
                   <ul className="ah-actions actions">
-                    <li>
+                    {/* <li>
                       <button onClick={handleDelete} style={{ width: "50px" }}>
                         <i className="fa fa-trash text-danger fs-5"></i>
                       </button>
-                    </li>
+                    </li> */}
                     {/* <li>
                                         <a href="">
                                             <i className="fa fa-check"></i>
@@ -281,20 +285,17 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                    {/* <li className="dropdown">
-                                        <a href="" data-toggle="dropdown" aria-expanded="true">
-                                            <i className="fa fa-bars"></i>
-                                        </a>
+                     <li> <Dropdown style={{width:"20px",height:"20px"}}>
+                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "30px",height:"30px" }} >
+                          
+                        </Dropdown.Toggle>
 
-                                        <ul className="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="">Refresh</a>
-                                            </li>
-                                            <li>
-                                                <a href="">Message Settings</a>
-                                            </li>
-                                        </ul>
-                                    </li> */}
+                       
+                        <Dropdown.Menu>
+                          <Dropdown.Item onClick={handleDelete}>Delete Chat</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      </li>
                   </ul>
                 </div>
                 <div className="show-msg">

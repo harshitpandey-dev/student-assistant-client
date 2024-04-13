@@ -717,7 +717,7 @@ form-control:focus {
 
 #messages-main .ms-user {
     padding: 15px;
-    background: #f8f8f8;
+    /* background: #f8f8f8; */
 }
 
 #messages-main .ms-user>div {
@@ -858,19 +858,20 @@ form-control:focus {
     /* border-radius: 10%; */
     background-color: rgba(255, 255, 255, 0.65);
     border: 0;
+    color: rgb(134, 12, 221);
 }
 .list-group.lg-alt .list-group-item:hover{
-    background-color: #310b02d7;
+    background-color: #f68b43e6;
 }
 .list-group.lg-alt .list-group-item.active{
     background-color: #0c0c0cc8;
-    color: white;
+    color: rgb(231, 241, 46) !important;
 }
 .list-group-item-heading{
     font-size: 1.5rem;
     padding-top: 5px;
     font-family: 'Gluten', sans-serif;
-    color: #7C4DFF;
+
 }
 
 

@@ -72,7 +72,7 @@ const ProductCreateScreen = () => {
     }
     dispatch(createProduct(formData));
   };
-
+  console.log(showImages);
   const removeImg = (fileToRemove) => {
     console.log(fileToRemove);
     const updatedImages = showImages.filter((file) => file !== fileToRemove);
