@@ -861,8 +861,21 @@ form-control:focus {
     color: rgb(134, 12, 221);
 }
 .list-group.lg-alt .list-group-item:hover{
-    background-color: #f68b43e6;
+    background-color: #161412e6;
+    
 }
+.list-group-item:hover .list-group-item-text{
+    color: white !important;
+}
+.list-group.lg-alt .list-group-item.active{
+    background-color: #0c0c0cc8;
+    color: rgb(231, 241, 46) !important;
+}
+
+.list-group.lg-alt .list-group-item.active .list-group-item-text{
+    color: white !important;
+}
+
 .list-group.lg-alt .list-group-item.active{
     background-color: #0c0c0cc8;
     color: rgb(231, 241, 46) !important;
@@ -964,7 +977,6 @@ form-control:focus {
 
 .list-group-item-text{
     font-size: 1rem;
-    color: #777777b7;
 }
 
 .msg-container{

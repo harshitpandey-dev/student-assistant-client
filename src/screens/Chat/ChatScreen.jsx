@@ -193,9 +193,9 @@ export default function ChatScreen() {
           <div className=" bootstrap snippets bootdey p-2">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                <div className="ms-user clearfix text-center">
-                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" />
-                            <div>Signed in as <br/> m-hollaway@gmail.com</div> */}
+                <div className="ms-user clearfix text-white fs-2">
+                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
+                       
                     {/* <span
                       className="text-center fs-5 text-light mb-2"
                       style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" }}
@@ -250,10 +250,13 @@ export default function ChatScreen() {
                     <i className="fa fa-bars text-dark"></i>
                   </div>
                     <span
-                      className="text-center fs-2 text-light mb-2 "
-                      style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" ,marginLeft:"40px"}}
+                      className="text-center fs-2 text-light mb-2 d-flex flex-column"
+                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"20px"}}
                     >
                       <Link to="/">Student Assistant</Link>
+                      <div className="fs-5 text-dark">{userData?.username}</div>
+                      <div className="fs-5 text-dark">{userData?.email}</div>
+                      
                     </span>
                   <ul className="ah-actions actions">
                     {/* <li>
@@ -285,15 +288,15 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                     <li> <Dropdown style={{width:"20px",height:"20px"}}>
+                    <li> <Dropdown style={{width:"20px",height:"20px"}}>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "30px",height:"30px" }} >
                           
                         </Dropdown.Toggle>
 
                        
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={handleDelete}>Delete Chat</Dropdown.Item>
-                        </Dropdown.Menu>
+                      {messageData && <Dropdown.Menu>
+                          <Dropdown.Item onClick={handleDelete} className="text-danger">Delete Chat</Dropdown.Item>
+                        </Dropdown.Menu>}
                       </Dropdown>
                       </li>
                   </ul>

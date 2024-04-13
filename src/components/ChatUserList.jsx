@@ -20,7 +20,7 @@ export default function ChatUserList({list,userID,chatID}) {
                 <div className="list-group-item-heading">
                     {filteredParticipants[0].username}
                 </div>
-                <small className="list-group-item-text c-gray">{lastMsg}</small>
+                <small className="list-group-item-text c-gray text-dark">{lastMsg}</small>
             </div>
         </Link>
 
