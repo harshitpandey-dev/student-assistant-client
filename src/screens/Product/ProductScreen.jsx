@@ -96,7 +96,7 @@ const ProductScreen = () => {
 
                       {product?.cost?.negotiable && <li>Yes</li>}
 
-                      <Button> chat with seller </Button>
+                          <Link to={`/chatScreen/${product.owner?._id}`}><Button> chat with seller</Button> </Link>
                     </ul>
                   </Col>
                 </Row>

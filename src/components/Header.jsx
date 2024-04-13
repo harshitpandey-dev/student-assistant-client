@@ -33,6 +33,9 @@ const Header = () => {
                   <LinkContainer to={`/admin/users/${userData._id}/edit`}>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to={`/chatScreen/`}>
+                    <NavDropdown.Item>Chat</NavDropdown.Item>
+                  </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
@@ -52,6 +55,7 @@ const Header = () => {
                   <LinkContainer to="/admin/productlist">
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
+                  
                   {/* <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item> */}

@@ -73,6 +73,7 @@ function App() {
             exact
           />
 
+          <Route path="/chatScreen/" element={<ChatScreen />} />
           <Route path="/chatScreen/:sellerID" element={<ChatScreen />} />
           <Route path="/chatScreen/chatID/:chatID" element={<ChatScreen />} />
           <Route path="*" element={<NotFoundScreen />} />

@@ -62,7 +62,7 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_RESET });
     dispatch({ type: MESSAGE_RESET });
     dispatch({ type: CHAT_LIST_RESET });
-  }, []);
+  }, [sellerID,chatID]);
 
   useEffect(() => {
     if (userData && sellerID && userData._id === sellerID) {
@@ -86,7 +86,7 @@ export default function ChatScreen() {
     if (userData) {
       dispatch(get_All_Chat(userData._id, userData.token));
     }
-  }, [chatData, chatID, userData, reload]);
+  }, [chatData, chatID, userData, reload,sellerID]);
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -347,7 +347,7 @@ export default function ChatScreen() {
                 ) : (
                   <></>
                 )}
-                {userData && sellerID && userData._id === sellerID ? (
+                {((userData && sellerID && userData._id === sellerID)||(!sellerID && !chatID)) ? (
                   <></>
                 ) : (
                   <div className="card-footer">
