@@ -24,8 +24,8 @@ export default function SenderMessageBox({msg}) {
           <div className="media-body  mt-1">
               <div className="mf-content msg-container">
                   {msg?.content}
-              </div>
               <small className="mf-date msg_time"><i className="fa fa-clock-o "></i> {formattedDate}</small>
+              </div>
           </div>
       </div>
   )

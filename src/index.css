@@ -989,17 +989,41 @@ form-control:focus {
             color:white;
             position: relative;
             font-size: 20px;
+            border-radius: 0px 5px 5px 5px;
+}
+.msg-container::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0px;
+    left: -9px;
+    border-style: solid;
+border-width: 0px 10px 10px 0;
+border-color: transparent #05235c transparent transparent;
 }
 .msg_cotainer_send {
     	    margin-top: auto;
     	    margin-bottom: auto;
     	    margin-right: 10px;
-    	    border-radius: 25px;
+    	    /* border-radius: 25px; */
     	    background-color: #2626dfe9;
     	    padding: 10px;
             color: white;
     	    position: relative;
             font-size: 20px;
+            border-radius: 5px 0px 5px 5px;
+}
+.msg_cotainer_send::after{
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top:0px;
+    right: -9px;
+    border-style: solid;
+border-width: 0px 0 10px 10px;
+    border-color: transparent transparent transparent #2626dfe9;
 }
 .msg_time {
     	    /* position: absolute; */
@@ -1051,7 +1075,7 @@ form-control:focus {
 
 .send_btn {
     border-radius: 0 15px 15px 0 !important;
-    background-color: rgb(37, 175, 185) !important;
+    background-color: rgba(5, 95, 101, 0.658) !important;
     border: 0 !important;
     color: rgb(235, 237, 239) !important;
     cursor: pointer;

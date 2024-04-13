@@ -26,9 +26,9 @@ export default function UserMessgeBox({msg}) {
           <div className="media-body mt-1">
               <div className="mf-content msg_cotainer_send " >
                   {msg?.content}
+              <small className="mf-date msg_time_send "><i className="fa fa-clock-o"></i> {formattedDate}</small>
               </div>
     
-              <small className="mf-date msg_time_send "><i className="fa fa-clock-o"></i> {formattedDate}</small>
           </div>
       </div>
   )
