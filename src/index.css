@@ -651,8 +651,8 @@ form-control:focus {
     font-size: 13px;
     line-height: 1.42857143;
     color: #767676;
-    background-color: #edecec;
-    margin-top: 20px;
+    background-color: #05235c;
+    /* margin-top: 20px; */
     min-height: 100vh;
     height: 100%;
 }
@@ -678,7 +678,8 @@ form-control:focus {
     height: 100%;
     width: 240px;
     background: #8991E4;
-    height: 100%
+    height: 100%;
+    border-radius: 10px 0 0 0;
 }
 
 @media (min-width:767px) {
@@ -705,6 +706,13 @@ form-control:focus {
     #messages-main .ms-body {
         overflow: hidden;
     }
+   .action-header{
+        border-radius: 10px 10px 0 0 !important;
+    }
+    .msg-container , .msg_cotainer_send{
+        font-size: 15px !important;
+    }
+    
 }
 
 #messages-main .ms-user {
@@ -865,6 +873,7 @@ form-control:focus {
     color: #7C4DFF;
 }
 
+
 .p-15 {
     padding: 15px !important;
 }
@@ -877,6 +886,7 @@ form-control:focus {
     position: relative;
     background: #8991E4;
     padding: 15px 13px 15px 17px;
+    border-radius: 0 10px 0 0;
 }
 
 .ah-actions {
@@ -965,6 +975,7 @@ form-control:focus {
             padding: 10px;
             color:white;
             position: relative;
+            font-size: 20px;
 }
 .msg_cotainer_send {
     	    margin-top: auto;
@@ -975,6 +986,7 @@ form-control:focus {
     	    padding: 10px;
             color: white;
     	    position: relative;
+            font-size: 20px;
 }
 .msg_time {
     	    /* position: absolute; */
@@ -1053,4 +1065,7 @@ form-control:focus {
 }
 .container{
     width: 100% !important;
+}
+.chatInput::placeholder{
+    color: white !important;
 }

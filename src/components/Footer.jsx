@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <Row>
-          <Col className='text-center py-3'>
+        <Row style={{padding:"10px"}}>
+          <Col className='text-center'>
             Copyright &copy; 2022 
           </Col>
         </Row>

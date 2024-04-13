@@ -188,8 +188,8 @@ export default function ChatScreen() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="chatScreen mt-5">
-          <div className=" bootstrap snippets bootdey mt-5 p-2">
+        <div className="chatScreen">
+          <div className=" bootstrap snippets bootdey p-2">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
                 {/* <div className="ms-user clearfix">
@@ -211,10 +211,10 @@ export default function ChatScreen() {
 
                 <div className="list-group lg-alt mt-5">
                   <span
-                    className="text-center fs-3 text-white mb-2"
-                    style={{ fontFamily: "'Gluten', sans-serif" }}
+                    className="text-center fs-1 text-light mb-2"
+                    style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
-                    Chat List
+                   <Link to="/ChatScreen">CHAT</Link> 
                   </span>
                   {chatListData &&
                     chatListData.map((list) => {
@@ -333,7 +333,7 @@ export default function ChatScreen() {
                   </div>
                 )}
                 {typeMessage && (
-                  <span className="text-white ms-2">Type a Message.....</span>
+                  <span className="text-white ms-4">Type a Message.....</span>
                 )}
                 {istyping ? (
                   <div>
@@ -375,8 +375,9 @@ export default function ChatScreen() {
                       </div>
                       <textarea
                         name=""
-                        className="form-control type_msg"
+                        className="form-control type_msg text-light chatInput"
                         placeholder="Type your message..."
+                            style={{ fontFamily: "'Gluten', sans-serif" }}
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
