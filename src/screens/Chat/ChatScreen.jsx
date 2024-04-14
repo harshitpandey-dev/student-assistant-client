@@ -253,7 +253,7 @@ export default function ChatScreen() {
                       className="text-center fs-2 text-light mb-2 d-flex flex-column"
                       style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"20px"}}
                     >
-                      <Link to="/">Student Assistant</Link>
+                      {/* <Link to="/"></Link> */}
                       <div className="fs-5 text-dark">{userData?.username}</div>
                       <div className="fs-5 text-dark">{userData?.email}</div>
                       
