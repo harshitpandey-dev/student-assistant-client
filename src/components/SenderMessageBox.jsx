@@ -22,7 +22,7 @@ export default function SenderMessageBox({msg}) {
               })}
           </div>
           <div className="media-body  mt-1">
-              <div className="mf-content msg-container">
+              <div className="mf-content msg-container" style={{ fontFamily: "'Gluten', sans-serif" }}>
                   {msg?.content}
               <small className="mf-date msg_time"><i className="fa fa-clock-o "></i> {formattedDate}</small>
               </div>
