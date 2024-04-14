@@ -18,11 +18,11 @@ export default function UserMessgeBox({msg}) {
               {/* <img src={msg?.attachments[0]?.url}  alt="" className="img-avatar" /> */}
           
           </div>
-          <div className='content-image mf-content send_img'>
-              {msg.attachments.map((ele,ind)=>{
+         {msg?.attachments.length>0 && <div className='content-image mf-content send_img '>
+              { msg.attachments.map((ele,ind)=>{
                 return   <img src={ele.url} alt={ind} />
               })}
-          </div>
+          </div>}
           <div className="media-body mt-1">
               <div className="mf-content msg_cotainer_send " style={{ fontFamily: "'Gluten', sans-serif" }}>
                   {msg?.content}

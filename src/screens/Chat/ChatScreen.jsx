@@ -102,7 +102,7 @@ export default function ChatScreen() {
     }
 
     setSendMessage("");
-  }, [dispatch, sellerID, userData, chatID]);
+  }, [dispatch, sellerID, userData, chatID,reload]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -185,7 +185,7 @@ export default function ChatScreen() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       {loading ? (
         <Loader />
       ) : (
