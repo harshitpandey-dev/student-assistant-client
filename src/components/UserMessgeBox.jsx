@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import OpenImage from './OpenImage';
 
 export default function UserMessgeBox({msg}) {
     const date = new Date(msg.createdAt)
@@ -12,6 +13,17 @@ export default function UserMessgeBox({msg}) {
 
 
     const formattedDate = ` ${hours}:${minutes} | ${day}-${month}-${year}`;
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [url,setUrl]=useState("")
+   
+
+  function handleOpen(val){
+     setUrl(val);
+     handleShow();
+  }
   return (
       <div className="message-feed right">
           <div className="pull-right">
@@ -20,8 +32,12 @@ export default function UserMessgeBox({msg}) {
           </div>
          {msg?.attachments.length>0 && <div className='content-image mf-content send_img '>
               { msg.attachments.map((ele,ind)=>{
-                return   <img src={ele.url} alt={ind} />
+                
+                 return <img src={ele.url} alt={ind} onClick={()=>handleOpen(ele.url)} style={{cursor:"pointer"}}/>
+               
+                
               })}
+          <OpenImage handleClose={handleClose} show={show} url={url} msg={msg?.content}/>
           </div>}
           <div className="media-body mt-1">
               <div className="mf-content msg_cotainer_send " style={{ fontFamily: "'Gluten', sans-serif" }}>

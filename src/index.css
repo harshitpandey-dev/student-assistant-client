@@ -1121,3 +1121,7 @@ border-width: 0px 0 10px 10px;
 .input-img:hover img{
     opacity: 0.5;
 }
+
+.content-image img:hover{
+  opacity: 0.5;
+}
