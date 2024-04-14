@@ -1112,3 +1112,12 @@ border-width: 0px 0 10px 10px;
 .chatInput::placeholder{
     color: white !important;
 }
+
+.input-img:hover .img-rem{
+   /* display: block; */
+   opacity: 0.9;
+   display: block !important;
+}
+.input-img:hover img{
+    opacity: 0.5;
+}

@@ -316,18 +316,18 @@ export default function ChatScreen() {
                     {images.map((file, index) => (
                       <div
                         key={index}
-                        className="d-inline-block position-relative"
+                        className="d-inline-block position-relative input-img"
                       >
                         <img
-                          className="mt-2"
+                          className="mt-2 "
                           src={URL.createObjectURL(file)}
                           style={{ height: "100px" }}
                           alt={`image${index + 1}`}
                         />
                         <button
                           type="button"
-                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                          style={{ width: "30px", height: "40px" }}
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0 img-rem"
+                          style={{ width: "30px", height: "40px" ,display:"none"}}
                           onClick={() => removeImg(file)}
                         >
                           X
