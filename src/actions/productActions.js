@@ -141,7 +141,7 @@ export const createProduct = (formData) => async (dispatch, getState) => {
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
     });
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     dispatch({
       type: PRODUCT_CREATE_FAIL,

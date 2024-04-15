@@ -16,11 +16,6 @@ const ProductCreateScreen = () => {
   const [uploading, setUploading] = useState(false);
 
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [expiresOn, setExpiresOn] = useState("");
-  const [shippingAddress, setShippingAddress] = useState("");
-  const [shippingCharge, setShippingCharge] = useState("");
-
   const [price, setPrice] = useState(0);
   const [negotiable, setNegotiable] = useState(false);
 
@@ -50,7 +45,7 @@ const ProductCreateScreen = () => {
     // setImages(imagesData);
     // setUploading(false);
   };
-  // console.log(showImages);
+
   const submitHandler = (e) => {
     e.preventDefault();
     const imagesData = [];

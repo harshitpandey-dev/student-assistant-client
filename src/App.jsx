@@ -14,7 +14,7 @@ import ProductListScreen from "./screens/Admin/ProductListScreen";
 import ProductCreateScreen from "./screens/Product/ProductCreateScreen";
 import Footer from "./components/Footer";
 import ProductEditScreen from "./screens/Product/ProductEditScreen";
-import UserUpdateScreen from "./screens/Auth/UserUpdateScreen";
+import UserProfileScreen from "./screens/Auth/UserProfileScreen";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
@@ -67,11 +67,7 @@ function App() {
             element={<ProductEditScreen />}
             exact
           />
-          <Route
-            path="/admin/users/:id/edit"
-            element={<UserUpdateScreen />}
-            exact
-          />
+          <Route path="/users/:id" element={<UserProfileScreen />} exact />
 
           <Route path="/chatScreen/" element={<ChatScreen />} />
           <Route path="/chatScreen/:sellerID" element={<ChatScreen />} />

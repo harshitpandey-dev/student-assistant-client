@@ -24,10 +24,10 @@ const ProductEditScreen = () => {
   const [images, setImages] = useState([]);
 
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [expiresOn, setExpiresOn] = useState("");
-  const [shippingAddress, setShippingAddress] = useState("");
-  const [shippingCharge, setShippingCharge] = useState("0");
+  // const [category, setCategory] = useState("");
+  // const [expiresOn, setExpiresOn] = useState("");
+  // const [shippingAddress, setShippingAddress] = useState("");
+  // const [shippingCharge, setShippingCharge] = useState("0");
 
   const [price, setPrice] = useState(0);
   const [negotiable, setNegotiable] = useState(false);
