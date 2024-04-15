@@ -64,11 +64,18 @@ export const login = (email, password) => async (dispatch) => {
 
     localStorage.setItem("userData", JSON.stringify(data.data.user));
   } catch (error) {
+    const errorMessage=(error.response.data);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(errorMessage, 'text/html');
+    const errorText = doc.body.textContent.trim(); // Extracting text content and removing leading/trailing whitespace
+
+    const message = errorText.split("at")[0]; 
+
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? message
           : error.message,
     });
   }
