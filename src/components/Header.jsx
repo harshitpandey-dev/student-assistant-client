@@ -3,11 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
+  const currentURL = window.location.href;
+  const url = (currentURL.split("/"));
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    setHide(false);
+    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users")) {
+      setHide(true);
+    }
+  }, [currentURL])
+
+
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -32,7 +45,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
-            <SearchBox />
+           {hide?<></>: <SearchBox />}
             <Nav className="ml-auto text-center">
               {userData ? (
                 <NavDropdown title={`${userData.fullname}`} id="username">

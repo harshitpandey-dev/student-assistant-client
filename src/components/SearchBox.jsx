@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { FaSearch } from "react-icons/fa";
 
 const SearchBox = () => {
   const navigate=useNavigate();
   const [keyword, setKeyword] = useState("");
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
@@ -22,9 +25,10 @@ const SearchBox = () => {
         onChange={(e) => setKeyword(e.target.value)}
         placeholder="Search Products..."
         className="mr-sm-2 ml-sm-5"
+        style={{height:"50px"}}
       ></Form.Control>
-      <Button type="submit" variant="success" className="ms-2">
-        Search
+        <Button type="submit" variant="light" className="" style={{ height: "50px", width: "40px", color:"#8991E4"}}>
+        <FaSearch />
       </Button>
      
     </Form>
