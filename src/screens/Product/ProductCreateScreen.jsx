@@ -5,7 +5,7 @@ import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { createProduct } from "../../actions/productActions";
 import FormContainer from "../../components/FormContainer";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import { useNavigate } from "react-router";
 
 const ProductCreateScreen = () => {
@@ -76,7 +76,7 @@ const ProductCreateScreen = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-3 ">
         <FormContainer>
           <h1

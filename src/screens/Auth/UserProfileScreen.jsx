@@ -6,7 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../../components/Loader";
 import UpdateUser from "../../components/UpdateUser";
 import ChangePassword from "../../components/ChangePassword";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import { useNavigate } from "react-router";
 
 const UserUpdateScreen = () => {
@@ -43,7 +43,7 @@ const UserUpdateScreen = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-3">
         <Row>
           <Col md={2}></Col>

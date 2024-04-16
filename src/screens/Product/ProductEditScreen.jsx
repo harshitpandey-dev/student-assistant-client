@@ -11,7 +11,7 @@ import {
 } from "../../actions/productActions";
 import FormContainer from "../../components/FormContainer";
 import { PRODUCT_UPDATE_RESET } from "../../types/productConstants";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 
 const ProductEditScreen = () => {
@@ -134,7 +134,7 @@ const ProductEditScreen = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-2">
         <FormContainer>
           <h1

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import SenderMessageBox from "../../components/SenderMessageBox";
 import UserMessgeBox from "../../components/UserMessgeBox";
 import ChatUserList from "../../components/ChatUserList";
@@ -185,7 +185,7 @@ export default function ChatScreen() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {loading ? (
         <Loader />
       ) : (

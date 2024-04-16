@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import SellerMessage from "../../components/SellerMessage";
 import UserMessage from "../../components/UserMessage";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -58,7 +58,7 @@ export default function Chat() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {loading ? (
         <Loader />
       ) : (

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { listProducts, deleteProduct } from "../../actions/productActions";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 import { login } from "../../actions/userActions";
 
@@ -48,7 +48,7 @@ const ProductListScreen = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-3 d-flex flex-column p-2">
         <h1
           className="text-center pb-2 "

@@ -7,7 +7,7 @@ import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import Product from "../../components/Product";
 import Paginate from "../../components/Paginate";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import Meta from "../../components/Meta";
 import { listProducts } from "../../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../../types/productConstants";
@@ -32,7 +32,7 @@ export default function Landing() {
   }, [dispatch, keyword, pageNumber]);
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-4 container-fluid p-5">
         <Meta />
         {keyword && (

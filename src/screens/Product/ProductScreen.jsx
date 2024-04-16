@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import Carousel from "react-bootstrap/Carousel";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import { listProductDetails } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const ProductScreen = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="py-2 ">
         <Link to="/" className="btn btn-success my-3 ms-2">
           Go Back
