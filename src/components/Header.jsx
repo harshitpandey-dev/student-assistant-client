@@ -7,22 +7,25 @@ import { useEffect, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
-  const currentURL = window.location.href;
-  const url = (currentURL.split("/"));
+  const location=useLocation();
+  var currentURL = location.pathname;
+  var url = (currentURL.split("/"));
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
+    currentURL = window.location.href;
+    url = (currentURL.split("/"));
     setHide(false);
     if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users")) {
       setHide(true);
     }
-  }, [currentURL])
-
+  },[location])
 
   const logoutHandler = () => {
     dispatch(logout());
