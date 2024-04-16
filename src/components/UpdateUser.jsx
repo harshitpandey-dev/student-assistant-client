@@ -79,7 +79,7 @@ const UpdateUser = () => {
 
   return (
     <>
-      <Button variant="warning" className="mt-2 mb-2 ms-2" onClick={handleShow}>
+      <Button variant="secondary" className="mt-2 mb-2 ms-2" onClick={handleShow}>
         Update Details
       </Button>
 

@@ -8,6 +8,7 @@ import UpdateUser from "../../components/UpdateUser";
 import ChangePassword from "../../components/ChangePassword";
 // import Header from "../../components/Header";
 import { useNavigate } from "react-router";
+import DeleteAccount from "../../components/DeleteAccount";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -125,22 +126,34 @@ const UserUpdateScreen = () => {
           <Col md={2}></Col>
         </Row>
 
-        <Row>
-          <Col md={2}></Col>
-          <Col md={8}>
+        <Row >
+          <Col md={1}></Col>
+          <Col md={4} >
+
             <div>Edit your Details</div>
+          </Col>
+          <Col md={6}>
             <UpdateUser />
           </Col>
-          <Col md={2}></Col>
         </Row>
 
         <Row>
-          <Col md={2}></Col>
-          <Col md={8}>
-            <div>Change Password</div>
+          <Col md={1}></Col>
+          <Col md={4}>
+            <div >Change Password</div>
+          </Col>
+          <Col md={6}>
             <ChangePassword />
           </Col>
-          <Col md={2}></Col>
+        </Row>
+        <Row>
+          <Col md={1}></Col>
+          <Col md={4}>
+            <div>Delete Account</div>
+          </Col>
+          <Col md={6}>
+            <DeleteAccount />
+          </Col>
         </Row>
       </div>
     </>
