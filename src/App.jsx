@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
 // import Chat from "./screens/Chat";
 import ChatScreen from "./screens/Chat/ChatScreen";
+import Header from "./components/Header";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,10 @@ function App() {
 
   return (
     <Router>
+
       <>
+      <Header />
+      <div style={{width:"100vw",height:"80px"}}></div>
         <Routes>
           <Route path="/login" element={<Login />} exact />
           <Route path="/signup" element={<Signup />} exact />

@@ -40,7 +40,7 @@ export default function Landing() {
             Go Back
           </Link>
         )}
-        <Row className="align-items-center">
+        {/* <Row className="align-items-center">
           <Col xs={6}>
             <h3
               style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
@@ -57,7 +57,7 @@ export default function Landing() {
               </div>
             </LinkContainer>
           </Col>
-        </Row>
+        </Row> */}
         {loading ? (
           <Loader />
         ) : error ? (

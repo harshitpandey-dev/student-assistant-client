@@ -1133,3 +1133,27 @@ font-size: 16px !important;
 .navbar-expand-lg .navbar-collapse{
     justify-content: flex-end !important;
 }
+
+.style-btn{
+    display: flex;
+    width: 40px;
+    overflow: hidden;
+    height: 33px;
+    border-radius: 10px !important;
+transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+ 
+    background-color: rgb(1, 1, 1) !important;
+}
+.style-btn:hover{
+    width: 250px;
+    background-color: lightgreen !important;
+    color: black !important;
+}
+
+.Nav_Bar{
+    width: 100vw;
+    position: fixed !important;
+    top: 0;
+    z-index: 100 ;
+    min-height: 80px;
+}

@@ -4,6 +4,7 @@ import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import { useEffect, useState } from "react";
+import { IoIosAddCircle } from "react-icons/io";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,11 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
            {hide?<></>: <SearchBox />}
-            <Nav className="ml-auto text-center">
+            <Nav className="ml-auto text-center d-flex align-items-center">
+            
+                 <div className="btn btn-success btn-circle btn-circle-sm m-1 style-btn" >
+                 <IoIosAddCircle /> Sell your Product
+                 </div>
               {userData ? (
                 <NavDropdown title={`${userData.fullname}`} id="username">
                   <LinkContainer to={`/users/${userData._id}`}>
@@ -80,6 +85,7 @@ const Header = () => {
                   </NavDropdown.Item> */}
                 </NavDropdown>
               )}
+            
               <LinkContainer to="/about">
                 <Nav.Link>
                   {/* <i className='far fa-address-card'></i>  */}
