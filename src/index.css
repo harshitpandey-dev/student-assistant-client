@@ -682,38 +682,7 @@ form-control:focus {
     border-radius: 10px 0 0 0;
 }
 
-@media (min-width:767px) {
-    #messages-main .ms-body {
-        padding-left: 240px;
-    }
-   #ms-menu-trigger{
-    display: none;
-   }
-}
 
-@media (max-width:767px) {
-    #messages-main .ms-menu {
-        height: calc(100% - 58px);
-        display: none;
-        z-index: 1;
-        top: 58px;
-    }
-
-    #messages-main .ms-menu.toggled {
-        display: block;
-    }
-
-    #messages-main .ms-body {
-        overflow: hidden;
-    }
-   .action-header{
-        border-radius: 10px 10px 0 0 !important;
-    }
-    .msg-container , .msg_cotainer_send{
-        font-size: 15px !important;
-    }
-    
-}
 
 #messages-main .ms-user {
     padding: 15px;
@@ -1158,18 +1127,20 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
     min-height: 80px;
 }
 
-.style-btn-chat{
+.style-btn-chat,.style-btn-wishlist-pro{
+    margin-top: 4px;
     background-color: dark !important;
     width: 65px !important;
     height: 40px !important;
     font-family: "'Gluten', sans-serif" !important;
     font-size: 20px !important;
+    color: green !important;
  
 }
 .style-btn-chat:hover{
-    width: 200px !important;
-        background-color:#8991E4 !important;
-        color: black !important;
+    width: 190px !important;
+        background-color:#edededca !important;
+        color: green !important;
 }
 
 .name-label{
@@ -1186,7 +1157,59 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 .product-card:hover .card-image{
    opacity: 0.8;
 }
-.style-btn-wishlist:hover{
+.style-btn-wishlist-pro{
+
+    color: red !important;
+}
+.style-btn-wishlist:hover ,.style-btn-wishlist-pro:hover{
     color: red !important;
     width: 150px !important;
+}
+
+
+@media (min-width:767px) {
+    #messages-main .ms-body {
+        padding-left: 240px;
+    }
+
+    #ms-menu-trigger {
+        display: none;
+    }
+}
+
+@media (max-width:767px) {
+    #messages-main .ms-menu {
+        height: calc(100% - 58px);
+        display: none;
+        z-index: 1;
+        top: 58px;
+    }
+
+    #messages-main .ms-menu.toggled {
+        display: block;
+    }
+
+    #messages-main .ms-body {
+        overflow: hidden;
+    }
+
+    .action-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .msg-container,
+    .msg_cotainer_send {
+        font-size: 15px !important;
+    }
+
+    .style-btn-chat,
+    .style-btn-wishlist-pro {
+        font-size: 15px !important;
+        height: 30px !important;
+        width: 60px !important;
+    }
+        .style-btn-chat svg{
+           width: 20px;
+           height: 25px;
+        }
 }
