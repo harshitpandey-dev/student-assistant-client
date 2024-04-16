@@ -254,8 +254,9 @@ export default function ChatScreen() {
                       style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"20px"}}
                     >
                       {/* <Link to="/"></Link> */}
-                      <div className="fs-5 text-dark">{userData?.username}</div>
-                      <div className="fs-5 text-dark">{userData?.email}</div>
+                      {/* <div className="fs-5 text-dark">{userData?.username}</div> */}
+                      {/* <div className="fs-5 text-dark">{userData?.email}</div> */}
+                      <div className="fs-3 text-light">CHAT ARENA</div>
                       
                     </span>
                   <ul className="ah-actions actions">

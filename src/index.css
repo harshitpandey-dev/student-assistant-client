@@ -680,6 +680,7 @@ form-control:focus {
     background: #8991E4;
     height: 100%;
     border-radius: 10px 0 0 0;
+    padding-top: 20px;
 }
 
 
@@ -1182,8 +1183,10 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
         height: calc(100% - 58px);
         display: none;
         z-index: 1;
-        top: 58px;
+        top: 20px;
+        padding-top: 0px;
     }
+    
 
     #messages-main .ms-menu.toggled {
         display: block;
