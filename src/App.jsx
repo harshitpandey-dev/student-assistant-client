@@ -21,6 +21,7 @@ import { login } from "./actions/userActions";
 // import Chat from "./screens/Chat";
 import ChatScreen from "./screens/Chat/ChatScreen";
 import Header from "./components/Header";
+import Wishlist from "./screens/Auth/Wishlist";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,10 +73,12 @@ function App() {
             exact
           />
           <Route path="/users/:id" element={<UserProfileScreen />} exact />
+          {/* <Route path="admin/users/:id/edit" element={<UserProfileScreen />} exact /> */}
 
           <Route path="/chatScreen/" element={<ChatScreen />} />
           <Route path="/chatScreen/:sellerID" element={<ChatScreen />} />
           <Route path="/chatScreen/chatID/:chatID" element={<ChatScreen />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
         {/* <Footer /> */}
