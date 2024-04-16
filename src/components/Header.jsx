@@ -5,6 +5,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import { useEffect, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -49,10 +51,11 @@ const Header = () => {
            {hide?<></>: <SearchBox />}
             <Nav className="ml-auto text-center d-flex align-items-center">
             
-                 <div className="btn btn-success btn-circle btn-circle-sm m-1 style-btn" >
-                 <IoIosAddCircle /> Sell your Product
-                 </div>
               {userData ? (
+                <>
+              <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
+                 <IoIosAddCircle /> Sell your Product
+                 </Link>
                 <NavDropdown title={`${userData.fullname}`} id="username">
                   <LinkContainer to={`/users/${userData._id}`}>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -64,6 +67,7 @@ const Header = () => {
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
+                </>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
@@ -92,6 +96,9 @@ const Header = () => {
                   About Us
                 </Nav.Link>
               </LinkContainer>
+              <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
+                <FaRegHeart /> wishlist
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

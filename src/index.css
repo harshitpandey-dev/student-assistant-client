@@ -1146,8 +1146,8 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 }
 .style-btn:hover{
     width: 250px;
-    background-color: lightgreen !important;
-    color: black !important;
+    background-color: rgb(232, 233, 238) !important;
+    color: green !important;
 }
 
 .Nav_Bar{
@@ -1185,4 +1185,8 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 
 .product-card:hover .card-image{
    opacity: 0.8;
+}
+.style-btn-wishlist:hover{
+    color: red !important;
+    width: 150px !important;
 }
