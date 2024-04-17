@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaEye } from "react-icons/fa";
-export default function WishlistList() {
+export default function WishlistList({image,name,price,}) {
   return (
           <tr>
               <td width="45%">

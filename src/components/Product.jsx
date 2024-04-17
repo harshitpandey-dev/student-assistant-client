@@ -1,11 +1,18 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import { FaRegHeart } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
-const Product = ({product,userID}) => {
+import { updateUserWishlist } from '../actions/userActions';
+const Product = ({product,userID,token}) => {
+  const dispatch=useDispatch();
 
   console.log(product);
   const isYourProduct =userID===product.owner?._id;
+
+  function handleWishlist(){
+    dispatch(updateUserWishlist(product._id,token))
+  }
   
   return (
     <>
@@ -32,7 +39,7 @@ const Product = ({product,userID}) => {
                 </svg>
                 Your Product
               </a>
-              <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" >
+                <Link onClick={handleWishlist} className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" >
                 <FaRegHeart /> wishlist
               </Link>
               </>
@@ -44,7 +51,7 @@ const Product = ({product,userID}) => {
                 </svg>
                 Chat with seller
               </Link>
-               <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" >
+               <Link onClick={handleWishlist} className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" >
                 <FaRegHeart /> wishlist
               </Link>
                 </>

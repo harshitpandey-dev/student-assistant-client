@@ -1,7 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import WishlistList from '../../components/WishlistList'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { USER_WISHLIST_RESET } from '../../types/userConstants';
+import { getUserWishlist } from '../../actions/userActions';
+
 
 export default function Wishlist() {
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    var { userData } = userLogin;
+    const getWishlist = useSelector((state) => state.userWishlist);
+    var { wishlist, loading } = getWishlist;
+
+    useEffect(() => {
+        dispatch({ type: USER_WISHLIST_RESET });
+    }, []);
+
+
+    useEffect(()=>{
+        if(localStorage.getItem('userData')){
+               userData=JSON.parse(localStorage.getItem('userData'))
+        }else{
+            navigate("/login")
+        }
+        if(userData){
+            dispatch(getUserWishlist(userData.token));
+        }
+    },[userData])
+
   return (
     <div>
           <div class="cart-wrap">
@@ -21,10 +49,9 @@ export default function Wishlist() {
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <WishlistList />
-                                      <WishlistList />
-                                      <WishlistList />
-                                      <WishlistList />
+                                      {wishlist && wishlist.map((list,ind)=>{
+                                        return <WishlistList />
+                                      })}
                                   </tbody>
                               </table>
                           </div>

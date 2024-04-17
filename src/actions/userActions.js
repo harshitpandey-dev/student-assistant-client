@@ -25,6 +25,9 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
+  USER_WISHLIST_REQUEST,
+  USER_WISHLIST_SUCCESS,
+  USER_WISHLIST_FAIL,
   // USER_VERIFICATION_LINK_REQUEST,
   // USER_VERIFICATION_LINK_SUCCESS,
   // USER_VERIFICATION_LINK_FAIL,
@@ -450,6 +453,76 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+// Add or Remove wishlist
+
+export const updateUserWishlist = (productid,token) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_WISHLIST_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/users/wishlist`,
+      { productid },
+      config
+    );
+    dispatch({
+      type: USER_WISHLIST_SUCCESS,
+      payload: data.data.wishlist,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_WISHLIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// get whislist
+
+export const getUserWishlist = (token) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_WISHLIST_REQUEST,
+    });
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/users/wishlist`, config);
+
+    dispatch({
+      type: USER_WISHLIST_SUCCESS,
+      payload: data.data.wishlist,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: USER_WISHLIST_FAIL,
+      payload: message,
     });
   }
 };

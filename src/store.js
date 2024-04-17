@@ -10,8 +10,9 @@ import {
   productUpdateReducer,
   productReviewCreateReducer,
 } from './reducers/productReducers'
-import { userLoginReducer } from './reducers/userReducer'
+import { userLoginReducer, userWishlist } from './reducers/userReducer'
 import { userRegisterReducer } from './reducers/userReducer'
+
 import {
   emailReducer,
   userListReducer,
@@ -40,6 +41,7 @@ const reducer = combineReducers({
   emailReducer: emailReducer,
   usersList: userListReducer,
   userDelete: userDeleteReducer,
+  userWishlist:userWishlist,
   productDelete: productDeleteReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,

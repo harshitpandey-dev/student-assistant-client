@@ -30,6 +30,10 @@ import {
   USER_VERIFICATION_LINK_REQUEST,
   USER_VERIFICATION_LINK_RESET,
   USER_VERIFICATION_LINK_SUCCESS,
+  USER_WISHLIST_FAIL,
+  USER_WISHLIST_REQUEST,
+  USER_WISHLIST_RESET,
+  USER_WISHLIST_SUCCESS,
 } from '../types/userConstants'
 
 export const userLoginReducer = (state = {}, action) => {
@@ -220,6 +224,32 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { loading: false, error: action.payload }
     case USER_DETAILS_RESET:
       return { user: {} }
+    default:
+      return state
+  }
+}
+
+// GET WISHLIST 
+
+export const userWishlist = (state = {} , action) => {
+  switch (action.type) {
+    case USER_WISHLIST_REQUEST:
+      return {
+        loading: true,
+      }
+
+    case USER_WISHLIST_SUCCESS:
+      return {
+        loading: false,
+        wishlist: action.payload,
+      }
+    case USER_WISHLIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case USER_WISHLIST_RESET:
+      return {}
     default:
       return state
   }

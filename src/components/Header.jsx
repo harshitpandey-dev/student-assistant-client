@@ -100,7 +100,7 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
-                <FaRegHeart /> wishlist
+                <FaRegHeart /> My wishlist
               </Link>
             </Nav>
           </Navbar.Collapse>

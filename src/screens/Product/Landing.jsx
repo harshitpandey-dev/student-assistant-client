@@ -69,7 +69,7 @@ export default function Landing() {
                 products.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
-                      <Product product={product} userID={userData?._id} />
+                      <Product product={product} userID={userData?._id} token={userData?.token}/>
                     </Col>
                   ) : (
                     <></>
