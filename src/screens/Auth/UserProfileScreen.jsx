@@ -31,6 +31,7 @@ const UserUpdateScreen = () => {
     }
     if (!userData) {
       navigate("/");
+      return;
     } else {
       dispatch(listProducts());
     }

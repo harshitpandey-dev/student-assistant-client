@@ -93,7 +93,7 @@ export default function ChatScreen() {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     } else {
-      navigate("/login");
+      navigate("/");
       return;
     }
     dispatch(get_All_Chat(userData._id, userData.token));

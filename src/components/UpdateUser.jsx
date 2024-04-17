@@ -33,6 +33,10 @@ const UpdateUser = () => {
   const { success, loading, error } = userUpdate;
 
   useEffect(() => {
+    if(!userData){
+      navigate("/login")
+      return;
+    }
     if (!userData || success) {
       dispatch({ type: USER_UPDATE_RESET });
       dispatch({ type: USER_DETAILS_RESET });

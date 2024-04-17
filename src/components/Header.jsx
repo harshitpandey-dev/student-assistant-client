@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import { useEffect, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
@@ -17,6 +17,7 @@ const Header = () => {
   var currentURL = location.pathname;
   var url = (currentURL.split("/"));
   const [hide, setHide] = useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     currentURL = window.location.href;
@@ -29,6 +30,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigate("/")
   };
   return (
     <header>
@@ -54,11 +56,11 @@ const Header = () => {
            {hide?<></>: <SearchBox />}
             <Nav className="ml-auto text-center d-flex align-items-center">
             
-              {userData ? (
-                <>
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
                  <IoIosAddCircle /> Sell your Product
                  </Link>
+              {userData ? (
+                <>
                 <NavDropdown  title={`${userData.fullname}`} id="username">
                   <LinkContainer to={`/users/${userData._id}`}>
                     <NavDropdown.Item>Profile</NavDropdown.Item>

@@ -50,6 +50,7 @@ const ProductEditScreen = () => {
       userData = JSON.parse(localStorage.getItem("userData"));
     } else {
       navigate("/login");
+      return;
     }
 
     dispatch({

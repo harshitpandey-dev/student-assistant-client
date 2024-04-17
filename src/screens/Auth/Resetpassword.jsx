@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Authstyle.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,13 @@ function Resetpassword() {
     const [password, setPassword] = useState("");
     const [conPassword, setConPassword] = useState("");
     const [message, setMessage] = useState("");
+
+    useEffect(()=>{
+        if(!localStorage.getItem('userData')){
+             navigate("/")
+             return;
+        }
+    },[])
 
     const handleResetPassword = async () => {
         if(password==="" || password!==conPassword){

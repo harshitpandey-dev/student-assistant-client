@@ -24,6 +24,7 @@ export default function Wishlist() {
                userData=JSON.parse(localStorage.getItem('userData'))
         }else{
             navigate("/login")
+            return;
         }
         if(userData){
             dispatch(getUserWishlist(userData.token));
