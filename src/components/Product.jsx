@@ -20,6 +20,7 @@ const Product = ({product,userID,token}) => {
 
   function handleWishlist(){
     dispatch(updateUserWishlist(product._id,token))
+    window.location.reload();
   }
   
   return (

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Meta from "../../components/Meta";
 import { Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 // import Header from "../../components/Header";
 import { listProductDetails } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
+import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
 
 const ProductScreen = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const ProductScreen = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   var { userData } = userLogin;
+  const getWishlist = useSelector((state) => state.userWishlist);
+  var { wishlist } = getWishlist;
+  const [isWishlisted,setIsWishlisted]=useState(false)
+
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
@@ -28,9 +33,19 @@ const ProductScreen = () => {
     }
     dispatch(listProductDetails(match.id, userData.token));
   }, [match.id, dispatch, userData]);
+  useEffect(()=>{
+    dispatch(getUserWishlist(userData.token));
+    const val = wishlist?.some(item => item._id === product._id);
+    setIsWishlisted(val);
+  },[])
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+
+  function handleWishlist() {
+    dispatch(updateUserWishlist(product._id, userData.token))
+    window.location.reload();
+  }
 
   return (
     <>
@@ -81,7 +96,6 @@ const ProductScreen = () => {
 
                       {product?.cost?.negotiable && <li>Negotiable:</li>}
 
-                      <Button> Add to wishlist </Button>
                     </ul>
                   </Col>
                   <Col md={8} sm={8} xs={8}>
@@ -96,10 +110,11 @@ const ProductScreen = () => {
 
                       {product?.cost?.negotiable && <li>Yes</li>}
 
-                          <Link to={`/chatScreen/${product.owner?._id}`}><Button> chat with seller</Button> </Link>
                     </ul>
                   </Col>
                 </Row>
+                          <Link to={`/chatScreen/${product.owner?._id}`}><Button> chat with seller</Button> </Link>
+                      <Button onClick={handleWishlist} className={isWishlisted?"bg-success":"bg-danger"}>{isWishlisted?"Remove From Wishlist": "Add to wishlist"} </Button>
               </Col>
             </Row>
           </>
