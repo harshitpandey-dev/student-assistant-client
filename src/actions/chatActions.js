@@ -99,7 +99,10 @@ export const delete_Chat = (chatID,token) => async (dispatch,getState) => {
         dispatch({
             type: CHAT_DELETE_SUCCESS,
         });
- 
+        dispatch({
+            type: TOAST_ADD,
+            payload: 'CHAT DELETED !!!',
+        });
     } catch (error) {
         dispatch({
             type: CHAT_DELETE_FAIL,

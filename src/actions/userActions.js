@@ -107,6 +107,10 @@ export const logout = () => async (dispatch, getState) => {
   await axios.post("/api/users/logout", {}, config);
   localStorage.removeItem("userData");
   dispatch({
+    type: TOAST_ADD,
+    payload: 'LOGOUT SUCCESSFULLY !!!',
+  });
+  dispatch({
     type: USER_LOGOUT,
   });
   dispatch({
@@ -189,6 +193,10 @@ export const register =
         payload: data.data,
       });
       localStorage.setItem("userData", JSON.stringify(data.data));
+      dispatch({
+        type: TOAST_ADD,
+        payload: 'REGISTERED SUCCESSFULLY !!!',
+      });
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -226,6 +234,10 @@ export const sendEmail = (email) => async (dispatch) => {
       type: EMAIL_SEND_SUCCESS,
       payload: data,
     });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'EMAIL SEND SUCCESSFULLY !!!',
+    });
   } catch (error) {
     dispatch({
       type: EMAIL_SEND_FAIL,
@@ -259,6 +271,10 @@ export const resetPassword = (email, token, password) => async (dispatch) => {
     dispatch({
       type: EMAIL_SEND_SUCCESS,
       payload: data,
+    });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'PASSWORD RESET SUCCESSFULLY !!!',
     });
   } catch (error) {
     dispatch({
@@ -328,6 +344,10 @@ export const deleteUser = (id,token) => async (dispatch, getState) => {
     dispatch({
       type: USER_DELETE_SUCCESS,
     });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'USER DELETED !!!',
+    });
   } catch (error) {
     dispatch({
       type: USER_DELETE_FAIL,
@@ -366,6 +386,10 @@ export const updateUser = (user) => async (dispatch, getState) => {
     });
 
     localStorage.setItem("userData", JSON.stringify(data.data.updatedUser));
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'PROFILE UPDATED SUCCESSFULLY !!!',
+    });
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
@@ -452,6 +476,10 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_SUCCESS,
       payload: data,
     });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'PASSWORD UPDATED !!!',
+    });
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
@@ -489,6 +517,7 @@ export const updateUserWishlist = (productid,token) => async (dispatch, getState
       type: USER_WISHLIST_SUCCESS,
       payload: data.data.wishlist,
     });
+ 
   } catch (error) {
     dispatch({
       type: USER_WISHLIST_FAIL,
@@ -533,5 +562,5 @@ export const getUserWishlist = (token) => async (dispatch, getState) => {
   }
 };
 
-// Toast Message
+
 

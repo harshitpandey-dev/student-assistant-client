@@ -106,6 +106,10 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
     });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'PRODUCT DELETED !!!',
+    });
   } catch (error) {
     dispatch({
       type: PRODUCT_DELETE_FAIL,
@@ -140,6 +144,10 @@ export const createProduct = (formData) => async (dispatch, getState) => {
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
+    });
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'PRODUCT ADDED !!!',
     });
     // console.log(data);
   } catch (error) {
@@ -204,6 +212,10 @@ export const updateProduct =
       dispatch({
         type: PRODUCT_UPDATE_SUCCESS,
         payload: data.data.newProduct,
+      });
+      dispatch({
+        type: TOAST_ADD,
+        payload: 'PRODUCT UPDATED !!!',
       });
       console.log(data.data.newProduct);
     } catch (error) {
