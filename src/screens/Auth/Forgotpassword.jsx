@@ -6,21 +6,21 @@ import { sendEmail } from "../../actions/userActions";
 
 function ForgotPassword() {
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
-  useEffect(()=>{
-     if(localStorage.getItem('userData')){
-       setEmail(JSON.parse(localStorage.getItem('userData')).email)
-     }else{
-      navigate("/")
-     }
-  },[])
+  useEffect(() => {
+    if (localStorage.getItem("userData")) {
+      setEmail(JSON.parse(localStorage.getItem("userData")).email);
+    } else {
+      setEmail("");
+    }
+  }, []);
   const handleResetPassword = async () => {
-      dispatch(sendEmail(email))
+    dispatch(sendEmail(email));
   };
 
   return (
-      <div className="w-100 d-flex flex-column align-items-center forgotpsswrd fs-1">
+    <div className="w-100 d-flex flex-column align-items-center forgotpsswrd fs-1">
       <p className="forgottext">Forgot Password?</p>
       <input
         type="text"
