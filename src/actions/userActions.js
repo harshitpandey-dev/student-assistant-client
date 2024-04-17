@@ -516,7 +516,6 @@ export const getUserWishlist = (token) => async (dispatch, getState) => {
       type: USER_WISHLIST_SUCCESS,
       payload: data.data,
     });
-    console.log(data);
   } catch (error) {
     const message =
       error.response && error.response.data.message

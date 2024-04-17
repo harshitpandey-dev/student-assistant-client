@@ -1130,18 +1130,21 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 
 .style-btn-chat,.style-btn-wishlist-pro{
     margin-top: 4px;
-    background-color: green !important;
     width: 65px !important;
     height: 40px !important;
     font-family: "'Gluten', sans-serif" !important;
     font-size: 20px !important;
     color: white !important;
- 
+    
+}
+.style-btn-chat{
+    
+    background-color:rgb(151, 72, 241) !important;
 }
 .style-btn-chat:hover{
     width: 190px !important;
-        background-color:#edededca !important;
-        color: green !important;
+        background-color:#ededed50 !important;
+        color: rgb(151, 72, 241) !important;
 }
 
 .name-label{
@@ -1158,10 +1161,7 @@ transition: all 0.85s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 .product-card:hover .card-image{
    opacity: 0.8;
 }
-.style-btn-wishlist-pro{
 
-    background-color: red !important;
-}
 .style-btn-wishlist:hover ,.style-btn-wishlist-pro:hover{
     color: red !important;
     width: 150px !important;

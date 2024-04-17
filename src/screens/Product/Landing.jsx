@@ -26,7 +26,8 @@ export default function Landing() {
   const { loading, error, products, page, pages } = productList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
-
+  const getWishlist = useSelector((state) => state.userWishlist);
+  var { wishlist } = getWishlist;
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
