@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FormContainer from "./FormContainer";
-import { deleteUser } from "../actions/userActions";
+import { deleteUser, logout } from "../actions/userActions";
+import { USER_LIST_RESET, USER_LOGOUT, USER_REGISTER_RESET, USER_UPDATE_RESET } from "../types/userConstants";
 
 const DeleteAccount = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const DeleteAccount = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate=useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
@@ -22,6 +24,20 @@ const DeleteAccount = () => {
     e.preventDefault();
     dispatch(deleteUser(id, userData.token));
     handleClose();
+    dispatch({
+      type: USER_LOGOUT,
+    });
+    dispatch({
+      type: USER_REGISTER_RESET,
+    });
+    dispatch({
+      type: USER_LIST_RESET,
+    });
+    dispatch({
+      type: USER_UPDATE_RESET,
+    });
+    localStorage.removeItem('userData');
+    navigate("/login")
   };
 
   return (
@@ -36,7 +52,7 @@ const DeleteAccount = () => {
         </Modal.Header>
         <Modal.Body>
           <FormContainer>
-            <Form onSubmit={submitHandler} className="mt-2 mb-2">
+            <Form  className="mt-2 mb-2">
               <Form.Group controlId="name">
                 <Form.Label>
                   Doing this will delete all data assosiated with this account
@@ -46,7 +62,7 @@ const DeleteAccount = () => {
           </FormContainer>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" variant="primary" className="ms-2">
+          <Button onClick={submitHandler} variant="primary" className="ms-2">
             Delete
           </Button>
           <Button variant="warning" onClick={handleClose}>

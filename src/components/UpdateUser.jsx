@@ -90,7 +90,7 @@ const UpdateUser = () => {
         <Modal.Body>
           <FormContainer>
             {loadingDetails && <Loader />}
-            <Form onSubmit={submitHandler} className="mt-2 mb-2">
+            <Form  className="mt-2 mb-2">
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
@@ -135,7 +135,7 @@ const UpdateUser = () => {
             Close
           </Button>
           {update ? (
-            <Button type="submit" variant="primary" className="ms-2">
+            <Button onClick={submitHandler} variant="primary" className="ms-2">
               Update Profile
             </Button>
           ) : (

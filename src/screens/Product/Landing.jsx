@@ -12,6 +12,8 @@ import Meta from "../../components/Meta";
 import { listProducts } from "../../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../../types/productConstants";
 import { useParams } from "react-router-dom";
+import { getUserWishlist } from "../../actions/userActions";
+import { USER_WISHLIST_RESET } from "../../types/userConstants";
 
 export default function Landing() {
   const match = useParams();
@@ -25,11 +27,17 @@ export default function Landing() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
 
+
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
+    dispatch({ type: USER_WISHLIST_RESET });
 
     dispatch(listProducts());
-  }, [dispatch, keyword, pageNumber]);
+
+    if (userData) {
+      dispatch(getUserWishlist(userData.token));
+    }
+  }, [dispatch, keyword, pageNumber,userData]);
   return (
     <>
       {/* <Header /> */}

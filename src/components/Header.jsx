@@ -59,7 +59,7 @@ const Header = () => {
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
                  <IoIosAddCircle /> Sell your Product
                  </Link>
-                <NavDropdown title={`${userData.fullname}`} id="username">
+                <NavDropdown  title={`${userData.fullname}`} id="username">
                   <LinkContainer to={`/users/${userData._id}`}>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
@@ -94,7 +94,7 @@ const Header = () => {
               )}
             
               <LinkContainer to="/about">
-                <Nav.Link>
+                <Nav.Link >
                   {/* <i className='far fa-address-card'></i>  */}
                   About Us
                 </Nav.Link>

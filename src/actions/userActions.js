@@ -319,6 +319,7 @@ export const deleteUser = (id,token) => async (dispatch, getState) => {
     };
 
     await axios.delete(`/api/users/${id}`, config);
+
     dispatch({
       type: USER_DELETE_SUCCESS,
     });
@@ -513,8 +514,9 @@ export const getUserWishlist = (token) => async (dispatch, getState) => {
 
     dispatch({
       type: USER_WISHLIST_SUCCESS,
-      payload: data.data.wishlist,
+      payload: data.data,
     });
+    console.log(data);
   } catch (error) {
     const message =
       error.response && error.response.data.message
