@@ -10,7 +10,7 @@ import {
   productUpdateReducer,
   productReviewCreateReducer,
 } from './reducers/productReducers'
-import { userLoginReducer, userWishlist } from './reducers/userReducer'
+import {  toastMessage, userLoginReducer, userWishlist } from './reducers/userReducer'
 import { userRegisterReducer } from './reducers/userReducer'
 
 import {
@@ -52,7 +52,8 @@ const reducer = combineReducers({
   chatList:getAllCHAT,
   getMessage:getMESSAGE,
   postMESSAGE:postMESSAGE,
-  deleteChat:deleteChat
+  deleteChat:deleteChat,
+  toastMessage:toastMessage
 })
 
 const userDataFromStorage = localStorage.getItem('userData')

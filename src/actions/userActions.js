@@ -28,6 +28,7 @@ import {
   USER_WISHLIST_REQUEST,
   USER_WISHLIST_SUCCESS,
   USER_WISHLIST_FAIL,
+  TOAST_ADD,
   // USER_VERIFICATION_LINK_REQUEST,
   // USER_VERIFICATION_LINK_SUCCESS,
   // USER_VERIFICATION_LINK_FAIL,
@@ -66,6 +67,10 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     localStorage.setItem("userData", JSON.stringify(data.data.user));
+    dispatch({
+      type: TOAST_ADD,
+      payload: 'LOGINED SUCCESSFULLY !!!',
+    });
   } catch (error) {
     const errorMessage=(error.response.data);
     const parser = new DOMParser();
@@ -527,3 +532,6 @@ export const getUserWishlist = (token) => async (dispatch, getState) => {
     });
   }
 };
+
+// Toast Message
+

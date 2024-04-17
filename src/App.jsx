@@ -22,6 +22,7 @@ import { login } from "./actions/userActions";
 import ChatScreen from "./screens/Chat/ChatScreen";
 import Header from "./components/Header";
 import Wishlist from "./screens/Auth/Wishlist";
+import Alert from "./components/Alert";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,11 +32,13 @@ function App() {
     }
   }, []);
 
+
   return (
     <Router>
 
       <>
       <Header />
+      <Alert />
       <div style={{width:"100vw",height:"80px"}}></div>
         <Routes>
           <Route path="/login" element={<Login />} exact />

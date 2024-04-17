@@ -3,6 +3,8 @@ import {
   EMAIL_SEND_FAIL,
   EMAIL_SEND_REQUEST,
   EMAIL_SEND_SUCCESS,
+  TOAST_ADD,
+  TOAST_RESET,
   USER_DELETE_FAIL,
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
@@ -250,6 +252,21 @@ export const userWishlist = (state = {} , action) => {
       }
     case USER_WISHLIST_RESET:
       return {}
+    default:
+      return state
+  }
+}
+
+// Toast Message
+
+export const toastMessage = (state = '', action) => {
+  switch (action.type) {
+    case TOAST_ADD:
+      return {
+        message: action.payload,
+      }
+    case TOAST_RESET:
+      return null
     default:
       return state
   }
