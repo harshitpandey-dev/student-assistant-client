@@ -20,7 +20,7 @@ const Product = ({product,userID,token}) => {
 
   const isYourProduct =userID===product.owner?._id;
 
-  const isWishlisted = wishlist?.some(item => item._id === product._id);
+  const isWishlisted = (wishlist && wishlist.length>0) ?wishlist?.some(item => item._id === product._id):false;
 
   function handleWishlist(){
     dispatch(updateUserWishlist(product._id,token))

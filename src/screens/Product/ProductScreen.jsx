@@ -35,7 +35,8 @@ const ProductScreen = () => {
   }, [match.id, dispatch, userData]);
   useEffect(()=>{
     dispatch(getUserWishlist(userData.token));
-    const val = wishlist?.some(item => item._id === product._id);
+    
+    const val = (wishlist && wishlist.length > 0) ? wishlist?.some(item => item._id === product._id) : false;
     setIsWishlisted(val);
   },[])
 
