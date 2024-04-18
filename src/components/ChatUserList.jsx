@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function ChatUserList({list,userID,chatID}) {
+
+    const [isHover,setHover]=useState(false);
 
     const filteredParticipants = list.participants.filter(participant => participant._id !== userID);
 
@@ -23,8 +26,8 @@ export default function ChatUserList({list,userID,chatID}) {
     }
    
     return (
-
-        <Link to={`/chatScreen/chatID/${list._id}`} className={active ?"list-group-item active  media ":"list-group-item  media "}>
+        <div className={active ? "list-menu active  media" : "list-menu "} onMouseLeave={()=>setHover(false)} onMouseEnter={()=>setHover(true)}>
+        <Link to={`/chatScreen/chatID/${list._id}`} className={active ?"list-group-item active  media":"list-group-item  media "}>
             <div className="pull-left">
                 {/* <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" /> */}
             </div>
@@ -37,6 +40,16 @@ export default function ChatUserList({list,userID,chatID}) {
                 <div className='d-flex justify-content-end'>{formattedDate}</div>
             </div>
         </Link>
+         {isHover &&   <Dropdown style={{ width: "20px", height: "20px" ,zIndex:"321"}} className='chatlist-side'>
+                <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "10px", height: "50px" }} >
 
+                </Dropdown.Toggle>
+
+
+                <Dropdown.Menu>
+                    <Dropdown.Item  className="text-danger">Delete Chat</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>}
+        </div>
     )
 }
