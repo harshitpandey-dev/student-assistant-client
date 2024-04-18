@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card } from 'react-bootstrap'
 import { FaRegHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { updateUserWishlist } from '../actions/userActions';
+import { getUserWishlist, updateUserWishlist } from '../actions/userActions';
 const Product = ({product,userID,token}) => {
   const dispatch=useDispatch();
   
@@ -12,7 +12,11 @@ const Product = ({product,userID,token}) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
 
-  
+  useEffect(()=>{
+    if (userData) {
+      dispatch(getUserWishlist(userData.token));
+    }
+  },[])
 
   const isYourProduct =userID===product.owner?._id;
 

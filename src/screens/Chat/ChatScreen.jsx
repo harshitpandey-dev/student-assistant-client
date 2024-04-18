@@ -363,9 +363,9 @@ export default function ChatScreen() {
                           <>
                             <label
                               for="fileInput"
-                              class="input-group-text attach_btn"
+                              className="input-group-text attach_btn"
                             >
-                              <i class="fas fa-paperclip"></i>
+                              <i className="fas fa-paperclip"></i>
                             </label>
                             <input
                               type="file"
