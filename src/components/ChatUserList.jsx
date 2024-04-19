@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { delete_Chat } from '../actions/chatActions';
+import DeleteChat from './DeleteChat';
 
-export default function ChatUserList({list,userID,chatID}) {
+export default function ChatUserList({list,userID,chatID,token}) {
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
 
     const [isHover,setHover]=useState(false);
 
@@ -24,6 +29,7 @@ export default function ChatUserList({list,userID,chatID}) {
     if(isNaN(hours)){
      formattedDate="";
     }
+
    
     return (
         <div className={active ? "list-menu active  media" : "list-menu "} onMouseLeave={()=>setHover(false)} onMouseEnter={()=>setHover(true)}>
@@ -40,16 +46,10 @@ export default function ChatUserList({list,userID,chatID}) {
                 <div className='d-flex justify-content-end'>{formattedDate}</div>
             </div>
         </Link>
-         {isHover &&   <Dropdown style={{ width: "20px", height: "20px" ,zIndex:"321"}} className='chatlist-side'>
-                <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "10px", height: "50px" }} >
-
-                </Dropdown.Toggle>
-
-
-                <Dropdown.Menu>
-                    <Dropdown.Item  className="text-danger">Delete Chat</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>}
+            {/* {isHover && <button className='bg-dark d-flex align-items-center justify-content-center' onClick={handleDelete} style={{ width: "50px" }}>
+                <i className="fa fa-trash text-danger fs-5"></i>
+            </button>} */}
+            {isHover && <DeleteChat chatid={list._id} token={token}/>}
         </div>
     )
 }

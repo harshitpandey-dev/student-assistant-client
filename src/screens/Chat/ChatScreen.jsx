@@ -64,7 +64,7 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_RESET });
     dispatch({ type: MESSAGE_RESET });
     dispatch({ type: CHAT_LIST_RESET });
-  }, [sellerID,chatID]);
+  }, []);
 
   useEffect(() => {
     if (userData && sellerID && userData._id === sellerID) {
@@ -76,7 +76,7 @@ export default function ChatScreen() {
   }, [sellerID, userData, chatID, reload]);
 
   useEffect(() => {
-    if (userData && sellerID && userData._id === sellerID) {
+    if (userData && sellerID && userData?._id === sellerID) {
       return;
     }
     if (userData && chatData && !chatID) {
@@ -234,6 +234,7 @@ export default function ChatScreen() {
                           chatID={
                             chatID ? chatID : chatData ? chatData._id : ""
                           }
+                          token={userData?.token}
                         />
                       );
                     })}
@@ -255,9 +256,9 @@ export default function ChatScreen() {
                       style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"20px"}}
                     >
                       {/* <Link to="/"></Link> */}
-                      {/* <div className="fs-5 text-dark">{userData?.username}</div> */}
+                      <div className="fs-3  text-light">{userData?.username}</div>
                       {/* <div className="fs-5 text-dark">{userData?.email}</div> */}
-                      <div className="fs-3 text-light">CHAT ARENA</div>
+                     
                       
                     </span>
                   <ul className="ah-actions actions">
@@ -290,7 +291,7 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                    <li> <Dropdown style={{width:"20px",height:"20px"}}>
+                    {/* <li> <Dropdown style={{width:"20px",height:"20px"}}>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "30px",height:"30px" }} >
                           
                         </Dropdown.Toggle>
@@ -300,7 +301,7 @@ export default function ChatScreen() {
                           <Dropdown.Item onClick={handleDelete} className="text-danger">Delete Chat</Dropdown.Item>
                         </Dropdown.Menu>}
                       </Dropdown>
-                      </li>
+                      </li> */}
                   </ul>
                 </div>
                 <div className="show-msg">

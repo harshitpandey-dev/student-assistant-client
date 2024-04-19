@@ -30,14 +30,14 @@ function Alert() {
     return <></>
 
     return (
-        <div style={{position:"absolute",top:"120px",right:"0",zIndex:"9999"}}>
+        <div style={{position:"absolute",bottom:"0px",right:"0",zIndex:"9999",padding:"0"}}>
             <div >
 
-                <Toast onClose={() => setShow(false)} show={show}  bg="dark" className='bg-dark' style={{ width: "220px" }}>
-                    <Toast.Header className='bg-dark text-light'>
-                        <strong className="me-auto">Alert</strong>
+                <Toast onClose={() => setShow(false)} show={show}  bg="" className='bg-warning alert' style={{ width: "260px" }}>
+                    <Toast.Header className='bg-warning text-dark'>
+                        <strong className="me-auto">Notification</strong>
                     </Toast.Header>
-                    <Toast.Body className='variant===dark && text-light'>{toastMessage.message}</Toast.Body>
+                    <Toast.Body className='bg-light text-dark'>{toastMessage.message}</Toast.Body>
                 </Toast>
             </div>
         </div>

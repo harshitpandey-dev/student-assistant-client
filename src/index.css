@@ -676,7 +676,7 @@ form-control:focus {
     /* border-right: 1px solid #eee; */
     padding-bottom: 50px;
     height: 100%;
-    width: 300px;
+    width: 258px;
     background: #8991E4;
     height: 100%;
     border-radius: 10px 0 0 0;
@@ -831,7 +831,7 @@ form-control:focus {
     background-color: rgba(255, 255, 255, 0.65);
     border: 0;
     color: rgb(134, 12, 221);
-    min-height: 100px;
+    min-height: 110px;
 }
 .list-group.lg-alt .list-group-item:hover{
     background-color: #161412e6;
@@ -1404,10 +1404,13 @@ transition: all 0.85s  !important;
     width: 100% !important;
     display: flex;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: rgba(8, 7, 7, 0.818);
+   border-radius: 10px;
+   
 }
 .list-menu.active{
     width: 100% !important;
     display: flex;
     background-color: #0c0c0cc8;
+
 }
