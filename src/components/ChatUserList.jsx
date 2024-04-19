@@ -39,7 +39,7 @@ export default function ChatUserList({list,userID,chatID,token}) {
             </div>
             <div className="media-body">
                 <div className="list-group-item-heading">
-                    {filteredParticipants[0].username}
+                    {filteredParticipants[0]?.username}
                 
                 </div>
                 <small className="list-group-item-text c-gray text-dark">{lastMsg}</small>
