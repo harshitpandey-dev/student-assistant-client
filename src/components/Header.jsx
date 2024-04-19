@@ -59,27 +59,9 @@ const Header = () => {
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
                  <IoIosAddCircle /> Sell your Product
                  </Link>
-              {userData ? (
-                <>
-                <NavDropdown  title={`${userData.fullname}`} id="username">
-                  <LinkContainer to={`/users/${userData._id}`}>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to={`/chatScreen/`}>
-                    <NavDropdown.Item>Chat</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-                </>
-              ) : (
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                    <i className="fas fa-user"></i> Sign In
-                  </Nav.Link>
-                </LinkContainer>
-              )}
+              <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
+                <FaRegHeart /> My wishlist
+              </Link>
               {userData && userData.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
                   <LinkContainer to="/admin/userlist">
@@ -101,9 +83,27 @@ const Header = () => {
                   About Us
                 </Nav.Link>
               </LinkContainer>
-              <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
-                <FaRegHeart /> My wishlist
-              </Link>
+              {userData ? (
+                <>
+                <NavDropdown  title={`${userData.fullname}`} id="username">
+                  <LinkContainer to={`/users/${userData._id}`}>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to={`/chatScreen/`}>
+                    <NavDropdown.Item>Chat</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+                </>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <i className="fas fa-user"></i> Sign In
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
