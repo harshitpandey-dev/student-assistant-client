@@ -13,6 +13,7 @@ import { MESSAGE_RESET } from "../../types/messageConstants";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 import Dropdown from 'react-bootstrap/Dropdown';
+import Header from "../../components/Header";
 
 export default function ChatScreen() {
   const match = useParams();
@@ -50,7 +51,7 @@ export default function ChatScreen() {
 
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
-  console.log(images);
+  // console.log(images);
 
   // useEffect(() => {
 
@@ -185,7 +186,7 @@ export default function ChatScreen() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       {loading ? (
         <Loader />
       ) : (

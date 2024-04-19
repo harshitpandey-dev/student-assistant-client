@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { USER_WISHLIST_RESET } from '../../types/userConstants';
 import { getUserWishlist } from '../../actions/userActions';
+import Header from '../../components/Header';
 
 
 export default function Wishlist() {
@@ -33,6 +34,7 @@ export default function Wishlist() {
 
   return (
     <div>
+    <Header />
           <div className="cart-wrap">
               <div className="container">
                   <div className="row">

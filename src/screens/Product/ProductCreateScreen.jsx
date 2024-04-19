@@ -7,6 +7,7 @@ import { createProduct } from "../../actions/productActions";
 import FormContainer from "../../components/FormContainer";
 // import Header from "../../components/Header";
 import { useNavigate } from "react-router";
+import Header from "../../components/Header";
 
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const ProductCreateScreen = () => {
       const data = file;
       imagesData.push(data);
     });
-    console.log(imagesData);
+    // console.log(imagesData);
     setImages(imagesData);
     setUploading(false);
     const formData = new FormData();
@@ -67,16 +68,16 @@ const ProductCreateScreen = () => {
     }
     dispatch(createProduct(formData));
   };
-  console.log(showImages);
+  // console.log(showImages);
   const removeImg = (fileToRemove) => {
-    console.log(fileToRemove);
+    // console.log(fileToRemove);
     const updatedImages = showImages.filter((file) => file !== fileToRemove);
     setShowImages(updatedImages);
   };
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="py-3 ">
         <FormContainer>
           <h1

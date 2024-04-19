@@ -10,6 +10,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { listProductDetails } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
 import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
+import Header from "../../components/Header";
 
 const ProductScreen = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const ProductScreen = () => {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="py-2 ">
         <Link to="/" className="btn btn-success my-3 ms-2">
           Go Back

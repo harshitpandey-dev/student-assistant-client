@@ -14,6 +14,7 @@ import { PRODUCT_CREATE_RESET } from "../../types/productConstants";
 import { useParams } from "react-router-dom";
 import { getUserWishlist } from "../../actions/userActions";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
+import Header from "../../components/Header";
 
 export default function Landing() {
   const match = useParams();
@@ -41,7 +42,7 @@ export default function Landing() {
   }, [dispatch, keyword, pageNumber,userData]);
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="py-4 container-fluid p-5">
         <Meta />
         {keyword && (

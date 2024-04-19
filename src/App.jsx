@@ -37,7 +37,7 @@ function App() {
     <Router>
 
       <>
-      <Header />
+ 
       <Alert />
       <div style={{width:"100vw",height:"80px"}}></div>
         <Routes>

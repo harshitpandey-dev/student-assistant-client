@@ -13,6 +13,7 @@ import FormContainer from "../../components/FormContainer";
 import { PRODUCT_UPDATE_RESET } from "../../types/productConstants";
 // import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
+import Header from "../../components/Header";
 
 const ProductEditScreen = () => {
   const navigate = useNavigate();
@@ -120,7 +121,7 @@ const ProductEditScreen = () => {
       )
     );
   };
-  console.log(images);
+  // console.log(images);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteProduct(id));
@@ -128,14 +129,14 @@ const ProductEditScreen = () => {
     }
   };
   const removeImg = (fileToRemove) => {
-    console.log(fileToRemove);
+    // console.log(fileToRemove);
     const updatedImages = images.filter((file) => file !== fileToRemove);
     setImages(updatedImages);
   };
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="py-2">
         <FormContainer>
           <h1
