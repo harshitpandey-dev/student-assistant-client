@@ -187,6 +187,7 @@ export default function ChatScreen() {
   return (
     <>
       <Header />
+      <div style={{ width: "100vw", height: "80px" }}></div>
       {loading ? (
         <Loader />
       ) : (

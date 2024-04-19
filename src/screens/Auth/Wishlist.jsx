@@ -35,6 +35,8 @@ export default function Wishlist() {
   return (
     <div>
     <Header />
+
+          <div style={{ width: "100vw", height: "80px" }}></div>
           <div className="cart-wrap">
               <div className="container">
                   <div className="row">

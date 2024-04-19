@@ -39,7 +39,7 @@ function App() {
       <>
  
       <Alert />
-      <div style={{width:"100vw",height:"80px"}}></div>
+      {/* <div style={{width:"100vw",height:"80px"}}></div> */}
         <Routes>
           <Route path="/login" element={<Login />} exact />
           <Route path="/signup" element={<Signup />} exact />

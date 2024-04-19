@@ -52,6 +52,7 @@ const ProductScreen = () => {
   return (
     <>
       <Header />
+      <div style={{ width: "100vw", height: "80px" }}></div>
       <div className="py-2 ">
         <Link to="/" className="btn btn-success my-3 ms-2">
           Go Back

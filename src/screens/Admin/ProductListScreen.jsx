@@ -49,6 +49,7 @@ const ProductListScreen = () => {
   return (
     <>
       <Header />
+      <div style={{ width: "100vw", height: "80px" }}></div>
       <div className="py-3 d-flex flex-column p-2">
         <h1
           className="text-center pb-2 "
