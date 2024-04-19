@@ -14,10 +14,21 @@ import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Header from "../../components/Header";
+import { BsThreeDots } from "react-icons/bs";
+import DeleteChat from "../../components/DeleteChat";
+import { IoSend } from "react-icons/io5";
+import EmojiPicker from 'emoji-picker-react';
+import { Button, Form } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
 
 export default function ChatScreen() {
   const match = useParams();
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const handleEmojiClick = (emoji) => {
 
+    const emojiChar = emoji.emoji
+    setSendMessage((prevMessage) => prevMessage + emojiChar);
+  };
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -48,9 +59,12 @@ export default function ChatScreen() {
   const deleteChat = useSelector((state) => state.deleteChat);
   var { success, error } = deleteChat;
   const [reload, setReload] = useState(false);
+  const [searchUser,setSearchUser]=useState("");
 
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
+
+
   // console.log(images);
 
   // useEffect(() => {
@@ -143,13 +157,7 @@ export default function ChatScreen() {
     }
   }, [messageData]);
 
-  function handleDelete() {
-    if (window.confirm("Are you sure?")) {
-      if (chatID) dispatch(delete_Chat(chatID, userData.token));
-      else dispatch(delete_Chat(chatData._id, userData.token));
-    }
-    navigate("/");
-  }
+
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
     if (!data) return;
@@ -186,8 +194,8 @@ export default function ChatScreen() {
 
   return (
     <>
-      <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      {/* <Header />
+      <div style={{ width: "100vw", height: "80px" }}></div> */}
       {loading ? (
         <Loader />
       ) : (
@@ -198,12 +206,13 @@ export default function ChatScreen() {
                 <div className="ms-user clearfix text-white fs-2">
                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
                        
-                    {/* <span
+                    <span
                       className="text-center fs-5 text-light mb-2"
                       style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" }}
                     >
                       <Link to="/">Student Assistant</Link>
-                    </span> */}
+                    </span>
+                    
                     </div>
 
                 {/* <div className="p-15">
@@ -219,13 +228,25 @@ export default function ChatScreen() {
                     </div> */}
 
                 <div className="list-group lg-alt mt-5">
-                  {/* <span
-                    className="text-center fs-1 text-light mb-2"
+                    <div className="d-flex flex-row justify-content-center w-100 mb-5 ">
+                      <Form  style={{ display: "flex" }} >
+                        <Form.Control
+                          type="text"
+                          name="q"
+                          onChange={(e) => setSearchUser(e.target.value)}
+                          placeholder="Search Users..."
+                          className="mr-sm-2 ml-sm-5"
+                          style={{ height: "50px" }}
+                        ></Form.Control>
+                      </Form>
+                    </div>
+                  <span
+                    className="text-center fs-5 text-light mb-2"
                     style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
-                   <Link to="/ChatScreen">CHAT</Link> 
-                  </span> */}
-                  {chatListData &&
+                   <span >Recent Chat</span> 
+                  </span>
+                  {searchUser==="" && chatListData &&
                     chatListData.map((list) => {
                       return (
                         <ChatUserList
@@ -239,6 +260,23 @@ export default function ChatScreen() {
                         />
                       );
                     })}
+                    {searchUser !== "" && chatListData && chatListData
+                      .filter((list) =>
+                        list.participants.some(
+                          (participant) =>
+                            participant.username && participant.username!=userData.username && participant.username.includes(searchUser)
+                        )
+                      )
+                      .map((list) => (
+                        <ChatUserList
+                          list={list}
+                          userID={userData._id}
+                          key={list._id}
+                          chatID={chatID ? chatID : chatData ? chatData._id : ""}
+                          token={userData?.token}
+                        />
+                      ))}
+                    {!chatListData && <span className="text-center fs-5 text-danger mb-2">No Chat !!</span>}
                 </div>
               </div>
 
@@ -253,12 +291,16 @@ export default function ChatScreen() {
                     <i className="fa fa-bars text-dark"></i>
                   </div>
                     <span
-                      className="text-center fs-2 text-light mb-2 d-flex flex-column"
-                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"20px"}}
+                      className=" fs-2 text-light mb-2 d-flex flex-row"
+                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"120px"}}
                     >
                       {/* <Link to="/"></Link> */}
-                      <div className="fs-3  text-light">{userData?.username}</div>
-                      {/* <div className="fs-5 text-dark">{userData?.email}</div> */}
+                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"80px",height:"80px"}} className="img-avatar pull-left ms-4" />
+                      <div className="d-flex flex-column ms-3">
+                      <div className="fs-3  text-light">{userData?.fullname}</div>
+                      <div className="fs-5 text-light">{userData?.username}</div>
+
+                      </div>
                      
                       
                     </span>
@@ -292,17 +334,23 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                    {/* <li> <Dropdown style={{width:"20px",height:"20px"}}>
-                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "30px",height:"30px" }} >
-                          
+                  { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
+                        <style>{`
+      .dropdown-toggle::after {
+        display: none;
+      }
+    `}</style>
+                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "50px",height:"35px" }} >
+                          <BsThreeDots className="text-light" />
                         </Dropdown.Toggle>
 
-                       
-                      {messageData && <Dropdown.Menu>
-                          <Dropdown.Item onClick={handleDelete} className="text-danger">Delete Chat</Dropdown.Item>
-                        </Dropdown.Menu>}
+                        <Dropdown.Menu className="bg-danger">
+                  <DeleteChat />
+
+                        </Dropdown.Menu>
+                      
                       </Dropdown>
-                      </li> */}
+                      </li>}
                   </ul>
                 </div>
                 <div className="show-msg">
@@ -343,6 +391,9 @@ export default function ChatScreen() {
                 {typeMessage && (
                   <span className="text-white ms-4">Type a Message.....</span>
                 )}
+                  {showEmojiPicker && (
+                    <EmojiPicker onEmojiClick={(e) => handleEmojiClick(e)} width={"100%"} />
+                  )}
                 {istyping ? (
                   <div>
                     <Lottie
@@ -359,7 +410,7 @@ export default function ChatScreen() {
                   <></>
                 ) : (
                   <div className="card-footer">
-                    <div className="input-group">
+                    <div className="input-group ">
                       <div className="input-group-append">
                         {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
                         {images.length < 4 && (
@@ -389,12 +440,22 @@ export default function ChatScreen() {
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
-                      <div className="input-group-append">
+                      <div className="input-group-append d-flex">
+                            <span>
+                              {/* Emoji button */}
+                              <button style={{width:"50px"}}
+                                className="btn "
+                                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                              >
+                                😀
+                              </button>
+                            
+                            </span>
                         <span
                           className="input-group-text send_btn"
                           onClick={handleSubmit}
                         >
-                          <i className="fas fa-location-arrow"></i>
+                          <IoSend />
                         </span>
                       </div>
                     </div>

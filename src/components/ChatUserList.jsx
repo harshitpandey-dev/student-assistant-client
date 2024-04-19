@@ -9,7 +9,6 @@ export default function ChatUserList({list,userID,chatID,token}) {
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
-    const [isHover,setHover]=useState(false);
 
     const filteredParticipants = list.participants.filter(participant => participant._id !== userID);
 
@@ -32,7 +31,7 @@ export default function ChatUserList({list,userID,chatID,token}) {
 
    
     return (
-        <div className={active ? "list-menu active  media" : "list-menu "} onMouseLeave={()=>setHover(false)} onMouseEnter={()=>setHover(true)}>
+        <div className={active ? "list-menu active  media" : "list-menu "} >
         <Link to={`/chatScreen/chatID/${list._id}`} className={active ?"list-group-item active  media":"list-group-item  media "}>
             <div className="pull-left">
                 {/* <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" /> */}
@@ -49,7 +48,7 @@ export default function ChatUserList({list,userID,chatID,token}) {
             {/* {isHover && <button className='bg-dark d-flex align-items-center justify-content-center' onClick={handleDelete} style={{ width: "50px" }}>
                 <i className="fa fa-trash text-danger fs-5"></i>
             </button>} */}
-            {isHover && <DeleteChat chatid={list._id} token={token}/>}
+         
         </div>
     )
 }

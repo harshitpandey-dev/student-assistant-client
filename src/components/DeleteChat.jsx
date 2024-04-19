@@ -28,8 +28,8 @@ const DeleteChat = ({ chatid, token }) => {
 
     return (
         <>
-            <Button variant="dark" style={{width:"35px"}} onClick={handleShow}>
-                <i className="fa fa-trash text-danger fs-5"></i>
+            <Button variant="danger" className="" style={{width:"100%",height:"auto",fontSize:"17px"}} onClick={handleShow}>
+                Delete Chat
             </Button>
 
             <Modal show={show} onHide={handleClose}>

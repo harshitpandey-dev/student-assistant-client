@@ -1045,6 +1045,7 @@ border-width: 0px 0 10px 10px;
     color: white !important;
     cursor: pointer;
     height: 100%;
+    padding-left: 33px !important;
 }
 
 .send_btn {
