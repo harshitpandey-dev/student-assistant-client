@@ -20,6 +20,7 @@ import { IoSend } from "react-icons/io5";
 import EmojiPicker from 'emoji-picker-react';
 import { Button, Form } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 
 export default function ChatScreen() {
   const match = useParams();
@@ -199,8 +200,14 @@ export default function ChatScreen() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="chatScreen">
-          <div className=" bootstrap snippets bootdey p-2">
+        <div className="chatScreen d-flex">
+        <div className="" style={{width:"50px",height:"100px"}}>
+        <div className="d-flex justify-content-center align-items-center w-100 h-100">
+          <Link to="/" className="fs-4 text-light"><FaHome /></Link>
+
+        </div>
+        </div>
+          <div className=" bootstrap snippets bootdey p-2 w-100">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
                 <div className="ms-user clearfix text-white fs-2">
@@ -208,9 +215,9 @@ export default function ChatScreen() {
                        
                     <span
                       className="text-center fs-5 text-light mb-2"
-                      style={{ fontFamily: "'Gluten', sans-serif", textDecoration: "underline" }}
+                      style={{ fontFamily: "'Gluten', sans-serif"}}
                     >
-                      <Link to="/">Student Assistant</Link>
+                      Student Assistant CHAT
                     </span>
                     
                     </div>
@@ -229,6 +236,9 @@ export default function ChatScreen() {
 
                 <div className="list-group lg-alt mt-5">
                     <div className="d-flex flex-row justify-content-center w-100 mb-5 ">
+                      <div className="bg-light d-flex justify-content-center align-items-center" style={{width:"40px",borderRadius:"10px 0 0 10px"}}>
+                      <FaSearch/>
+                     </div>
                       <Form  style={{ display: "flex" }} >
                         <Form.Control
                           type="text"
@@ -236,12 +246,12 @@ export default function ChatScreen() {
                           onChange={(e) => setSearchUser(e.target.value)}
                           placeholder="Search Users..."
                           className="mr-sm-2 ml-sm-5"
-                          style={{ height: "50px" }}
+                          style={{ height: "50px" ,borderRadius:"0 10px 10px 0"}}
                         ></Form.Control>
                       </Form>
                     </div>
                   <span
-                    className="text-center fs-5 text-light mb-2"
+                    className="text-dark fs-5 text-light mb-2"
                     style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                    <span >Recent Chat</span> 
@@ -292,10 +302,10 @@ export default function ChatScreen() {
                   </div>
                     <span
                       className=" fs-2 text-light mb-2 d-flex flex-row"
-                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"120px"}}
+                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"10px"}}
                     >
                       {/* <Link to="/"></Link> */}
-                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"80px",height:"80px"}} className="img-avatar pull-left ms-4" />
+                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
                       <div className="d-flex flex-column ms-3">
                       <div className="fs-3  text-light">{userData?.fullname}</div>
                       <div className="fs-5 text-light">{userData?.username}</div>

@@ -676,7 +676,7 @@ form-control:focus {
     /* border-right: 1px solid #eee; */
     padding-bottom: 50px;
     height: 100%;
-    width: 258px;
+    width: 310px;
     background: #8991E4;
     height: 100%;
     border-radius: 10px 0 0 0;
@@ -874,6 +874,7 @@ form-control:focus {
     background: #8991E4;
     padding: 15px 13px 15px 17px;
     border-radius: 0 10px 0 0;
+    margin-left: 70px !important;
 }
 
 .ah-actions {
@@ -1017,6 +1018,7 @@ border-width: 0px 0 10px 10px;
 }
 
 .show-msg{
+    margin-left: 70px ;
     height: 100vh;
     overflow-y: scroll;
     background-color: white
@@ -1168,6 +1170,9 @@ transition: all 0.85s  !important;
     color: red !important;
     width: 150px !important;
 }
+.card-footer {
+    margin-left: 70px !important;
+}
 
 
 @media (min-width:767px) {
@@ -1178,6 +1183,7 @@ transition: all 0.85s  !important;
     #ms-menu-trigger {
         display: none;
     }
+
 }
 
 @media (max-width:767px) {
@@ -1188,7 +1194,12 @@ transition: all 0.85s  !important;
         top: 20px;
         padding-top: 0px;
     }
-    
+    .show-msg{
+        margin-left: 0px !important;
+    }
+        .card-footer{
+            margin-left: 0px !important;
+        }
 
     #messages-main .ms-menu.toggled {
         display: block;
@@ -1200,6 +1211,7 @@ transition: all 0.85s  !important;
 
     .action-header {
         border-radius: 10px 10px 0 0 !important;
+        margin-left: 0px !important;
     }
 
     .msg-container,
@@ -1217,6 +1229,7 @@ transition: all 0.85s  !important;
            width: 20px;
            height: 25px;
         }
+       
 }
 
 .cart-wrap {
@@ -1406,7 +1419,7 @@ transition: all 0.85s  !important;
     display: flex;
     overflow: hidden;
     background-color: rgba(8, 7, 7, 0.818);
-   border-radius: 10px;
+   border-radius: 5px;
    
 }
 .list-menu.active{
