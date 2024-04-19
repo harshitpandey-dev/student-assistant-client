@@ -41,7 +41,7 @@ export default function ChatUserList({list,userID,chatID,token}) {
                     {filteredParticipants[0]?.username}
                 
                 </div>
-                <small className="list-group-item-text c-gray text-dark">{lastMsg}</small>
+                <small className="list-group-item-text c-gray text-">{lastMsg}</small>
                 <div className='d-flex justify-content-end'>{formattedDate}</div>
             </div>
         </Link>

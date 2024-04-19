@@ -675,9 +675,10 @@ form-control:focus {
     top: 0;
     /* border-right: 1px solid #eee; */
     padding-bottom: 50px;
-    height: 100%;
+    overflow-y: scroll;
+    height: 100vh;
     width: 310px;
-    background: #8991E4;
+    background: #8991e46d;
     height: 100%;
     border-radius: 10px 0 0 0;
     padding-top: 20px;
@@ -828,21 +829,20 @@ form-control:focus {
     width: 100%;
     /* border: 1px solid #03a8f460; */
     /* border-radius: 10%; */
-    background-color: rgba(255, 255, 255, 0.65);
+    background-color: #8991e48d;
+  
     border: 0;
-    color: rgb(134, 12, 221);
+    color: lightblue;
     min-height: 110px;
 }
 .list-group.lg-alt .list-group-item:hover{
-    background-color: #161412e6;
+    background-color: #8991e4e2;
     
 }
-.list-group-item:hover .list-group-item-text{
-    color: white !important;
-}
+
 .list-group.lg-alt .list-group-item.active{
-    background-color: #0c0c0cc8;
-    color: rgb(231, 241, 46) !important;
+    /* background-color: #0c0c0cc8; */
+    color: rgb(241, 241, 235) !important;
 }
 
 .list-group.lg-alt .list-group-item.active .list-group-item-text{
@@ -850,8 +850,8 @@ form-control:focus {
 }
 
 .list-group.lg-alt .list-group-item.active{
-    background-color: #0c0c0cc8;
-    color: rgb(231, 241, 46) !important;
+    /* background-color: #0c0c0cc8; */
+    color: rgb(181, 235, 17) !important;
 }
 .list-group-item-heading{
     font-size: 1.5rem;
@@ -1170,9 +1170,10 @@ transition: all 0.85s  !important;
     color: red !important;
     width: 150px !important;
 }
-.card-footer {
+.card-footer ,.input-above{
     margin-left: 70px !important;
 }
+
 
 
 @media (min-width:767px) {
@@ -1191,13 +1192,15 @@ transition: all 0.85s  !important;
         height: calc(100% - 58px);
         display: none;
         z-index: 1;
-        top: 20px;
-        padding-top: 0px;
+        top: 0px;
+        padding-top: 50px;
+        width: 250px;
+        background-color: #0b0e62;
     }
     .show-msg{
         margin-left: 0px !important;
     }
-        .card-footer{
+        .card-footer,.input-above{
             margin-left: 0px !important;
         }
 

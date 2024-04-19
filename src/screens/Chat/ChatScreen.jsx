@@ -251,7 +251,7 @@ export default function ChatScreen() {
                       </Form>
                     </div>
                   <span
-                    className="text-dark fs-5 text-light mb-2"
+                    className="text-light fs-5 mb-2"
                     style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                    <span >Recent Chat</span> 
@@ -301,18 +301,36 @@ export default function ChatScreen() {
                     <i className="fa fa-bars text-dark"></i>
                   </div>
                     <span
-                      className=" fs-2 text-light mb-2 d-flex flex-row"
+                      className=" fs-2 text-light mb-2 d-flex flex-row justify-content-between"
                       style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"10px"}}
                     >
                       {/* <Link to="/"></Link> */}
+                      <div className="d-flex ">
                       <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
                       <div className="d-flex flex-column ms-3">
                       <div className="fs-3  text-light">{userData?.fullname}</div>
                       <div className="fs-5 text-light">{userData?.username}</div>
 
                       </div>
+                      </div>
                      
-                      
+                      {messageData && <div> <Dropdown style={{ width: "42px", height: "30px" }} >
+                        <style>{`
+      .dropdown-toggle::after {
+        display: none;
+      }
+    `}</style>
+                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "50px", height: "35px" }} >
+                          <BsThreeDots className="text-light" />
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className="bg-danger">
+                          <DeleteChat />
+
+                        </Dropdown.Menu>
+
+                      </Dropdown>
+                      </div>}
                     </span>
                   <ul className="ah-actions actions">
                     {/* <li>
@@ -344,7 +362,7 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                  { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
+                  {/* { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
                         <style>{`
       .dropdown-toggle::after {
         display: none;
@@ -360,7 +378,7 @@ export default function ChatScreen() {
                         </Dropdown.Menu>
                       
                       </Dropdown>
-                      </li>}
+                      </li>} */}
                   </ul>
                 </div>
                 <div className="show-msg">
@@ -374,7 +392,7 @@ export default function ChatScreen() {
                 </div>
 
                 {images && (
-                  <div className="position-relative mt-5">
+                  <div className="position-relative input-above">
                     {images.map((file, index) => (
                       <div
                         key={index}
@@ -398,6 +416,7 @@ export default function ChatScreen() {
                     ))}
                   </div>
                 )}
+                <div className="input-above">
                 {typeMessage && (
                   <span className="text-white ms-4">Type a Message.....</span>
                 )}
@@ -416,6 +435,7 @@ export default function ChatScreen() {
                 ) : (
                   <></>
                 )}
+                  </div>
                 {((userData && sellerID && userData._id === sellerID)||(!sellerID && !chatID)) ? (
                   <></>
                 ) : (
