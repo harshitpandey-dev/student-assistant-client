@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Toast from 'react-bootstrap/Toast';
 import { TOAST_RESET } from '../types/userConstants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Alert() {
     const [show, setShow] = useState(true);
     const toastMessage = useSelector(state => state.toastMessage);
     const [isVisible, setIsVisible] = useState(false);
+    const dispatch=useDispatch();
 
     useEffect(() => {
         // Set visibility to true when a new toast message is received
@@ -37,7 +38,7 @@ function Alert() {
                     <Toast.Header className='bg-warning text-dark'>
                         <strong className="me-auto">Notification</strong>
                     </Toast.Header>
-                    <Toast.Body className='bg-light text-dark'>{toastMessage.message}</Toast.Body>
+                    <Toast.Body className='bg-light text-dark'>{toastMessage?.message}</Toast.Body>
                 </Toast>
             </div>
         </div>
