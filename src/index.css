@@ -733,7 +733,7 @@ form-control:focus {
 }
 
 .message-feed {
-    padding: 20px;
+    padding: 4px;
 }
 
 #footer,
@@ -1198,7 +1198,7 @@ transition: all 0.85s  !important;
         top: 0px;
         padding-top: 50px;
         width: 250px;
-        background-color: #0b0e62;
+        background-color: #03053b;
     }
     .show-msg{
         margin-left: 0px !important;

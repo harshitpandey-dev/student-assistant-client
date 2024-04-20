@@ -308,8 +308,8 @@ export default function ChatScreen() {
                       <div className="d-flex ">
                       <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
                       <div className="d-flex flex-column ms-3">
-                      <div className="fs-3  text-light">{userData?.fullname}</div>
-                      <div className="fs-5 text-light">{userData?.username}</div>
+                      <div className="fs-5  text-light">{userData?.fullname}</div>
+                      <div className="fs-5 text-dark">{userData?.username}</div>
 
                       </div>
                       </div>
