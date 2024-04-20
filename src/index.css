@@ -653,8 +653,9 @@ form-control:focus {
     color: #767676;
     background-color: #1d2d49;
     /* margin-top: 20px; */
-    min-height: 100vh;
-    height: 100%;
+    height: 100vh !important;
+    overflow: hidden;
+    /* height: 100%; */
 }
 
 #messages-main {
@@ -676,7 +677,7 @@ form-control:focus {
     /* border-right: 1px solid #eee; */
     padding-bottom: 50px;
     overflow-y: scroll;
-    height: 100vh;
+    height: 100vh !important;
     width: 310px;
     background: #8991e46d;
     height: 100%;
@@ -854,7 +855,7 @@ form-control:focus {
     color: rgb(181, 235, 17) !important;
 }
 .list-group-item-heading{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding-top: 5px;
     font-family: 'Gluten', sans-serif;
 
@@ -923,6 +924,8 @@ form-control:focus {
             /* background: rgb(224, 228, 229);
                 background: linear-gradient(173deg, rgba(224, 228, 229, 1) 0%, rgba(133, 142, 149, 1) 100%); */
                 background-color: rgba(0, 0, 0, 0.75);
+                height: 100vh !important;
+                overflow-y: scroll;
 }
 
 #ms-menu-trigger {
@@ -950,7 +953,7 @@ form-control:focus {
 
 
 .list-group-item-text{
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .msg-container{
@@ -1019,7 +1022,7 @@ border-width: 0px 0 10px 10px;
 
 .show-msg{
     margin-left: 70px ;
-    height: 100vh;
+    height: 74vh !important;
     overflow-y: scroll;
     background-color: white
 }
