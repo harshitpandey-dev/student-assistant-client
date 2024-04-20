@@ -26,8 +26,12 @@ export default function UserMessgeBox({msg}) {
   }
   return (
       <div className="message-feed right">
+
+           
+     
           <div className="pull-right">
               {/* <img src={msg?.attachments[0]?.url}  alt="" className="img-avatar" /> */}
+                {/* <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar userlist-img" /> */}
           
           </div>
          {msg?.attachments.length>0 && <div className='content-image mf-content send_img '>
@@ -44,7 +48,9 @@ export default function UserMessgeBox({msg}) {
                   {msg?.content}
               <small className="mf-date msg_time_send "><i className="fa fa-clock-o"></i> {formattedDate}</small>
               </div>
-    
+ 
+              <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
+
           </div>
       </div>
   )

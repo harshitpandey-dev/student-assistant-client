@@ -19,7 +19,7 @@ import DeleteChat from "../../components/DeleteChat";
 import { IoSend } from "react-icons/io5";
 import EmojiPicker from 'emoji-picker-react';
 import { Button, Form } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+import { FaBell, FaSearch } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 
 export default function ChatScreen() {
@@ -202,23 +202,32 @@ export default function ChatScreen() {
       ) : (
         <div className="chatScreen d-flex">
         <div className="" style={{width:"50px",height:"100px"}}>
-        <div className="d-flex justify-content-center align-items-center w-100 h-100">
+        <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
+          <div>
+                  <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
+          </div>
+          <div>
           <Link to="/" className="fs-4 text-light"><FaHome /></Link>
+
+          </div>
 
         </div>
         </div>
           <div className=" bootstrap snippets bootdey p-2 w-100">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                <div className="ms-user clearfix text-white fs-2">
+                <div className="ms-user clearfix text-white fs-2 d-flex justify-content-between ">
                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
                        
-                    <span
-                      className="text-center fs-5 text-light mb-2"
+                    <div
+                      className="fs-3 text-light mb-2"
                       style={{ fontFamily: "'Gluten', sans-serif"}}
                     >
-                      Student Assistant CHAT
-                    </span>
+                      Student Assistant
+                    </div>
+                    <div className="ms-4">
+                    <FaBell className="text-light fs-3"/>
+                    </div>
                     
                     </div>
 
@@ -234,8 +243,8 @@ export default function ChatScreen() {
                         </div>
                     </div> */}
 
-                <div className="list-group lg-alt mt-5">
-                    <div className="d-flex flex-row justify-content-center w-100 mb-5 ">
+                <div className="list-group lg-alt mt-1">
+                    <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
                       <div className="bg-light d-flex justify-content-center align-items-center" style={{width:"40px",borderRadius:"10px 0 0 10px"}}>
                       <FaSearch/>
                      </div>
@@ -245,16 +254,16 @@ export default function ChatScreen() {
                           name="q"
                           onChange={(e) => setSearchUser(e.target.value)}
                           placeholder="Search Users..."
-                          className="mr-sm-2 ml-sm-5"
-                          style={{ height: "50px" ,borderRadius:"0 10px 10px 0"}}
+                          className="mr-sm-2 ml-sm-5 serach-user"
+                          style={{ height: "50px",width:"300px" ,borderRadius:"0 10px 10px 0"}}
                         ></Form.Control>
                       </Form>
                     </div>
                   <span
                     className="text-light fs-5 mb-2"
-                    style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
+                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
-                   <span >Recent Chat</span> 
+                   <span >Recent Chats</span> 
                   </span>
                   {searchUser==="" && chatListData &&
                     chatListData.map((list) => {
@@ -298,30 +307,30 @@ export default function ChatScreen() {
                     style={{ zIndex: 10 }}
                     onClick={() => setOpen(!open)}
                   >
-                    <i className="fa fa-bars text-dark"></i>
+                    <i className="fa fa-bars text-light"></i>
                   </div>
                     <span
-                      className=" fs-2 text-light mb-2 d-flex flex-row justify-content-between"
-                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"10px"}}
+                      className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
+                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"-21px"}}
                     >
                       {/* <Link to="/"></Link> */}
                       <div className="d-flex ">
-                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
-                      <div className="d-flex flex-column ms-3">
-                      <div className="fs-5  text-light">{userData?.fullname}</div>
-                      <div className="fs-5 text-dark">{userData?.username}</div>
+                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"60px",height:"60px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
+                      <div className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center" style={{lineHeight:"26px"}}>
+                      <div className="fs-2  text-light mt-2">{userData?.fullname}</div>
+                      <div className="ms-4 text-dark" style={{fontSize:"16px"}}>{userData?.username}</div>
 
                       </div>
                       </div>
                      
-                      {messageData && <div> <Dropdown style={{ width: "42px", height: "30px" }} >
+                      {messageData && <div> <Dropdown style={{ width: "42px", height: "48px" }} >
                         <style>{`
       .dropdown-toggle::after {
         display: none;
       }
     `}</style>
-                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "50px", height: "35px" }} >
-                          <BsThreeDots className="text-light" />
+                        <Dropdown.Toggle  id="dropdown-basic" style={{ width: "50px", height: "35px",marginRight:"22px" }} >
+                          <BsThreeDots className="text-dark fs-2 "  />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className="bg-danger">
@@ -381,7 +390,7 @@ export default function ChatScreen() {
                       </li>} */}
                   </ul>
                 </div>
-                <div className="show-msg">
+                <div className="show-msg pt-3">
                   {messageData &&
                     messageData.map((msg) => {
                       if (msg.sender._id === userData._id)
@@ -441,40 +450,41 @@ export default function ChatScreen() {
                 ) : (
                   <div className="card-footer">
                     <div className="input-group ">
-                      <div className="input-group-append">
-                        {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
-                        {images.length < 4 && (
-                          <>
-                            <label
-                              for="fileInput"
-                              className="input-group-text attach_btn"
-                            >
-                              <i className="fas fa-paperclip"></i>
-                            </label>
-                            <input
-                              type="file"
-                              id="fileInput"
-                              style={{ display: "none" }}
-                              multiple
-                              custom
-                              onChange={uploadFileHandler}
-                            />
-                          </>
-                        )}
-                      </div>
+                      
                       <textarea
                         name=""
-                        className="form-control type_msg text-light chatInput"
-                        placeholder="Type your message..."
+                        className="form-control type_msg text-dark chatInput"
+                        placeholder="Type A Message..."
                             style={{ fontFamily: "'Gluten', sans-serif" }}
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
+                          <div className="input-group-append">
+                            {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
+                            {images.length < 4 && (
+                              <>
+                                <label
+                                  for="fileInput"
+                                  className="input-group-text attach_btn"
+                                >
+                                  <i className="fas fa-paperclip"></i>
+                                </label>
+                                <input
+                                  type="file"
+                                  id="fileInput"
+                                  style={{ display: "none" }}
+                                  multiple
+                                  custom
+                                  onChange={uploadFileHandler}
+                                />
+                              </>
+                            )}
+                          </div>
                       <div className="input-group-append d-flex">
                             <span>
                               {/* Emoji button */}
                               <button style={{width:"50px",zIndex:"0"}}
-                                className="btn "
+                                className="btn emoji"
                                 onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                               >
                                 😀
@@ -485,7 +495,7 @@ export default function ChatScreen() {
                           className="input-group-text send_btn"
                           onClick={handleSubmit}
                         >
-                          <IoSend />
+                          <IoSend className="fs-4"/>
                         </span>
                       </div>
                     </div>

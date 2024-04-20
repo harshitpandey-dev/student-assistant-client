@@ -22,9 +22,8 @@ export default function SenderMessageBox({msg}) {
         handleShow();
     }
   return (
-      <div className="message-feed media">
+      <div className="message-feed media left">
           <div className="pull-left">
-           
           </div>
           {msg?.attachments.length > 0 && <div className='content-image mf-content receive_img content-image-send'>
               {msg.attachments  && msg.attachments.map((ele, ind) => {
@@ -38,6 +37,8 @@ export default function SenderMessageBox({msg}) {
               <small className="mf-date msg_time"><i className="fa fa-clock-o "></i> {formattedDate}</small>
               </div>
           </div>
+             <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-send-img" />
+          
       </div>
   )
 }
