@@ -473,7 +473,7 @@ export default function ChatScreen() {
                       <div className="input-group-append d-flex">
                             <span>
                               {/* Emoji button */}
-                              <button style={{width:"50px"}}
+                              <button style={{width:"50px",zIndex:"0"}}
                                 className="btn "
                                 onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                               >
