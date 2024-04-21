@@ -30,18 +30,18 @@ const Product = ({product,userID,token}) => {
   return (
     <>
       <Card className='my-3 p-3 rounded product-card'>
-        <Link to={`/product/${product._id}`}>
+        {/* <Link to={`/product/${product._id}`}> */}
           <Card.Img className='card-image'style={{height:"300px"}} src={product.images[0]} />
-        </Link>
+        {/* </Link> */}
         <Card.Body>
        
-          <Link to={`/product/${product._id}`}>
+          {/* <Link to={`/product/${product._id}`}> */}
             <Card.Title as='p' className='name-label'>
               <strong>{product.name}</strong>
               
             </Card.Title>
             {/* <p style={{ fontFamily: "'Gluten', sans-serif" }}>{product?.description}</p> */}
-          </Link>
+          {/* </Link> */}
             <Card.Text as='h3' className='text-success ' style={{ fontSize: "33px", fontWeight: "bold" }}>₹ {product.cost.price} </Card.Text>
           <div className='d-flex mt-4 flex-wrap'>
             {isYourProduct ? (

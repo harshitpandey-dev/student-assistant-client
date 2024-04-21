@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { getUserWishlist } from "../../actions/userActions";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import Header from "../../components/Header";
+import ProductDispay from "../../components/ProductDispay";
 
 export default function Landing() {
   const match = useParams();
@@ -80,7 +81,7 @@ export default function Landing() {
                 products.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
-                      <Product product={product} userID={userData?._id} token={userData?.token}/>
+                      <ProductDispay product={product} userID={userData?._id} token={userData?.token}/>
                     </Col>
                   ) : (
                     <></>

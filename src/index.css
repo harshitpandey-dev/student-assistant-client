@@ -1504,3 +1504,29 @@ transition: all 0.85s  !important;
     position: relative;
     top:-80px
 }
+
+.icon-hover:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+    color: #3b71ca !important;
+}
+
+.icon-hover:hover i {
+    color: #3b71ca !important;
+}
+
+.custom-modal .modal-content {
+    width: 800px !important;
+
+}
+
+@media (max-width:1200px) {
+    .custom-modal .modal-content {
+            width: 700px !important;
+        }
+}
+@media (max-width:1000px) {
+    .custom-modal .modal-content {
+            width: 100% !important;
+        }
+}
