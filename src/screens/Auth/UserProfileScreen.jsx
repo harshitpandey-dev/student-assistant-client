@@ -9,6 +9,7 @@ import ChangePassword from "../../components/ChangePassword";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router";
 import DeleteAccount from "../../components/DeleteAccount";
+import UserPrductDeleteModel from "../../components/UserPrductDeleteModel";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -110,14 +111,7 @@ const UserUpdateScreen = () => {
                                     <i className="fas fa-edit"></i>
                                   </Button>
                                 </LinkContainer>
-                                <Button
-                                  variant="danger"
-                                  className="btn-sm"
-                                  style={{ width: "35px", height: "30px" }}
-                                  onClick={() => deleteHandler(product._id)}
-                                >
-                                  <i className="fas fa-trash"></i>
-                                </Button>
+                               <UserPrductDeleteModel productId={product._id}/>
                               </td>
                             </tr>
                           )

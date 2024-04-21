@@ -10,6 +10,7 @@ import { listProducts, deleteProduct } from "../../actions/productActions";
 import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 import { login } from "../../actions/userActions";
+import AdminProductDeleteModel from "../../components/AdminProductDeleteModel";
 
 const ProductListScreen = () => {
   const navigate = useNavigate();
@@ -99,14 +100,7 @@ const ProductListScreen = () => {
                             <i className="fas fa-edit"></i>
                           </Button>
                         </LinkContainer>
-                        <Button
-                          variant="danger"
-                          className="btn-sm"
-                          onClick={() => deleteHandler(product._id)}
-                          style={{ width: "30px", height: "30px" }}
-                        >
-                          <i className="fas fa-trash"></i>
-                        </Button>
+                        <AdminProductDeleteModel productId={product._id}/>
                       </td>
                     </tr>
                   ) : (

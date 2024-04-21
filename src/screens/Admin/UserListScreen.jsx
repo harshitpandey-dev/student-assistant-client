@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import Header from "../../components/Header";
 import { listUsers, deleteUser, login } from "../../actions/userActions";
 import { useNavigate } from "react-router";
+import AdminDeleteAccountModel from "../../components/AdminDeleteAccountModel";
 const UserListScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -103,14 +104,7 @@ const UserListScreen = () => {
                           <i className="fas fa-edit"></i>
                         </Button>
                       </LinkContainer>
-                      <Button
-                        variant="danger"
-                        className="btn-sm"
-                        onClick={() => deleteHandler(user._id)}
-                        style={{ width: "30px", height: "30px" }}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </Button>
+                      <AdminDeleteAccountModel userId={user._id}/>
                     </td>
                   </tr>
                 ))}
