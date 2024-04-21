@@ -11,6 +11,7 @@ import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 import { login } from "../../actions/userActions";
 import AdminProductDeleteModel from "../../components/AdminProductDeleteModel";
+import AdminEditProductModel from "../../components/AdminEditProductModel";
 
 const ProductListScreen = () => {
   const navigate = useNavigate();
@@ -96,9 +97,7 @@ const ProductListScreen = () => {
                         <LinkContainer
                           to={`/admin/product/${product._id}/edit`}
                         >
-                          <Button variant="light" className="btn-sm">
-                            <i className="fas fa-edit"></i>
-                          </Button>
+                         <AdminEditProductModel productId={product._id}/>
                         </LinkContainer>
                         <AdminProductDeleteModel productId={product._id}/>
                       </td>
