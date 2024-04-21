@@ -63,7 +63,7 @@ export default function ProductDispay({product,userID,token}) {
                             <div class="row gx-5 d-flex flex-warp">
                                 <aside class="col-lg-6">
                                     <div class="border rounded-4 mb-3 d-flex justify-content-center">
-                                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp">
+                                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href={images[ind]}>
                                             <img style={{maxWidth:"100%",height:"300px",padding:"10px",minWidth:"250px"}}  class="rounded-4 fit" src={images[ind]} />
                                         </a>
                                     </div>
