@@ -67,10 +67,11 @@ const UserUpdateScreen = () => {
                   <thead>
                     <tr>
                       <th>SN</th>
-                      <th>ID</th>
+                      {/* <th>ID</th> */}
                       <th>Product Name</th>
                       <th>Price</th>
                       <th>Negotiable</th>
+                      <th>Created On</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -84,7 +85,7 @@ const UserUpdateScreen = () => {
                           product.owner?._id === userData._id && (
                             <tr key={product._id}>
                               <td>{i++}</td>
-                              <td>{product._id}</td>
+                              {/* <td>{product._id}</td> */}
                               <td>{product.name}</td>
                               <td>{product?.cost?.price}</td>
                               <td>
@@ -100,6 +101,7 @@ const UserUpdateScreen = () => {
                                   ></i>
                                 )}
                               </td>
+                              <td>{new Date(product.createdAt).toLocaleString()}</td>
                               <td>
                                 <LinkContainer
                                   to={`/admin/product/${product._id}/edit`}

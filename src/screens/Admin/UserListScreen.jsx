@@ -34,6 +34,7 @@ const UserListScreen = () => {
     }
   }, [dispatch, successDelete, userData]);
 
+ 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteUser(id, userData.token));
@@ -62,11 +63,11 @@ const UserListScreen = () => {
             <thead>
               <tr>
                 <th>SN</th>
-                <th>ID</th>
+                {/* <th>ID</th> */}
                 <th>NAME</th>
                 <th>EMAIL</th>
                 <th>PHONE</th>
-                <th>ADDRESS</th>
+                <th>Joined At</th>
                 <th>ADMIN</th>
                 <th></th>
               </tr>
@@ -74,13 +75,15 @@ const UserListScreen = () => {
             <tbody>
               {users &&
                 users.map((user) => (
+              
+
                   <tr key={user._id}>
                     <td>{i++}</td>
-                    <td>{user._id}</td>
+                    {/* <td>{user._id}</td> */}
                     <td>{user.fullname}</td>
                     <td>{user.email}</td>
-                    <td>{user.contact.phone_no}</td>
-                    <td>{user.address}</td>
+                    <td>{user.contact}</td>
+                    <td>{new Date(user.createdAt).toLocaleString()}</td>
                     <td>
                       {user.isAdmin ? (
                         <i

@@ -46,6 +46,7 @@ const ProductListScreen = () => {
     }
   };
 
+
   return (
     <>
       <Header />
@@ -70,7 +71,7 @@ const ProductListScreen = () => {
               <thead>
                 <tr>
                   <th>SN</th>
-                  <th>ID</th>
+                  {/* <th>ID</th> */}
                   <th>NAME</th>
                   <th>PRICE</th>
                   {/* <th>CATEGORY</th> */}
@@ -84,11 +85,11 @@ const ProductListScreen = () => {
                   product.owner ? (
                     <tr key={product._id}>
                       <td>{i++}</td>
-                      <td>{product._id}</td>
+                      {/* <td>{product._id}</td> */}
                       <td>{product.name}</td>
                       <td>Rs {product.cost.price}</td>
                       {/* <td>{product.category}</td> */}
-                      <td>{product.owner?.username}</td>
+                      <td>{product.owner?.fullname}</td>
                       <td>{product.createdAt.substring(0, 10)}</td>
                       <td>
                         <LinkContainer
