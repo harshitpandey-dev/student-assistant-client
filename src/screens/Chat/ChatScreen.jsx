@@ -122,13 +122,13 @@ export default function ChatScreen() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (sendMessage === "") {
+    if (sendMessage === "" && images.length===0) {
       setTypeMessage("Type a message....");
       setTimeout(() => {
         setTypeMessage(null);
       }, 3000);
     }
-    if (sendMessage !== "") {
+    if (sendMessage !== "" || images.length!==0) {
       const formData = new FormData();
       formData.append("content", sendMessage);
       for (let i = 0; i < images.length; i++) {
