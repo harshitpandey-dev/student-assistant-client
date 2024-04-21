@@ -65,7 +65,17 @@ export default function ChatScreen() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
 
+  const [chatWith,setChatWith]=useState([])
 
+  useEffect(()=>{
+    
+    if(userData && chatListData && chatID){
+      const activeChat =  chatListData?.filter((item) => item._id === chatID);
+      const filteredParticipants =  activeChat[0]?.participants?.filter(participant => participant?._id !== userData?._id);
+      setChatWith(filteredParticipants[0])
+    }
+    
+   },[chatID,userData,chatListData])
   // console.log(images);
 
   // useEffect(() => {
@@ -315,12 +325,13 @@ export default function ChatScreen() {
                     >
                       {/* <Link to="/"></Link> */}
                       <div className="d-flex ">
-                      <img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"60px",height:"60px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
+                     {chatWith.length!==0 &&
+                     <><img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"60px",height:"60px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
                       <div className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center" style={{lineHeight:"26px"}}>
-                      <div className="fs-2  text-light mt-2">{userData?.fullname}</div>
-                      <div className="ms-4 text-dark" style={{fontSize:"16px"}}>{userData?.username}</div>
+                      <div className="fs-2  text-light mt-2">{chatWith?.fullname}</div>
+                      <div className="ms-4 text-dark" style={{ fontSize: "16px" }}>{chatWith?.username}</div>
 
-                      </div>
+                            </div> </>}
                       </div>
                      
                       {messageData && <div> <Dropdown style={{ width: "42px", height: "48px" }} >
