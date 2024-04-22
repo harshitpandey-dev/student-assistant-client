@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import Header from "../../components/Header";
 import { listUsers, deleteUser, login } from "../../actions/userActions";
 import { useNavigate } from "react-router";
 import AdminDeleteAccountModel from "../../components/AdminDeleteAccountModel";
+import AdminUpdateUser from "../../components/AdminUpdateUser";
+import { USER_DETAILS_RESET, USER_UPDATE_RESET } from "../../types/userConstants";
 const UserListScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,7 +23,27 @@ const UserListScreen = () => {
     loading: loadingDelete,
     error: errorDelete,
   } = userDelete;
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [editUser, setEditUser] = useState(null);
   var i = 1;
+
+  const handleEditModalOpen = (user) => {
+    setEditUser(user);
+    setEditModalVisible(true);
+  };
+
+  const handleEditModalClose = () => {
+    setEditModalVisible(false);
+    // Optionally, you can reset the editUser state here
+    // setEditUser(null);
+  };
+
+  useEffect(()=>{
+
+    dispatch({ type: USER_UPDATE_RESET });
+    dispatch({ type: USER_DETAILS_RESET });
+  },[])
+
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
@@ -99,15 +121,14 @@ const UserListScreen = () => {
                       )}
                     </td>
                     <td>
-                      <LinkContainer to={`/admin/users/${user._id}/edit`}>
-                        <Button variant="light" className="btn-sm">
-                          <i className="fas fa-edit"></i>
-                        </Button>
-                      </LinkContainer>
+                     
+                      <AdminUpdateUser  Edituser={user}/>
+                     
                       <AdminDeleteAccountModel userId={user._id}/>
                     </td>
                   </tr>
                 ))}
+                 
             </tbody>
           </Table>
         )}

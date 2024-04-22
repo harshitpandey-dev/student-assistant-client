@@ -361,7 +361,7 @@ export const deleteUser = (id,token) => async (dispatch, getState) => {
 
 //user update
 
-export const updateUser = (user) => async (dispatch, getState) => {
+export const updateUser = (user,token) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_UPDATE_REQUEST,
@@ -375,7 +375,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
 
-        Authorization: `Bearer ${userData.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -403,18 +403,11 @@ export const updateUser = (user) => async (dispatch, getState) => {
 
 //get user details
 
-export const getUserDetails = (id) => async (dispatch, getState) => {
+export const getUserDetails = (id,token) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-    if (localStorage.getItem("userData")) {
-      dispatch({
-        type: USER_DETAILS_SUCCESS,
-        payload: JSON.parse(localStorage.getItem("userData")),
-      });
-      return;
-    }
     const {
       userLogin: { userData },
     } = getState();
@@ -423,15 +416,15 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        Authorization: `Bearer ${userData.token}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, {}, config);
-
+    const { data } = await axios.get(`/api/users/${id}`, config);
+   console.log(data.data);
     dispatch({
       type: USER_DETAILS_SUCCESS,
-      payload: data,
+      payload: data.data,
     });
     // console.log(data);
   } catch (error) {

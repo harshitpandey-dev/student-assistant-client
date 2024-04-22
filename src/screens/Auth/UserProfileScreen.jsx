@@ -39,11 +39,11 @@ const UserUpdateScreen = () => {
     }
   }, [dispatch, userData, successDelete, navigate]);
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-      dispatch(deleteProduct(id));
-    }
-  };
+  // const deleteHandler = (id) => {
+  //   if (window.confirm("Are you sure?")) {
+  //     dispatch(deleteProduct(id));
+  //   }
+  // };
 
   return (
     <>

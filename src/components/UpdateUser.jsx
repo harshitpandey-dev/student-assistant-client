@@ -33,24 +33,18 @@ const UpdateUser = () => {
   const { success, loading, error } = userUpdate;
 
   useEffect(() => {
-    if(!userData){
-      navigate("/login")
-      return;
-    }
-    if (!userData || success) {
-      dispatch({ type: USER_UPDATE_RESET });
-      dispatch({ type: USER_DETAILS_RESET });
-    } else {
-      if (!user || user._id !== id) {
-        dispatch(getUserDetails(id));
-      } else {
-        setFullname(user.fullname);
-        setUsername(user.username);
-        setContact(user.contact);
-        setEmail(user.email);
-      }
-    }
-  }, [userData, user, success, dispatch, id, navigate]);
+
+        dispatch(getUserDetails(id,userData.token));
+
+    
+  }, [userData, id]);
+
+  useEffect(()=>{
+      setFullname(user?.fullname);
+      setUsername(user?.username);
+      setContact(user?.contact);
+      setEmail(user?.email);
+  },[user])
 
   useEffect(() => {
     if (fullname !== "" || username !== "" || contact !== "") {
