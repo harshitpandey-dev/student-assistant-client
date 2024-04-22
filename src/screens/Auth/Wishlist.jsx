@@ -55,7 +55,7 @@ export default function Wishlist() {
                                   </thead>
                                   <tbody>
                                       {wishlist && wishlist.length>0 && wishlist.map((list,ind)=>{
-                                          return <WishlistList name={list.name} price={list?.cost?.price} image={list?.images[0]} key={list._id} id={list._id}/>
+                                          return <WishlistList name={list.name} price={list?.cost?.price} image={list?.images[0]} key={list._id} id={list._id} product={list}/>
                                       })}
                                   </tbody>
                               </table>
