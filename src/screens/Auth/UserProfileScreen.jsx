@@ -50,7 +50,7 @@ const UserUpdateScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-3">
+      <div className="py-3 vh-100">
         <Row>
           <Col md={2}></Col>
           <Col md={8}>
