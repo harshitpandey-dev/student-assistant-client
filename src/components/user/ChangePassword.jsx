@@ -5,6 +5,7 @@ import Message from "../Message";
 import { useDispatch } from "react-redux";
 import { updateUserPassword } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
@@ -44,8 +45,8 @@ export default function ChangePassword() {
 
   return (
     <>
-      <Button variant="warning" className="mt-2 mb-2 ms-2" onClick={handleShow}>
-        Change Password
+      <Button variant="warning" className="mt-2 mb-2 ms-2" style={{ width: "70px", height: "40px" }} onClick={handleShow}>
+        <RiLockPasswordFill />
       </Button>
 
       <Modal show={show} onHide={handleClose}>

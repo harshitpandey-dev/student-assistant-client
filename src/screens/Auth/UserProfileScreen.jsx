@@ -50,7 +50,7 @@ const UserUpdateScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-3 vh-100">
+      <div className="py-3 " style={{ minHeight: "100vh" }}>
         <Row>
           <Col md={2}></Col>
           <Col md={8}>
@@ -130,34 +130,27 @@ const UserUpdateScreen = () => {
           <Col md={2}></Col>
         </Row>
 
-        <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Edit your Details</div>
-          </Col>
-          <Col md={6}>
-            <UpdateUser />
-          </Col>
-        </Row>
+         
+          <table className="m-2 w-100">
+            <tr className="mb-4">
+              <td>Edit your Details</td>
+              <td><UpdateUser /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            <tr>
+              <td>Change Password</td>
+              <td><ChangePassword /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            <tr>
+              <td>Delete Account</td>
+              <td><DeleteAccount /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            </table>
+        
 
-        <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Change Password</div>
-          </Col>
-          <Col md={6}>
-            <ChangePassword />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Delete Account</div>
-          </Col>
-          <Col md={6}>
-            <DeleteAccount />
-          </Col>
-        </Row>
+      
       </div>
       <Footer />
     </>

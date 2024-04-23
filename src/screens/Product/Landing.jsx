@@ -52,7 +52,7 @@ export default function Landing() {
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-4 container-fluid p-5 vh-100">
+      <div className="py-4 container-fluid p-5 " style={{ minHeight: "100vh" }}>
         <Meta />
         {keyword && (
           <Link className="btn btn-success" to="/">
