@@ -2,9 +2,14 @@ import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import FormContainer from "./FormContainer";
-import { deleteUser, logout } from "../actions/userActions";
-import { USER_LIST_RESET, USER_LOGOUT, USER_REGISTER_RESET, USER_UPDATE_RESET } from "../types/userConstants";
+import FormContainer from "../FormContainer";
+import { deleteUser, logout } from "../../actions/userActions";
+import {
+  USER_LIST_RESET,
+  USER_LOGOUT,
+  USER_REGISTER_RESET,
+  USER_UPDATE_RESET,
+} from "../../types/userConstants";
 
 const DeleteAccount = () => {
   const { id } = useParams();
@@ -12,7 +17,7 @@ const DeleteAccount = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
@@ -36,8 +41,8 @@ const DeleteAccount = () => {
     dispatch({
       type: USER_UPDATE_RESET,
     });
-    localStorage.removeItem('userData');
-    navigate("/login")
+    localStorage.removeItem("userData");
+    navigate("/login");
   };
 
   return (
@@ -52,7 +57,7 @@ const DeleteAccount = () => {
         </Modal.Header>
         <Modal.Body>
           <FormContainer>
-            <Form  className="mt-2 mb-2">
+            <Form className="mt-2 mb-2">
               <Form.Group controlId="name">
                 <Form.Label>
                   Doing this will delete all data assosiated with this account

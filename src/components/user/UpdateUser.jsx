@@ -3,11 +3,14 @@ import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
-import FormContainer from "./FormContainer";
+import FormContainer from "../FormContainer";
 // import Message from "./Message";
-import Loader from "./Loader";
-import { updateUser, getUserDetails } from "../actions/userActions";
-import { USER_UPDATE_RESET, USER_DETAILS_RESET } from "../types/userConstants";
+import Loader from "../Loader";
+import { updateUser, getUserDetails } from "../../actions/userActions";
+import {
+  USER_UPDATE_RESET,
+  USER_DETAILS_RESET,
+} from "../../types/userConstants";
 
 const UpdateUser = () => {
   const navigate = useNavigate();
@@ -33,18 +36,24 @@ const UpdateUser = () => {
   const { success, loading, error } = userUpdate;
 
   useEffect(() => {
-
-        dispatch(getUserDetails(id,userData.token));
-
-    
-  }, [userData, id]);
-
-  useEffect(()=>{
-      setFullname(user?.fullname);
-      setUsername(user?.username);
-      setContact(user?.contact);
-      setEmail(user?.email);
-  },[user])
+    if (!userData) {
+      navigate("/login");
+      return;
+    }
+    if (!userData || success) {
+      dispatch({ type: USER_UPDATE_RESET });
+      dispatch({ type: USER_DETAILS_RESET });
+    } else {
+      if (!user || user._id !== id) {
+        dispatch(getUserDetails(id));
+      } else {
+        setFullname(user.fullname);
+        setUsername(user.username);
+        setContact(user.contact);
+        setEmail(user.email);
+      }
+    }
+  }, [userData, user, success, dispatch, id, navigate]);
 
   useEffect(() => {
     if (fullname !== "" || username !== "" || contact !== "") {
@@ -77,7 +86,11 @@ const UpdateUser = () => {
 
   return (
     <>
-      <Button variant="secondary" className="mt-2 mb-2 ms-2" onClick={handleShow}>
+      <Button
+        variant="secondary"
+        className="mt-2 mb-2 ms-2"
+        onClick={handleShow}
+      >
         Update Details
       </Button>
 
@@ -88,7 +101,7 @@ const UpdateUser = () => {
         <Modal.Body>
           <FormContainer>
             {loadingDetails && <Loader />}
-            <Form  className="mt-2 mb-2">
+            <Form className="mt-2 mb-2">
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control

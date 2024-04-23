@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Message from "./Message";
+import Message from "../Message";
 import { useDispatch } from "react-redux";
-import { updateUserPassword } from "../actions/userActions";
+import { updateUserPassword } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {

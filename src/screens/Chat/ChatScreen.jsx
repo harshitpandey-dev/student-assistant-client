@@ -1,35 +1,60 @@
 import { useEffect, useRef, useState } from "react";
 // import Header from "../../components/Header";
-import SenderMessageBox from "../../components/SenderMessageBox";
-import UserMessgeBox from "../../components/UserMessgeBox";
-import ChatUserList from "../../components/ChatUserList";
+import SenderMessageBox from "../../components/chat/SenderMessageBox";
+import UserMessgeBox from "../../components/chat/UserMessgeBox";
+import ChatUserList from "../../components/chat/ChatUserList";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { delete_Chat, get_All_Chat, get_Chat } from "../../actions/chatActions";
+import {
+  delete_Chat,
+  get_All_Chat,
+  getOrCreate_Chat,
+} from "../../actions/chatActions";
 import { getMessage, postMessage } from "../../actions/messageAction";
 import { CHAT_LIST_RESET, CHAT_RESET } from "../../types/chatConstants";
 import { MESSAGE_RESET } from "../../types/messageConstants";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 import Header from "../../components/Header";
 import { BsThreeDots } from "react-icons/bs";
-import DeleteChat from "../../components/DeleteChat";
+import DeleteChat from "../../components/chat/DeleteChat";
 import { IoSend } from "react-icons/io5";
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker from "emoji-picker-react";
+import { useSocket } from "../../contexts/SocketContext";
 import { Button, Form } from "react-bootstrap";
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 
-export default function ChatScreen() {
-  const match = useParams();
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const handleEmojiClick = (emoji) => {
+const CONNECTED_EVENT = "connected";
+const DISCONNECT_EVENT = "disconnect";
+const JOIN_CHAT_EVENT = "joinChat";
+const NEW_CHAT_EVENT = "newChat";
+const TYPING_EVENT = "typing";
+const STOP_TYPING_EVENT = "stopTyping";
+const MESSAGE_RECEIVED_EVENT = "messageReceived";
+const LEAVE_CHAT_EVENT = "leaveChat";
 
-    const emojiChar = emoji.emoji
-    setSendMessage((prevMessage) => prevMessage + emojiChar);
-  };
+export default function ChatScreen() {
+  const { socket } = useSocket();
+  const match = useParams();
+  const sellerID = match.sellerID;
+  let chatID = match.chatID;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  var { userData } = userLogin;
+  const getCHAT = useSelector((state) => state.getChat);
+  var { chatData, loading } = getCHAT;
+  const Message = useSelector((state) => state.getMessage);
+  var { messageData } = Message;
+  const chatList = useSelector((state) => state.chatList);
+  var { chatListData } = chatList;
+  const deleteChat = useSelector((state) => state.deleteChat);
+  var { success, error } = deleteChat;
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -40,27 +65,24 @@ export default function ChatScreen() {
   };
 
   const messagesEndRef = useRef(null);
-  const [typeMessage, setTypeMessage] = useState(null);
-  const sellerID = match.sellerID;
-  const chatID = match.chatID;
+
   const [open, setOpen] = useState();
-  const [typing, setTyping] = useState(false);
-  const [istyping, setIsTyping] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  var { userData } = userLogin;
-  const getCHAT = useSelector((state) => state.getChat);
-  var { chatData, loading } = getCHAT;
-  const Message = useSelector((state) => state.getMessage);
-  var { messageData } = Message;
-  const chatList = useSelector((state) => state.chatList);
-  var { chatListData } = chatList;
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  const [typing, setTyping] = useState(false); //selftyping
+  const [istyping, setIsTyping] = useState(false); //chattyping
+
+  const [chats, setChats] = useState([]); // To store user's chats
+
+  const [typeMessage, setTypeMessage] = useState(null);
   const [sendMessage, setSendMessage] = useState("");
-  const deleteChat = useSelector((state) => state.deleteChat);
-  var { success, error } = deleteChat;
+  const [messages, setMessages] = useState([]); //to store user's messages
+  const [unreadMessages, setUnreadMessages] = useState([]); // To track unread messages
+
+  const [isConnected, setIsConnected] = useState(false);
+
   const [reload, setReload] = useState(false);
-  const [searchUser,setSearchUser]=useState("");
+  const [searchUser, setSearchUser] = useState("");
 
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -75,15 +97,71 @@ export default function ChatScreen() {
       setChatWith(filteredParticipants[0])
     }
     
-   },[chatID,userData,chatListData])
-  // console.log(images);
+   },[chatID,userData,chatListData])  useEffect(() => {
+    setChats(chatListData);
+  }, [chatListData]);
+  useEffect(() => {
+    setMessages(messageData);
+  }, [messageData]);
 
-  // useEffect(() => {
+  const onConnect = () => {
+    setIsConnected(true);
+  };
 
-  //     socket.on("typing", () => setIsTyping(true));
-  //     socket.on("stop typing", () => setIsTyping(false));
+  const onDisconnect = () => {
+    setIsConnected(false);
+  };
 
-  // }, []);
+  const handleOnSocketTyping = (chatId) => {
+    if (chatId !== chatID) return;
+    setIsTyping(true);
+  };
+
+  const handleOnSocketStopTyping = (chatId) => {
+    if (chatId !== chatID) return;
+
+    setIsTyping(false);
+  };
+
+  const onMessageReceived = (message) => {
+    if (message?.chat !== chatID) {
+      setUnreadMessages((prev) => [...prev, message]);
+    } else {
+      setMessages((prev) => [...prev, message]);
+    }
+  };
+
+  const onNewChat = (chat) => {
+    setChats((prev) => [chat, ...prev]);
+  };
+
+  const onChatLeave = (chat) => {
+    if (chat._id === chatID) {
+      chatID = null;
+    }
+    setChats((prev) => prev.filter((c) => c._id !== chat._id));
+  };
+
+  useEffect(() => {
+    if (!socket) return;
+    socket.on(CONNECTED_EVENT, onConnect);
+    socket.on(DISCONNECT_EVENT, onDisconnect);
+    socket.on(TYPING_EVENT, handleOnSocketTyping);
+    socket.on(STOP_TYPING_EVENT, handleOnSocketStopTyping);
+    socket.on(MESSAGE_RECEIVED_EVENT, onMessageReceived);
+    socket.on(NEW_CHAT_EVENT, onNewChat);
+    socket.on(LEAVE_CHAT_EVENT, onChatLeave);
+
+    return () => {
+      socket.off(CONNECTED_EVENT, onConnect);
+      socket.off(DISCONNECT_EVENT, onDisconnect);
+      socket.off(TYPING_EVENT, handleOnSocketTyping);
+      socket.off(STOP_TYPING_EVENT, handleOnSocketStopTyping);
+      socket.off(MESSAGE_RECEIVED_EVENT, onMessageReceived);
+      socket.off(NEW_CHAT_EVENT, onNewChat);
+      socket.off(LEAVE_CHAT_EVENT, onChatLeave);
+    };
+  }, [socket, chats]);
 
   useEffect(() => {
     dispatch({ type: CHAT_RESET });
@@ -92,28 +170,24 @@ export default function ChatScreen() {
   }, []);
 
   useEffect(() => {
-    if (userData && sellerID && userData._id === sellerID) {
-      return;
-    }
-    if (!chatID && userData && sellerID) {
-      dispatch(get_Chat(sellerID, userData.token));
-    }
-  }, [sellerID, userData, chatID, reload]);
-
-  useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
       return;
     }
+    if (!chatID && userData && sellerID) {
+      dispatch(getOrCreate_Chat(sellerID, userData.token));
+    }
     if (userData && chatData && !chatID) {
       dispatch(getMessage(chatData._id, userData.token));
+      if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
     }
     if (userData && chatID) {
       dispatch(getMessage(chatID, userData.token));
+      if (socket) socket.emit(JOIN_CHAT_EVENT, chatID);
     }
     if (userData) {
       dispatch(get_All_Chat(userData._id, userData.token));
     }
-  }, [chatData, chatID, userData, reload,sellerID]);
+  }, [chatData, chatID, userData, reload, sellerID]);
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -128,17 +202,17 @@ export default function ChatScreen() {
     }
 
     setSendMessage("");
-  }, [dispatch, sellerID, userData, chatID,reload]);
+  }, [dispatch, sellerID, userData, chatID, reload]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (sendMessage === "" && images.length===0) {
+    if (sendMessage === "" && images.length === 0) {
       setTypeMessage("Type a message....");
       setTimeout(() => {
         setTypeMessage(null);
       }, 3000);
     }
-    if (sendMessage !== "" || images.length!==0) {
+    if (sendMessage !== "" || images.length !== 0) {
       const formData = new FormData();
       formData.append("content", sendMessage);
       for (let i = 0; i < images.length; i++) {
@@ -168,7 +242,6 @@ export default function ChatScreen() {
     }
   }, [messageData]);
 
-
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
     if (!data) return;
@@ -186,10 +259,11 @@ export default function ChatScreen() {
 
   function typingHandler(e) {
     setSendMessage(e.target.value);
+    if (!socket || !isConnected) return;
     if (!typing) {
       setTyping(true);
 
-      // socket.emit("typing", selectedChat._id);
+      socket.emit(TYPING_EVENT, chatID);
     }
     let lastTypingTime = new Date().getTime();
     var timerLength = 3000;
@@ -197,49 +271,55 @@ export default function ChatScreen() {
       var timeNow = new Date().getTime();
       var timeDiff = timeNow - lastTypingTime;
       if (timeDiff >= timerLength && typing) {
-        // socket.emit("stop typing", selectedChat._id);
+        socket.emit(STOP_TYPING_EVENT, chatID);
         setTyping(false);
       }
     }, timerLength);
   }
 
+  const handleEmojiClick = (emoji) => {
+    const emojiChar = emoji.emoji;
+    setSendMessage((prevMessage) => prevMessage + emojiChar);
+  };
+
   return (
     <>
-      {/* <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div> */}
       {loading ? (
         <Loader />
       ) : (
         <div className="chatScreen d-flex">
-        <div className="" style={{width:"50px",height:"100px"}}>
-        <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
-          <div>
-                  <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
+          <div className="" style={{ width: "50px", height: "100px" }}>
+            <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
+              <div>
+                <img
+                  src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                  alt=""
+                  className="img-avatar box-img"
+                />
+              </div>
+              <div>
+                <Link to="/" className="fs-4 text-light">
+                  <FaHome />
+                </Link>
+              </div>
+            </div>
           </div>
-          <div>
-          <Link to="/" className="fs-4 text-light"><FaHome /></Link>
-
-          </div>
-
-        </div>
-        </div>
           <div className=" bootstrap snippets bootdey p-2 w-100">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
                 <div className="ms-user clearfix text-white fs-2 d-flex justify-content-between ">
-                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
-                       
-                    <div
-                      className="fs-3 text-light mb-2"
-                      style={{ fontFamily: "'Gluten', sans-serif"}}
-                    >
-                      Student Assistant
-                    </div>
-                    <div className="ms-4">
-                    <FaBell className="text-light fs-3"/>
-                    </div>
-                    
-                    </div>
+                  {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
+
+                  <div
+                    className="fs-3 text-light mb-2"
+                    style={{ fontFamily: "'Gluten', sans-serif" }}
+                  >
+                    Student Assistant
+                  </div>
+                  <div className="ms-4">
+                    <FaBell className="text-light fs-3" />
+                  </div>
+                </div>
 
                 {/* <div className="p-15">
                         <div className="dropdown">
@@ -254,29 +334,37 @@ export default function ChatScreen() {
                     </div> */}
 
                 <div className="list-group lg-alt mt-1">
-                    <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
-                      <div className="bg-light d-flex justify-content-center align-items-center" style={{width:"40px",borderRadius:"10px 0 0 10px"}}>
-                      <FaSearch/>
-                     </div>
-                      <Form  style={{ display: "flex" }} >
-                        <Form.Control
-                          type="text"
-                          name="q"
-                          onChange={(e) => setSearchUser(e.target.value)}
-                          placeholder="Search Users..."
-                          className="mr-sm-2 ml-sm-5 serach-user"
-                          style={{ height: "50px",width:"300px" ,borderRadius:"0 10px 10px 0"}}
-                        ></Form.Control>
-                      </Form>
+                  <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
+                    <div
+                      className="bg-light d-flex justify-content-center align-items-center"
+                      style={{ width: "40px", borderRadius: "10px 0 0 10px" }}
+                    >
+                      <FaSearch />
                     </div>
+                    <Form style={{ display: "flex" }}>
+                      <Form.Control
+                        type="text"
+                        name="q"
+                        onChange={(e) => setSearchUser(e.target.value)}
+                        placeholder="Search Users..."
+                        className="mr-sm-2 ml-sm-5 serach-user"
+                        style={{
+                          height: "50px",
+                          width: "300px",
+                          borderRadius: "0 10px 10px 0",
+                        }}
+                      ></Form.Control>
+                    </Form>
+                  </div>
                   <span
                     className="text-light fs-5 mb-2"
                     // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
-                   <span >Recent Chats</span> 
+                    <span>Recent Chats</span>
                   </span>
-                  {searchUser==="" && chatListData &&
-                    chatListData.map((list) => {
+                  {searchUser === "" &&
+                    chats &&
+                    chats.map((list) => {
                       return (
                         <ChatUserList
                           list={list}
@@ -289,11 +377,15 @@ export default function ChatScreen() {
                         />
                       );
                     })}
-                    {searchUser !== "" && chatListData && chatListData
+                  {searchUser !== "" &&
+                    chats &&
+                    chats
                       .filter((list) =>
                         list.participants.some(
                           (participant) =>
-                            participant.username && participant.username!=userData.username && participant.username.includes(searchUser)
+                            participant.username &&
+                            participant.username != userData.username &&
+                            participant.username.includes(searchUser)
                         )
                       )
                       .map((list) => (
@@ -301,11 +393,17 @@ export default function ChatScreen() {
                           list={list}
                           userID={userData._id}
                           key={list._id}
-                          chatID={chatID ? chatID : chatData ? chatData._id : ""}
+                          chatID={
+                            chatID ? chatID : chatData ? chatData._id : ""
+                          }
                           token={userData?.token}
                         />
                       ))}
-                    {!chatListData && <span className="text-center fs-5 text-danger mb-2">No Chat !!</span>}
+                  {!chats && (
+                    <span className="text-center fs-5 text-danger mb-2">
+                      No Chat !!
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -340,18 +438,24 @@ export default function ChatScreen() {
         display: none;
       }
     `}</style>
-                        <Dropdown.Toggle  id="dropdown-basic" style={{ width: "50px", height: "35px",marginRight:"22px" }} >
-                          <BsThreeDots className="text-dark fs-2 "  />
-                        </Dropdown.Toggle>
+                          <Dropdown.Toggle
+                            id="dropdown-basic"
+                            style={{
+                              width: "50px",
+                              height: "35px",
+                              marginRight: "22px",
+                            }}
+                          >
+                            <BsThreeDots className="text-dark fs-2 " />
+                          </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="bg-danger">
-                          <DeleteChat />
-
-                        </Dropdown.Menu>
-
-                      </Dropdown>
-                      </div>}
-                    </span>
+                          <Dropdown.Menu className="bg-danger">
+                            <DeleteChat />
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    )}
+                  </span>
                   <ul className="ah-actions actions">
                     {/* <li>
                       <button onClick={handleDelete} style={{ width: "50px" }}>
@@ -382,15 +486,19 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                  {/* { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
+                    {/* { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
                         <style>{`
       .dropdown-toggle::after {
         display: none;
       }
     `}</style>
-                        <Dropdown.Toggle variant="dark" id="dropdown-basic" style={{ width: "50px",height:"35px" }} >
-                          <BsThreeDots className="text-light" />
-                        </Dropdown.Toggle>
+                          <Dropdown.Toggle
+                            variant="dark"
+                            id="dropdown-basic"
+                            style={{ width: "50px", height: "35px" }}
+                          >
+                            <BsThreeDots className="text-light" />
+                          </Dropdown.Toggle>
 
                         <Dropdown.Menu className="bg-danger">
                   <DeleteChat />
@@ -402,8 +510,8 @@ export default function ChatScreen() {
                   </ul>
                 </div>
                 <div className="show-msg pt-3">
-                  {messageData &&
-                    messageData.map((msg) => {
+                  {messages &&
+                    messages.map((msg) => {
                       if (msg.sender._id === userData._id)
                         return <UserMessgeBox msg={msg} key={msg._id} />;
                       else return <SenderMessageBox msg={msg} key={msg._id} />;
@@ -427,7 +535,11 @@ export default function ChatScreen() {
                         <button
                           type="button"
                           className="btn btn-danger btn-sm position-absolute top-0 end-0 img-rem"
-                          style={{ width: "30px", height: "40px" ,display:"none"}}
+                          style={{
+                            width: "30px",
+                            height: "40px",
+                            display: "none",
+                          }}
                           onClick={() => removeImg(file)}
                         >
                           X
@@ -437,76 +549,78 @@ export default function ChatScreen() {
                   </div>
                 )}
                 <div className="input-above">
-                {typeMessage && (
-                  <span className="text-white ms-4">Type a Message.....</span>
-                )}
-                  {showEmojiPicker && (
-                    <EmojiPicker onEmojiClick={(e) => handleEmojiClick(e)} width={"100%"} />
+                  {typeMessage && (
+                    <span className="text-white ms-4">Type a Message.....</span>
                   )}
-                {istyping ? (
-                  <div>
-                    <Lottie
-                      options={defaultOptions}
-                      // height={50}
-                      width={70}
-                      style={{ marginBottom: 15, marginLeft: 0 }}
+                  {showEmojiPicker && (
+                    <EmojiPicker
+                      onEmojiClick={(e) => handleEmojiClick(e)}
+                      width={"100%"}
                     />
-                  </div>
-                ) : (
-                  <></>
-                )}
-                  </div>
-                {((userData && sellerID && userData._id === sellerID)||(!sellerID && !chatID)) ? (
+                  )}
+                  {istyping ? (
+                    <div>
+                      <Lottie
+                        options={defaultOptions}
+                        // height={50}
+                        width={70}
+                        style={{ marginBottom: 15, marginLeft: 0 }}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                {(userData && sellerID && userData._id === sellerID) ||
+                (!sellerID && !chatID) ? (
                   <></>
                 ) : (
                   <div className="card-footer">
                     <div className="input-group ">
-                      
                       <textarea
                         name=""
                         className="form-control type_msg text-dark chatInput"
                         placeholder="Type A Message..."
-                            style={{ fontFamily: "'Gluten', sans-serif" }}
+                        style={{ fontFamily: "'Gluten', sans-serif" }}
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
-                          <div className="input-group-append">
-                            {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
-                            {images.length < 4 && (
-                              <>
-                                <label
-                                  for="fileInput"
-                                  className="input-group-text attach_btn"
-                                >
-                                  <i className="fas fa-paperclip"></i>
-                                </label>
-                                <input
-                                  type="file"
-                                  id="fileInput"
-                                  style={{ display: "none" }}
-                                  multiple
-                                  custom
-                                  onChange={uploadFileHandler}
-                                />
-                              </>
-                            )}
-                          </div>
+                      <div className="input-group-append">
+                        {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
+                        {images.length < 4 && (
+                          <>
+                            <label
+                              htmlFor="fileInput"
+                              className="input-group-text attach_btn"
+                            >
+                              <i className="fas fa-paperclip"></i>
+                            </label>
+                            <input
+                              type="file"
+                              id="fileInput"
+                              style={{ display: "none" }}
+                              multiple
+                              onChange={uploadFileHandler}
+                            />
+                          </>
+                        )}
+                      </div>
                       <div className="input-group-append d-flex">
-                            <span>
-                              {/* Emoji button */}
-                              <button style={{width:"50px",zIndex:"0"}}
-                                className="btn emoji"
-                                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                              >
-                                😀
-                              </button>
-                            
-                            </span>
+                        <span>
+                          {/* Emoji button */}
+                          <button
+                            style={{ width: "50px", zIndex: "0" }}
+                            className="btn emoji"
+                            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                          >
+                            😀
+                          </button>
+                        </span>
                         <span
                           className="input-group-text send_btn"
                           onClick={handleSubmit}
                         >
-                          <IoSend className="fs-4"/>
+                          <IoSend className="fs-4" />
                         </span>
                       </div>
                     </div>
