@@ -31,6 +31,8 @@ export default function Landing() {
   const { userData } = userLogin;
   const getWishlist = useSelector((state) => state.userWishlist);
   var { wishlist } = getWishlist;
+  const updateProduct = useSelector((state) => state.productUpdate);
+  var { data,success } = updateProduct;
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -42,6 +44,10 @@ export default function Landing() {
       dispatch(getUserWishlist(userData.token));
     }
   }, [dispatch, keyword, pageNumber, userData]);
+
+
+
+
   return (
     <>
       <Header />

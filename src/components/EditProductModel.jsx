@@ -7,6 +7,7 @@ import Loader from "./Loader";
 import {
     deleteProduct,
     listProductDetails,
+    listProducts,
     updateProduct,
 } from "../actions/productActions";
 import FormContainer from "./FormContainer";
@@ -72,7 +73,7 @@ const EditProductModel = ({ product }) => {
         e.preventDefault();
         dispatch(
             updateProduct(
-                productId,
+                product._id,
                 name,
                 images,
                 description,
@@ -81,6 +82,7 @@ const EditProductModel = ({ product }) => {
             )
         );
         handleClose();
+        
     };
 
     const deleteHandler = (id) => {
