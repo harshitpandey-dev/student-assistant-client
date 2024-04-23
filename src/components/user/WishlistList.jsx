@@ -14,20 +14,21 @@ export default function WishlistList({ image, name, price, id }) {
   }
 
   return (
-    <tr>
-      <td width="45%">
-        <div className="display-flex align-center">
+    <tr className="w-100 text-center">
+      <td width="45%" className="">
+        <div className="display-flex align-items-center justify-content-around">
           <div className="img-product">
-            <img src={image} alt="" className="mCS_img_loaded" />
+            <img src={image} alt="" className="mCS_img_loaded" style={{width:"200px",height:"270px"}}/>
           </div>
-          <div className="name-product">{name}</div>
+          <div className="name-product fs-2 text-dark">{name}</div>
         </div>
       </td>
-      <td width="15%" className="price">
+      <td width="15%" height="280px" className="price fs-2 d-flex flex-row text-center justify-content-center align-center text-success w-100 ">
+              
         ₹ {price}
       </td>
-      {/* <td width="15%"><span className="in-stock-box">In Stock</span></td> */}
-      <td width="5%">
+      <td width="5%" height="280px" >
+       <div className="w-100 h-100 d-flex align-center">
         <Link
           to={`/product/${id}`}
           className="round-btn small-btn bg-light text-dark"
@@ -35,15 +36,22 @@ export default function WishlistList({ image, name, price, id }) {
         >
           <FaEye />
         </Link>
+
+       </div>
+
+
       </td>
       <td
-        width="10%"
+        width="10%" height="280px"
         className="text-center round-btn small-btn"
         style={{ cursor: "pointer" }}
       >
+      <div className="w-100 h-100 d-flex align-center">
         <a onClick={handleWishlist} className="trash-icon">
           <i className="far fa-trash-alt"></i>
         </a>
+
+      </div>
       </td>
     </tr>
   );
