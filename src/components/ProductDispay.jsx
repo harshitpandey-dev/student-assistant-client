@@ -8,6 +8,8 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { GoDot, GoDotFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { updateUserWishlist } from "../actions/userActions";
+import AdminEditProductModel from "./AdminEditProductModel";
+import EditProductModel from "./EditProductModel";
 
 export default function ProductDispay({product,userID,token}) {
     const dispatch = useDispatch();
@@ -130,6 +132,17 @@ export default function ProductDispay({product,userID,token}) {
                                         </p>                                      
                                     </div>
                        
+                    {isWishlisted ?
+                        <Button variant="success" onClick={handleWishlist}>
+                            Remove from wishList
+                        </Button> : <Button variant="danger" onClick={handleWishlist}>
+                            Add to wishList
+                        </Button>}
+                    {isYourProduct ? <EditProductModel product={product} />
+                     : <Button variant="primary" >
+                        <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
+                    </Button>
+                    }
                                 </main>
                             </div>
                         </div>
@@ -139,7 +152,7 @@ export default function ProductDispay({product,userID,token}) {
 
 
                 </Modal.Body>
-                <Modal.Footer className="bg-light ">
+                {/* <Modal.Footer className="bg-light ">
                     {isWishlisted ?
                         <Button variant="success" onClick={handleWishlist}>
                             Remove from wishList
@@ -151,7 +164,7 @@ export default function ProductDispay({product,userID,token}) {
                     </Button> : <Button variant="primary" >
                             <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
                     </Button>}
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </>
     )

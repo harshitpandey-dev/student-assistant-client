@@ -112,7 +112,7 @@ const UserUpdateScreen = () => {
                                   to={`/admin/product/${product._id}/edit`}
                                 >
                                   <AdminEditProductModel
-                                    productId={product._id}
+                                    product={product}
                                   />
                                 </LinkContainer>
                                 <UserPrductDeleteModel

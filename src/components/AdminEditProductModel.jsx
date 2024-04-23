@@ -15,48 +15,34 @@ import { PRODUCT_DETAILS_RESET } from "../types/productConstants";
 
 
 
-const AdminEditProductModel = ({ productId }) => {
+const AdminEditProductModel = ({ product }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState(product.name);
 
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState(product?.images);
 
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(0);
-    const [negotiable, setNegotiable] = useState(false);
+    const [description, setDescription] = useState(product?.description);
+    const [price, setPrice] = useState(product?.cost?.price);
+    const [negotiable, setNegotiable] = useState(product?.cost?.negotiable);
     const [uploading, setUploading] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     var { userData } = userLogin;
 
-    const productDetails = useSelector((state) => state.productDetails);
-    const { loading, error, product } = productDetails;
-    const productUpdate = useSelector((state) => state.productUpdate);
-
-    const {
-        loading: loadingUpdate,
-        error: errorUpdate,
-
-        success: successUpdate,
-    } = productUpdate;
-
-    useEffect(()=>{
-        dispatch(listProductDetails(productId, userData?.token));
-    },[])
+  
  
 
 
-    useEffect(() => {   
-        setName(product?.name);
-        setImages(product?.images);
-        setDescription(product?.description);
-        setPrice(product?.cost?.price);
-        setNegotiable(product?.cost?.negotiable);
-    }, [ productId,userData,loading]);
+
+
+ 
+
+
+
     const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload";
     const CLOUDINARY_UPLOAD_PRESET = "qwdzopo4";
     const uploadFileHandler = async (e) => {
@@ -135,11 +121,7 @@ const AdminEditProductModel = ({ productId }) => {
 
 
                                     <FormContainer>
-                                        {loading ? (
-                                            <Loader />
-                                        ) : error ? (
-                                            <Message variant="danger">{error}</Message>
-                                        ) : (
+                                      
                                             <Form >
                                                 <Form.Group controlId="name">
                                                     <Form.Label>Name of the property </Form.Label>
@@ -222,7 +204,7 @@ const AdminEditProductModel = ({ productId }) => {
                                                 </Form.Group>
                                             </Form>
 
-                                        )}
+                                       
                                  </FormContainer>
                                 </Form.Label>
                             </Form.Group>
