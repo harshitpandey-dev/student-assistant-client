@@ -69,22 +69,19 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem("userData", JSON.stringify(data.data.user));
     dispatch({
       type: TOAST_ADD,
-      payload: 'LOGINED SUCCESSFULLY !!!',
+      payload: "LOGINED SUCCESSFULLY !!!",
     });
   } catch (error) {
-    const errorMessage=(error.response.data);
+    const errorMessage = error.response.data;
     const parser = new DOMParser();
-    const doc = parser.parseFromString(errorMessage, 'text/html');
+    const doc = parser.parseFromString(errorMessage, "text/html");
     const errorText = doc.body.textContent.trim(); // Extracting text content and removing leading/trailing whitespace
 
-    const message = errorText.split("at")[0]; 
+    const message = errorText.split("at")[0];
 
     dispatch({
       type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data
-          ? message
-          : error.message,
+      payload: error.response && error.response.data ? message : error.message,
     });
   }
 };
@@ -95,7 +92,6 @@ export const logout = () => async (dispatch, getState) => {
   const {
     userLogin: { userData },
   } = getState();
-  console.log(userData);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -108,7 +104,7 @@ export const logout = () => async (dispatch, getState) => {
   localStorage.removeItem("userData");
   dispatch({
     type: TOAST_ADD,
-    payload: 'LOGOUT SUCCESSFULLY !!!',
+    payload: "LOGOUT SUCCESSFULLY !!!",
   });
   dispatch({
     type: USER_LOGOUT,
@@ -195,7 +191,7 @@ export const register =
       localStorage.setItem("userData", JSON.stringify(data.data));
       dispatch({
         type: TOAST_ADD,
-        payload: 'REGISTERED SUCCESSFULLY !!!',
+        payload: "REGISTERED SUCCESSFULLY !!!",
       });
     } catch (error) {
       dispatch({
@@ -236,7 +232,7 @@ export const sendEmail = (email) => async (dispatch) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'EMAIL SEND SUCCESSFULLY !!!',
+      payload: "EMAIL SEND SUCCESSFULLY !!!",
     });
   } catch (error) {
     dispatch({
@@ -274,7 +270,7 @@ export const resetPassword = (email, token, password) => async (dispatch) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'PASSWORD RESET SUCCESSFULLY !!!',
+      payload: "PASSWORD RESET SUCCESSFULLY !!!",
     });
   } catch (error) {
     dispatch({
@@ -288,7 +284,7 @@ export const resetPassword = (email, token, password) => async (dispatch) => {
 };
 
 //get all users by an  admin
-export const listUsers = (token) => async (dispatch, getState) => {
+export const listUsers = (token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LIST_REQUEST,
@@ -322,17 +318,14 @@ export const listUsers = (token) => async (dispatch, getState) => {
 
 //delete user by an admin
 
-export const deleteUser = (id,token) => async (dispatch, getState) => {
+export const deleteUser = (id, token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_DELETE_REQUEST,
     });
-    const {
-      userLogin: { userData },
-    } = getState();
+
     const config = {
       headers: {
-
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         Authorization: `Bearer ${token}`,
@@ -346,7 +339,7 @@ export const deleteUser = (id,token) => async (dispatch, getState) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'USER DELETED !!!',
+      payload: "USER DELETED !!!",
     });
   } catch (error) {
     dispatch({
@@ -388,7 +381,7 @@ export const updateUser = (user,token) => async (dispatch, getState) => {
     localStorage.setItem("userData", JSON.stringify(data.data.updatedUser));
     dispatch({
       type: TOAST_ADD,
-      payload: 'PROFILE UPDATED SUCCESSFULLY !!!',
+      payload: "PROFILE UPDATED SUCCESSFULLY !!!",
     });
   } catch (error) {
     dispatch({
@@ -471,7 +464,7 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'PASSWORD UPDATED !!!',
+      payload: "PASSWORD UPDATED !!!",
     });
   } catch (error) {
     dispatch({
@@ -486,7 +479,7 @@ export const updateUserPassword = (user) => async (dispatch, getState) => {
 
 // Add or Remove wishlist
 
-export const updateUserWishlist = (productid,token) => async (dispatch, getState) => {
+export const updateUserWishlist = (productid, token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_WISHLIST_REQUEST,
@@ -510,7 +503,6 @@ export const updateUserWishlist = (productid,token) => async (dispatch, getState
       type: USER_WISHLIST_SUCCESS,
       payload: data.data.wishlist,
     });
- 
   } catch (error) {
     dispatch({
       type: USER_WISHLIST_FAIL,
@@ -524,7 +516,7 @@ export const updateUserWishlist = (productid,token) => async (dispatch, getState
 
 // get whislist
 
-export const getUserWishlist = (token) => async (dispatch, getState) => {
+export const getUserWishlist = (token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_WISHLIST_REQUEST,
@@ -554,6 +546,3 @@ export const getUserWishlist = (token) => async (dispatch, getState) => {
     });
   }
 };
-
-
-

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button } from "react-bootstrap";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
-import Product from "../../components/Product";
+import Product from "../../components/product/Product";
 import Paginate from "../../components/Paginate";
 // import Header from "../../components/Header";
 import Meta from "../../components/Meta";
@@ -40,7 +40,7 @@ export default function Landing() {
     if (userData) {
       dispatch(getUserWishlist(userData.token));
     }
-  }, [dispatch, keyword, pageNumber,userData]);
+  }, [dispatch, keyword, pageNumber, userData]);
   return (
     <>
       <Header />
@@ -81,7 +81,11 @@ export default function Landing() {
                 products.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
-                      <ProductDispay product={product} userID={userData?._id} token={userData?.token}/>
+                      <ProductDispay
+                        product={product}
+                        userID={userData?._id}
+                        token={userData?.token}
+                      />
                     </Col>
                   ) : (
                     <></>

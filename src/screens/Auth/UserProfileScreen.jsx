@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts, deleteProduct } from "../../actions/productActions";
 import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../../components/Loader";
-import UpdateUser from "../../components/UpdateUser";
-import ChangePassword from "../../components/ChangePassword";
+import UpdateUser from "../../components/user/UpdateUser";
+import ChangePassword from "../../components/user/ChangePassword";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router";
-import DeleteAccount from "../../components/DeleteAccount";
+import DeleteAccount from "../../components/user/DeleteAccount";
 import UserPrductDeleteModel from "../../components/UserPrductDeleteModel";
 import AdminEditProductModel from "../../components/AdminEditProductModel";
 
@@ -103,14 +103,20 @@ const UserUpdateScreen = () => {
                                   ></i>
                                 )}
                               </td>
-                              <td>{new Date(product.createdAt).toLocaleString()}</td>
+                              <td>
+                                {new Date(product.createdAt).toLocaleString()}
+                              </td>
                               <td>
                                 <LinkContainer
                                   to={`/admin/product/${product._id}/edit`}
                                 >
-                                 <AdminEditProductModel productId={product._id}/>
+                                  <AdminEditProductModel
+                                    productId={product._id}
+                                  />
                                 </LinkContainer>
-                               <UserPrductDeleteModel productId={product._id}/>
+                                <UserPrductDeleteModel
+                                  productId={product._id}
+                                />
                               </td>
                             </tr>
                           )
@@ -123,10 +129,9 @@ const UserUpdateScreen = () => {
           <Col md={2}></Col>
         </Row>
 
-        <Row >
+        <Row>
           <Col md={1}></Col>
-          <Col md={4} >
-
+          <Col md={4}>
             <div>Edit your Details</div>
           </Col>
           <Col md={6}>
@@ -137,7 +142,7 @@ const UserUpdateScreen = () => {
         <Row>
           <Col md={1}></Col>
           <Col md={4}>
-            <div >Change Password</div>
+            <div>Change Password</div>
           </Col>
           <Col md={6}>
             <ChangePassword />
