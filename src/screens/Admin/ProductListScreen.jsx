@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router";
 import { login } from "../../actions/userActions";
 import AdminProductDeleteModel from "../../components/AdminProductDeleteModel";
 import AdminEditProductModel from "../../components/AdminEditProductModel";
+import Footer from "../../components/Footer";
 
 const ProductListScreen = () => {
   const navigate = useNavigate();
@@ -112,6 +113,8 @@ const ProductListScreen = () => {
           </>
         )}
       </div>
+      <Footer />
+      
     </>
   );
 };

@@ -8,6 +8,7 @@ import FormContainer from "../../components/FormContainer";
 // import Header from "../../components/Header";
 import { useNavigate } from "react-router";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
@@ -226,6 +227,7 @@ const ProductCreateScreen = () => {
           )}
         </FormContainer>
       </div>
+      <Footer />
     </>
   );
 };

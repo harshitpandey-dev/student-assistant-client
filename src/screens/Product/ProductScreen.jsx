@@ -11,6 +11,7 @@ import { listProductDetails } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
 import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const ProductScreen = () => {
   const navigate = useNavigate();
@@ -123,6 +124,7 @@ const ProductScreen = () => {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 };

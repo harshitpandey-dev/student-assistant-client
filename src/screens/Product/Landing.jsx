@@ -16,6 +16,7 @@ import { getUserWishlist } from "../../actions/userActions";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import Header from "../../components/Header";
 import ProductDispay from "../../components/ProductDispay";
+import Footer from "../../components/Footer";
 
 export default function Landing() {
   const match = useParams();
@@ -101,6 +102,7 @@ export default function Landing() {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 }

@@ -14,6 +14,7 @@ import { PRODUCT_UPDATE_RESET } from "../../types/productConstants";
 // import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const ProductEditScreen = () => {
   const navigate = useNavigate();
@@ -288,6 +289,7 @@ const ProductEditScreen = () => {
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
       </div>
+      <Footer />
     </>
   );
 };

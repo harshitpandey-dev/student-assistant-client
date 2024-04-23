@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import DeleteAccount from "../../components/user/DeleteAccount";
 import UserPrductDeleteModel from "../../components/UserPrductDeleteModel";
 import AdminEditProductModel from "../../components/AdminEditProductModel";
+import Footer from "../../components/Footer";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -158,6 +159,7 @@ const UserUpdateScreen = () => {
           </Col>
         </Row>
       </div>
+      <Footer />
     </>
   );
 };

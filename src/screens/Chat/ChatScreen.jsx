@@ -330,7 +330,7 @@ export default function ChatScreen() {
             <div className=" bootstrap snippets bootdey p-2 w-100">
               <div className="tile tile-alt" id="messages-main">
                 <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                  <div className="ms-user clearfix text-white fs-2 d-flex justify-content-between ">
+                  <div className="ms-user clearfix text-white fs-2 d-flex justify-content- ">
                     {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
 
                     <div
@@ -339,8 +339,8 @@ export default function ChatScreen() {
                     >
                       Student Assistant
                     </div>
-                    <div className="ms-4">
-                      <FaBell className="text-light fs-3" />
+                    <div className="d-flex">
+                      <span className="badge fs-5 text-danger"><FaBell className="text-light fs-3" />4</span>
                     </div>
                   </div>
 

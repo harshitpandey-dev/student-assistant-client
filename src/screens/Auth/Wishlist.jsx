@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import { getUserWishlist } from "../../actions/userActions";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function Wishlist() {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ export default function Wishlist() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

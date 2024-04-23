@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import AdminDeleteAccountModel from "../../components/AdminDeleteAccountModel";
 import AdminUpdateUser from "../../components/AdminUpdateUser";
 import { USER_DETAILS_RESET, USER_UPDATE_RESET } from "../../types/userConstants";
+import Footer from "../../components/Footer";
 const UserListScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -133,6 +134,7 @@ const UserListScreen = () => {
           </Table>
         )}
       </div>
+      <Footer />
     </>
   );
 };
