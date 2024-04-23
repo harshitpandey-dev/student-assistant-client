@@ -59,9 +59,9 @@ export default function ProductDispay({product,userID,token}) {
 
     return (
         <>
-            <Button className="w-100 h-100 bg-light" onClick={handleShow}>
+            <div className="w-100 h-100 bg-light" onClick={handleShow}>
                <Product product={product} userID={userID} token={token}/>
-            </Button>
+            </div>
 
             <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
                 <Modal.Header closeButton className="bg-secondary " >
