@@ -84,7 +84,7 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </>
     </Router>
   );

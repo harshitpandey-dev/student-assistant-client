@@ -76,6 +76,16 @@ export default function ChatScreen() {
     }
     
    },[chatID,userData,chatListData])
+
+  useEffect(()=>{
+    
+    if(userData && chatData && sellerID){
+      // const activeChat =  chatData?.filter((item) => item._id === sellerID);
+      const filteredParticipants =  chatData?.participants?.filter(participant => participant?._id !== userData?._id);
+      setChatWith(filteredParticipants[0])
+    }
+    
+   },[sellerID,userData,chatData])
   // console.log(images);
 
   // useEffect(() => {
@@ -99,6 +109,7 @@ export default function ChatScreen() {
       dispatch(get_Chat(sellerID, userData.token));
     }
   }, [sellerID, userData, chatID, reload]);
+  // console.log(chatData);
 
   useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
