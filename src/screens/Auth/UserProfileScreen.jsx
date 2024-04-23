@@ -129,8 +129,10 @@ const UserUpdateScreen = () => {
           </Col>
           <Col md={2}></Col>
         </Row>
-
-         
+ 
+        <Row>
+          <Col md={2}></Col>
+         <Col md={8}>
           <table className="m-2 w-100">
             <tr className="mb-4">
               <td>Edit your Details</td>
@@ -149,8 +151,8 @@ const UserUpdateScreen = () => {
             <tr><hr></hr></tr>
             </table>
         
-
-      
+        </Col>
+        </Row>
       </div>
       <Footer />
     </>
