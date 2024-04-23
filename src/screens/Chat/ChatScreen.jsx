@@ -225,7 +225,13 @@ export default function ChatScreen() {
         <div className="" style={{width:"50px",height:"100px"}}>
         <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
           <div>
+                  <label
+                    for="fileInput"
+                    style={{cursor:"pointer"}}
+                  >
                   <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
+                    {/* <i className="fas fa-paperclip"></i> */}
+                  </label>
           </div>
           <div>
           <Link to="/" className="fs-4 text-light"><FaHome /></Link>
