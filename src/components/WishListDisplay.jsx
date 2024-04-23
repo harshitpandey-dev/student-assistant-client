@@ -2,11 +2,13 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "./Product";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { GoDot, GoDotFill } from "react-icons/go";
 import { FaEye } from "react-icons/fa";
+import { updateUserWishlist } from "../actions/userActions";
+import { Link } from "react-router-dom";
 
 export default function WishListDisplay({ product }) {
     const dispatch = useDispatch();
@@ -15,11 +17,25 @@ export default function WishListDisplay({ product }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userData } = userLogin;
+    const getWishlist = useSelector((state) => state.userWishlist);
+    var { wishlist } = getWishlist;
+
     const [ind, setInd] = useState(0);
 
     const images = product?.images;
 
+    const isYourProduct = userData?._id === product?.owner?._id;
 
+    const isWishlisted = (wishlist && wishlist.length > 0) ? wishlist?.some(item => item._id === product._id) : false;
+
+    function handleWishlist() {
+        dispatch(updateUserWishlist(product._id, userData.token))
+        window.location.reload();
+    }
+
+    console.log(product);
     function prevImage() {
         if (ind == 0) {
             setInd(images.length - 1);
@@ -127,12 +143,17 @@ export default function WishListDisplay({ product }) {
 
                 </Modal.Body>
                 <Modal.Footer className="bg-light ">
-                    <Button variant="warning" onClick={() => navigate("/forgotpassword")}>
-                        WishList
-                    </Button>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Chat With Seller
-                    </Button>
+                    {isWishlisted ?
+                        <Button variant="success"  onClick={handleWishlist}>
+                            Remove from wishList
+                        </Button> : <Button variant="danger" onClick={handleWishlist}>
+                            Add to wishList
+                        </Button>}
+                    {isYourProduct ? <Button variant="primary" disabled>
+                        Your Product
+                    </Button> : <Button variant="primary">
+                            <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
+                    </Button>}
                 </Modal.Footer>
             </Modal>
         </>
