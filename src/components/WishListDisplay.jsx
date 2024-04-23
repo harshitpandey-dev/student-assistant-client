@@ -152,7 +152,7 @@ export default function WishListDisplay({ product }) {
                     {isYourProduct ? <Button variant="primary" disabled>
                         Your Product
                     </Button> : <Button variant="primary">
-                            <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
+                            <Link to={`/chatScreen/${product?.owner}`} >  Chat With Seller</Link>
                     </Button>}
                 </Modal.Footer>
             </Modal>

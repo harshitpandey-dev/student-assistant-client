@@ -19,6 +19,7 @@ import { login } from "./actions/userActions";
 import ChatScreen from "./screens/Chat/ChatScreen";
 import Wishlist from "./screens/Auth/Wishlist";
 import Alert from "./components/Alert";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </>
     </Router>
   );
