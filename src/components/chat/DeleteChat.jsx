@@ -27,8 +27,8 @@ const DeleteChat = ({ chatid, token }) => {
   return (
     <>
       <Button
-        variant="danger"
-        className=""
+        variant="light"
+        className="text-danger"
         style={{ width: "100%", height: "auto", fontSize: "17px" }}
         onClick={handleShow}
       >
