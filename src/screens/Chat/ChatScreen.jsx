@@ -87,17 +87,18 @@ export default function ChatScreen() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
 
-  const [chatWith,setChatWith]=useState([])
+  const [chatWith, setChatWith] = useState([]);
 
-  useEffect(()=>{
-    
-    if(userData && chatListData && chatID){
-      const activeChat =  chatListData?.filter((item) => item._id === chatID);
-      const filteredParticipants =  activeChat[0]?.participants?.filter(participant => participant?._id !== userData?._id);
-      setChatWith(filteredParticipants[0])
+  useEffect(() => {
+    if (userData && chatListData && chatID) {
+      const activeChat = chatListData?.filter((item) => item._id === chatID);
+      const filteredParticipants = activeChat[0]?.participants?.filter(
+        (participant) => participant?._id !== userData?._id
+      );
+      setChatWith(filteredParticipants[0]);
     }
-    
-   },[chatID,userData,chatListData])  useEffect(() => {
+  }, [chatID, userData, chatListData]);
+  useEffect(() => {
     setChats(chatListData);
   }, [chatListData]);
   useEffect(() => {
@@ -417,23 +418,50 @@ export default function ChatScreen() {
                   >
                     <i className="fa fa-bars text-light"></i>
                   </div>
-                    <span
-                      className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
-                      style={{ fontFamily: "'Gluten', sans-serif" ,marginLeft:"-21px"}}
-                    >
-                      {/* <Link to="/"></Link> */}
-                      <div className="d-flex ">
-                     {chatWith.length!==0 &&
-                     <><img src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg" alt="" style={{width:"60px",height:"60px",borderRadius:"50%"}} className="img-avatar pull-left ms-4" />
-                      <div className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center" style={{lineHeight:"26px"}}>
-                      <div className="fs-2  text-light mt-2">{chatWith?.fullname}</div>
-                      <div className="ms-4 text-dark" style={{ fontSize: "16px" }}>{chatWith?.username}</div>
+                  <span
+                    className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
+                    style={{
+                      fontFamily: "'Gluten', sans-serif",
+                      marginLeft: "-21px",
+                    }}
+                  >
+                    {/* <Link to="/"></Link> */}
+                    <div className="d-flex ">
+                      {chatWith.length !== 0 && (
+                        <>
+                          <img
+                            src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                            alt=""
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              borderRadius: "50%",
+                            }}
+                            className="img-avatar pull-left ms-4"
+                          />
+                          <div
+                            className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center"
+                            style={{ lineHeight: "26px" }}
+                          >
+                            <div className="fs-2  text-light mt-2">
+                              {chatWith?.fullname}
+                            </div>
+                            <div
+                              className="ms-4 text-dark"
+                              style={{ fontSize: "16px" }}
+                            >
+                              {chatWith?.username}
+                            </div>
+                          </div>{" "}
+                        </>
+                      )}
+                    </div>
 
-                            </div> </>}
-                      </div>
-                     
-                      {messageData && <div> <Dropdown style={{ width: "42px", height: "48px" }} >
-                        <style>{`
+                    {messageData && (
+                      <div>
+                        {" "}
+                        <Dropdown style={{ width: "42px", height: "48px" }}>
+                          <style>{`
       .dropdown-toggle::after {
         display: none;
       }
