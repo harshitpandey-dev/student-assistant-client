@@ -148,8 +148,8 @@ export default function ProductDispay({product,userID,token}) {
                         </Button>}
                     {isYourProduct ? <Button variant="primary" disabled>
                        Your Product
-                    </Button> : <Button variant="primary" href={`/chatScreen/${product?.owner?._id}`}>
-                        Chat With Seller
+                    </Button> : <Button variant="primary" >
+                            <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
                     </Button>}
                 </Modal.Footer>
             </Modal>
