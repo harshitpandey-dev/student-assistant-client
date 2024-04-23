@@ -355,7 +355,7 @@ export default function ChatScreen() {
                           <BsThreeDots className="text-dark fs-2 "  />
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="bg-danger">
+                        <Dropdown.Menu className="bg-light">
                           <DeleteChat />
 
                         </Dropdown.Menu>

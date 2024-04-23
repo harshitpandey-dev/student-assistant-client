@@ -28,7 +28,7 @@ const DeleteChat = ({ chatid, token }) => {
 
     return (
         <>
-            <Button variant="danger" className="" style={{width:"100%",height:"auto",fontSize:"17px"}} onClick={handleShow}>
+            <Button variant="light" className="text-danger" style={{width:"100%",height:"auto",fontSize:"17px"}} onClick={handleShow}>
                 Delete Chat
             </Button>
 
