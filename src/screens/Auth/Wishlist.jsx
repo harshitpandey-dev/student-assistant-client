@@ -77,12 +77,12 @@ export default function Wishlist() {
                 </table>
               </div> */}
               <Table
-                striped
+                // striped
                 bordered
                 hover
                 responsive
                 className="table-sm"
-                variant="danger"
+                variant="light"
               >
                 <thead>
                   <tr>
