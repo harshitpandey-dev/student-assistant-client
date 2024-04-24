@@ -98,7 +98,7 @@ const ProductListScreen = () => {
                         <LinkContainer
                           to={`/admin/product/${product._id}/edit`}
                         >
-                         <AdminEditProductModel productId={product._id}/>
+                         <AdminEditProductModel product={product}/>
                         </LinkContainer>
                         <AdminProductDeleteModel productId={product._id}/>
                       </td>
