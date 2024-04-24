@@ -133,6 +133,17 @@ export default function WishListDisplay({ product }) {
                                         </p>
                                     </div>
 
+                                    {isWishlisted ?
+                                        <Button variant="success" onClick={handleWishlist}>
+                                            Remove from wishList
+                                        </Button> : <Button variant="danger" onClick={handleWishlist}>
+                                            Add to wishList
+                                        </Button>}
+                                    {isYourProduct ? <EditProductModel product={product} />
+                                        : <Button variant="primary" >
+                                            <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
+                                        </Button>
+                                    }
                                 </main>
                             </div>
                         </div>
@@ -142,19 +153,19 @@ export default function WishListDisplay({ product }) {
 
 
                 </Modal.Body>
-                <Modal.Footer className="bg-light ">
+                {/* <Modal.Footer className="bg-light ">
                     {isWishlisted ?
-                        <Button variant="success"  onClick={handleWishlist}>
+                        <Button variant="success" onClick={handleWishlist}>
                             Remove from wishList
                         </Button> : <Button variant="danger" onClick={handleWishlist}>
-                            Add to wishList
+                           Add to wishList
                         </Button>}
                     {isYourProduct ? <Button variant="primary" disabled>
-                        Your Product
-                    </Button> : <Button variant="primary">
-                            <Link to={`/chatScreen/${product?.owner}`} >  Chat With Seller</Link>
+                       Your Product
+                    </Button> : <Button variant="primary" >
+                            <Link to={`/chatScreen/${product?.owner?._id}`} >  Chat With Seller</Link>
                     </Button>}
-                </Modal.Footer>
+                </Modal.Footer> */}
             </Modal>
         </>
     )

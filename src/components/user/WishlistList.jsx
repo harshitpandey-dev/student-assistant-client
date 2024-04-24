@@ -3,8 +3,9 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { updateUserWishlist } from "../../actions/userActions";
 import { useDispatch } from "react-redux";
+import WishListDisplay from "../WishListDisplay";
 
-export default function WishlistList({ image, name, price, id }) {
+export default function WishlistList({ image, name, price, id ,product}) {
   const dispatch = useDispatch();
 
   function handleWishlist() {
@@ -29,13 +30,7 @@ export default function WishlistList({ image, name, price, id }) {
       </td>
       <td width="5%" height="280px" >
        <div className="w-100 h-100 d-flex align-center">
-        <Link
-          to={`/product/${id}`}
-          className="round-btn small-btn bg-light text-dark"
-          style={{ width: "30px" }}
-        >
-          <FaEye />
-        </Link>
+        <WishListDisplay product={product}/>
 
        </div>
 
