@@ -32,12 +32,12 @@ const UserUpdateScreen = () => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
-    if (!userData) {
+    else{
       navigate("/");
       return;
-    } else {
-      dispatch(listProducts());
     }
+      dispatch(listProducts());
+    
   }, [dispatch, userData, successDelete, navigate]);
 
   // const deleteHandler = (id) => {
@@ -128,11 +128,14 @@ const UserUpdateScreen = () => {
             )}
           </Col>
           <Col md={2}></Col>
+          <Col md={8}>
+          </Col>
         </Row>
  
         <Row>
           <Col md={2}></Col>
          <Col md={8}>
+          <h3>Setting</h3>
           <table className="m-2 w-100">
             <tr className="mb-4">
               <td>Edit your Details</td>
