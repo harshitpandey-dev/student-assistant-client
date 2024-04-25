@@ -561,12 +561,14 @@ export default function ChatScreen() {
                     </ul>
                   </div>
                   <div className="show-msg pt-3">
-                    {messages &&
+                    {messages ?
                       messages.map((msg) => {
                         if (msg.sender._id === userData._id)
                           return <UserMessgeBox msg={msg} key={msg._id} />;
                         else return <SenderMessageBox msg={msg} key={msg._id} />;
-                      })}
+                      }):<div className="d-flex justify-content-center align-items-center w-100 h-100">
+                        Select a chat to talk !!
+                      </div> }
                     <div ref={messagesEndRef} />
                   </div>
 

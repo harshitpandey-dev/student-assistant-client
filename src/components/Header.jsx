@@ -23,7 +23,7 @@ const Header = () => {
     currentURL = window.location.href;
     url = (currentURL.split("/"));
     setHide(false);
-    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist")) {
+    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist") || url.includes("about")) {
       setHide(true);
     }
   },[location])
