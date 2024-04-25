@@ -41,11 +41,11 @@ export default function ChatUserList({ list, userID, chatID, token }) {
           active ? "list-group-item active  media" : "list-group-item  media "
         }
       >
-      <div className="d-flex flex-row">
+      <div className="d-flex flex-row ">
         <div className="pull-left">
           <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" />
         </div>
-        <div className="media-body">
+        <div className="media-body w-100 ms-2">
           <div className="list-group-item-heading">
             {filteredParticipants[0]?.username}<span class="badge text-danger">2 Unread</span>
           </div>

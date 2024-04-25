@@ -1173,16 +1173,16 @@ form-control:focus {
 
 .style-btn {
     display: flex;
-    width: 40px;
+    width: 150px;
     overflow: hidden;
     height: 33px;
     border-radius: 10px !important;
-    transition: all 0.85s !important;
+    /* transition: all 0.85s !important; */
     background-color: rgb(1, 1, 1) !important;
 }
 
 .style-btn:hover {
-    width: 250px;
+    /* width: 250px; */
     background-color: rgb(232, 233, 238) !important;
     color: green !important;
 }
@@ -1235,7 +1235,7 @@ form-control:focus {
 .style-btn-wishlist:hover,
 .style-btn-wishlist-pro:hover {
     color: red !important;
-    width: 150px !important;
+    /* width: 150px !important; */
 }
 
 .card-footer,
