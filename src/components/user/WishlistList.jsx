@@ -17,18 +17,18 @@ export default function WishlistList({ image, name, price, id ,product}) {
   return (
     <tr className="w-100 text-center">
       <td width="45%" className="">
-        <div className="display-flex align-items-center justify-content-around">
-          <div className="img-product">
+        <div className="display-flex align-items-center justify-content-flex-start">
+          {/* <div className="img-product">
             <img src={image} alt="" className="mCS_img_loaded" style={{width:"200px",height:"270px"}}/>
-          </div>
-          <div className="name-product fs-2 text-dark">{name}</div>
+          </div> */}
+          <div className="name-product fs-2 text-secondary">{name}</div>
         </div>
       </td>
-      <td width="15%" height="280px" className="price fs-2 d-flex flex-row text-center justify-content-center align-center text-success w-100 ">
+      <td width="15%"  className="price fs-2 d-flex flex-row text-center justify-content-center align-center text-success w-100 ">
               
-        ₹ {price}
+        ₹ {price} {product?.cost?.negotiable && <span className='text-secondary' style={{ fontSize: "15px" }}> (Negotiable)</span>}
       </td>
-      <td width="5%" height="280px" >
+      <td width="5%"  >
        <div className="w-100 h-100 d-flex align-center">
         <WishListDisplay product={product}/>
 
@@ -37,14 +37,14 @@ export default function WishlistList({ image, name, price, id ,product}) {
 
       </td>
       <td
-        width="10%" height="280px"
-        className="text-center round-btn small-btn"
+        width="10%" 
+        className=" h-100  "
         style={{ cursor: "pointer" }}
       >
-      <div className="w-100 h-100 d-flex align-center">
-        <a onClick={handleWishlist} className="trash-icon">
+      <div className="w-100 h-100 d-flex align-items-center justify-content-center" >
+        <div onClick={handleWishlist} className="trash-icon h-100">
           <i className="far fa-trash-alt"></i>
-        </a>
+        </div>
 
       </div>
       </td>
