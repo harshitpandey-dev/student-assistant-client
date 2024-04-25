@@ -76,7 +76,7 @@ export default function ChangePassword() {
             }
           ></input>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-center">
           <Button variant="warning" onClick={() => navigate("/forgotpassword")}>
             Forgot Password
           </Button>

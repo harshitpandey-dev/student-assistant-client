@@ -215,7 +215,7 @@ const AdminEditProductModel = ({ product }) => {
 
 
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className="d-flex justify-content-center">
                     <Button onClick={submitHandler} variant="primary" className="ms-2">
                         Update
                     </Button>
