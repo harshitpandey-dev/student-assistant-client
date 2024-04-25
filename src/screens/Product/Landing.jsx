@@ -26,7 +26,7 @@ export default function Landing() {
 
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products } = productList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
   const getWishlist = useSelector((state) => state.userWishlist);
@@ -45,6 +45,11 @@ export default function Landing() {
     }
   }, [dispatch, keyword, pageNumber, userData]);
 
+
+  const startIndex =( pageNumber -1) * 2;
+  const endIndex =  pageNumber * 2 ;
+  var productsForPage = products?.slice(startIndex, endIndex);
+  var pages = Math.ceil(products?.length / (endIndex-startIndex));
 
 
 
@@ -84,8 +89,8 @@ export default function Landing() {
         ) : (
           <>
             <Row>
-              {products &&
-                products.map((product) =>
+                  {productsForPage &&
+                    productsForPage.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
                       <ProductDispay
@@ -102,7 +107,7 @@ export default function Landing() {
             <Paginate
               className="paginate"
               pages={pages}
-              page={page}
+              page={pageNumber}
               keyword={keyword ? keyword : ""}
             />
           </>
