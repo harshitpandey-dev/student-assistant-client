@@ -13,6 +13,8 @@ import Footer from "../../components/Footer";
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [message, setMessage] = useState(null);
   const [images, setImages] = useState([]);
   const [showImages, setShowImages] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -50,6 +52,19 @@ const ProductCreateScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if(keyword.length<10 || description.length<20){
+      if(keyword.length<10){
+        setMessage("Keyword should be of atleast 10 words");
+        
+      }else{
+        setMessage("Description should be of atleast 10 words");
+
+      }
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+      return;
+    }
     const imagesData = [];
     showImages.map((file) => {
       const data = file;
@@ -82,6 +97,7 @@ const ProductCreateScreen = () => {
 
       <div style={{ width: "100vw", height: "80px" }}></div>
       <div className="py-3 ">
+       
         <FormContainer>
           <h1
             className=" py-2 text-center"
@@ -107,7 +123,7 @@ const ProductCreateScreen = () => {
               {showImages.length < 4 && (
                 <Form.Group controlId="images">
                   <Form.Label>
-                    Image <small> *Upload Image only</small>
+                    Image <small> *Upload Image only (max 4)</small>
                   </Form.Label>
 
                   <Form.File
@@ -145,19 +161,19 @@ const ProductCreateScreen = () => {
                 </div>
               )}
 
-              {/* <Form.Group controlId="category">
-                <Form.Label>Category </Form.Label>
+              <Form.Group controlId="category">
+                <Form.Label>Keyword (in atleast 10 words)</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter category like: electronics, books, Furniture.. "
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  placeholder="Enter keywords like: electronics, books, Furniture.. "
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
                   required
                 ></Form.Control>
-              </Form.Group> */}
+              </Form.Group>
 
               <Form.Group controlId="description">
-                <Form.Label>Describe your property </Form.Label>
+                <Form.Label>Describe your property (in atleast 20 words)</Form.Label>
 
                 <Form.Control
                   as="textarea"
@@ -223,6 +239,7 @@ const ProductCreateScreen = () => {
                 Upload your property
               </Button>
               {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="danger">{message}</Message>}
             </Form>
           )}
         </FormContainer>
