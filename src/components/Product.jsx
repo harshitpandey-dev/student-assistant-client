@@ -38,8 +38,10 @@ const Product = ({product,userID,token}) => {
           {/* <Link to={`/product/${product._id}`}> */}
             <Card.Title as='p' className='name-label'>
               <strong>{product.name}</strong>
+              <br></br>
               
             </Card.Title>
+              <p className='fs-5 text-secondary'>{product?.keywords}</p>
             {/* <p style={{ fontFamily: "'Gluten', sans-serif" }}>{product?.description}</p> */}
           {/* </Link> */}
           <Card.Text as='h3' className='text-success ' style={{ fontSize: "33px", fontWeight: "bold" }}>₹ {product.cost.price} {product?.cost?.negotiable && <span className='text-secondary' style={{fontSize:"15px"}}> (Negotiable)</span>} </Card.Text>

@@ -80,6 +80,7 @@ const ProductListScreen = () => {
                   {/* <th>CATEGORY</th> */}
                   <th>OWNER</th>
                   <th>CREATED ON</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -94,6 +95,7 @@ const ProductListScreen = () => {
                       {/* <td>{product.category}</td> */}
                       <td>{product.owner?.fullname}</td>
                       <td>{product.createdAt.substring(0, 10)}</td>
+                      <td>{(product?.sold)?"Sold":"Unsold"}</td>
                       <td>
                         <LinkContainer
                           to={`/admin/product/${product._id}/edit`}

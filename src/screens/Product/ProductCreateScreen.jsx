@@ -78,6 +78,7 @@ const ProductCreateScreen = () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("negotiable", negotiable);
+    formData.append("keywords", keyword);
     for (let i = 0; i < images.length; i++) {
       const file = images[i];
       formData.append("images", file);

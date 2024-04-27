@@ -25,11 +25,13 @@ const AdminEditProductModel = ({ product }) => {
     const [name, setName] = useState(product.name);
 
     const [images, setImages] = useState(product?.images);
+    const [keywords, setKeyword] = useState(product?.keywords);
 
     const [description, setDescription] = useState(product?.description);
     const [price, setPrice] = useState(product?.cost?.price);
     const [negotiable, setNegotiable] = useState(product?.cost?.negotiable);
     const [uploading, setUploading] = useState(false);
+    const [sold, setSold] = useState(product?.sold);
     const userLogin = useSelector((state) => state.userLogin);
     var { userData } = userLogin;
 
@@ -72,12 +74,14 @@ const AdminEditProductModel = ({ product }) => {
         e.preventDefault();
         dispatch(
             updateProduct(
-                productId,
+                product._id,
                 name,
                 images,
+                keywords,
                 description,
                 price,
-                negotiable
+                negotiable,
+                sold
             )
         );
         handleClose();
@@ -172,6 +176,16 @@ const AdminEditProductModel = ({ product }) => {
 
                                                     {uploading && <Loader />}
                                                 </Form.Group>
+                                            <Form.Group controlId="category">
+                                                <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Enter keywords like: electronics, books, Furniture.. "
+                                                    value={keywords}
+                                                    onChange={(e) => setKeyword(e.target.value)}
+                                                    required
+                                                ></Form.Control>
+                                            </Form.Group>
 
                                                 <Form.Group controlId="description">
                                                     <Form.Label>Describe your property </Form.Label>
@@ -202,6 +216,15 @@ const AdminEditProductModel = ({ product }) => {
                                                         onChange={(e) => setNegotiable(e.target.checked)}
                                                     ></Form.Check>
                                                 </Form.Group>
+                                                <Form.Group className="mb-5 mt-5" controlId="sold">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        label="Is the product sold out ?"
+                                                        checked={sold}
+                                                        onChange={(e) => setSold(e.target.checked)}
+                                                    ></Form.Check>
+                                                </Form.Group>
+                                           
                                             </Form>
 
                                        

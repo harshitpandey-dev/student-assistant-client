@@ -169,13 +169,14 @@ export const updateProduct =
     id,
     name,
     images,
+    keywords,
     description,
-    // category,
     // expiresOn,
     // address,
     // shippingCharge,
     price,
-    negotiable
+    negotiable,
+    sold
   ) =>
   async (dispatch, getState) => {
     try {
@@ -200,13 +201,14 @@ export const updateProduct =
         {
           name,
           images,
+          keywords,
           description,
-          // category,
           // expiresOn,
           // address,
           // shippingCharge,
           price,
           negotiable,
+          sold
         },
         config
       );

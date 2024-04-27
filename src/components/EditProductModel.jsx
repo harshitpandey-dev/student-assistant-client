@@ -30,6 +30,7 @@ const EditProductModel = ({ product }) => {
     const [description, setDescription] = useState(product?.description);
     const [price, setPrice] = useState(product?.cost?.price);
     const [negotiable, setNegotiable] = useState(product?.cost?.negotiable);
+    const [keywords, setKeyword] = useState(product?.keywords);
     const [uploading, setUploading] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     var { userData } = userLogin;
@@ -76,9 +77,10 @@ const EditProductModel = ({ product }) => {
                 product._id,
                 name,
                 images,
+                keywords,
                 description,
                 price,
-                negotiable
+                negotiable,
             )
         );
         handleClose();
@@ -172,6 +174,16 @@ const EditProductModel = ({ product }) => {
                                                 )}
 
                                                 {uploading && <Loader />}
+                                            </Form.Group>
+                                            <Form.Group controlId="category">
+                                                <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="Enter keywords like: electronics, books, Furniture.. "
+                                                    value={keywords}
+                                                    onChange={(e) => setKeyword(e.target.value)}
+                                                    required
+                                                ></Form.Control>
                                             </Form.Group>
 
                                             <Form.Group controlId="description">

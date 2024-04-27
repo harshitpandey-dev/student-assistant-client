@@ -112,7 +112,7 @@ export default function ProductDispay({product,userID,token}) {
                                     <div >
                                         <h4 class="title text-success fs-1">
                                             {product.name} <br />
-                                     
+                                           <p className="fs-5 text-secondary mt-3">{product?.keywords}</p>
                                         </h4>
                                         <div class="d-flex flex-row my-3">
                                            

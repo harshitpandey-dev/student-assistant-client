@@ -74,6 +74,7 @@ const UserUpdateScreen = () => {
                       <th>Product Name</th>
                       <th>Price</th>
                       <th>Negotiable</th>
+                      <th>Sold</th>
                       <th>Created On</th>
                       <th></th>
                     </tr>
@@ -93,6 +94,19 @@ const UserUpdateScreen = () => {
                               <td>{product?.cost?.price}</td>
                               <td>
                                 {product?.cost?.negotiable ? (
+                                  <i
+                                    className="fas fa-check"
+                                    style={{ color: "green" }}
+                                  ></i>
+                                ) : (
+                                  <i
+                                    className="fas fa-times"
+                                    style={{ color: "red" }}
+                                  ></i>
+                                )}
+                              </td>
+                              <td>
+                                {product?.sold ? (
                                   <i
                                     className="fas fa-check"
                                     style={{ color: "green" }}
