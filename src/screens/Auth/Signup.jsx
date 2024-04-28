@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import "./Authstyle.css";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
 import { register } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,16 +31,19 @@ function Signup() {
 
   useEffect(() => {
     if (userData) {
-
-      navigate("/login")
-
-
+      navigate("/login");
     }
   }, [userRegister, redirect]);
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    if (userDetails.password ===""|| userDetails.email===""||userDetails.contact===""||userDetails.fullname===""||userDetails.username==="") {
+    if (
+      userDetails.password === "" ||
+      userDetails.email === "" ||
+      userDetails.contact === "" ||
+      userDetails.fullname === "" ||
+      userDetails.username === ""
+    ) {
       setMessage("Invalid Input");
       setTimeout(() => {
         setMessage(null);
@@ -215,8 +218,11 @@ function Signup() {
                 >
                   Submit
                 </div>
-                <a href="/login" className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light ">
-                 Login
+                <a
+                  href="/login"
+                  className="btn btn-primary btn-block mb-4 w-45 h-100 p-3 text-light "
+                >
+                  Login
                 </a>
               </div>
             </form>

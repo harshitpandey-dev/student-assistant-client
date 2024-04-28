@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import { getUserWishlist } from "../../actions/userActions";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 import { Table } from "react-bootstrap";
 
 export default function Wishlist() {
@@ -36,14 +36,14 @@ export default function Wishlist() {
     <div>
       <Header />
 
-      <div style={{ width: "100vw", height: "80px"}}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="cart-wrap " style={{ minHeight: "100vh" }}>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div
                 className="main-heading mb-3 text-center fs-2"
-                style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+                style={{ fontFamily: " serif", color: "#8991E4" }}
               >
                 My wishlist
               </div>
@@ -85,11 +85,13 @@ export default function Wishlist() {
                 variant="light"
               >
                 <thead>
-                  <tr>
+                  <tr className="text-center ">
                     <th>Product Name</th>
                     <th>Unit Price</th>
+                    <th>is Negotiable</th>
+                    <th>Status</th>
                     <th>View</th>
-                    <th>Delete</th>
+                    <th>Remove</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -107,8 +109,8 @@ export default function Wishlist() {
                         />
                       );
                     })}
-                    </tbody>
-                    </Table>
+                </tbody>
+              </Table>
             </div>
           </div>
         </div>

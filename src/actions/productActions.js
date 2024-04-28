@@ -50,7 +50,7 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
-export const listUserProducts = (id, token) => async (dispatch) => {
+export const listUserProducts = (token) => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_USER_REQUEST,
@@ -64,12 +64,12 @@ export const listUserProducts = (id, token) => async (dispatch) => {
       },
     };
 
+    const { data } = await axios.get(`/api/products/product`, config);
+
     dispatch({
       type: PRODUCT_USER_SUCCESS,
-      payload: data.data,
+      payload: data.data.userProducts,
     });
-
-    const { data } = await axios.get(`/api/products/product/${id}`, config);
   } catch (error) {
     dispatch({
       type: PRODUCT_USER_FAIL,
@@ -199,13 +199,14 @@ export const updateProduct =
     id,
     name,
     images,
+    keywords,
     description,
-    // category,
     // expiresOn,
     // address,
     // shippingCharge,
     price,
-    negotiable
+    negotiable,
+    sold
   ) =>
   async (dispatch, getState) => {
     try {
@@ -230,13 +231,14 @@ export const updateProduct =
         {
           name,
           images,
+          keywords,
           description,
-          // category,
           // expiresOn,
           // address,
           // shippingCharge,
           price,
           negotiable,
+          sold,
         },
         config
       );

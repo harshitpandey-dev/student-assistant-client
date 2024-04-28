@@ -3,17 +3,18 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,300,700');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 html,
 body {
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    font-family: sans-serif;
 }
 
 label {
 
-    font-family: 'Gluten', sans-serif;
+    font-family: sans-serif;
 }
 
 input[type=text]:focus,
@@ -74,7 +75,7 @@ body {
     border-radius: 6px;
 }
 .name-label strong{
-    font-family: 'Gluten', sans-serif;
+    font-family: sans-serif;
     
 }
 
@@ -164,7 +165,7 @@ li {
     /* padding-left: 5px; */
     /* padding-right: 5px; */
     overflow: hidden;
-    font-family: 'Gluten', sans-serif;
+    font-family:  sans-serif;
     font-size: 15px;
     overflow-x: scroll;
 
@@ -182,7 +183,7 @@ li {
     color: white;
     font-size: 20px;
     font-weight: 900;
-    font-family: 'Gluten', sans-serif;
+    font-family:  sans-serif;
     /* min-height: 1000px; */
 }
 
@@ -688,7 +689,7 @@ form-control:focus {
     overflow-y: scroll;
     height: 100vh !important;
     width: 410px;
-    background: rgb(82, 172, 159);
+    background: rgba(123, 123, 124, 0.877);
     height: 100%;
     /* border-radius: 10px 0 0 0; */
     padding-top: 20px;
@@ -882,7 +883,9 @@ form-control:focus {
 .list-group-item-heading {
     font-size: 1.2rem;
     padding-top: 5px;
-    font-family: 'Gluten', sans-serif;
+font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 
 }
 
@@ -1068,7 +1071,7 @@ form-control:focus {
 }
 
 .type_msg {
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     /* border: 1px solid black !important; */
     color: black !important;
     height: 60px !important;
@@ -1084,18 +1087,18 @@ form-control:focus {
 
 .attach_btn {
     /* border-radius: 15px 0 0 15px !important; */
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     /* border: 1px solid black !important; */
     color: black !important;
     cursor: pointer;
     height: 100%;
-    border: 0 !important;
+    border: 0px !important;
     border-radius: 0 !important;
     /* padding-left: 33px !important; */
 }
 
 .emoji {
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     border: 0 !important;
     border-radius: 0 0.375rem 0.375rem 0 !important;
 }
@@ -1163,7 +1166,7 @@ form-control:focus {
 }
 
 .nav-link {
-    width: 90px !important;
+    width: 100px !important;
     font-size: 16px !important;
 }
 
@@ -1173,9 +1176,10 @@ form-control:focus {
 
 .style-btn {
     display: flex;
-    width: 150px;
+    
+    /* min-width: 120px; */
     overflow: hidden;
-    height: 33px;
+    height: auto;
     border-radius: 10px !important;
     /* transition: all 0.85s !important; */
     background-color: rgb(1, 1, 1) !important;
@@ -1192,7 +1196,7 @@ form-control:focus {
     position: fixed !important;
     top: 0;
     z-index: 100;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .style-btn-chat,
@@ -1200,7 +1204,7 @@ form-control:focus {
     margin-top: 4px;
     width: 65px !important;
     height: 40px !important;
-    font-family: "'Gluten', sans-serif" !important;
+    font-family: sans-serif !important;
     font-size: 20px !important;
     color: white !important;
 
@@ -1245,7 +1249,7 @@ form-control:focus {
 
 
 
-@media (min-width:767px) {
+@media (min-width:890px) {
     #messages-main .ms-body {
         padding-left: 240px;
     }
@@ -1256,15 +1260,15 @@ form-control:focus {
 
 }
 
-@media (max-width:767px) {
+@media (max-width:890px) {
     #messages-main .ms-menu {
         height: calc(100% - 58px);
         display: none;
         z-index: 1;
         top: 0px;
         padding-top: 50px;
-        width: 290px;
-        background-color: #03053b;
+        width: 250px;
+        background-color: rgb(123, 123, 124);
     }
 
     .humgerber {
@@ -1278,7 +1282,9 @@ form-control:focus {
     .card-footer,
     .input-above {
         margin-left: 0px !important;
+   
     }
+
 
     #messages-main .ms-menu.toggled {
         display: block;
@@ -1362,12 +1368,18 @@ form-control:focus {
 
 .table-wishlist tr td .name-product {
     font-size: 15px;
-    color: #484848;
+    color: #1f1b1b;
     padding-top: 8px;
     line-height: 24px;
     width: 50%;
 }
-
+.name-product{
+    padding: 10px;
+    color: #8991E4 !important;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
 .table-wishlist tr td.price {
     font-weight: 600;
 }
@@ -1585,6 +1597,20 @@ form-control:focus {
         width: 100% !important;
     }
 }
+textarea{
+    width: 100%;
+    min-height: 100%;
+}
+
+textarea::placeholder {
+    width: 100%;
+    height: auto;
+  padding-top: 1.5%;
+}
+
+
+
+/* -----Button------ */
 
 
 .button-1 {
@@ -1757,3 +1783,4 @@ form-control:focus {
 .button-3a:active {
     transform: scale(0.95);
 }
+

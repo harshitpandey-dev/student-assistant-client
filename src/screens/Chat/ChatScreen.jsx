@@ -4,7 +4,7 @@ import SenderMessageBox from "../../components/chat/SenderMessageBox";
 import UserMessgeBox from "../../components/chat/UserMessgeBox";
 import ChatUserList from "../../components/chat/ChatUserList";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loader from "../../components/Loader";
+import Loader from "../../components/common/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
   delete_Chat,
@@ -17,7 +17,6 @@ import { MESSAGE_RESET } from "../../types/messageConstants";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 import Dropdown from "react-bootstrap/Dropdown";
-import Header from "../../components/Header";
 import { BsThreeDots } from "react-icons/bs";
 import DeleteChat from "../../components/chat/DeleteChat";
 import { IoSend } from "react-icons/io5";
@@ -26,6 +25,7 @@ import { useSocket } from "../../contexts/SocketContext";
 import { Button, Form } from "react-bootstrap";
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
+import AddEditProfilePic from "../../components/user/AddEditProfilePic";
 
 const CONNECTED_EVENT = "connected";
 const DISCONNECT_EVENT = "disconnect";
@@ -63,6 +63,8 @@ export default function ChatScreen() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  // console.log();
 
   const messagesEndRef = useRef(null);
 
@@ -310,14 +312,14 @@ export default function ChatScreen() {
           <div className="" style={{ width: "50px", height: "100px" }}>
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
               <div>
-                <label for="fileInput" style={{ cursor: "pointer" }}>
-                  <img
-                    src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-                    alt=""
-                    className="img-avatar box-img"
-                  />
-                  {/* <i className="fas fa-paperclip"></i> */}
-                </label>
+                {/* <label
+                  for="fileInput"
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
+                  
+                </label> */}
+                <AddEditProfilePic user={userData} />
               </div>
               <div>
                 <Link to="/" className="fs-4 text-light">
@@ -453,7 +455,11 @@ export default function ChatScreen() {
                       {chatWith.length !== 0 && (
                         <>
                           <img
-                            src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                            src={
+                              chatWith?.profile
+                                ? chatWith.profile
+                                : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                            }
                             alt=""
                             style={{
                               width: "60px",
@@ -500,7 +506,10 @@ export default function ChatScreen() {
                             <BsThreeDots className="text-dark fs-2 " />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className="bg-light">
-                            <DeleteChat />
+                            <DeleteChat
+                              chatid={messageData[0]?.chat}
+                              token={userData?.token}
+                            />
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
@@ -641,6 +650,7 @@ export default function ChatScreen() {
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
+
                       <div className="input-group-append">
                         {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
                         {images.length < 4 && (

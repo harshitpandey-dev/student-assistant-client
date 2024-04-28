@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
 import { createProduct } from "../../actions/productActions";
-import FormContainer from "../../components/FormContainer";
+import FormContainer from "../../components/common/FormContainer";
 // import Header from "../../components/Header";
 import { useNavigate } from "react-router";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
@@ -40,6 +40,15 @@ const ProductCreateScreen = () => {
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
+    const file_size = e.target.files[0].size;
+    if (file_size > 2e6) {
+      // more than 2mb
+      setMessage("File exceed 2 mb");
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+      return;
+    }
     if (!data) return;
     const file = Array.from(e.target.files);
     setShowImages((images) => [...images, ...file]);
@@ -52,13 +61,11 @@ const ProductCreateScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(keyword.length<10 || description.length<20){
-      if(keyword.length<10){
+    if (keyword.length < 10 || description.length < 20) {
+      if (keyword.length < 10) {
         setMessage("Keyword should be of atleast 10 words");
-        
-      }else{
+      } else {
         setMessage("Description should be of atleast 10 words");
-
       }
       setTimeout(() => {
         setMessage(null);
@@ -78,6 +85,7 @@ const ProductCreateScreen = () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("negotiable", negotiable);
+    formData.append("keywords", keyword);
     for (let i = 0; i < images.length; i++) {
       const file = images[i];
       formData.append("images", file);
@@ -95,42 +103,36 @@ const ProductCreateScreen = () => {
     <>
       <Header />
 
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-3 ">
-       
         <FormContainer>
           <h1
             className=" py-2 text-center"
-            style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+            style={{ fontFamily: "serif", color: "#8991E4" }}
           >
-            Upload Your Property
+            Upload Your Product
           </h1>
           {loading ? (
             <Loader />
           ) : (
             <Form onSubmit={submitHandler}>
-              <Form.Group controlId="name">
-                <Form.Label>Name of the property </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter what product do you have"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                ></Form.Control>
-              </Form.Group>
-
               {showImages.length < 4 && (
                 <Form.Group controlId="images">
                   <Form.Label>
-                    Image <small> *Upload Image only (max 4)</small>
+                    Upload Images <small> </small>
                   </Form.Label>
 
                   <Form.File
                     id="image-file"
-                    label="Choose File"
+                    className="button-3"
+                    // label="Upload Image"
                     onChange={uploadFileHandler}
                   />
+                  <p></p>
+                  <ul>
+                    <li>* Maximum 4 images can be uploaded</li>
+                    <li>* Size of each image should be less than 2mb</li>
+                  </ul>
                 </Form.Group>
               )}
 
@@ -161,8 +163,19 @@ const ProductCreateScreen = () => {
                 </div>
               )}
 
+              <Form.Group controlId="name">
+                <Form.Label>Name of the product </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter what product do you have"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                ></Form.Control>
+              </Form.Group>
+
               <Form.Group controlId="category">
-                <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                <Form.Label>Keyword</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter keywords like: electronics, books, Furniture.. "
@@ -173,7 +186,7 @@ const ProductCreateScreen = () => {
               </Form.Group>
 
               <Form.Group controlId="description">
-                <Form.Label>Describe your property (in atleast 20 words)</Form.Label>
+                <Form.Label>Describe your product</Form.Label>
 
                 <Form.Control
                   as="textarea"
@@ -239,7 +252,7 @@ const ProductCreateScreen = () => {
                 Upload your property
               </Button>
               {error && <Message variant="danger">{error}</Message>}
-                {message && <Message variant="danger">{message}</Message>}
+              {message && <Message variant="danger">{message}</Message>}
             </Form>
           )}
         </FormContainer>

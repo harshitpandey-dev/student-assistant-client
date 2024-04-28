@@ -70,7 +70,7 @@ export const get_All_Chat = (userID, token) => async (dispatch, getState) => {
   }
 };
 
-export const delete_Chat = (chatID, token) => async (dispatch, getState) => {
+export const delete_Chat = (chatid, token) => async (dispatch, getState) => {
   try {
     dispatch({
       type: CHAT_DELETE_REQUEST,
@@ -82,7 +82,7 @@ export const delete_Chat = (chatID, token) => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    const { data } = await axios.delete(`/api/chat/remove/${chatID}`, config);
+    const { data } = await axios.delete(`/api/chat/remove/${chatid}`, config);
     dispatch({
       type: CHAT_DELETE_SUCCESS,
     });

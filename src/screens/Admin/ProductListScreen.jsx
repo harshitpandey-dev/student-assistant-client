@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
-import Paginate from "../../components/Paginate";
+import { Table } from "react-bootstrap";
+import Paginate from "../../components/product/Paginate";
 
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import { listProducts, deleteProduct } from "../../actions/productActions";
-import Header from "../../components/Header";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
+import { listProducts } from "../../actions/productActions";
+import Header from "../../components/common/Header";
 import { useNavigate, useParams } from "react-router";
-import { login } from "../../actions/userActions";
-import AdminProductDeleteModel from "../../components/AdminProductDeleteModel";
-import AdminEditProductModel from "../../components/AdminEditProductModel";
-import Footer from "../../components/Footer";
+import AdminProductDeleteModel from "../../components/product/AdminProductDeleteModel";
+import AdminEditProductModel from "../../components/product/AdminEditProductModel";
+import Footer from "../../components/common/Footer";
 
 const ProductListScreen = () => {
   const navigate = useNavigate();
@@ -43,21 +42,23 @@ const ProductListScreen = () => {
     }
   }, [dispatch, successDelete, userData, pageNumber]);
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-      dispatch(deleteProduct(id));
-    }
-  };
-
+  // const deleteHandler = (id) => {
+  //   if (window.confirm("Are you sure?")) {
+  //     dispatch(deleteProduct(id));
+  //   }
+  // };
 
   return (
     <>
       <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-3 d-flex flex-column p-2" style={{ minHeight: "100vh" }}>
+      <div style={{ width: "100vw", height: "100px" }}></div>
+      <div
+        className="py-3 d-flex flex-column p-2"
+        style={{ minHeight: "100vh" }}
+      >
         <h1
           className="text-center pb-2 "
-          style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+          style={{ fontFamily: "serif", color: "#8991E4" }}
         >
           Products
         </h1>
@@ -80,6 +81,7 @@ const ProductListScreen = () => {
                   {/* <th>CATEGORY</th> */}
                   <th>OWNER</th>
                   <th>CREATED ON</th>
+                  <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
@@ -89,18 +91,21 @@ const ProductListScreen = () => {
                     <tr key={product._id}>
                       <td>{i++}</td>
                       {/* <td>{product._id}</td> */}
-                      <td>{product.name}</td>
+                      <td style={{ textTransform: "uppercase" }}>
+                        {product.name}
+                      </td>
                       <td>Rs {product.cost.price}</td>
                       {/* <td>{product.category}</td> */}
                       <td>{product.owner?.fullname}</td>
                       <td>{product.createdAt.substring(0, 10)}</td>
+                      <td>{product?.sold ? "Sold" : "Unsold"}</td>
                       <td>
                         <LinkContainer
                           to={`/admin/product/${product._id}/edit`}
                         >
-                         <AdminEditProductModel product={product}/>
+                          <AdminEditProductModel product={product} />
                         </LinkContainer>
-                        <AdminProductDeleteModel productId={product._id}/>
+                        <AdminProductDeleteModel productId={product._id} />
                       </td>
                     </tr>
                   ) : (
@@ -114,7 +119,6 @@ const ProductListScreen = () => {
         )}
       </div>
       <Footer />
-      
     </>
   );
 };

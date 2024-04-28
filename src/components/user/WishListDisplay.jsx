@@ -3,19 +3,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import { useDispatch, useSelector } from "react-redux";
-import Product from "./Product";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { GoDot, GoDotFill } from "react-icons/go";
+import { FaEye } from "react-icons/fa";
+import { updateUserWishlist } from "../../actions/userActions";
 import { Link } from "react-router-dom";
-import { updateUserWishlist } from "../actions/userActions";
-import EditProductModel from "./product/EditProductModel";
 
-export default function ProductDispay({ product, userID, token }) {
+export default function WishListDisplay({ product }) {
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
   const getWishlist = useSelector((state) => state.userWishlist);
@@ -24,6 +24,7 @@ export default function ProductDispay({ product, userID, token }) {
   const [ind, setInd] = useState(0);
 
   const images = product?.images;
+
   const isYourProduct = userData?._id === product?.owner?._id;
 
   const isWishlisted =
@@ -36,6 +37,7 @@ export default function ProductDispay({ product, userID, token }) {
     window.location.reload();
   }
 
+  console.log(product);
   function prevImage() {
     if (ind == 0) {
       setInd(images.length - 1);
@@ -58,9 +60,13 @@ export default function ProductDispay({ product, userID, token }) {
 
   return (
     <>
-      <div className="w-100 h-100 bg-light" onClick={handleShow}>
-        <Product product={product} userID={userID} token={token} />
-      </div>
+      <Button
+        className="h-100 bg-light text-dark"
+        style={{ width: "50px" }}
+        onClick={handleShow}
+      >
+        <FaEye />
+      </Button>
 
       <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
         <Modal.Header closeButton className="bg-secondary ">
@@ -126,7 +132,10 @@ export default function ProductDispay({ product, userID, token }) {
                 </aside>
                 <main class="col-lg-6">
                   <div>
-                    <h4 class="title text-success fs-1">
+                    <h4
+                      class="title text-success fs-1"
+                      style={{ textTransform: "uppercase" }}
+                    >
                       {product.name} <br />
                     </h4>
                     <div class="d-flex flex-row my-3"></div>

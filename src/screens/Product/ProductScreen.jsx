@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import Meta from "../../components/Meta";
+import Meta from "../../components/common/Meta";
 import { Row, Col, Image, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
 import Carousel from "react-bootstrap/Carousel";
 // import Header from "../../components/Header";
 import { listProductDetails } from "../../actions/productActions";
 import { useParams } from "react-router-dom";
 import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 
 const ProductScreen = () => {
   const navigate = useNavigate();
@@ -22,38 +22,38 @@ const ProductScreen = () => {
   var { userData } = userLogin;
   const getWishlist = useSelector((state) => state.userWishlist);
   var { wishlist } = getWishlist;
-  const [isWishlisted,setIsWishlisted]=useState(false)
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("userData")) {
-      userData = JSON.parse(localStorage.getItem("userData"));
-    }
-
     if (!userData) {
       navigate("/login");
       return;
     }
     dispatch(listProductDetails(match.id, userData.token));
   }, [match.id, dispatch, userData]);
-  useEffect(()=>{
+
+  useEffect(() => {
     dispatch(getUserWishlist(userData.token));
-    
-    const val = (wishlist && wishlist.length > 0) ? wishlist?.some(item => item._id === product._id) : false;
+
+    const val =
+      wishlist && wishlist.length > 0
+        ? wishlist?.some((item) => item._id === product._id)
+        : false;
     setIsWishlisted(val);
-  },[])
+  }, []);
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   function handleWishlist() {
-    dispatch(updateUserWishlist(product._id, userData.token))
+    dispatch(updateUserWishlist(product._id, userData.token));
     window.location.reload();
   }
 
   return (
     <>
       <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-2 ">
         <Link to="/" className="btn btn-success my-3 ms-2">
           Go Back
@@ -99,12 +99,13 @@ const ProductScreen = () => {
                       <li> Description </li>
 
                       {product?.cost?.negotiable && <li>Negotiable:</li>}
-
                     </ul>
                   </Col>
                   <Col md={8} sm={8} xs={8}>
                     <ul>
-                      <li>{product.name}</li>
+                      <li style={{ textTransform: "uppercase" }}>
+                        {product.name}
+                      </li>
 
                       <li>{product?.cost?.price}</li>
 
@@ -113,12 +114,18 @@ const ProductScreen = () => {
                       <li> {product.description} </li>
 
                       {product?.cost?.negotiable && <li>Yes</li>}
-
                     </ul>
                   </Col>
                 </Row>
-                          <Link to={`/chatScreen/${product.owner?._id}`}><Button> chat with seller</Button> </Link>
-                      <Button onClick={handleWishlist} className={isWishlisted?"bg-success":"bg-danger"}>{isWishlisted?"Remove From Wishlist": "Add to wishlist"} </Button>
+                <Link to={`/chatScreen/${product.owner?._id}`}>
+                  <Button> chat with seller</Button>{" "}
+                </Link>
+                <Button
+                  onClick={handleWishlist}
+                  className={isWishlisted ? "bg-success" : "bg-danger"}
+                >
+                  {isWishlisted ? "Remove From Wishlist" : "Add to wishlist"}{" "}
+                </Button>
               </Col>
             </Row>
           </>

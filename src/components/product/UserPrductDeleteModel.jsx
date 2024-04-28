@@ -1,51 +1,42 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import FormContainer from "../common/FormContainer";
-import { delete_Chat } from "../../actions/chatActions";
-import { CHAT_LIST_RESET, CHAT_RESET } from "../../types/chatConstants";
-import { MESSAGE_RESET } from "../../types/messageConstants";
+import { deleteProduct } from "../../actions/productActions";
 
-const DeleteChat = ({ chatid, token }) => {
+const UserPrductDeleteModel = ({ productId }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(delete_Chat(chatid, token));
+    dispatch(deleteProduct(productId));
     handleClose();
-    dispatch({ type: CHAT_RESET });
-    dispatch({ type: MESSAGE_RESET });
-    dispatch({ type: CHAT_LIST_RESET });
-    navigate("/chatScreen");
   };
 
   return (
     <>
       <Button
-        variant="light"
-        className="text-danger"
-        style={{ width: "100%", height: "auto", fontSize: "17px" }}
+        variant="danger"
+        className="btn-sm"
         onClick={handleShow}
+        style={{ width: "30px", height: "30px" }}
       >
-        Delete Chat
+        <i className="fas fa-trash"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="bg-secondary">
-          <Modal.Title className="text-white">Delete Chat </Modal.Title>
+          <Modal.Title className="text-white">Delete Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <FormContainer>
             <Form className="mt-2 mb-2">
               <Form.Group controlId="name">
-                <Form.Label>
-                  Doing this will delete all messages with the seller...
-                </Form.Label>
+                <Form.Label>Doing this will delete this product</Form.Label>
               </Form.Group>
             </Form>
           </FormContainer>
@@ -63,4 +54,4 @@ const DeleteChat = ({ chatid, token }) => {
   );
 };
 
-export default DeleteChat;
+export default UserPrductDeleteModel;

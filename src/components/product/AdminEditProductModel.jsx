@@ -1,21 +1,12 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../common/Message";
+import { useDispatch } from "react-redux";
 import Loader from "../common/Loader";
-import {
-  deleteProduct,
-  listProductDetails,
-  listProducts,
-  updateProduct,
-} from "../../actions/productActions";
-import FormContainer from "../common/FormContainer";
-import { useNavigate, useParams } from "react-router";
-import { PRODUCT_DETAILS_RESET } from "../../types/productConstants";
+import { updateProduct } from "../../actions/productActions";
 
-const EditProductModel = ({ product }) => {
-  const navigate = useNavigate();
+const AdminEditProductModel = ({ product }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -24,13 +15,13 @@ const EditProductModel = ({ product }) => {
   const [name, setName] = useState(product.name);
 
   const [images, setImages] = useState(product?.images);
+  const [keywords, setKeyword] = useState(product?.keywords);
 
   const [description, setDescription] = useState(product?.description);
   const [price, setPrice] = useState(product?.cost?.price);
   const [negotiable, setNegotiable] = useState(product?.cost?.negotiable);
   const [uploading, setUploading] = useState(false);
-  const userLogin = useSelector((state) => state.userLogin);
-  var { userData } = userLogin;
+  const [sold, setSold] = useState(product?.sold);
 
   const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload";
   const CLOUDINARY_UPLOAD_PRESET = "qwdzopo4";
@@ -60,17 +51,20 @@ const EditProductModel = ({ product }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      updateProduct(product._id, name, images, description, price, negotiable)
+      updateProduct(
+        product._id,
+        name,
+        images,
+        keywords,
+        description,
+        price,
+        negotiable,
+        sold
+      )
     );
     handleClose();
   };
 
-  const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-      dispatch(deleteProduct(id));
-      navigate("/");
-    }
-  };
   const removeImg = (fileToRemove) => {
     // console.log(fileToRemove);
     const updatedImages = images.filter((file) => file !== fileToRemove);
@@ -79,21 +73,26 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Edit Product
+      <Button
+        variant="light"
+        className="btn-sm"
+        style={{ width: "30px", height: "30px" }}
+        onClick={handleShow}
+      >
+        <i className="fas fa-edit"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
         <Modal.Header closeButton className="bg-secondary">
           <Modal.Title className="text-white">Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
-            <Form className="mt-2 mb-2">
+          <div className="w-100">
+            <div className="mt-2 mb-2 p-4">
               <Form.Group controlId="name">
                 <Form.Label>
-                  <FormContainer>
-                    <Form>
+                  <div className="w-100">
+                    <Form className="w-100">
                       <Form.Group controlId="name">
                         <Form.Label>Name of the property </Form.Label>
                         <Form.Control
@@ -143,6 +142,16 @@ const EditProductModel = ({ product }) => {
 
                         {uploading && <Loader />}
                       </Form.Group>
+                      <Form.Group controlId="category">
+                        <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter keywords like: electronics, books, Furniture.. "
+                          value={keywords}
+                          onChange={(e) => setKeyword(e.target.value)}
+                          required
+                        ></Form.Control>
+                      </Form.Group>
 
                       <Form.Group controlId="description">
                         <Form.Label>Describe your property </Form.Label>
@@ -173,11 +182,19 @@ const EditProductModel = ({ product }) => {
                           onChange={(e) => setNegotiable(e.target.checked)}
                         ></Form.Check>
                       </Form.Group>
+                      <Form.Group className="mb-5 mt-5" controlId="sold">
+                        <Form.Check
+                          type="checkbox"
+                          label="Is the product sold out ?"
+                          checked={sold}
+                          onChange={(e) => setSold(e.target.checked)}
+                        ></Form.Check>
+                      </Form.Group>
                     </Form>
-                  </FormContainer>
+                  </div>
                 </Form.Label>
               </Form.Group>
-            </Form>
+            </div>
           </div>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
@@ -193,4 +210,4 @@ const EditProductModel = ({ product }) => {
   );
 };
 
-export default EditProductModel;
+export default AdminEditProductModel;

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 // import Header from "../../components/Header";
-import SellerMessage from "../../components/SellerMessage";
-import UserMessage from "../../components/UserMessage";
+import SellerMessage from "../../components/chat/SellerMessage";
+import UserMessage from "../../components/chat/UserMessage";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loader from "../../components/Loader";
+import Loader from "../../components/common/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { get_Chat } from "../../actions/chatActions";
 import { getMessage, postMessage } from "../../actions/messageAction";
