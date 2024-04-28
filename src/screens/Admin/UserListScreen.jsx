@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import Header from "../../components/Header";
-import { listUsers, deleteUser, login } from "../../actions/userActions";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
+import Header from "../../components/common/Header";
+import { listUsers, deleteUser } from "../../actions/userActions";
 import { useNavigate } from "react-router";
-import AdminDeleteAccountModel from "../../components/AdminDeleteAccountModel";
-import AdminUpdateUser from "../../components/AdminUpdateUser";
-import { USER_DETAILS_RESET, USER_UPDATE_RESET } from "../../types/userConstants";
-import Footer from "../../components/Footer";
+import AdminDeleteAccountModel from "../../components/user/AdminDeleteAccountModel";
+import AdminUpdateUser from "../../components/user/AdminUpdateUser";
+import {
+  USER_DETAILS_RESET,
+  USER_UPDATE_RESET,
+} from "../../types/userConstants";
+import Footer from "../../components/common/Footer";
 const UserListScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,11 +41,10 @@ const UserListScreen = () => {
     // setEditUser(null);
   };
 
-  useEffect(()=>{
-
+  useEffect(() => {
     dispatch({ type: USER_UPDATE_RESET });
     dispatch({ type: USER_DETAILS_RESET });
-  },[])
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -58,7 +59,6 @@ const UserListScreen = () => {
     }
   }, [dispatch, successDelete, userData]);
 
- 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteUser(id, userData.token));
@@ -68,7 +68,10 @@ const UserListScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "100px" }}></div>
-      <div className="py-3 d-flex flex-column p-2 " style={{ minHeight: "100vh" }}>
+      <div
+        className="py-3 d-flex flex-column p-2 "
+        style={{ minHeight: "100vh" }}
+      >
         <h1
           className="text-center pb-2 "
           style={{ fontFamily: "serif", color: "#8991E4" }}
@@ -99,8 +102,6 @@ const UserListScreen = () => {
             <tbody>
               {users &&
                 users.map((user) => (
-              
-
                   <tr key={user._id}>
                     <td>{i++}</td>
                     {/* <td>{user._id}</td> */}
@@ -122,14 +123,12 @@ const UserListScreen = () => {
                       )}
                     </td>
                     <td>
-                     
-                      <AdminUpdateUser  Edituser={user}/>
-                     
-                      <AdminDeleteAccountModel userId={user._id}/>
+                      <AdminUpdateUser Edituser={user} />
+
+                      <AdminDeleteAccountModel userId={user._id} />
                     </td>
                   </tr>
                 ))}
-                 
             </tbody>
           </Table>
         )}

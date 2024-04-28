@@ -1,22 +1,19 @@
-import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Button } from "react-bootstrap";
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
-import Product from "../../components/product/Product";
-import Paginate from "../../components/Paginate";
-// import Header from "../../components/Header";
-import Meta from "../../components/Meta";
+import { Row, Col } from "react-bootstrap";
+import Loader from "../../components/common/Loader";
+import Message from "../../components/common/Message";
+import Paginate from "../../components/product/Paginate";
+import Meta from "../../components/common/Meta";
 import { listProducts } from "../../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../../types/productConstants";
 import { useParams } from "react-router-dom";
 import { getUserWishlist } from "../../actions/userActions";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
-import Header from "../../components/Header";
-import ProductDispay from "../../components/ProductDispay";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import ProductDispay from "../../components/product/ProductDispay";
+import Footer from "../../components/common/Footer";
 
 export default function Landing() {
   const match = useParams();
@@ -29,10 +26,6 @@ export default function Landing() {
   const { loading, error, products } = productList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
-  const getWishlist = useSelector((state) => state.userWishlist);
-  var { wishlist } = getWishlist;
-  const updateProduct = useSelector((state) => state.productUpdate);
-  var { data,success } = updateProduct;
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -45,14 +38,10 @@ export default function Landing() {
     }
   }, [dispatch, keyword, pageNumber, userData]);
 
-
-  const startIndex =( pageNumber -1) * 10;
-  const endIndex =  pageNumber * 10 ;
+  const startIndex = (pageNumber - 1) * 10;
+  const endIndex = pageNumber * 10;
   var productsForPage = products?.slice(startIndex, endIndex);
-  var pages = Math.ceil(products?.length / (endIndex-startIndex));
-
-  // console.log(productsForPage);
-
+  var pages = Math.ceil(products?.length / (endIndex - startIndex));
 
   return (
     <>
@@ -65,24 +54,6 @@ export default function Landing() {
             Go Back
           </Link>
         )}
-        {/* <Row className="align-items-center">
-          <Col xs={6}>
-            <h3
-              style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
-            >
-              {" "}
-              Latest Items On Sale
-            </h3>
-          </Col>
-          <Col className="text-right">
-            <LinkContainer to={userData ? "/createproduct" : "/login"}>
-              <div className="btn btn-danger">
-                <i style={{ color: "white" }} className="fas fa-plus"></i>{" "}
-                <span className="textcolor">List Your Property</span>
-              </div>
-            </LinkContainer>
-          </Col>
-        </Row> */}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -90,8 +61,8 @@ export default function Landing() {
         ) : (
           <>
             <Row>
-                  {productsForPage &&
-                    productsForPage.map((product) =>
+              {productsForPage &&
+                productsForPage.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
                       <ProductDispay

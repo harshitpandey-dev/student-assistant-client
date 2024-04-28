@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { Button, Row, Col, Table } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts, deleteProduct } from "../../actions/productActions";
+import { listUserProducts } from "../../actions/productActions";
 import { LinkContainer } from "react-router-bootstrap";
-import Loader from "../../components/Loader";
+import Loader from "../../components/common/Loader";
 import UpdateUser from "../../components/user/UpdateUser";
 import ChangePassword from "../../components/user/ChangePassword";
-import Header from "../../components/Header";
+import Header from "../../components/common/Header";
 import { useNavigate } from "react-router";
 import DeleteAccount from "../../components/user/DeleteAccount";
-import UserPrductDeleteModel from "../../components/UserPrductDeleteModel";
-import AdminEditProductModel from "../../components/AdminEditProductModel";
-import Footer from "../../components/Footer";
+import UserPrductDeleteModel from "../../components/product/UserPrductDeleteModel";
+import AdminEditProductModel from "../../components/product/AdminEditProductModel";
+import Footer from "../../components/common/Footer";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -20,27 +20,20 @@ const UserUpdateScreen = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   let { userData } = userLogin; // Ensure userData is mutable
-  // const userUpdate = useSelector((state) => state.userUpdate);
-  // const { success } = userUpdate;
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const { success } = productUpdate;
 
-  const productList = useSelector((state) => state.productList);
-  const { products, loading: loadinglist } = productList;
+  const userProductList = useSelector((state) => state.productUser);
+  const { products, loading: loadinglist } = userProductList;
   const productDelete = useSelector((state) => state.productDelete);
   const { success: successDelete } = productDelete;
 
   useEffect(() => {
-    if(!userData){
-      navigate("/login")
+    if (!userData) {
+      navigate("/login");
     }
-    dispatch(listProducts());
-
-  }, [dispatch, userData, successDelete]);
-
-  // const deleteHandler = (id) => {
-  //   if (window.confirm("Are you sure?")) {
-  //     dispatch(deleteProduct(id));
-  //   }
-  // };
+    dispatch(listUserProducts(userData.token));
+  }, [userData, successDelete, success]);
 
   return (
     <>
@@ -85,8 +78,9 @@ const UserUpdateScreen = () => {
                           product.owner?._id === userData._id && (
                             <tr key={product._id}>
                               <td>{i++}</td>
-                              {/* <td>{product._id}</td> */}
-                              <td style={{ textTransform: "uppercase" }}>{product.name}</td>
+                              <td style={{ textTransform: "uppercase" }}>
+                                {product.name}
+                              </td>
                               <td>{product?.cost?.price}</td>
                               <td>
                                 {product?.cost?.negotiable ? (
@@ -121,9 +115,7 @@ const UserUpdateScreen = () => {
                                 <LinkContainer
                                   to={`/admin/product/${product._id}/edit`}
                                 >
-                                  <AdminEditProductModel
-                                    product={product}
-                                  />
+                                  <AdminEditProductModel product={product} />
                                 </LinkContainer>
                                 <UserPrductDeleteModel
                                   productId={product._id}
@@ -138,8 +130,7 @@ const UserUpdateScreen = () => {
             )}
           </Col>
           <Col md={2}></Col>
-          <Col md={8}>
-          </Col>
+          <Col md={8}></Col>
         </Row>
 
         <Row>
@@ -149,21 +140,32 @@ const UserUpdateScreen = () => {
             <table className="m-2 w-100">
               <tr className="mb-4">
                 <td>Edit your Details</td>
-                <td><UpdateUser currUser={userData}/></td>
+                <td>
+                  <UpdateUser currUser={userData} />
+                </td>
               </tr>
-              <tr><hr></hr></tr>
+              <tr>
+                <hr></hr>
+              </tr>
               <tr>
                 <td>Change Password</td>
-                <td><ChangePassword /></td>
+                <td>
+                  <ChangePassword />
+                </td>
               </tr>
-              <tr><hr></hr></tr>
+              <tr>
+                <hr></hr>
+              </tr>
               <tr>
                 <td>Delete Account</td>
-                <td><DeleteAccount /></td>
+                <td>
+                  <DeleteAccount />
+                </td>
               </tr>
-              <tr><hr></hr></tr>
+              <tr>
+                <hr></hr>
+              </tr>
             </table>
-
           </Col>
         </Row>
       </div>

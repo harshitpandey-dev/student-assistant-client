@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import { getUserWishlist } from "../../actions/userActions";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 import { Table } from "react-bootstrap";
 
 export default function Wishlist() {
@@ -36,7 +36,7 @@ export default function Wishlist() {
     <div>
       <Header />
 
-      <div style={{ width: "100vw", height: "100px"}}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="cart-wrap " style={{ minHeight: "100vh" }}>
         <div className="container">
           <div className="row">
@@ -109,8 +109,8 @@ export default function Wishlist() {
                         />
                       );
                     })}
-                    </tbody>
-                    </Table>
+                </tbody>
+              </Table>
             </div>
           </div>
         </div>

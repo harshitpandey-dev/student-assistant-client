@@ -4,27 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import FormContainer from "../common/FormContainer";
-// import Message from "./Message";
 import Loader from "../common/Loader";
 import { updateUser, getUserDetails } from "../../actions/userActions";
 import {
   USER_UPDATE_RESET,
   USER_DETAILS_RESET,
 } from "../../types/userConstants";
-import { FaUserEdit } from "react-icons/fa";
 
-const UpdateUser = ({ currUser }) => {
+const AdminUpdateUser = ({ Edituser }) => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [fullname, setFullname] = useState(currUser?.fullname);
-  const [username, setUsername] = useState(currUser?.username);
-  const [email, setEmail] = useState(currUser?.email);
-  const [contact, setContact] = useState(currUser?.contact);
+  const [fullname, setFullname] = useState(Edituser?.fullname);
+  const [username, setUsername] = useState(Edituser?.username);
+  const [email, setEmail] = useState(Edituser?.email);
+  const [contact, setContact] = useState(Edituser?.contact);
   const [update, setUpdate] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -36,32 +33,12 @@ const UpdateUser = ({ currUser }) => {
   const userUpdate = useSelector((state) => state.userUpdate);
   const { success, loading, error } = userUpdate;
 
-  // useEffect(() => {
-  //   if (!userData) {
-  //     navigate("/login");
-  //     return;
-  //   }
-  //   if (!userData || success) {
-  //     dispatch({ type: USER_UPDATE_RESET });
-  //     dispatch({ type: USER_DETAILS_RESET });
-  //   } else {
-  //     if (!user || user._id !== id) {
-  //       dispatch(getUserDetails(id));
-  //     } else {
-  //       setFullname(user.fullname);
-  //       setUsername(user.username);
-  //       setContact(user.contact);
-  //       setEmail(user.email);
-  //     }
-  //   }
-  // }, [userData, user, success, dispatch, id, navigate]);
-
   useEffect(() => {
     if (fullname !== "" || username !== "" || contact !== "") {
       if (
-        fullname !== user.fullname ||
-        username !== user.username ||
-        contact !== user.contact
+        fullname !== Edituser.fullname ||
+        username !== Edituser.username ||
+        contact !== Edituser.contact
       ) {
         setUpdate(true);
       } else {
@@ -77,12 +54,12 @@ const UpdateUser = ({ currUser }) => {
     dispatch(
       updateUser(
         {
-          _id: currUser._id,
+          _id: Edituser._id,
           fullname,
           username,
           contact,
         },
-        currUser.token
+        Edituser.token
       )
     );
     handleClose();
@@ -91,12 +68,12 @@ const UpdateUser = ({ currUser }) => {
   return (
     <>
       <Button
-        variant="secondary"
-        className="mt-2 mb-2 ms-2"
+        variant="light"
+        className="btn-sm"
+        style={{ width: "30px", height: "30px" }}
         onClick={handleShow}
-        style={{ width: "70px", height: "40px" }}
       >
-        <FaUserEdit />
+        <i className="fas fa-edit"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -165,4 +142,4 @@ const UpdateUser = ({ currUser }) => {
   );
 };
 
-export default UpdateUser;
+export default AdminUpdateUser;

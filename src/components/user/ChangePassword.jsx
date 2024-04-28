@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Message from "../Message";
+import Message from "../common/Message";
 import { useDispatch } from "react-redux";
 import { updateUserPassword } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,12 @@ export default function ChangePassword() {
 
   return (
     <>
-      <Button variant="warning" className="mt-2 mb-2 ms-2" style={{ width: "70px", height: "40px" }} onClick={handleShow}>
+      <Button
+        variant="warning"
+        className="mt-2 mb-2 ms-2"
+        style={{ width: "70px", height: "40px" }}
+        onClick={handleShow}
+      >
         <RiLockPasswordFill />
       </Button>
 

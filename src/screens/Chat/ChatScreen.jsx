@@ -4,7 +4,7 @@ import SenderMessageBox from "../../components/chat/SenderMessageBox";
 import UserMessgeBox from "../../components/chat/UserMessgeBox";
 import ChatUserList from "../../components/chat/ChatUserList";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Loader from "../../components/Loader";
+import Loader from "../../components/common/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import {
   delete_Chat,
@@ -17,7 +17,6 @@ import { MESSAGE_RESET } from "../../types/messageConstants";
 import Lottie from "react-lottie";
 import animationData from "../../animations/typing.json";
 import Dropdown from "react-bootstrap/Dropdown";
-import Header from "../../components/Header";
 import { BsThreeDots } from "react-icons/bs";
 import DeleteChat from "../../components/chat/DeleteChat";
 import { IoSend } from "react-icons/io5";
@@ -26,7 +25,7 @@ import { useSocket } from "../../contexts/SocketContext";
 import { Button, Form } from "react-bootstrap";
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-import AddEditProfilePic from "../../components/AddEditProfilePic";
+import AddEditProfilePic from "../../components/user/AddEditProfilePic";
 
 const CONNECTED_EVENT = "connected";
 const DISCONNECT_EVENT = "disconnect";
@@ -100,18 +99,17 @@ export default function ChatScreen() {
       );
       setChatWith(filteredParticipants[0]);
     }
-       },[chatID,userData,chatListData])
+  }, [chatID, userData, chatListData]);
 
-      useEffect(()=>{
-
-        if(userData && chatData && sellerID){
-          // const activeChat =  chatData?.filter((item) => item._id === sellerID);
-          const filteredParticipants =  chatData?.participants?.filter(participant => participant?._id !== userData?._id);
-          setChatWith(filteredParticipants[0])
-        }
-
-       },[sellerID,userData,chatData])
-
+  useEffect(() => {
+    if (userData && chatData && sellerID) {
+      // const activeChat =  chatData?.filter((item) => item._id === sellerID);
+      const filteredParticipants = chatData?.participants?.filter(
+        (participant) => participant?._id !== userData?._id
+      );
+      setChatWith(filteredParticipants[0]);
+    }
+  }, [sellerID, userData, chatData]);
 
   useEffect(() => {
     setChats(chatListData);
@@ -195,7 +193,7 @@ export default function ChatScreen() {
     }
   }, [sellerID, userData, chatID, reload]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
       return;
     }
@@ -311,7 +309,6 @@ export default function ChatScreen() {
         <Loader />
       ) : (
         <div className="chatScreen d-flex ">
-
           <div className="" style={{ width: "50px", height: "100px" }}>
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
               <div>
@@ -322,7 +319,7 @@ export default function ChatScreen() {
                   <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar box-img" />
                   
                 </label> */}
-                <AddEditProfilePic user={userData}/>
+                <AddEditProfilePic user={userData} />
               </div>
               <div>
                 <Link to="/" className="fs-4 text-light">
@@ -330,25 +327,27 @@ export default function ChatScreen() {
                 </Link>
               </div>
             </div>
-            </div>
-            <div className=" bootstrap snippets bootdey p-2 w-100">
-              <div className="tile tile-alt" id="messages-main">
-                <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                  <div className="ms-user clearfix text-white fs-2 d-flex justify-content- ">
-                    {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
+          </div>
+          <div className=" bootstrap snippets bootdey p-2 w-100">
+            <div className="tile tile-alt" id="messages-main">
+              <div className={open ? "ms-menu toggled" : "ms-menu"}>
+                <div className="ms-user clearfix text-white fs-2 d-flex justify-content- ">
+                  {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
 
-                    <div
-                      className="fs-3 text-light mb-2"
-                      style={{ fontFamily: "'Gluten', sans-serif" }}
-                    >
-                      Student Assistant
-                    </div>
-                    <div className="d-flex">
-                      <span className="badge fs-5 text-danger"><FaBell className="text-light fs-3" />4</span>
-                    </div>
+                  <div
+                    className="fs-3 text-light mb-2"
+                    style={{ fontFamily: "'Gluten', sans-serif" }}
+                  >
+                    Student Assistant
                   </div>
+                  <div className="d-flex">
+                    <span className="badge fs-5 text-danger">
+                      <FaBell className="text-light fs-3" />4
+                    </span>
+                  </div>
+                </div>
 
-                  {/* <div className="p-15">
+                {/* <div className="p-15">
                         <div className="dropdown">
                             <a className="btn btn-primary btn-block" href="" data-toggle="dropdown">Messages <i className="caret m-l-5"></i></a>
 
@@ -360,174 +359,180 @@ export default function ChatScreen() {
                         </div>
                     </div> */}
 
-                  <div className="list-group lg-alt mt-1">
-                    <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
-                      <div
-                        className="bg-light d-flex justify-content-center align-items-center"
-                        style={{ width: "40px", borderRadius: "10px 0 0 10px" }}
-                      >
-                        <FaSearch />
-                      </div>
-                      <Form style={{ display: "flex" }}>
-                        <Form.Control
-                          type="text"
-                          name="q"
-                          onChange={(e) => setSearchUser(e.target.value)}
-                          placeholder="Search Users..."
-                          className="mr-sm-2 ml-sm-5 serach-user"
-                          style={{
-                            height: "50px",
-                            width: "300px",
-                            borderRadius: "0 10px 10px 0",
-                          }}
-                        ></Form.Control>
-                      </Form>
-                    </div>
-                    <span
-                      className="text-light fs-5 mb-2"
-                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
-                    >
-                      <span>Recent Chats</span>
-                    </span>
-                    {searchUser === "" &&
-                      chats &&
-                      chats.map((list) => {
-                        return (
-                          <ChatUserList
-                            list={list}
-                            userID={userData._id}
-                            key={list._id}
-                            chatID={
-                              chatID ? chatID : chatData ? chatData._id : ""
-                            }
-                            token={userData?.token}
-                          />
-                        );
-                      })}
-                    {searchUser !== "" &&
-                      chats &&
-                      chats
-                        .filter((list) =>
-                          list.participants.some(
-                            (participant) =>
-                              participant.username &&
-                              participant.username != userData.username &&
-                              participant.username.includes(searchUser)
-                          )
-                        )
-                        .map((list) => (
-                          <ChatUserList
-                            list={list}
-                            userID={userData._id}
-                            key={list._id}
-                            chatID={
-                              chatID ? chatID : chatData ? chatData._id : ""
-                            }
-                            token={userData?.token}
-                          />
-                        ))}
-                    {!chats && (
-                      <span className="text-center fs-5 text-danger mb-2">
-                        No Chat !!
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="ms-body">
-                  <div className="action-header clearfix">
+                <div className="list-group lg-alt mt-1">
+                  <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
                     <div
-                      className="visible-xs"
-                      id="ms-menu-trigger"
-                      style={{ zIndex: 10 }}
-                      onClick={() => setOpen(!open)}
+                      className="bg-light d-flex justify-content-center align-items-center"
+                      style={{ width: "40px", borderRadius: "10px 0 0 10px" }}
                     >
-                      <i className="fa fa-bars text-light"></i>
+                      <FaSearch />
                     </div>
-                    <span
-                      className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
-                      style={{
-                        fontFamily: "'Gluten', sans-serif",
-                        marginLeft: "-21px",
-                      }}
-                    >
-                      {/* <Link to="/"></Link> */}
-                      <div className="d-flex ">
-                        {chatWith.length !== 0 && (
-                          <>
-                            <img
-                              src={chatWith?.profile ? chatWith.profile :"https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
-                              alt=""
-                              style={{
-                                width: "60px",
-                                height: "60px",
-                                borderRadius: "50%",
-                              }}
-                              className="img-avatar pull-left ms-4"
-                            />
-                            <div
-                              className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center"
-                              style={{ lineHeight: "26px" }}
-                            >
-                              <div className="fs-2  text-light mt-2">
-                                {chatWith?.fullname}
-                              </div>
-                              <div
-                                className="ms-4 text-dark"
-                                style={{ fontSize: "16px" }}
-                              >
-                                {chatWith?.username}
-                              </div>
-                            </div>{" "}
-                          </>
-                        )}
-                      </div>
+                    <Form style={{ display: "flex" }}>
+                      <Form.Control
+                        type="text"
+                        name="q"
+                        onChange={(e) => setSearchUser(e.target.value)}
+                        placeholder="Search Users..."
+                        className="mr-sm-2 ml-sm-5 serach-user"
+                        style={{
+                          height: "50px",
+                          width: "300px",
+                          borderRadius: "0 10px 10px 0",
+                        }}
+                      ></Form.Control>
+                    </Form>
+                  </div>
+                  <span
+                    className="text-light fs-5 mb-2"
+                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
+                  >
+                    <span>Recent Chats</span>
+                  </span>
+                  {searchUser === "" &&
+                    chats &&
+                    chats.map((list) => {
+                      return (
+                        <ChatUserList
+                          list={list}
+                          userID={userData._id}
+                          key={list._id}
+                          chatID={
+                            chatID ? chatID : chatData ? chatData._id : ""
+                          }
+                          token={userData?.token}
+                        />
+                      );
+                    })}
+                  {searchUser !== "" &&
+                    chats &&
+                    chats
+                      .filter((list) =>
+                        list.participants.some(
+                          (participant) =>
+                            participant.username &&
+                            participant.username != userData.username &&
+                            participant.username.includes(searchUser)
+                        )
+                      )
+                      .map((list) => (
+                        <ChatUserList
+                          list={list}
+                          userID={userData._id}
+                          key={list._id}
+                          chatID={
+                            chatID ? chatID : chatData ? chatData._id : ""
+                          }
+                          token={userData?.token}
+                        />
+                      ))}
+                  {!chats && (
+                    <span className="text-center fs-5 text-danger mb-2">
+                      No Chat !!
+                    </span>
+                  )}
+                </div>
+              </div>
 
-                      {messageData && (
-                        <div>
-                          {" "}
-                          <Dropdown style={{ width: "42px", height: "48px" }}>
-                            <style>{`
+              <div className="ms-body">
+                <div className="action-header clearfix">
+                  <div
+                    className="visible-xs"
+                    id="ms-menu-trigger"
+                    style={{ zIndex: 10 }}
+                    onClick={() => setOpen(!open)}
+                  >
+                    <i className="fa fa-bars text-light"></i>
+                  </div>
+                  <span
+                    className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
+                    style={{
+                      fontFamily: "'Gluten', sans-serif",
+                      marginLeft: "-21px",
+                    }}
+                  >
+                    {/* <Link to="/"></Link> */}
+                    <div className="d-flex ">
+                      {chatWith.length !== 0 && (
+                        <>
+                          <img
+                            src={
+                              chatWith?.profile
+                                ? chatWith.profile
+                                : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                            }
+                            alt=""
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              borderRadius: "50%",
+                            }}
+                            className="img-avatar pull-left ms-4"
+                          />
+                          <div
+                            className="d-flex flex-column ms-4 pt-1 align-items-center justify-content-center"
+                            style={{ lineHeight: "26px" }}
+                          >
+                            <div className="fs-2  text-light mt-2">
+                              {chatWith?.fullname}
+                            </div>
+                            <div
+                              className="ms-4 text-dark"
+                              style={{ fontSize: "16px" }}
+                            >
+                              {chatWith?.username}
+                            </div>
+                          </div>{" "}
+                        </>
+                      )}
+                    </div>
+
+                    {messageData && (
+                      <div>
+                        {" "}
+                        <Dropdown style={{ width: "42px", height: "48px" }}>
+                          <style>{`
       .dropdown-toggle::after {
         display: none;
       }
     `}</style>
-                            <Dropdown.Toggle
-                              id="dropdown-basic"
-                              style={{
-                                width: "50px",
-                                height: "35px",
-                                marginRight: "22px",
-                              }}
-                            >
-                              <BsThreeDots className="text-dark fs-2 " />
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="bg-light">
-                              <DeleteChat chatid={messageData[0]?.chat} token={userData?.token}/>
+                          <Dropdown.Toggle
+                            id="dropdown-basic"
+                            style={{
+                              width: "50px",
+                              height: "35px",
+                              marginRight: "22px",
+                            }}
+                          >
+                            <BsThreeDots className="text-dark fs-2 " />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="bg-light">
+                            <DeleteChat
+                              chatid={messageData[0]?.chat}
+                              token={userData?.token}
+                            />
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                    )}
+                  </span>
 
-                            </Dropdown.Menu>
-
-                          </Dropdown>
-                        </div>)}
-                    </span>
-
-                    <ul className="ah-actions actions">
-                      {/* <li>
+                  <ul className="ah-actions actions">
+                    {/* <li>
                       <button onClick={handleDelete} style={{ width: "50px" }}>
                         <i className="fa fa-trash text-danger fs-5"></i>
                       </button>
                     </li> */}
-                      {/* <li>
+                    {/* <li>
                                         <a href="">
                                             <i className="fa fa-check"></i>
                                         </a>
                                     </li> */}
-                      {/* <li>
+                    {/* <li>
                                         <a href="">
                                             <i className="fa fa-clock-o"></i>
                                         </a>
                                     </li> */}
-                      {/* <li className="dropdown">
+                    {/* <li className="dropdown">
                                         <a href="" data-toggle="dropdown" aria-expanded="true">
                                             <i className="fa fa-sort"></i>
                                         </a>
@@ -541,7 +546,7 @@ export default function ChatScreen() {
                                             </li>
                                         </ul>
                                     </li> */}
-                      {/* { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
+                    {/* { messageData && <li> <Dropdown style={{width:"42px",height:"30px"}} >
                         <style>{`
       .dropdown-toggle::after {
         display: none;
@@ -562,140 +567,142 @@ export default function ChatScreen() {
                       
                       </Dropdown>
                       </li>} */}
-                    </ul>
-                  </div>
-                  <div className="show-msg pt-3">
-                    {messages ?
-                      messages.map((msg) => {
-                        if (msg.sender._id === userData._id)
-                          return <UserMessgeBox msg={msg} key={msg._id} />;
-                        else return <SenderMessageBox msg={msg} key={msg._id} />;
-                      }):<div className="d-flex justify-content-center align-items-center w-100 h-100">
-                        Select a chat to talk !!
-                      </div> }
-                    <div ref={messagesEndRef} />
-                  </div>
-
-                  {images && (
-                    <div className="position-relative input-above">
-                      {images.map((file, index) => (
-                        <div
-                          key={index}
-                          className="d-inline-block position-relative input-img"
-                        >
-                          <img
-                            className="mt-2 "
-                            src={URL.createObjectURL(file)}
-                            style={{ height: "100px" }}
-                            alt={`image${index + 1}`}
-                          />
-                          <button
-                            type="button"
-                            className="btn btn-danger btn-sm position-absolute top-0 end-0 img-rem"
-                            style={{
-                              width: "30px",
-                              height: "40px",
-                              display: "none",
-                            }}
-                            onClick={() => removeImg(file)}
-                          >
-                            X
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  <div className="input-above">
-                    {typeMessage && (
-                      <span className="text-white ms-4">Type a Message.....</span>
-                    )}
-                    {showEmojiPicker && (
-                      <EmojiPicker
-                        onEmojiClick={(e) => handleEmojiClick(e)}
-                        width={"100%"}
-                      />
-                    )}
-                    {istyping ? (
-                      <div>
-                        <Lottie
-                          options={defaultOptions}
-                          // height={50}
-                          width={70}
-                          style={{ marginBottom: 15, marginLeft: 0 }}
-                        />
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                  {(userData && sellerID && userData._id === sellerID) ||
-                    (!sellerID && !chatID) ? (
-                    <></>
+                  </ul>
+                </div>
+                <div className="show-msg pt-3">
+                  {messages ? (
+                    messages.map((msg) => {
+                      if (msg.sender._id === userData._id)
+                        return <UserMessgeBox msg={msg} key={msg._id} />;
+                      else return <SenderMessageBox msg={msg} key={msg._id} />;
+                    })
                   ) : (
-                    <div className="card-footer">
-                      <div className="input-group ">
-                        <textarea
-                          name=""
-                          className="form-control type_msg text-dark chatInput"
-                          placeholder="Type A Message..."
-                          style={{ fontFamily: "'Gluten', sans-serif" }}
-                          onChange={(e) => typingHandler(e)}
-                          value={sendMessage}
-                        ></textarea>
-                     
-                        <div className="input-group-append">
-                          {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
-                          {images.length < 4 && (
-                            <>
-                              <label
-                                htmlFor="fileInput"
-                                className="input-group-text attach_btn"
-                              >
-                                <i className="fas fa-paperclip"></i>
-                              </label>
-                              <input
-                                type="file"
-                                id="fileInput"
-                                style={{ display: "none" }}
-                                multiple
-                                onChange={uploadFileHandler}
-                              />
-                            </>
-                          )}
-                        </div>
-                        <div className="input-group-append d-flex">
-                          <span>
-                            {/* Emoji button */}
-                            <button
-                              style={{ width: "50px", zIndex: "0" }}
-                              className="btn emoji"
-                              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                            >
-                              😀
-                            </button>
-                          </span>
-                          <span
-                            className="input-group-text send_btn"
-                            onClick={handleSubmit}
-                          >
-                            <IoSend className="fs-4" />
-                          </span>
-                        </div>
-                      </div>
+                    <div className="d-flex justify-content-center align-items-center w-100 h-100">
+                      Select a chat to talk !!
                     </div>
                   )}
-                  {/* <form onSubmit={handleSubmit} >
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {images && (
+                  <div className="position-relative input-above">
+                    {images.map((file, index) => (
+                      <div
+                        key={index}
+                        className="d-inline-block position-relative input-img"
+                      >
+                        <img
+                          className="mt-2 "
+                          src={URL.createObjectURL(file)}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0 img-rem"
+                          style={{
+                            width: "30px",
+                            height: "40px",
+                            display: "none",
+                          }}
+                          onClick={() => removeImg(file)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <div className="input-above">
+                  {typeMessage && (
+                    <span className="text-white ms-4">Type a Message.....</span>
+                  )}
+                  {showEmojiPicker && (
+                    <EmojiPicker
+                      onEmojiClick={(e) => handleEmojiClick(e)}
+                      width={"100%"}
+                    />
+                  )}
+                  {istyping ? (
+                    <div>
+                      <Lottie
+                        options={defaultOptions}
+                        // height={50}
+                        width={70}
+                        style={{ marginBottom: 15, marginLeft: 0 }}
+                      />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                {(userData && sellerID && userData._id === sellerID) ||
+                (!sellerID && !chatID) ? (
+                  <></>
+                ) : (
+                  <div className="card-footer">
+                    <div className="input-group ">
+                      <textarea
+                        name=""
+                        className="form-control type_msg text-dark chatInput"
+                        placeholder="Type A Message..."
+                        style={{ fontFamily: "'Gluten', sans-serif" }}
+                        onChange={(e) => typingHandler(e)}
+                        value={sendMessage}
+                      ></textarea>
+
+                      <div className="input-group-append">
+                        {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
+                        {images.length < 4 && (
+                          <>
+                            <label
+                              htmlFor="fileInput"
+                              className="input-group-text attach_btn"
+                            >
+                              <i className="fas fa-paperclip"></i>
+                            </label>
+                            <input
+                              type="file"
+                              id="fileInput"
+                              style={{ display: "none" }}
+                              multiple
+                              onChange={uploadFileHandler}
+                            />
+                          </>
+                        )}
+                      </div>
+                      <div className="input-group-append d-flex">
+                        <span>
+                          {/* Emoji button */}
+                          <button
+                            style={{ width: "50px", zIndex: "0" }}
+                            className="btn emoji"
+                            onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                          >
+                            😀
+                          </button>
+                        </span>
+                        <span
+                          className="input-group-text send_btn"
+                          onClick={handleSubmit}
+                        >
+                          <IoSend className="fs-4" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* <form onSubmit={handleSubmit} >
                                             <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span>
                                 <textarea placeholder="Text Message..." onChange={(e)=>setSendMessage(e.target.value)} value={sendMessage}></textarea>
                                 <button type="submit"><i className="fa fa-paper-plane"></i></button>
                                 </form> */}
-                  {/* </div> */}
-                </div>
+                {/* </div> */}
               </div>
             </div>
           </div>
-      
+        </div>
       )}
     </>
-  )
+  );
 }

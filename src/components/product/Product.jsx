@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -110,7 +111,8 @@ const Product = ({ product, userID, token }) => {
                       : "btn text-light bg-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn"
                   }
                 >
-                  <FaRegHeart /> {isWishlisted ? "Remove" : "wishlist"}
+                  <FaRegHeart />{" "}
+                  {isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 </Link>
               </>
             )}

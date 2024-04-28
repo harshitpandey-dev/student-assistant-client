@@ -1,4 +1,4 @@
-import { logout } from "../actions/userActions";
+import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -15,22 +15,30 @@ const Header = () => {
   const { userData } = userLogin;
   const location = useLocation();
   var currentURL = location.pathname;
-  var url = (currentURL.split("/"));
+  var url = currentURL.split("/");
   const [hide, setHide] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     currentURL = window.location.href;
-    url = (currentURL.split("/"));
+    url = currentURL.split("/");
     setHide(false);
-    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist") || url.includes("about") || url.includes("createproduct")) {
+    if (
+      url.includes("chatScreen") ||
+      url.includes("product") ||
+      url.includes("admin") ||
+      url.includes("users") ||
+      url.includes("wishlist") ||
+      url.includes("about") ||
+      url.includes("createproduct")
+    ) {
       setHide(true);
     }
-  }, [location])
+  }, [location]);
 
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/")
+    navigate("/");
   };
   return (
     <header>
@@ -46,8 +54,10 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand className="text-light" >
-              <span style={{ fontFamily: "'Gluten', sans-serif" }}>Student-Assistant</span> 
+            <Navbar.Brand className="text-light">
+              <span style={{ fontFamily: "'Gluten', sans-serif" }}>
+                Student-Assistant
+              </span>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -55,11 +65,16 @@ const Header = () => {
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             {hide ? <></> : <SearchBox className="w-100 h-100" />}
             <Nav className="ml-auto text-center d-flex align-items-center">
-
-              <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
-                <IoIosAddCircle />  Sell
+              <Link
+                to="/createproduct"
+                className="btn text-white btn-circle btn-circle-sm m-1 style-btn"
+              >
+                <IoIosAddCircle /> Sell
               </Link>
-              <Link to="/wishlist" className="btn text-light btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
+              <Link
+                to="/wishlist"
+                className="btn text-light btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn"
+              >
                 <FaRegHeart /> Wishlist
               </Link>
               {userData && userData.isAdmin && (
@@ -80,7 +95,7 @@ const Header = () => {
               <LinkContainer to="/about">
                 <Nav.Link>
                   {/* <i className='far fa-address-card'></i>  */}
-                  <span >About Us</span>
+                  <span>About Us</span>
                 </Nav.Link>
               </LinkContainer>
               {userData ? (

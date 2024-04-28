@@ -2,19 +2,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
 import {
   deleteProduct,
   listProductDetails,
   updateProduct,
 } from "../../actions/productActions";
-import FormContainer from "../../components/FormContainer";
+import FormContainer from "../../components/common/FormContainer";
 import { PRODUCT_UPDATE_RESET } from "../../types/productConstants";
 // import Header from "../../components/Header";
 import { useNavigate, useParams } from "react-router";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 
 const ProductEditScreen = () => {
   const navigate = useNavigate();

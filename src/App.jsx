@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
 import ForgotPassword from "./screens/Auth/Forgotpassword";
@@ -18,18 +23,17 @@ import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
 import ChatScreen from "./screens/Chat/ChatScreen";
 import Wishlist from "./screens/Auth/Wishlist";
-import Alert from "./components/Alert";
+import Alert from "./components/common/Alert";
+import Footer from "./components/common/Footer";
 
 function App() {
   const dispatch = useDispatch();
- 
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       dispatch(login("", ""));
     }
   }, []);
-
 
   return (
     <Router>
@@ -79,7 +83,6 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-     
       </>
     </Router>
   );

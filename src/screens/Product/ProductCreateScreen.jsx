@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
+import Message from "../../components/common/Message";
+import Loader from "../../components/common/Loader";
 import { createProduct } from "../../actions/productActions";
-import FormContainer from "../../components/FormContainer";
+import FormContainer from "../../components/common/FormContainer";
 // import Header from "../../components/Header";
 import { useNavigate } from "react-router";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
 
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
@@ -38,12 +38,12 @@ const ProductCreateScreen = () => {
     }
   }, [success, userData]);
 
-  
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
     const file_size = e.target.files[0].size;
-    if(file_size > (2e+6)){ // more than 2mb
-      setMessage("File exceed 2 mb")
+    if (file_size > 2e6) {
+      // more than 2mb
+      setMessage("File exceed 2 mb");
       setTimeout(() => {
         setMessage(null);
       }, 3000);
@@ -61,13 +61,11 @@ const ProductCreateScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(keyword.length<10 || description.length<20){
-      if(keyword.length<10){
+    if (keyword.length < 10 || description.length < 20) {
+      if (keyword.length < 10) {
         setMessage("Keyword should be of atleast 10 words");
-        
-      }else{
+      } else {
         setMessage("Description should be of atleast 10 words");
-
       }
       setTimeout(() => {
         setMessage(null);
@@ -107,7 +105,6 @@ const ProductCreateScreen = () => {
 
       <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-3 ">
-       
         <FormContainer>
           <h1
             className=" py-2 text-center"
@@ -119,54 +116,52 @@ const ProductCreateScreen = () => {
             <Loader />
           ) : (
             <Form onSubmit={submitHandler}>
+              {showImages.length < 4 && (
+                <Form.Group controlId="images">
+                  <Form.Label>
+                    Upload Images <small> </small>
+                  </Form.Label>
 
-                {showImages.length < 4 && (
-                  <Form.Group controlId="images">
-                    <Form.Label>
-                      Upload Images <small> </small>
-                    </Form.Label>
+                  <Form.File
+                    id="image-file"
+                    className="button-3"
+                    // label="Upload Image"
+                    onChange={uploadFileHandler}
+                  />
+                  <p></p>
+                  <ul>
+                    <li>* Maximum 4 images can be uploaded</li>
+                    <li>* Size of each image should be less than 2mb</li>
+                  </ul>
+                </Form.Group>
+              )}
 
-                    <Form.File
-                      id="image-file"
-                      className="button-3"
-                      // label="Upload Image"
-                      onChange={uploadFileHandler}
-                    />
-                    <p></p>
-                    <ul>
-                      <li>* Maximum 4 images can be uploaded</li>
-                      <li>* Size of each image should be less than 2mb</li>
-                    </ul>
-                  </Form.Group>
-                )}
-
-                {uploading && <Loader />}
-                {showImages && (
-                  <div className="position-relative mt-5">
-                    {showImages.map((file, index) => (
-                      <div
-                        key={index}
-                        className="d-inline-block position-relative"
+              {uploading && <Loader />}
+              {showImages && (
+                <div className="position-relative mt-5">
+                  {showImages.map((file, index) => (
+                    <div
+                      key={index}
+                      className="d-inline-block position-relative"
+                    >
+                      <img
+                        className="mt-2"
+                        src={URL.createObjectURL(file)}
+                        style={{ height: "100px" }}
+                        alt={`image${index + 1}`}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                        style={{ width: "30px", height: "40px" }}
+                        onClick={() => removeImg(file)}
                       >
-                        <img
-                          className="mt-2"
-                          src={URL.createObjectURL(file)}
-                          style={{ height: "100px" }}
-                          alt={`image${index + 1}`}
-                        />
-                        <button
-                          type="button"
-                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                          style={{ width: "30px", height: "40px" }}
-                          onClick={() => removeImg(file)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <Form.Group controlId="name">
                 <Form.Label>Name of the product </Form.Label>
@@ -179,7 +174,6 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-             
               <Form.Group controlId="category">
                 <Form.Label>Keyword</Form.Label>
                 <Form.Control
@@ -258,7 +252,7 @@ const ProductCreateScreen = () => {
                 Upload your property
               </Button>
               {error && <Message variant="danger">{error}</Message>}
-                {message && <Message variant="danger">{message}</Message>}
+              {message && <Message variant="danger">{message}</Message>}
             </Form>
           )}
         </FormContainer>

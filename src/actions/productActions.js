@@ -15,17 +15,16 @@ import {
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_REQUEST,
+  PRODUCT_USER_REQUEST,
+  PRODUCT_USER_FAIL,
+  PRODUCT_USER_SUCCESS,
   // PRODUCT_REVIEW_REQUEST,
   // PRODUCT_REVIEW_FAIL,
   // PRODUCT_REVIEW_SUCCESS,
 } from "../types/productConstants";
 import axios from "axios";
 import { TOAST_ADD } from "../types/userConstants";
-// import {
-//   USER_DELETE_FAIL,
-//   USER_DELETE_REQUEST,
-//   USER_DELETE_SUCCESS,
-// } from '../types/userConstants'
+
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({
@@ -43,6 +42,37 @@ export const listProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listUserProducts = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: PRODUCT_USER_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/products/product`, config);
+
+    dispatch({
+      type: PRODUCT_USER_SUCCESS,
+      payload: data.data.userProducts,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_USER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -109,7 +139,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'PRODUCT DELETED !!!',
+      payload: "PRODUCT DELETED !!!",
     });
   } catch (error) {
     dispatch({
@@ -148,7 +178,7 @@ export const createProduct = (formData) => async (dispatch, getState) => {
     });
     dispatch({
       type: TOAST_ADD,
-      payload: 'PRODUCT ADDED !!!',
+      payload: "PRODUCT ADDED !!!",
     });
     // console.log(data);
   } catch (error) {
@@ -208,7 +238,7 @@ export const updateProduct =
           // shippingCharge,
           price,
           negotiable,
-          sold
+          sold,
         },
         config
       );
@@ -218,7 +248,7 @@ export const updateProduct =
       });
       dispatch({
         type: TOAST_ADD,
-        payload: 'PRODUCT UPDATED !!!',
+        payload: "PRODUCT UPDATED !!!",
       });
     } catch (error) {
       dispatch({
@@ -230,42 +260,3 @@ export const updateProduct =
       });
     }
   };
-
-//create review
-// export const createProductReview =
-//   (productId, comment) => async (dispatch, getState) => {
-//     try {
-//       dispatch({
-//         type: PRODUCT_REVIEW_REQUEST,
-//       });
-//       const {
-//         userLogin: { userData },
-//       } = getState();
-//       const config = {
-//         headers: {
-//           "Content-Type": "application/json",
-//           "Access-Control-Allow-Origin": "*",
-//           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-
-//           Authorization: `Bearer ${userData.token}`,
-//         },
-//       };
-
-//       await axios.post(
-//         `/api/products/${productId}/reviews`,
-//         { comment },
-//         config
-//       );
-//       dispatch({
-//         type: PRODUCT_REVIEW_SUCCESS,
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: PRODUCT_REVIEW_FAIL,
-//         payload:
-//           error.response && error.response.data.message
-//             ? error.response.data.message
-//             : error.message,
-//       });
-//     }
-//   };
