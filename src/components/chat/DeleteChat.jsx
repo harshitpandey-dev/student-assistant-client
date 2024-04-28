@@ -27,8 +27,8 @@ const DeleteChat = ({ chatid, token }) => {
   return (
     <>
       <Button
-        variant="danger"
-        className=""
+        variant="light"
+        className="text-danger"
         style={{ width: "100%", height: "auto", fontSize: "17px" }}
         onClick={handleShow}
       >
@@ -50,7 +50,7 @@ const DeleteChat = ({ chatid, token }) => {
             </Form>
           </FormContainer>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-center">
           <Button onClick={submitHandler} variant="primary" className="ms-2">
             Delete
           </Button>

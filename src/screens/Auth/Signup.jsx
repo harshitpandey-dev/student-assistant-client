@@ -32,7 +32,7 @@ function Signup() {
   useEffect(() => {
     if (userData) {
 
-      navigate("/")
+      navigate("/login")
 
 
     }

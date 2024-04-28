@@ -116,7 +116,7 @@ const AdminUpdateUser = ({ Edituser}) => {
                         </Form>
                     </FormContainer>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className="d-flex justify-content-center">
                     <Button variant="warning" onClick={handleClose}>
                         Close
                     </Button>

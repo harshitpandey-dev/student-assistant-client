@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import AdminDeleteAccountModel from "../../components/AdminDeleteAccountModel";
 import AdminUpdateUser from "../../components/AdminUpdateUser";
 import { USER_DETAILS_RESET, USER_UPDATE_RESET } from "../../types/userConstants";
+import Footer from "../../components/Footer";
 const UserListScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const UserListScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-3 d-flex flex-column p-2">
+      <div className="py-3 d-flex flex-column p-2 " style={{ minHeight: "100vh" }}>
         <h1
           className="text-center pb-2 "
           style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
@@ -133,6 +134,7 @@ const UserListScreen = () => {
           </Table>
         )}
       </div>
+      <Footer />
     </>
   );
 };

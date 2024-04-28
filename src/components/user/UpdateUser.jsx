@@ -11,6 +11,7 @@ import {
   USER_UPDATE_RESET,
   USER_DETAILS_RESET,
 } from "../../types/userConstants";
+import { FaUserEdit } from "react-icons/fa";
 
 const UpdateUser = () => {
   const navigate = useNavigate();
@@ -90,8 +91,9 @@ const UpdateUser = () => {
         variant="secondary"
         className="mt-2 mb-2 ms-2"
         onClick={handleShow}
+        style={{ width: "70px", height: "40px" }}
       >
-        Update Details
+        <FaUserEdit />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -141,7 +143,7 @@ const UpdateUser = () => {
             </Form>
           </FormContainer>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-center">
           <Button variant="warning" onClick={handleClose}>
             Close
           </Button>

@@ -218,7 +218,6 @@ export const updateProduct =
         type: TOAST_ADD,
         payload: 'PRODUCT UPDATED !!!',
       });
-      console.log(data.data.newProduct);
     } catch (error) {
       dispatch({
         type: PRODUCT_UPDATE_FAIL,

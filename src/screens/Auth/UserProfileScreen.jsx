@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import DeleteAccount from "../../components/user/DeleteAccount";
 import UserPrductDeleteModel from "../../components/UserPrductDeleteModel";
 import AdminEditProductModel from "../../components/AdminEditProductModel";
+import Footer from "../../components/Footer";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -31,12 +32,12 @@ const UserUpdateScreen = () => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
     }
-    if (!userData) {
+    else{
       navigate("/");
       return;
-    } else {
-      dispatch(listProducts());
     }
+      dispatch(listProducts());
+    
   }, [dispatch, userData, successDelete, navigate]);
 
   // const deleteHandler = (id) => {
@@ -49,7 +50,7 @@ const UserUpdateScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-3">
+      <div className="py-3 " style={{ minHeight: "100vh" }}>
         <Row>
           <Col md={2}></Col>
           <Col md={8}>
@@ -111,7 +112,7 @@ const UserUpdateScreen = () => {
                                   to={`/admin/product/${product._id}/edit`}
                                 >
                                   <AdminEditProductModel
-                                    productId={product._id}
+                                    product={product}
                                   />
                                 </LinkContainer>
                                 <UserPrductDeleteModel
@@ -127,37 +128,36 @@ const UserUpdateScreen = () => {
             )}
           </Col>
           <Col md={2}></Col>
-        </Row>
-
-        <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Edit your Details</div>
-          </Col>
-          <Col md={6}>
-            <UpdateUser />
+          <Col md={8}>
           </Col>
         </Row>
-
+ 
         <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Change Password</div>
-          </Col>
-          <Col md={6}>
-            <ChangePassword />
-          </Col>
-        </Row>
-        <Row>
-          <Col md={1}></Col>
-          <Col md={4}>
-            <div>Delete Account</div>
-          </Col>
-          <Col md={6}>
-            <DeleteAccount />
-          </Col>
+          <Col md={2}></Col>
+         <Col md={8}>
+          <h3>Setting</h3>
+          <table className="m-2 w-100">
+            <tr className="mb-4">
+              <td>Edit your Details</td>
+              <td><UpdateUser /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            <tr>
+              <td>Change Password</td>
+              <td><ChangePassword /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            <tr>
+              <td>Delete Account</td>
+              <td><DeleteAccount /></td>
+            </tr>
+            <tr><hr></hr></tr>
+            </table>
+        
+        </Col>
         </Row>
       </div>
+      <Footer />
     </>
   );
 };

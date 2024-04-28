@@ -1,11 +1,12 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
-// import Header from "../../components/Header";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer"
 
 const AboutUsScreen = () => {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="container">
         <div className="row">
           <div className="col-md-6 item">
@@ -46,6 +47,7 @@ const AboutUsScreen = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

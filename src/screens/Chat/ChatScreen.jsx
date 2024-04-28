@@ -98,12 +98,24 @@ export default function ChatScreen() {
       setChatWith(filteredParticipants[0]);
     }
   }, [chatID, userData, chatListData]);
+
+  useEffect(() => {
+    if (userData && chatData && sellerID) {
+      // const activeChat =  chatData?.filter((item) => item._id === sellerID);
+      const filteredParticipants = chatData?.participants?.filter(
+        (participant) => participant?._id !== userData?._id
+      );
+      setChatWith(filteredParticipants[0]);
+    }
+  }, [sellerID, userData, chatData]);
+
   useEffect(() => {
     setChats(chatListData);
   }, [chatListData]);
   useEffect(() => {
     setMessages(messageData);
   }, [messageData]);
+  // >>>>>>> origin/main
 
   const onConnect = () => {
     setIsConnected(true);
@@ -177,6 +189,12 @@ export default function ChatScreen() {
     if (!chatID && userData && sellerID) {
       dispatch(getOrCreate_Chat(sellerID, userData.token));
     }
+  }, [sellerID, userData, chatID, reload]);
+
+  useEffect(() => {
+    if (userData && sellerID && userData?._id === sellerID) {
+      return;
+    }
     if (userData && chatData && !chatID) {
       dispatch(getMessage(chatData._id, userData.token));
       if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
@@ -237,11 +255,11 @@ export default function ChatScreen() {
     }
   }
 
-  useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messageData]);
+  // useEffect(() => {
+  //   if (messagesEndRef.current) {
+  //     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [messageData]);
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
@@ -288,15 +306,18 @@ export default function ChatScreen() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="chatScreen d-flex">
+        <div className="chatScreen d-flex ">
           <div className="" style={{ width: "50px", height: "100px" }}>
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100 mt-5">
               <div>
-                <img
-                  src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-                  alt=""
-                  className="img-avatar box-img"
-                />
+                <label for="fileInput" style={{ cursor: "pointer" }}>
+                  <img
+                    src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+                    alt=""
+                    className="img-avatar box-img"
+                  />
+                  {/* <i className="fas fa-paperclip"></i> */}
+                </label>
               </div>
               <div>
                 <Link to="/" className="fs-4 text-light">
@@ -308,7 +329,7 @@ export default function ChatScreen() {
           <div className=" bootstrap snippets bootdey p-2 w-100">
             <div className="tile tile-alt" id="messages-main">
               <div className={open ? "ms-menu toggled" : "ms-menu"}>
-                <div className="ms-user clearfix text-white fs-2 d-flex justify-content-between ">
+                <div className="ms-user clearfix text-white fs-2 d-flex justify-content- ">
                   {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
 
                   <div
@@ -317,8 +338,10 @@ export default function ChatScreen() {
                   >
                     Student Assistant
                   </div>
-                  <div className="ms-4">
-                    <FaBell className="text-light fs-3" />
+                  <div className="d-flex">
+                    <span className="badge fs-5 text-danger">
+                      <FaBell className="text-light fs-3" />4
+                    </span>
                   </div>
                 </div>
 
@@ -476,14 +499,14 @@ export default function ChatScreen() {
                           >
                             <BsThreeDots className="text-dark fs-2 " />
                           </Dropdown.Toggle>
-
-                          <Dropdown.Menu className="bg-danger">
+                          <Dropdown.Menu className="bg-light">
                             <DeleteChat />
                           </Dropdown.Menu>
                         </Dropdown>
                       </div>
                     )}
                   </span>
+
                   <ul className="ah-actions actions">
                     {/* <li>
                       <button onClick={handleDelete} style={{ width: "50px" }}>
@@ -538,12 +561,17 @@ export default function ChatScreen() {
                   </ul>
                 </div>
                 <div className="show-msg pt-3">
-                  {messages &&
+                  {messages ? (
                     messages.map((msg) => {
                       if (msg.sender._id === userData._id)
                         return <UserMessgeBox msg={msg} key={msg._id} />;
                       else return <SenderMessageBox msg={msg} key={msg._id} />;
-                    })}
+                    })
+                  ) : (
+                    <div className="d-flex justify-content-center align-items-center w-100 h-100">
+                      Select a chat to talk !!
+                    </div>
+                  )}
                   <div ref={messagesEndRef} />
                 </div>
 

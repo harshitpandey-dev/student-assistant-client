@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Login from "./screens/Auth/Login";
 import Signup from "./screens/Auth/Signup";
 import ForgotPassword from "./screens/Auth/Forgotpassword";
@@ -13,7 +13,7 @@ import ProductListScreen from "./screens/Admin/ProductListScreen";
 import ProductCreateScreen from "./screens/Product/ProductCreateScreen";
 import ProductEditScreen from "./screens/Product/ProductEditScreen";
 import UserProfileScreen from "./screens/Auth/UserProfileScreen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
 import ChatScreen from "./screens/Chat/ChatScreen";
@@ -23,11 +23,14 @@ import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
+ 
+
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       dispatch(login("", ""));
     }
   }, []);
+
 
   return (
     <Router>
@@ -77,7 +80,7 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>
-        <Footer />
+     
       </>
     </Router>
   );

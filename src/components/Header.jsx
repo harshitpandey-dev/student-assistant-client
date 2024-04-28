@@ -23,7 +23,7 @@ const Header = () => {
     currentURL = window.location.href;
     url = (currentURL.split("/"));
     setHide(false);
-    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist")) {
+    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist") || url.includes("about")) {
       setHide(true);
     }
   },[location])
@@ -57,10 +57,10 @@ const Header = () => {
             <Nav className="ml-auto text-center d-flex align-items-center">
             
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
-                 <IoIosAddCircle /> Sell your Product
+                 <IoIosAddCircle /> Sell Product
                  </Link>
               <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
-                <FaRegHeart /> My wishlist
+                <FaRegHeart /> Wishlist
               </Link>
               {userData && userData.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">

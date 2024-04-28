@@ -16,6 +16,7 @@ import { getUserWishlist } from "../../actions/userActions";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import Header from "../../components/Header";
 import ProductDispay from "../../components/ProductDispay";
+import Footer from "../../components/Footer";
 
 export default function Landing() {
   const match = useParams();
@@ -25,11 +26,13 @@ export default function Landing() {
 
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products } = productList;
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
   const getWishlist = useSelector((state) => state.userWishlist);
   var { wishlist } = getWishlist;
+  const updateProduct = useSelector((state) => state.productUpdate);
+  var { data,success } = updateProduct;
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
@@ -41,11 +44,21 @@ export default function Landing() {
       dispatch(getUserWishlist(userData.token));
     }
   }, [dispatch, keyword, pageNumber, userData]);
+
+
+  const startIndex =( pageNumber -1) * 2;
+  const endIndex =  pageNumber * 2 ;
+  var productsForPage = products?.slice(startIndex, endIndex);
+  var pages = Math.ceil(products?.length / (endIndex-startIndex));
+
+  console.log(productsForPage);
+
+
   return (
     <>
       <Header />
       <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="py-4 container-fluid p-5">
+      <div className="py-4 container-fluid p-5 " style={{ minHeight: "100vh" }}>
         <Meta />
         {keyword && (
           <Link className="btn btn-success" to="/">
@@ -77,8 +90,8 @@ export default function Landing() {
         ) : (
           <>
             <Row>
-              {products &&
-                products.map((product) =>
+                  {productsForPage &&
+                    productsForPage.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
                       <ProductDispay
@@ -95,12 +108,13 @@ export default function Landing() {
             <Paginate
               className="paginate"
               pages={pages}
-              page={page}
+              page={pageNumber}
               keyword={keyword ? keyword : ""}
             />
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 }

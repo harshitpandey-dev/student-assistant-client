@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import { getUserWishlist } from "../../actions/userActions";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { Table } from "react-bootstrap";
 
 export default function Wishlist() {
   const navigate = useNavigate();
@@ -34,8 +36,8 @@ export default function Wishlist() {
     <div>
       <Header />
 
-      <div style={{ width: "100vw", height: "80px" }}></div>
-      <div className="cart-wrap">
+      <div style={{ width: "100vw", height: "80px"}}></div>
+      <div className="cart-wrap " style={{ minHeight: "100vh" }}>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -45,13 +47,13 @@ export default function Wishlist() {
               >
                 My wishlist
               </div>
-              <div className="table-wishlist">
+              {/* <div className="table-wishlist">
                 <table cellPadding="0" cellSpacing="0" border="0" width="100%">
                   <thead>
                     <tr>
                       <th width="45%">Product Name</th>
                       <th width="15%">Unit Price</th>
-                      {/* <th width="15%">Stock Status</th> */}
+                    
                       <th width="5%"></th>
                       <th width="10%"></th>
                     </tr>
@@ -73,11 +75,45 @@ export default function Wishlist() {
                       })}
                   </tbody>
                 </table>
-              </div>
+              </div> */}
+              <Table
+                // striped
+                bordered
+                hover
+                responsive
+                className="table-sm"
+                variant="light"
+              >
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wishlist &&
+                    wishlist.length > 0 &&
+                    wishlist.map((list, ind) => {
+                      return (
+                        <WishlistList
+                          name={list.name}
+                          price={list?.cost?.price}
+                          image={list?.images[0]}
+                          key={list._id}
+                          id={list._id}
+                          product={list}
+                        />
+                      );
+                    })}
+                    </tbody>
+                    </Table>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

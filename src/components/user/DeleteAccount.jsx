@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import FormContainer from "../FormContainer";
 import { deleteUser, logout } from "../../actions/userActions";
+import { TiUserDelete } from "react-icons/ti";
 import {
   USER_LIST_RESET,
   USER_LOGOUT,
@@ -47,8 +48,8 @@ const DeleteAccount = () => {
 
   return (
     <>
-      <Button variant="danger" className="mt-2 mb-2 ms-2" onClick={handleShow}>
-        Delete My Account
+      <Button variant="danger" className="mt-2 mb-2 ms-2" style={{width:"70px",height:"40px"}} onClick={handleShow}>
+        <TiUserDelete />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -66,7 +67,7 @@ const DeleteAccount = () => {
             </Form>
           </FormContainer>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-center">
           <Button onClick={submitHandler} variant="primary" className="ms-2">
             Delete
           </Button>
