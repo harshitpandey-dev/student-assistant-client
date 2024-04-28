@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Authstyle.css";
+import "../../index.css";
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 // import authService from "../../services/Auth.services";

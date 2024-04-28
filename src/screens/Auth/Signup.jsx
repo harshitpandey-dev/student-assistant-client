@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Authstyle.css";
+import "../../index.css";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import Message from "../../components/Message";
