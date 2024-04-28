@@ -15,7 +15,7 @@ export default function WishlistList({ image, name, price, id, product }) {
   }
 
   return (
-    <tr className="w-100 text-center">
+    <tr className=" text-center">
       <td width="35%" className="">
         <div
           className="display-flex align-items-center justify-content-flex-start"
@@ -33,14 +33,14 @@ export default function WishlistList({ image, name, price, id, product }) {
         </div>
       </td>
       <td
-        width="10%"
-        className="price fs-2 text-center justify-content-center align-center text-success w-100 "
+        width="15%"
+        className="price fs-2 text-center justify-content-center align-center text-success  "
       >
         ₹ {price}
       </td>
       <td
-        width="30%"
-        className="price fs-2 text-center justify-content-center align-center text-success w-100 "
+        width="25%"
+        className="price fs-2 text-center justify-content-center align-center text-success  "
       >
         {product?.cost?.negotiable ? (
           <span className="text-secondary fw-bold" style={{ fontSize: "20px" }}>
@@ -54,7 +54,7 @@ export default function WishlistList({ image, name, price, id, product }) {
       </td>
       <td
         width="15%"
-        className="price fs-2 text-center justify-content-center align-center text-success w-100 "
+        className="price fs-2 text-center justify-content-center align-center text-success  "
       >
         {product?.sold ? (
           <span className="text-danger" style={{ fontSize: "20px" }}>
@@ -67,12 +67,12 @@ export default function WishlistList({ image, name, price, id, product }) {
         )}
       </td>
       <td width="5%">
-        <div className="w-100 h-100 d-flex align-center">
+        <div className=" h-100 d-flex align-center">
           <WishListDisplay product={product} />
         </div>
       </td>
       <td width="5%" className=" h-100  " style={{ cursor: "pointer" }}>
-        <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+        <div className=" h-100 d-flex align-items-center justify-content-center">
           <div onClick={handleWishlist} className="trash-icon h-100">
             <i className="far fa-trash-alt"></i>
           </div>

@@ -88,60 +88,68 @@ const AdminEditProductModel = ({ product }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="w-100">
-            <div className="mt-2 mb-2 p-4">
-              <Form.Group controlId="name">
-                <Form.Label>
-                  <div className="w-100">
+           <div className="mt-2 mb-2 p-4">
+              
+                <Form.Group controlId="images">
+                  {images.length < 4 && (
+                    <> <Form.Label>
+                    Image <small> *Upload Image only</small>{" "}
+                  </Form.Label>
+
+                  <Form.File
+                    id="image-file"
+                    label="Upload Image"
+                    custom
+                    onChange={uploadFileHandler}
+                  ></Form.File>
+                     <p></p>
+                  <ul>
+                    <li>* Maximum 4 images can be uploaded</li>
+                    <li>* Size of each image should be less than 2mb</li>
+                  </ul> 
+                  {uploading && <Loader />}
+                    </>)}
+                  {images && (
+                    <div className="position-relative mt-5">
+                      {images.map((ele, index) => (
+                        <div
+                          key={index}
+                          className="d-inline-block position-relative"
+                        >
+                          <img
+                            className="mt-2"
+                            src={ele}
+                            style={{ height: "100px" }}
+                            alt={`image${index + 1}`}
+                          />
+                          <button
+                            type="button"
+                            className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                            style={{ width: "30px", height: "40px" }}
+                            onClick={() => removeImg(ele)}
+                          >
+                            X
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                   
+                <div className="w-100"> 
+                  <div className="w-100 mt-4">
                     <Form className="w-100">
-                      <Form.Group controlId="name">
+                      <div className="w-100" controlId="name">
                         <Form.Label>Name of the property </Form.Label>
                         <Form.Control
-                          type="text"
+                          type="text" className="w-100"
                           placeholder="Enter what product do you have"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
-                      </Form.Group>
+                      </div>
 
-                      <Form.Group controlId="images">
-                        <Form.Label>
-                          Image <small> *Upload Image only</small>{" "}
-                        </Form.Label>
-
-                        <Form.File
-                          id="image-file"
-                          label="Choose File"
-                          custom
-                          onChange={uploadFileHandler}
-                        ></Form.File>
-                        {images && (
-                          <div className="position-relative mt-5">
-                            {images.map((ele, index) => (
-                              <div
-                                key={index}
-                                className="d-inline-block position-relative"
-                              >
-                                <img
-                                  className="mt-2"
-                                  src={ele}
-                                  style={{ height: "100px" }}
-                                  alt={`image${index + 1}`}
-                                />
-                                <button
-                                  type="button"
-                                  className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                  style={{ width: "30px", height: "40px" }}
-                                  onClick={() => removeImg(ele)}
-                                >
-                                  X
-                                </button>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {uploading && <Loader />}
-                      </Form.Group>
+                      
                       <Form.Group controlId="category">
                         <Form.Label>Keyword (in atleast 10 words)</Form.Label>
                         <Form.Control
@@ -192,7 +200,7 @@ const AdminEditProductModel = ({ product }) => {
                       </Form.Group>
                     </Form>
                   </div>
-                </Form.Label>
+                </div>
               </Form.Group>
             </div>
           </div>
