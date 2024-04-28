@@ -23,21 +23,19 @@ const UserUpdateScreen = () => {
   // const userUpdate = useSelector((state) => state.userUpdate);
   // const { success } = userUpdate;
 
-  const productList = useSelector((state) => state.productList);
-  const { products, loading: loadinglist } = productList;
+  const userProductList = useSelector((state) => state.productUser);
+  const { products, loading: loadinglist } = userProductList;
   const productDelete = useSelector((state) => state.productDelete);
   const { success: successDelete } = productDelete;
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       userData = JSON.parse(localStorage.getItem("userData"));
-    }
-    else{
+    } else {
       navigate("/");
       return;
     }
-      dispatch(listProducts());
-    
+    dispatch(listProducts());
   }, [dispatch, userData, successDelete, navigate]);
 
   // const deleteHandler = (id) => {
@@ -111,9 +109,7 @@ const UserUpdateScreen = () => {
                                 <LinkContainer
                                   to={`/admin/product/${product._id}/edit`}
                                 >
-                                  <AdminEditProductModel
-                                    product={product}
-                                  />
+                                  <AdminEditProductModel product={product} />
                                 </LinkContainer>
                                 <UserPrductDeleteModel
                                   productId={product._id}
@@ -128,33 +124,43 @@ const UserUpdateScreen = () => {
             )}
           </Col>
           <Col md={2}></Col>
-          <Col md={8}>
-          </Col>
+          <Col md={8}></Col>
         </Row>
- 
+
         <Row>
           <Col md={2}></Col>
-         <Col md={8}>
-          <h3>Setting</h3>
-          <table className="m-2 w-100">
-            <tr className="mb-4">
-              <td>Edit your Details</td>
-              <td><UpdateUser /></td>
-            </tr>
-            <tr><hr></hr></tr>
-            <tr>
-              <td>Change Password</td>
-              <td><ChangePassword /></td>
-            </tr>
-            <tr><hr></hr></tr>
-            <tr>
-              <td>Delete Account</td>
-              <td><DeleteAccount /></td>
-            </tr>
-            <tr><hr></hr></tr>
+          <Col md={8}>
+            <h3>Setting</h3>
+            <table className="m-2 w-100">
+              <tr className="mb-4">
+                <td>Edit your Details</td>
+                <td>
+                  <UpdateUser />
+                </td>
+              </tr>
+              <tr>
+                <hr></hr>
+              </tr>
+              <tr>
+                <td>Change Password</td>
+                <td>
+                  <ChangePassword />
+                </td>
+              </tr>
+              <tr>
+                <hr></hr>
+              </tr>
+              <tr>
+                <td>Delete Account</td>
+                <td>
+                  <DeleteAccount />
+                </td>
+              </tr>
+              <tr>
+                <hr></hr>
+              </tr>
             </table>
-        
-        </Col>
+          </Col>
         </Row>
       </div>
       <Footer />
