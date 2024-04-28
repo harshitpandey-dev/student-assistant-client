@@ -11,7 +11,7 @@ export default function AddEditProfilePic({user}) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [uploading, setUploading] = useState(false);
-    const url = (user?.profile) ? user.profile :"https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+    const url = (user?.profile) ? user.profile :"https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
     
     const [images, setImages] = useState(url);
     const [sendimages, setSendImages] = useState(null);
@@ -43,7 +43,7 @@ export default function AddEditProfilePic({user}) {
     return (
         <>
             <div className="btn-sm" style={{cursor:"pointer"}} onClick={handleShow}>
-                <img src={url} alt="" className="img-avatar box-img" />
+                <img src={url} alt="" style={{borderRadius:"50%"}} className="img-avatar box-img" />
             </div>
 
             <Modal show={show} onHide={handleClose}>

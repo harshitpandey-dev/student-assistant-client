@@ -22,6 +22,7 @@ export default function UserMessgeBox({ msg }) {
     setUrl(val);
     handleShow();
   }
+  console.log(msg);
   return (
     <div className="message-feed right">
       <div className="pull-right">
@@ -60,7 +61,8 @@ export default function UserMessgeBox({ msg }) {
         </div>
 
         <img
-          src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+          src="https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+          style={{ borderRadius: "50%" }}
           alt=""
           className="img-avatar box-img"
         />

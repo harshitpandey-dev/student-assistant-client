@@ -43,7 +43,7 @@ export default function ChatUserList({ list, userID, chatID, token }) {
       >
       <div className="d-flex flex-row ">
         <div className="pull-left">
-          <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="" className="img-avatar" />
+            <img src={filteredParticipants[0]?.profile ? filteredParticipants[0].profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"} style={{borderRadius:"50%"}} alt="" className="img-avatar" />
         </div>
         <div className="media-body w-100 ms-2">
           <div className="list-group-item-heading">

@@ -456,7 +456,7 @@ export default function ChatScreen() {
                         {chatWith.length !== 0 && (
                           <>
                             <img
-                              src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
+                              src={chatWith?.profile ? chatWith.profile :"https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
                               alt=""
                               style={{
                                 width: "60px",
