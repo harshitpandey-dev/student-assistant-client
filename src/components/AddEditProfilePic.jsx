@@ -14,22 +14,23 @@ export default function AddEditProfilePic({user}) {
     const url = (user?.profile) ? user.profile :"https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
     
     const [images, setImages] = useState(url);
-    const [sendimages, setSendImages] = useState([]);
+    const [sendimages, setSendImages] = useState(null);
 
 
    
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];
         setImages(URL.createObjectURL(file));
-        const data=(Array.from(e.target.files));
-        setSendImages(data)
+        setSendImages(e.target.files[0])
         // console.log(sendimages);
     };
 
     const submitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData();
+        console.log(sendimages);
         formData.append("profile", sendimages);
+   
         dispatch(
             updateProfile(
                 user,

@@ -557,10 +557,9 @@ export const updateProfile = (user, formData) => async (dispatch, getState) => {
     });
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-
         Authorization: `Bearer ${user.token}`,
       },
     };
@@ -568,11 +567,11 @@ export const updateProfile = (user, formData) => async (dispatch, getState) => {
     const { data } = await axios.put(`/api/users`, formData, config);
     dispatch({
       type: USER_UPDATE_SUCCESS,
-      payload: data.data.updatedUser,
+      payload: data.data,
     });
-    // console.log(data);
+    console.log(data);
 
-    localStorage.setItem("userData", JSON.stringify(data.data.updatedUser));
+    localStorage.setItem("userData", JSON.stringify(data.data));
     dispatch({
       type: TOAST_ADD,
       payload: "PROFILE IMAGE UPDATED !!!",
