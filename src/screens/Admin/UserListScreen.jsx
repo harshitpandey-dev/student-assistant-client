@@ -67,7 +67,7 @@ const UserListScreen = () => {
   return (
     <>
       <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-3 d-flex flex-column p-2 " style={{ minHeight: "100vh" }}>
         <h1
           className="text-center pb-2 "

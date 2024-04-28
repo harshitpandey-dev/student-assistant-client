@@ -29,16 +29,12 @@ const UserUpdateScreen = () => {
   const { success: successDelete } = productDelete;
 
   useEffect(() => {
-    if (localStorage.getItem("userData")) {
-      userData = JSON.parse(localStorage.getItem("userData"));
+    if(!userData){
+      navigate("/login")
     }
-    else{
-      navigate("/");
-      return;
-    }
-      dispatch(listProducts());
-    
-  }, [dispatch, userData, successDelete, navigate]);
+    dispatch(listProducts());
+
+  }, [dispatch, userData, successDelete]);
 
   // const deleteHandler = (id) => {
   //   if (window.confirm("Are you sure?")) {
@@ -49,7 +45,7 @@ const UserUpdateScreen = () => {
   return (
     <>
       <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-3 " style={{ minHeight: "100vh" }}>
         <Row>
           <Col md={2}></Col>
@@ -145,30 +141,30 @@ const UserUpdateScreen = () => {
           <Col md={8}>
           </Col>
         </Row>
- 
+
         <Row>
           <Col md={2}></Col>
-         <Col md={8}>
-          <h3>Setting</h3>
-          <table className="m-2 w-100">
-            <tr className="mb-4">
-              <td>Edit your Details</td>
-              <td><UpdateUser /></td>
-            </tr>
-            <tr><hr></hr></tr>
-            <tr>
-              <td>Change Password</td>
-              <td><ChangePassword /></td>
-            </tr>
-            <tr><hr></hr></tr>
-            <tr>
-              <td>Delete Account</td>
-              <td><DeleteAccount /></td>
-            </tr>
-            <tr><hr></hr></tr>
+          <Col md={8}>
+            <h3>Setting</h3>
+            <table className="m-2 w-100">
+              <tr className="mb-4">
+                <td>Edit your Details</td>
+                <td><UpdateUser /></td>
+              </tr>
+              <tr><hr></hr></tr>
+              <tr>
+                <td>Change Password</td>
+                <td><ChangePassword /></td>
+              </tr>
+              <tr><hr></hr></tr>
+              <tr>
+                <td>Delete Account</td>
+                <td><DeleteAccount /></td>
+              </tr>
+              <tr><hr></hr></tr>
             </table>
-        
-        </Col>
+
+          </Col>
         </Row>
       </div>
       <Footer />

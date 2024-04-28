@@ -57,7 +57,7 @@ export default function Landing() {
   return (
     <>
       <Header />
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-4 container-fluid p-5 " style={{ minHeight: "100vh" }}>
         <Meta />
         {keyword && (

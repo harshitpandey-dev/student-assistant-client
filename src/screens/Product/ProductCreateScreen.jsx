@@ -96,7 +96,7 @@ const ProductCreateScreen = () => {
     <>
       <Header />
 
-      <div style={{ width: "100vw", height: "80px" }}></div>
+      <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="py-3 ">
        
         <FormContainer>

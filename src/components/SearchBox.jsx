@@ -17,8 +17,8 @@ const SearchBox = () => {
     }
   };
   return (
-    <div className="d-flex flex-row justify-content-center w-100 mt-4">
-    <Form onSubmit={submitHandler} style={{display:"flex"}} >
+    <div className="d-flex flex-row justify-content-center align-items-center w-100 h-100 ">
+    <div onSubmit={submitHandler} style={{display:"flex",justifyContent:"center",alignItems:"center"}} >
       <Form.Control
         type="text"
         name="q"
@@ -31,7 +31,7 @@ const SearchBox = () => {
         <FaSearch />
       </Button>
      
-    </Form>
+    </div>
     </div>
   );
 };
