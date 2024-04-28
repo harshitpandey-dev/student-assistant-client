@@ -642,6 +642,7 @@ export default function ChatScreen() {
                           onChange={(e) => typingHandler(e)}
                           value={sendMessage}
                         ></textarea>
+                     
                         <div className="input-group-append">
                           {/* <span className="input-group-text attach_btn"><i className="fas fa-paperclip"></i></span> */}
                           {images.length < 4 && (

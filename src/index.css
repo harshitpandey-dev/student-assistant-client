@@ -689,7 +689,7 @@ form-control:focus {
     overflow-y: scroll;
     height: 100vh !important;
     width: 410px;
-    background: rgb(82, 172, 159);
+    background: rgba(123, 123, 124, 0.877);
     height: 100%;
     /* border-radius: 10px 0 0 0; */
     padding-top: 20px;
@@ -1069,7 +1069,7 @@ form-control:focus {
 }
 
 .type_msg {
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     /* border: 1px solid black !important; */
     color: black !important;
     height: 60px !important;
@@ -1085,18 +1085,18 @@ form-control:focus {
 
 .attach_btn {
     /* border-radius: 15px 0 0 15px !important; */
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     /* border: 1px solid black !important; */
     color: black !important;
     cursor: pointer;
     height: 100%;
-    border: 0 !important;
+    border: 0px !important;
     border-radius: 0 !important;
     /* padding-left: 33px !important; */
 }
 
 .emoji {
-    background-color: rgba(188, 240, 232, 0.653) !important;
+    background-color: rgba(123, 123, 124, 0.477) !important;
     border: 0 !important;
     border-radius: 0 0.375rem 0.375rem 0 !important;
 }
@@ -1247,7 +1247,7 @@ form-control:focus {
 
 
 
-@media (min-width:767px) {
+@media (min-width:890px) {
     #messages-main .ms-body {
         padding-left: 240px;
     }
@@ -1258,15 +1258,15 @@ form-control:focus {
 
 }
 
-@media (max-width:767px) {
+@media (max-width:890px) {
     #messages-main .ms-menu {
         height: calc(100% - 58px);
         display: none;
         z-index: 1;
         top: 0px;
         padding-top: 50px;
-        width: 290px;
-        background-color: #03053b;
+        width: 250px;
+        background-color: rgb(123, 123, 124);
     }
 
     .humgerber {
@@ -1280,7 +1280,9 @@ form-control:focus {
     .card-footer,
     .input-above {
         margin-left: 0px !important;
+   
     }
+
 
     #messages-main .ms-menu.toggled {
         display: block;
@@ -1593,6 +1595,20 @@ form-control:focus {
         width: 100% !important;
     }
 }
+textarea{
+    width: 100%;
+    min-height: 100%;
+}
+
+textarea::placeholder {
+    width: 100%;
+    height: auto;
+  padding-top: 1.5%;
+}
+
+
+
+/* -----Button------ */
 
 
 .button-1 {
@@ -1765,3 +1781,4 @@ form-control:focus {
 .button-3a:active {
     transform: scale(0.95);
 }
+

@@ -47,7 +47,7 @@ export default function ChatUserList({ list, userID, chatID, token }) {
         </div>
         <div className="media-body w-100 ms-2">
           <div className="list-group-item-heading">
-            {filteredParticipants[0]?.username}<span class="badge text-danger">2 Unread</span>
+            {filteredParticipants[0]?.username}<span class="badge text-danger " style={{fontSize:"12px"}}>2 Unread</span>
           </div>
           <small className="list-group-item-text c-gray text-">{lastMsg}</small>
           <div className="d-flex justify-content-end">{formattedDate}</div>
