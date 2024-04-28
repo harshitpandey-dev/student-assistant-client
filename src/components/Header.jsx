@@ -59,7 +59,7 @@ const Header = () => {
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
                 <IoIosAddCircle />  Sell
               </Link>
-              <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
+              <Link to="/wishlist" className="btn text-light btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
                 <FaRegHeart /> Wishlist
               </Link>
               {userData && userData.isAdmin && (
