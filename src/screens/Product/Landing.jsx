@@ -46,8 +46,8 @@ export default function Landing() {
   }, [dispatch, keyword, pageNumber, userData]);
 
 
-  const startIndex =( pageNumber -1) * 2;
-  const endIndex =  pageNumber * 2 ;
+  const startIndex =( pageNumber -1) * 10;
+  const endIndex =  pageNumber * 10 ;
   var productsForPage = products?.slice(startIndex, endIndex);
   var pages = Math.ceil(products?.length / (endIndex-startIndex));
 

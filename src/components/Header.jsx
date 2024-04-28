@@ -23,7 +23,7 @@ const Header = () => {
     currentURL = window.location.href;
     url = (currentURL.split("/"));
     setHide(false);
-    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist") || url.includes("about")) {
+    if (url.includes("chatScreen") || url.includes("product") || url.includes("admin") || url.includes("users") || url.includes("wishlist") || url.includes("about") || url.includes("createproduct")) {
       setHide(true);
     }
   },[location])
@@ -80,7 +80,7 @@ const Header = () => {
               <LinkContainer to="/about">
                 <Nav.Link>
                   {/* <i className='far fa-address-card'></i>  */}
-                  <span style={{fontSize:"12px"}}>About Us</span>
+                  <span style={{fontSize:"12px",fontWeight:"500"}}>About Us</span>
                 </Nav.Link>
               </LinkContainer>
               {userData ? (
