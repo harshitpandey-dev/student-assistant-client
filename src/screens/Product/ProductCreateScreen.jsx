@@ -38,8 +38,17 @@ const ProductCreateScreen = () => {
     }
   }, [success, userData]);
 
+  
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
+    const file_size = e.target.files[0].size;
+    if(file_size > (2e+6)){ // more than 2mb
+      setMessage("File exceed 2 mb")
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+      return;
+    }
     if (!data) return;
     const file = Array.from(e.target.files);
     setShowImages((images) => [...images, ...file]);
@@ -114,14 +123,20 @@ const ProductCreateScreen = () => {
                 {showImages.length < 4 && (
                   <Form.Group controlId="images">
                     <Form.Label>
-                      Image <small> *Upload Image only (max 4)</small>
+                      Upload Images <small> </small>
                     </Form.Label>
 
                     <Form.File
                       id="image-file"
-                      label="Choose File"
+                      className="button-3"
+                      // label="Upload Image"
                       onChange={uploadFileHandler}
                     />
+                    <p></p>
+                    <ul>
+                      <li>* Maximum 4 images can be uploaded</li>
+                      <li>* Size of each image should be less than 2mb</li>
+                    </ul>
                   </Form.Group>
                 )}
 
