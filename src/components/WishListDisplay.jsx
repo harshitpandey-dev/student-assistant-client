@@ -62,7 +62,7 @@ export default function WishListDisplay({ product }) {
 
     return (
         <>
-            <Button className="h-100 bg-light text-dark" onClick={handleShow}>
+            <Button className="h-100 bg-light text-dark" style={{width:"50px"}} onClick={handleShow}>
                 <FaEye />
             </Button>
 

@@ -104,14 +104,57 @@ const ProductCreateScreen = () => {
             className=" py-2 text-center"
             style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
           >
-            Upload Your Property
+            Upload Your Product
           </h1>
           {loading ? (
             <Loader />
           ) : (
             <Form onSubmit={submitHandler}>
+
+                {showImages.length < 4 && (
+                  <Form.Group controlId="images">
+                    <Form.Label>
+                      Image <small> *Upload Image only (max 4)</small>
+                    </Form.Label>
+
+                    <Form.File
+                      id="image-file"
+                      label="Choose File"
+                      onChange={uploadFileHandler}
+                    />
+                  </Form.Group>
+                )}
+
+                {uploading && <Loader />}
+                {showImages && (
+                  <div className="position-relative mt-5">
+                    {showImages.map((file, index) => (
+                      <div
+                        key={index}
+                        className="d-inline-block position-relative"
+                      >
+                        <img
+                          className="mt-2"
+                          src={URL.createObjectURL(file)}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                          style={{ width: "30px", height: "40px" }}
+                          onClick={() => removeImg(file)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+
               <Form.Group controlId="name">
-                <Form.Label>Name of the property </Form.Label>
+                <Form.Label>Name of the product </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter what product do you have"
@@ -121,49 +164,9 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              {showImages.length < 4 && (
-                <Form.Group controlId="images">
-                  <Form.Label>
-                    Image <small> *Upload Image only (max 4)</small>
-                  </Form.Label>
-
-                  <Form.File
-                    id="image-file"
-                    label="Choose File"
-                    onChange={uploadFileHandler}
-                  />
-                </Form.Group>
-              )}
-
-              {uploading && <Loader />}
-              {showImages && (
-                <div className="position-relative mt-5">
-                  {showImages.map((file, index) => (
-                    <div
-                      key={index}
-                      className="d-inline-block position-relative"
-                    >
-                      <img
-                        className="mt-2"
-                        src={URL.createObjectURL(file)}
-                        style={{ height: "100px" }}
-                        alt={`image${index + 1}`}
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                        style={{ width: "30px", height: "40px" }}
-                        onClick={() => removeImg(file)}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-
+             
               <Form.Group controlId="category">
-                <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                <Form.Label>Keyword</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter keywords like: electronics, books, Furniture.. "
@@ -174,7 +177,7 @@ const ProductCreateScreen = () => {
               </Form.Group>
 
               <Form.Group controlId="description">
-                <Form.Label>Describe your property (in atleast 20 words)</Form.Label>
+                <Form.Label>Describe your product</Form.Label>
 
                 <Form.Control
                   as="textarea"

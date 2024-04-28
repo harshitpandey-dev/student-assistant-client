@@ -546,3 +546,44 @@ export const getUserWishlist = (token) => async (dispatch) => {
     });
   }
 };
+
+
+// update Profile Image
+
+export const updateProfile = (user, formData) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/users`, formData, config);
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+      payload: data.data.updatedUser,
+    });
+    // console.log(data);
+
+    localStorage.setItem("userData", JSON.stringify(data.data.updatedUser));
+    dispatch({
+      type: TOAST_ADD,
+      payload: "PROFILE IMAGE UPDATED !!!",
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

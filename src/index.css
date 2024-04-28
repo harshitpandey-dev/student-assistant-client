@@ -9,6 +9,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    font-family: sans-serif;
 }
 
 label {
@@ -1173,9 +1174,10 @@ form-control:focus {
 
 .style-btn {
     display: flex;
-    width: 150px;
+    
+    /* min-width: 120px; */
     overflow: hidden;
-    height: 33px;
+    height: auto;
     border-radius: 10px !important;
     /* transition: all 0.85s !important; */
     background-color: rgb(1, 1, 1) !important;
@@ -1362,12 +1364,18 @@ form-control:focus {
 
 .table-wishlist tr td .name-product {
     font-size: 15px;
-    color: #484848;
+    color: #1f1b1b;
     padding-top: 8px;
     line-height: 24px;
     width: 50%;
 }
-
+.name-product{
+    padding: 10px;
+    color: #350247 !important;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
 .table-wishlist tr td.price {
     font-weight: 600;
 }

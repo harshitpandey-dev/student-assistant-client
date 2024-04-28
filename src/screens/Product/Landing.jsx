@@ -51,7 +51,7 @@ export default function Landing() {
   var productsForPage = products?.slice(startIndex, endIndex);
   var pages = Math.ceil(products?.length / (endIndex-startIndex));
 
-  console.log(productsForPage);
+  // console.log(productsForPage);
 
 
   return (

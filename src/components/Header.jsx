@@ -57,7 +57,7 @@ const Header = () => {
             <Nav className="ml-auto text-center d-flex align-items-center">
             
               <Link to="/createproduct" className="btn text-white btn-circle btn-circle-sm m-1 style-btn" >
-                 <IoIosAddCircle /> Sell Product
+                 <IoIosAddCircle />  Sell
                  </Link>
               <Link to="/wishlist" className="btn text-danger btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn" >
                 <FaRegHeart /> Wishlist
@@ -78,9 +78,9 @@ const Header = () => {
               )}
             
               <LinkContainer to="/about">
-                <Nav.Link >
+                <Nav.Link>
                   {/* <i className='far fa-address-card'></i>  */}
-                  About Us
+                  <span style={{fontSize:"12px"}}>About Us</span>
                 </Nav.Link>
               </LinkContainer>
               {userData ? (

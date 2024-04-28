@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Modal,Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import Loader from './Loader';
+import { updateProfile } from '../actions/userActions';
 
 
 export default function AddEditProfilePic({user}) {
@@ -13,47 +14,28 @@ export default function AddEditProfilePic({user}) {
     const url = (user?.profile) ? user.profile :"https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
     
     const [images, setImages] = useState(url);
+    const [sendimages, setSendImages] = useState([]);
 
 
-    const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dh3bp7vbd/upload";
-    const CLOUDINARY_UPLOAD_PRESET = "qwdzopo4";
+   
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-        setUploading(true);
-        await axios({
-            url: CLOUDINARY_URL,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            data: formData,
-        })
-            .then(function (res) {
-                setImages(res.data.url);
-            })
-            .catch(function (err) {
-                console.error(err);
-            });
-        setUploading(false);
+        setImages(URL.createObjectURL(file));
+        const data=(Array.from(e.target.files));
+        setSendImages(data)
+        // console.log(sendimages);
     };
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // dispatch(
-        //     updateProduct(
-        //         product._id,
-        //         name,
-        //         images,
-        //         keywords,
-        //         description,
-        //         price,
-        //         negotiable,
-        //         sold
-        //     )
-        // );
+        const formData = new FormData();
+        formData.append("profile", sendimages);
+        dispatch(
+            updateProfile(
+                user,
+                formData
+            )
+        );
         handleClose();
     };
 

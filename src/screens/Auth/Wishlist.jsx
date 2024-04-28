@@ -85,11 +85,13 @@ export default function Wishlist() {
                 variant="light"
               >
                 <thead>
-                  <tr>
+                  <tr className="text-center ">
                     <th>Product Name</th>
                     <th>Unit Price</th>
+                    <th>is Negotiable</th>
+                    <th>Status</th>
                     <th>View</th>
-                    <th>Delete</th>
+                    <th>Remove</th>
                   </tr>
                 </thead>
                 <tbody>

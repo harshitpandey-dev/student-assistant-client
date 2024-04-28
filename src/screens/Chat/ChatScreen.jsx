@@ -65,6 +65,8 @@ export default function ChatScreen() {
     },
   };
 
+  // console.log();
+
   const messagesEndRef = useRef(null);
 
   const [open, setOpen] = useState();
@@ -501,7 +503,7 @@ export default function ChatScreen() {
                               <BsThreeDots className="text-dark fs-2 " />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="bg-light">
-                              <DeleteChat />
+                              <DeleteChat chatid={messageData[0]?.chat} token={userData?.token}/>
 
                             </Dropdown.Menu>
 

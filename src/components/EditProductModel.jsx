@@ -112,18 +112,18 @@ const EditProductModel = ({ product }) => {
           
             <Button variant="primary" onClick={handleShow}>Edit Product</Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
                 <Modal.Header closeButton className="bg-secondary">
                     <Modal.Title className="text-white">Edit Product</Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
                     <div  >
-                        <Form className="mt-2 mb-2">
+                        <div className="mt-2 mb-2 p-4">
                             <Form.Group controlId="name">
                                 <Form.Label>
 
 
-                                    <FormContainer>
+                                    <div className="w-100">
 
                                         <Form >
                                             <Form.Group controlId="name">
@@ -218,10 +218,10 @@ const EditProductModel = ({ product }) => {
                                         </Form>
 
 
-                                    </FormContainer>
+                                    </div>
                                 </Form.Label>
                             </Form.Group>
-                        </Form>
+                        </div>
                     </div>
 
 
