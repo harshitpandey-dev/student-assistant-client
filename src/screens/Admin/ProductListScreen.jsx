@@ -57,7 +57,7 @@ const ProductListScreen = () => {
       <div className="py-3 d-flex flex-column p-2" style={{ minHeight: "100vh" }}>
         <h1
           className="text-center pb-2 "
-          style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+          style={{ fontFamily: "serif", color: "#8991E4" }}
         >
           Products
         </h1>
@@ -90,7 +90,7 @@ const ProductListScreen = () => {
                     <tr key={product._id}>
                       <td>{i++}</td>
                       {/* <td>{product._id}</td> */}
-                      <td>{product.name}</td>
+                      <td style={{ textTransform: "uppercase" }}>{product.name}</td>
                       <td>Rs {product.cost.price}</td>
                       {/* <td>{product.category}</td> */}
                       <td>{product.owner?.fullname}</td>

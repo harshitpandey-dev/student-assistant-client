@@ -13,7 +13,7 @@ import {
 } from "../../types/userConstants";
 import { FaUserEdit } from "react-icons/fa";
 
-const UpdateUser = () => {
+const UpdateUser = ({currUser}) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -21,10 +21,10 @@ const UpdateUser = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [fullname, setFullname] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
+  const [fullname, setFullname] = useState(currUser?.fullname);
+  const [username, setUsername] = useState(currUser?.username);
+  const [email, setEmail] = useState(currUser?.email);
+  const [contact, setContact] = useState(currUser?.contact);
   const [update, setUpdate] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -36,25 +36,25 @@ const UpdateUser = () => {
   const userUpdate = useSelector((state) => state.userUpdate);
   const { success, loading, error } = userUpdate;
 
-  useEffect(() => {
-    if (!userData) {
-      navigate("/login");
-      return;
-    }
-    if (!userData || success) {
-      dispatch({ type: USER_UPDATE_RESET });
-      dispatch({ type: USER_DETAILS_RESET });
-    } else {
-      if (!user || user._id !== id) {
-        dispatch(getUserDetails(id));
-      } else {
-        setFullname(user.fullname);
-        setUsername(user.username);
-        setContact(user.contact);
-        setEmail(user.email);
-      }
-    }
-  }, [userData, user, success, dispatch, id, navigate]);
+  // useEffect(() => {
+  //   if (!userData) {
+  //     navigate("/login");
+  //     return;
+  //   }
+  //   if (!userData || success) {
+  //     dispatch({ type: USER_UPDATE_RESET });
+  //     dispatch({ type: USER_DETAILS_RESET });
+  //   } else {
+  //     if (!user || user._id !== id) {
+  //       dispatch(getUserDetails(id));
+  //     } else {
+  //       setFullname(user.fullname);
+  //       setUsername(user.username);
+  //       setContact(user.contact);
+  //       setEmail(user.email);
+  //     }
+  //   }
+  // }, [userData, user, success, dispatch, id, navigate]);
 
   useEffect(() => {
     if (fullname !== "" || username !== "" || contact !== "") {
@@ -76,11 +76,11 @@ const UpdateUser = () => {
     e.preventDefault();
     dispatch(
       updateUser({
-        _id: id,
+        _id: currUser._id,
         fullname,
         username,
         contact,
-      })
+      },currUser.token)
     );
     handleClose();
   };

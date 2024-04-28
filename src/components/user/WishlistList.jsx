@@ -21,7 +21,7 @@ export default function WishlistList({ image, name, price, id ,product}) {
           {/* <div className="img-product">
             <img src={image} alt="" className="mCS_img_loaded" style={{width:"200px",height:"270px"}}/>
           </div> */}
-          <div className="name-product fs-2 " >{name}</div>
+          <div className="name-product fs-2 " style={{ textTransform: "uppercase" }}>{name}</div>
         </div>
       </td>
       <td width="10%"  className="price fs-2 text-center justify-content-center align-center text-success w-100 " >

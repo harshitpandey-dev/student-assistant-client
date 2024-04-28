@@ -104,7 +104,7 @@ const ProductScreen = () => {
                   </Col>
                   <Col md={8} sm={8} xs={8}>
                     <ul>
-                      <li>{product.name}</li>
+                          <li style={{ textTransform: "uppercase" }}>{product.name}</li>
 
                       <li>{product?.cost?.price}</li>
 

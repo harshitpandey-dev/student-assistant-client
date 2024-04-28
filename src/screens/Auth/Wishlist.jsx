@@ -43,7 +43,7 @@ export default function Wishlist() {
             <div className="col-md-12">
               <div
                 className="main-heading mb-3 text-center fs-2"
-                style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+                style={{ fontFamily: " serif", color: "#8991E4" }}
               >
                 My wishlist
               </div>

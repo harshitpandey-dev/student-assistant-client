@@ -111,7 +111,7 @@ export default function WishListDisplay({ product }) {
                                 </aside>
                                 <main class="col-lg-6">
                                     <div >
-                                        <h4 class="title text-success fs-1">
+                                        <h4 class="title text-success fs-1" style={{ textTransform: "uppercase" }}>
                                             {product.name} <br />
 
                                         </h4>

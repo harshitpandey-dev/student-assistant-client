@@ -71,7 +71,7 @@ const UserListScreen = () => {
       <div className="py-3 d-flex flex-column p-2 " style={{ minHeight: "100vh" }}>
         <h1
           className="text-center pb-2 "
-          style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+          style={{ fontFamily: "serif", color: "#8991E4" }}
         >
           Users
         </h1>

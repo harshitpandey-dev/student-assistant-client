@@ -143,7 +143,7 @@ const ProductEditScreen = () => {
         <FormContainer>
           <h1
             className="text-center"
-            style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+            style={{ fontFamily: "serif", color: "#8991E4" }}
           >
             Edit Product
           </h1>

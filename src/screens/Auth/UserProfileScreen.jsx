@@ -86,7 +86,7 @@ const UserUpdateScreen = () => {
                             <tr key={product._id}>
                               <td>{i++}</td>
                               {/* <td>{product._id}</td> */}
-                              <td>{product.name}</td>
+                              <td style={{ textTransform: "uppercase" }}>{product.name}</td>
                               <td>{product?.cost?.price}</td>
                               <td>
                                 {product?.cost?.negotiable ? (
@@ -149,7 +149,7 @@ const UserUpdateScreen = () => {
             <table className="m-2 w-100">
               <tr className="mb-4">
                 <td>Edit your Details</td>
-                <td><UpdateUser /></td>
+                <td><UpdateUser currUser={userData}/></td>
               </tr>
               <tr><hr></hr></tr>
               <tr>

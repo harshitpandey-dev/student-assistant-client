@@ -110,7 +110,7 @@ export default function ProductDispay({product,userID,token}) {
                                 </aside>
                                 <main class="col-lg-6">
                                     <div >
-                                        <h4 class="title text-success fs-1">
+                                        <h4 class="title text-success fs-1 " style={{textTransform:"uppercase"}}>
                                             {product.name} <br />
                                            <p className="fs-5 text-secondary mt-3">{product?.keywords}</p>
                                         </h4>

@@ -111,7 +111,7 @@ const ProductCreateScreen = () => {
         <FormContainer>
           <h1
             className=" py-2 text-center"
-            style={{ fontFamily: "'Gluten', sans-serif", color: "#8991E4" }}
+            style={{ fontFamily: "serif", color: "#8991E4" }}
           >
             Upload Your Product
           </h1>
