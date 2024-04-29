@@ -1592,7 +1592,9 @@ font-family: "Rajdhani", sans-serif;
 .price {
     font-size: 25px;
 }
-
+.searchbox {
+    width: 100% !important;
+}
 
 @media (min-width:890px) {
     #messages-main .ms-body {
@@ -1687,6 +1689,12 @@ font-family: "Rajdhani", sans-serif;
     .serach-user {
         width: 100% !important;
     }
+        .navbar>.container {
+            justify-content: space-evenly !important;
+        }
+                 .searchbox {
+                     width: 200px !important;
+                 }
 
 }
 
@@ -2166,15 +2174,13 @@ textarea::-webkit-scrollbar {
     transform: scale(0.95);
 }
 
+
+
 @media (max-width: 450px) {
     #messages-main .ms-menu{
         width: 100% !important;
     }
-    .searchbox{
-        width: 200px !important;
-    }
+   
 }
 
-.navbar>.container{
-    justify-content: space-evenly !important;
-}
+

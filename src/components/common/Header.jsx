@@ -60,7 +60,7 @@ const Header = () => {
               </span>
             </Navbar.Brand>
           </LinkContainer>
-            {hide ? <></> : <SearchBox className=" h-100" />}
+            {hide ? <></> : <SearchBox className="w-100 h-100" />}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
