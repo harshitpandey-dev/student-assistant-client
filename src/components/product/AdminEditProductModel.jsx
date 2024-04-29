@@ -151,7 +151,7 @@ const AdminEditProductModel = ({ product }) => {
 
                       
                       <Form.Group controlId="category">
-                        <Form.Label>Keyword (in atleast 10 words)</Form.Label>
+                        <Form.Label>Keyword</Form.Label>
                         <Form.Control
                           type="text"
                           placeholder="Enter keywords like: electronics, books, Furniture.. "
