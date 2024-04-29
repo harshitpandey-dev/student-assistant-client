@@ -50,7 +50,7 @@ export default function UserMessgeBox({ msg }) {
         </div>
       )}
       <div className="media-body mt-1">
-        <div
+        { msg?.content &&  <div
           className="mf-content msg_cotainer_send "
           style={{ fontFamily: "'Gluten', sans-serif" }}
         >
@@ -58,7 +58,7 @@ export default function UserMessgeBox({ msg }) {
           <small className="mf-date msg_time_send ">
             <i className="fa fa-clock-o"></i> {formattedDate}
           </small>
-        </div>
+        </div>}
 
         <img
           src={msg?.sender?.profile ? msg?.sender?.profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
