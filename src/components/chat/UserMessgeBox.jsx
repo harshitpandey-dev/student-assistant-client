@@ -22,7 +22,7 @@ export default function UserMessgeBox({ msg }) {
     setUrl(val);
     handleShow();
   }
-  console.log(msg);
+  // console.log(msg);
   return (
     <div className="message-feed right">
       <div className="pull-right">

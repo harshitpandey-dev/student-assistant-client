@@ -117,7 +117,6 @@ export default function ChatScreen() {
   useEffect(() => {
     setMessages(messageData);
   }, [messageData]);
-  // >>>>>>> origin/main
 
   const onConnect = () => {
     setIsConnected(true);
@@ -393,6 +392,10 @@ export default function ChatScreen() {
                     chats.map((list) => {
                       return (
                         <ChatUserList
+                          unread={
+                            unreadMessages.filter((n) => n.chat === chatID)
+                              .length
+                          }
                           list={list}
                           userID={userData._id}
                           key={list._id}
@@ -490,11 +493,7 @@ export default function ChatScreen() {
                       <div>
                         {" "}
                         <Dropdown style={{ width: "42px", height: "48px" }}>
-                          <style>{`
-      .dropdown-toggle::after {
-        display: none;
-      }
-    `}</style>
+                          <style>{`.dropdown-toggle::after { display: none;}`}</style>
                           <Dropdown.Toggle
                             id="dropdown-basic"
                             style={{

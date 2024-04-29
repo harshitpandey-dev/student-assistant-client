@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const getSocket = (token) => {
   return socketio("http://localhost:8000", {
-    withCredentials: true,
     auth: { token },
   });
 };

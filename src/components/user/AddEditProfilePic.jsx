@@ -27,7 +27,7 @@ export default function AddEditProfilePic({ user }) {
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    console.log(sendimages);
+    // console.log(sendimages);
     formData.append("profile", sendimages);
 
     dispatch(updateProfile(user, formData));
