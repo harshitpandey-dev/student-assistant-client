@@ -1398,6 +1398,8 @@ font-family: "Rajdhani", sans-serif;
     height: 60px !important;
     overflow-y: auto;
     border: 0 !important;
+    z-index: 2;
+    width: 20px !important;
 }
 
 
@@ -1569,6 +1571,22 @@ font-family: "Rajdhani", sans-serif;
 .card-footer,
 .input-above {
     margin-left: 170px !important;
+   
+}
+.card-footer{
+    overflow-y: scroll;
+    /* position: absolute ; */
+    /* bottom: 0; */
+    /* width: 100vw; */
+}
+
+.input-above {
+    margin-left: 170px !important;
+    position: absolute !important;
+        overflow-y: scroll;
+            bottom: 100px;
+            z-index: 1;
+           
 }
 
 .price {
@@ -1594,7 +1612,7 @@ font-family: "Rajdhani", sans-serif;
         z-index: 1;
         top: 0px;
         padding-top: 50px;
-        width: 250px;
+        /* width: 250px; */
         background-color: rgb(101, 132, 140);
     }
 
@@ -1958,7 +1976,21 @@ textarea::placeholder {
   padding-top: 1.5%;
 }
 
+textarea::-webkit-scrollbar {
+    display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+textarea {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
 
 /* -----Button------ */
 
@@ -2134,3 +2166,8 @@ textarea::placeholder {
     transform: scale(0.95);
 }
 
+@media (max-width: 450px) {
+    #messages-main .ms-menu{
+        width: 100% !important;
+    }
+}

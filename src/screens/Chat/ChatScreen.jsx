@@ -342,7 +342,8 @@ export default function ChatScreen() {
                   </div>
                   <div className="d-flex">
                     <span className="badge fs-5 text-danger">
-                      <FaBell className="text-light fs-3" />4
+                      <FaBell className="text-light fs-3" />
+                      {/* enter value */}
                     </span>
                   </div>
                 </div>
@@ -585,11 +586,11 @@ export default function ChatScreen() {
                 </div>
 
                 {images && (
-                  <div className="position-relative input-above">
+                  <div className=" input-above">
                     {images.map((file, index) => (
                       <div
                         key={index}
-                        className="d-inline-block position-relative input-img"
+                        className="d-inline-block  input-img"
                       >
                         <img
                           className="mt-2 "
