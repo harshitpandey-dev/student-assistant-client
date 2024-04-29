@@ -401,6 +401,7 @@ export default function ChatScreen() {
                             chatID ? chatID : chatData ? chatData._id : ""
                           }
                           token={userData?.token}
+                          setOpen={setOpen}
                         />
                       );
                     })}

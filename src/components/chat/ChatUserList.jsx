@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { delete_Chat } from "../../actions/chatActions";
 import DeleteChat from "./DeleteChat";
 
-export default function ChatUserList({ list, userID, chatID, token }) {
+export default function ChatUserList({ list, userID, chatID, token,setOpen }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export default function ChatUserList({ list, userID, chatID, token }) {
   }
 
   return (
-    <div className={active ? "list-menu active  media" : "list-menu "}>
+    <div className={active ? "list-menu active  media" : "list-menu "} onClick={()=>setOpen(false)}>
       <Link
         to={`/chatScreen/chatID/${list._id}`}
         className={

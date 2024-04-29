@@ -79,7 +79,7 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} style={{ width: "50%" }}>
         Edit Product
       </Button>
 
