@@ -36,7 +36,7 @@ const ProductListScreen = () => {
       navigate("/login");
     }
     if (userData && userData.isAdmin) {
-      dispatch(listProducts("", pageNumber));
+      dispatch(listProducts(userData.token));
     } else {
       navigate("/");
     }

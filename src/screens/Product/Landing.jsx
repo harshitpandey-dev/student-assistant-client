@@ -6,7 +6,7 @@ import Loader from "../../components/common/Loader";
 import Message from "../../components/common/Message";
 import Paginate from "../../components/product/Paginate";
 import Meta from "../../components/common/Meta";
-import { listProducts } from "../../actions/productActions";
+import { listUnsoldProducts } from "../../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../../types/productConstants";
 import { useParams } from "react-router-dom";
 import { getUserWishlist } from "../../actions/userActions";
@@ -31,7 +31,8 @@ export default function Landing() {
     dispatch({ type: PRODUCT_CREATE_RESET });
     dispatch({ type: USER_WISHLIST_RESET });
 
-    dispatch(listProducts());
+    
+    dispatch(listUnsoldProducts());
 
     if (userData) {
       dispatch(getUserWishlist(userData.token));
