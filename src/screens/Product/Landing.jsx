@@ -57,7 +57,7 @@ export default function Landing() {
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message variant="danger">{error}</Message>
+          <p className="d-flex justify-content-center align-items-center text-secondary fs-4" style={{minHeight:"100vh"}}>No product listed yet !!</p>
         ) : (
           <>
             <Row>
