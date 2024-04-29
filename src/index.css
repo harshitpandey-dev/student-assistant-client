@@ -1571,6 +1571,9 @@ font-family: "Rajdhani", sans-serif;
     margin-left: 170px !important;
 }
 
+.price {
+    font-size: 25px;
+}
 
 
 @media (min-width:890px) {
@@ -1607,6 +1610,15 @@ font-family: "Rajdhani", sans-serif;
                 }
         .navbar-light .navbar-brand{
             width: 70%;
+        }
+        .button-3,.button-3a{
+            font-size: 10px !important;
+        }
+        .bi-chat{
+           width: 10px;
+        }
+        .price{
+          font-size: 15px !important;
         }
     .humgerber {
         margin-left: 21px !important;
@@ -1922,6 +1934,7 @@ font-family: "Rajdhani", sans-serif;
     width: 800px !important;
 
 }
+
 
 @media (max-width:1200px) {
     .custom-modal .modal-content {
