@@ -16,7 +16,7 @@ const SearchBox = () => {
     }
   };
   return (
-    <div className="d-flex flex-row justify-content-center align-items-center w-100 h-100 search">
+    <div className="d-flex searchbox flex-row justify-content-center align-items-center h-100 search">
       <div
         onSubmit={submitHandler}
         style={{

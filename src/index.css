@@ -1620,9 +1620,9 @@ font-family: "Rajdhani", sans-serif;
             width: 50px;
             height: 40px;
         }
-        .search{
+        /* .search{
             padding-top: 30px;
-        }
+        } */
         .navbar-toggler-icon{
                     width: 20px !important;
                 }
@@ -2170,4 +2170,11 @@ textarea::-webkit-scrollbar {
     #messages-main .ms-menu{
         width: 100% !important;
     }
+    .searchbox{
+        width: 200px !important;
+    }
+}
+
+.navbar>.container{
+    justify-content: space-evenly !important;
 }
