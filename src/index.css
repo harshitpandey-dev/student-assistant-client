@@ -1398,6 +1398,8 @@ font-family: "Rajdhani", sans-serif;
     height: 60px !important;
     overflow-y: auto;
     border: 0 !important;
+    z-index: 2;
+    width: 20px !important;
 }
 
 
@@ -1503,7 +1505,7 @@ font-family: "Rajdhani", sans-serif;
     height: auto;
     border-radius: 10px !important;
     /* transition: all 0.85s !important; */
-    background-color: rgb(1, 1, 1) !important;
+    /* background-color: rgb(1, 1, 1) !important; */
 }
 
 .style-btn:hover {
@@ -1527,7 +1529,7 @@ font-family: "Rajdhani", sans-serif;
     height: 40px !important;
     font-family: sans-serif !important;
     font-size: 20px !important;
-    color: white !important;
+    color: rgb(232, 18, 18) !important;
 
 }
 
@@ -1556,6 +1558,9 @@ font-family: "Rajdhani", sans-serif;
 .product-card:hover .card-image {
     opacity: 0.8;
 }
+.style-btn-wishlist{
+    color: red !important;
+}
 
 .style-btn-wishlist:hover,
 .style-btn-wishlist-pro:hover {
@@ -1566,8 +1571,27 @@ font-family: "Rajdhani", sans-serif;
 .card-footer,
 .input-above {
     margin-left: 170px !important;
+   
+}
+.card-footer{
+    overflow-y: scroll;
+    /* position: absolute ; */
+    /* bottom: 0; */
+    /* width: 100vw; */
 }
 
+.input-above {
+    margin-left: 170px !important;
+    position: absolute !important;
+        overflow-y: scroll;
+            bottom: 100px;
+            z-index: 1;
+           
+}
+
+.price {
+    font-size: 25px;
+}
 
 
 @media (min-width:890px) {
@@ -1588,10 +1612,32 @@ font-family: "Rajdhani", sans-serif;
         z-index: 1;
         top: 0px;
         padding-top: 50px;
-        width: 250px;
+        /* width: 250px; */
         background-color: rgb(101, 132, 140);
     }
 
+        .navbar-light .navbar-toggler{
+            width: 50px;
+            height: 40px;
+        }
+        .search{
+            padding-top: 30px;
+        }
+        .navbar-toggler-icon{
+                    width: 20px !important;
+                }
+        .navbar-light .navbar-brand{
+            width: 70%;
+        }
+        .button-3,.button-3a{
+            font-size: 10px !important;
+        }
+        .bi-chat{
+           width: 10px;
+        }
+        .price{
+          font-size: 15px !important;
+        }
     .humgerber {
         margin-left: 21px !important;
     }
@@ -1907,6 +1953,7 @@ font-family: "Rajdhani", sans-serif;
 
 }
 
+
 @media (max-width:1200px) {
     .custom-modal .modal-content {
         width: 700px !important;
@@ -1929,7 +1976,21 @@ textarea::placeholder {
   padding-top: 1.5%;
 }
 
+textarea::-webkit-scrollbar {
+    display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+textarea {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
 
 /* -----Button------ */
 
@@ -2105,3 +2166,8 @@ textarea::placeholder {
     transform: scale(0.95);
 }
 
+@media (max-width: 450px) {
+    #messages-main .ms-menu{
+        width: 100% !important;
+    }
+}

@@ -38,9 +38,9 @@ export default function Wishlist() {
 
       <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="cart-wrap " style={{ minHeight: "100vh" }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
+        <div className="p-3">
+          <div className="">
+            <div className="">
               <div
                 className="main-heading mb-3 text-center fs-2"
                 style={{ fontFamily: " serif", color: "#8991E4" }}

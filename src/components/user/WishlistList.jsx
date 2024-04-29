@@ -16,7 +16,7 @@ export default function WishlistList({ image, name, price, id, product }) {
 
   return (
     <tr className=" text-center">
-      <td width="35%" className="">
+      <td width="25%" className="">
         <div
           className="display-flex align-items-center justify-content-flex-start"
           style={{ width: "auto" }}
@@ -33,13 +33,14 @@ export default function WishlistList({ image, name, price, id, product }) {
         </div>
       </td>
       <td
-        width="15%"
-        className="price fs-2 text-center justify-content-center align-center text-success  "
+        width="45%"
+        style={{minWidth:"150px"}}
+        className="price  text-center justify-content-center align-center text-success  "
       >
         ₹ {price}
       </td>
       <td
-        width="25%"
+        width="15%"
         className="price fs-2 text-center justify-content-center align-center text-success  "
       >
         {product?.cost?.negotiable ? (

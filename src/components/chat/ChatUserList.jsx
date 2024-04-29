@@ -35,30 +35,15 @@ export default function ChatUserList({ unread, list, userID, chatID, token }) {
           active ? "list-group-item active  media" : "list-group-item  media "
         }
       >
-        <div className="d-flex flex-row ">
-          <div className="pull-left">
-            <img
-              src={
-                filteredParticipants[0]?.profile
-                  ? filteredParticipants[0].profile
-                  : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
-              }
-              style={{ borderRadius: "50%" }}
-              alt=""
-              className="img-avatar"
-            />
-          </div>
-          <div className="media-body w-100 ms-2">
-            <div className="list-group-item-heading">
-              {filteredParticipants[0]?.username}
-              <span className="badge text-danger " style={{ fontSize: "12px" }}>
-                {unread}
-              </span>
-            </div>
-            <small className="list-group-item-text c-gray text-">
-              {lastMsg}
-            </small>
-            <div className="d-flex justify-content-end">{formattedDate}</div>
+      <div className="d-flex flex-row ">
+        <div className="pull-left">
+            <img src={filteredParticipants[0]?.profile ? filteredParticipants[0].profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"} style={{borderRadius:"50%"}} alt="" className="img-avatar" />
+        </div>
+        <div className="media-body w-100 ms-2">
+          <div className="list-group-item-heading">
+            {filteredParticipants[0]?.username}<span class="badge text-danger " style={{fontSize:"12px"}}>
+            {/* 2 Unread */}
+            </span>
           </div>
         </div>
       </Link>
