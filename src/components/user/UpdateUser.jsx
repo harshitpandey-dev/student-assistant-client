@@ -156,9 +156,9 @@ const UpdateUser = ({ currUser }) => {
               Update Profile
             </div>
           )}
-          <Button className=" button-8" onClick={handleClose}>
+          <div className=" button-8" onClick={handleClose}>
             Close
-          </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

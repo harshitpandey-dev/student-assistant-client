@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { updateUserWishlist } from "../../actions/userActions";
 import EditProductModel from "./EditProductModel";
 import { Card } from "react-bootstrap";
+import { FaRegHeart } from "react-icons/fa";
 
 export default function ProductDispay({ product, userID, token }) {
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ export default function ProductDispay({ product, userID, token }) {
                         style={{
                           maxWidth: "100%",
                           height: "300px",
-                          padding: "10px",
+                          padding: "12px",
                           minWidth: "250px",
                         }}
                         className="rounded-4 fit"
@@ -140,21 +141,23 @@ export default function ProductDispay({ product, userID, token }) {
                   </div>
                  <div className="w-100 d-flex">
                   {isWishlisted ? (
-                      <div className="remWish  text-danger" style={{width:"50%"}} onClick={handleWishlist}>
-                      Remove from wishList
+                      <div className="remWish  text-danger d-flex align-items-center justify-content-center" style={{ width: "50%", fontSize: "12px" }} onClick={handleWishlist}>
+                        <FaRegHeart /> Remove
                     </div>
                   ) : (
-                        <div className="addWish text-success" style={{ width: "50%" }} onClick={handleWishlist}>
-                      Add to wishList
+                        <div className="addWish text-success d-flex align-items-center justify-content-center" style={{ width: "50%", fontSize: "12px" }} onClick={handleWishlist}>
+                          <FaRegHeart /> Add To WishList
                     </div>
                   )}
                   {isYourProduct ? (
                     <EditProductModel product={product} />
                   ) : (
-                        <div className="button-3 text-light m-2" style={{ width: "40%" }}>
+                        <div className="button-3 text-light ms-2" style={{ width: "40%"}}>
                       <Link to={`/chatScreen/${product?.owner?._id}`} >
-                        {" "}
-                        Chat With Seller
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" className="bi bi-chat" viewBox="0 0 16 16">
+                              <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105" />
+                            </svg>
+                            <span style={{ fontSize: "12px" }}>  Chat With Seller</span>
                       </Link>
                     </div>
                   )}
