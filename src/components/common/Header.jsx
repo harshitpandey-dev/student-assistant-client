@@ -59,7 +59,7 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="text-light">
-              <span style={{ fontFamily: "'Gluten', sans-serif" }}>
+              <span style={{ fontFamily: " sans-serif" }}>
                 Student-Assistant
               </span>
             </Navbar.Brand>

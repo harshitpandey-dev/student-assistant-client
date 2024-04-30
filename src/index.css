@@ -1010,12 +1010,13 @@ form-control:focus {
     overflow-y: scroll;
     height: 100vh !important;
     width: 410px;
-    background: #D9D9D9;
+    background: #f5f7fb;
     height: 100%;
     /* border-radius: 10px 0 0 0; */
     padding-top: 20px;
     z-index: 23;
     padding: 10px;
+    color: #495057 ;
 }
 
 
@@ -1168,10 +1169,11 @@ form-control:focus {
     width: 100%;
     /* border: 1px solid #03a8f460; */
     /* border-radius: 10%; */
-    background-color: #646060;
+    /* background-color: #646060; */
     height: 85px !important;
     border: 0;
-    color: white;
+    color: #495057;
+    /* color: white; */
     font-weight: bolder;
     /* min-height: 110px; */
     margin: 0 10px;
@@ -1182,17 +1184,17 @@ form-control:focus {
 }
 
 .list-group.lg-alt .list-group-item:hover {
-    background-color: #646060b4;
+    background-color: #e6ebf5;
 
 }
 
 .list-group.lg-alt .list-group-item.active {
-    background-color: #646060b4;
-    color: rgb(241, 241, 235) !important;
+    background-color: #e6ebf5;
+    /* color: rgb(241, 241, 235) !important; */
 }
 
 .list-group.lg-alt .list-group-item.active .list-group-item-text {
-    color: white !important;
+    /* color: white !important; */
     font-weight: normal;
 }
 
@@ -1393,7 +1395,7 @@ font-family: "Rajdhani", sans-serif;
 }
 
 .type_msg {
-    background-color:  #D9D9D9 !important;
+    background-color:  #e6ebf5 !important;
     /* border: 1px solid black !important; */
     color: black !important;
     height: 60px !important;
@@ -1411,7 +1413,7 @@ font-family: "Rajdhani", sans-serif;
 
 .attach_btn {
     /* border-radius: 15px 0 0 15px !important; */
-    background-color:  #D9D9D9 !important;
+    background-color:  #e6ebf5 !important;
     /* border: 1px solid black !important; */
     color: black !important;
     cursor: pointer;
@@ -1422,7 +1424,7 @@ font-family: "Rajdhani", sans-serif;
 }
 
 .emoji {
-    background-color:  #D9D9D9 !important;
+    background-color:  #e6ebf5 !important;
     border: 0 !important;
     border-radius: 0 0.375rem 0.375rem 0 !important;
 }
@@ -1600,6 +1602,11 @@ font-family: "Rajdhani", sans-serif;
 }
 .searchbox {
     width: 100% !important;
+    background-color: #e6ebf5 !important;
+}
+.form-control,.btn-search{
+    background-color: #e6ebf5 !important;
+
 }
 .style-btn{
     height: 70px !important;
@@ -1650,7 +1657,7 @@ font-family: "Rajdhani", sans-serif;
         top: 0px;
         padding-top: 50px;
         /* width: 250px; */
-        background-color: #D9D9D9;
+        background-color: #e6ebf5;
     }
     .style-btn{
         height: auto !important;

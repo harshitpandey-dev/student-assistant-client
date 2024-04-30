@@ -52,7 +52,7 @@ export default function UserMessgeBox({ msg }) {
       <div className="media-body mt-1">
         { msg?.content &&  <div
           className="mf-content msg_cotainer_send "
-          style={{ fontFamily: "'Gluten', sans-serif" }}
+          style={{ fontFamily: " sans-serif" }}
         >
           {msg?.content}
           <small className="mf-date msg_time_send ">

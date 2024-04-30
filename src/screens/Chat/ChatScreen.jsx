@@ -342,15 +342,15 @@ export default function ChatScreen() {
                   {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
 
                   <div
-                    className="fs-3 text-light mb-2"
-                    style={{ fontFamily: "'Gluten', sans-serif" }}
+                    className="fs-3  mb-2"
+                      style={{ fontFamily: "'Gluten', sans-serif", color:"#495057"}}
                   >
                     Student Assistant
                   </div>
                   <div className="d-flex">
                     <span className="badge fs-5 text-danger">
-                      <FaBell className="text-light fs-3" />
-                        {unreadMessages.length > 0 && (<span className=" text-light fs-3" >{unreadMessages.length}</span>)}
+                        <FaBell className=" fs-3" style={{color:"#495057"}} />
+                        {unreadMessages.length > 0 && (<span className="  fs-3" style={{ color: "#495057" }}>{unreadMessages.length}</span>)}
                     </span>
                   </div>
                 </div>
@@ -370,7 +370,7 @@ export default function ChatScreen() {
                 <div className="list-group lg-alt mt-1">
                   <div className="d-flex flex-row justify-content-center w-100 mb-4 ">
                     <div
-                      className="bg-light d-flex justify-content-center align-items-center"
+                      className="btn-search d-flex justify-content-center align-items-center"
                       style={{ width: "40px", borderRadius: "10px 0 0 10px" }}
                     >
                       <FaSearch />
@@ -456,7 +456,7 @@ export default function ChatScreen() {
                   <span
                     className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
                     style={{
-                      fontFamily: "'Gluten', sans-serif",
+                      fontFamily: " sans-serif",
                       marginLeft: "-21px",
                     }}
                   >
@@ -656,7 +656,7 @@ export default function ChatScreen() {
                         name=""
                         className="form-control type_msg text-dark chatInput"
                         placeholder="Type A Message..."
-                        style={{ fontFamily: "'Gluten', sans-serif" }}
+                        style={{ fontFamily: " sans-serif" }}
                         onChange={(e) => typingHandler(e)}
                         value={sendMessage}
                       ></textarea>
