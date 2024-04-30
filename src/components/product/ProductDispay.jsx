@@ -139,11 +139,11 @@ export default function ProductDispay({ product, userID, token }) {
                   </div>
                  <div className="w-100 d-flex">
                   {isWishlisted ? (
-                      <div className="button-4  text-danger" style={{width:"50%"}} onClick={handleWishlist}>
+                      <div className="remWish  text-danger" style={{width:"50%"}} onClick={handleWishlist}>
                       Remove from wishList
                     </div>
                   ) : (
-                        <div className="button-4 text-success" style={{ width: "50%" }} onClick={handleWishlist}>
+                        <div className="addWish text-success" style={{ width: "50%" }} onClick={handleWishlist}>
                       Add to wishList
                     </div>
                   )}

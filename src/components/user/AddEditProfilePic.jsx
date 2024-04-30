@@ -50,10 +50,10 @@ export default function AddEditProfilePic({ user }) {
       </div>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton className="bg-secondary">
-          <Modal.Title className="text-white">Profile Image</Modal.Title>
+        <Modal.Header closeButton className="bg-light">
+          <Modal.Title className="text-dark">Profile Image</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="bg-dark">
+        <Modal.Body className="bg-light">
           <div className="position-relative mt-5">
             <img
               className="mt-2"
@@ -68,6 +68,7 @@ export default function AddEditProfilePic({ user }) {
             <Form.File
               id="image-file"
               label="Edit Image"
+              className="button-5 m-2"
               onChange={uploadFileHandler}
             ></Form.File>
           </Form>

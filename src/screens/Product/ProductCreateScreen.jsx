@@ -118,16 +118,19 @@ const ProductCreateScreen = () => {
             <Form onSubmit={submitHandler}>
               {showImages.length < 4 && (
                 <Form.Group controlId="images">
-                  <Form.Label>
-                    Upload Images <small> </small>
-                  </Form.Label>
+                 
 
                   <Form.File
                     id="image-file"
-                    className="button-3"
-                    // label="Upload Image"
+                    className="button-5 m-3"
+                    label="Select Image"
                     onChange={uploadFileHandler}
+                    style={{cursor:"pointer"}}
                   />
+                    {/* <input type="file" id="file" />
+                    <label for="file" class="btn-3">
+                      <span>select</span>
+                    </label> */}
                   <p></p>
                   <ul>
                     <li>* Maximum 4 images can be uploaded</li>
@@ -163,7 +166,7 @@ const ProductCreateScreen = () => {
                 </div>
               )}
 
-              <Form.Group controlId="name">
+              <Form.Group controlId="name" className="mt-3">
                 <Form.Label>Name of the product </Form.Label>
                 <Form.Control
                   type="text"
@@ -174,7 +177,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="category">
+                <Form.Group controlId="category" className="mt-3">
                 <Form.Label>Keyword</Form.Label>
                 <Form.Control
                   type="text"
@@ -185,7 +188,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="description">
+                <Form.Group controlId="description" className="mt-3">
                 <Form.Label>Describe your product</Form.Label>
 
                 <Form.Control
@@ -208,7 +211,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group> */}
 
-              <Form.Group className="mb-5" controlId="price">
+                <Form.Group className="mt-3" controlId="price" >
                 <Form.Label>Price </Form.Label>
                 <Form.Control
                   type="number"
@@ -248,9 +251,9 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group> */}
 
-              <Button className="mt-3 w-100" type="submit" variant="primary">
+              <div className="mt-3 w-100 button-6" type="submit" >
                 Upload your property
-              </Button>
+              </div>
               {error && <Message variant="danger">{error}</Message>}
               {message && <Message variant="danger">{message}</Message>}
             </Form>
