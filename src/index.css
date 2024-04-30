@@ -982,7 +982,7 @@ form-control:focus {
     font-size: 13px;
     line-height: 1.42857143;
     color: #767676;
-    background-color: #1d2d49;
+    background-color: #7563BD;
     /* margin-top: 20px; */
     height: 100vh !important;
     overflow: hidden;
@@ -1010,7 +1010,7 @@ form-control:focus {
     overflow-y: scroll;
     height: 100vh !important;
     width: 410px;
-    background: rgb(126, 186, 246);
+    background: #D9D9D9;
     height: 100%;
     /* border-radius: 10px 0 0 0; */
     padding-top: 20px;
@@ -1168,7 +1168,7 @@ form-control:focus {
     width: 100%;
     /* border: 1px solid #03a8f460; */
     /* border-radius: 10%; */
-    background-color: #8991e48d;
+    background-color: #646060;
     height: 85px !important;
     border: 0;
     color: white;
@@ -1182,12 +1182,12 @@ form-control:focus {
 }
 
 .list-group.lg-alt .list-group-item:hover {
-    background-color: #8991e4e2;
+    background-color: #646060b4;
 
 }
 
 .list-group.lg-alt .list-group-item.active {
-    background-color: #8991e4e2;
+    background-color: #646060b4;
     color: rgb(241, 241, 235) !important;
 }
 
@@ -1311,7 +1311,7 @@ font-family: "Rajdhani", sans-serif;
     margin-bottom: auto;
     margin-left: 55px;
     border-radius: 25px;
-    background-color: #391258bd;
+    background-color: #646060;
     padding: 10px;
     color: white;
     position: relative;
@@ -1393,7 +1393,7 @@ font-family: "Rajdhani", sans-serif;
 }
 
 .type_msg {
-    background-color:  rgba(101, 132, 140, 0.611) !important;
+    background-color:  #D9D9D9 !important;
     /* border: 1px solid black !important; */
     color: black !important;
     height: 60px !important;
@@ -1411,7 +1411,7 @@ font-family: "Rajdhani", sans-serif;
 
 .attach_btn {
     /* border-radius: 15px 0 0 15px !important; */
-    background-color:  rgba(101, 132, 140, 0.611) !important;
+    background-color:  #D9D9D9 !important;
     /* border: 1px solid black !important; */
     color: black !important;
     cursor: pointer;
@@ -1422,14 +1422,14 @@ font-family: "Rajdhani", sans-serif;
 }
 
 .emoji {
-    background-color:  rgba(101, 132, 140, 0.611) !important;
+    background-color:  #D9D9D9 !important;
     border: 0 !important;
     border-radius: 0 0.375rem 0.375rem 0 !important;
 }
 
 .send_btn {
     /* border-radius: 0 15px 15px 0 !important; */
-    background-color: rgba(28, 240, 63, 0.865) !important;
+    background-color: #7563BD !important;
     border: 0 !important;
     color: rgb(235, 237, 239) !important;
     cursor: pointer;
