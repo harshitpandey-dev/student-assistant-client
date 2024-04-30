@@ -1,8 +1,14 @@
-/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+import { Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { delete_Chat } from "../../actions/chatActions";
+import DeleteChat from "./DeleteChat";
 
-export default function ChatUserList({ unread, list, userID, chatID, token }) {
+export default function ChatUserList({ list, userID, chatID, token, setOpen }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const filteredParticipants = list.participants.filter(
     (participant) => participant._id !== userID
   );
@@ -28,10 +34,7 @@ export default function ChatUserList({ unread, list, userID, chatID, token }) {
   }
 
   return (
-    <div
-      className={active ? "list-menu active  media" : "list-menu "}
-      onClick={() => setOpen(false)}
-    >
+    <div className={active ? "list-menu active  media" : "list-menu "} onClick={() => setOpen(false)}>
       <Link
         to={`/chatScreen/chatID/${list._id}`}
         className={
@@ -40,25 +43,18 @@ export default function ChatUserList({ unread, list, userID, chatID, token }) {
       >
         <div className="d-flex flex-row ">
           <div className="pull-left">
-            <img
-              src={
-                filteredParticipants[0]?.profile
-                  ? filteredParticipants[0].profile
-                  : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
-              }
-              style={{ borderRadius: "50%" }}
-              alt=""
-              className="img-avatar"
-            />
+            <img src={filteredParticipants[0]?.profile ? filteredParticipants[0].profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"} style={{ borderRadius: "50%" }} alt="" className="img-avatar" />
           </div>
           <div className="media-body w-100 ms-2">
             <div className="list-group-item-heading">
-              {filteredParticipants[0]?.username}
-              <span className="badge text-danger " style={{ fontSize: "12px" }}>
+              {filteredParticipants[0]?.username}<span class="badge text-danger " style={{ fontSize: "12px" }}>
                 {/* 2 Unread */}
               </span>
             </div>
+            <small className="list-group-item-text c-gray text-">{lastMsg}</small>
+            <div className="d-flex justify-content-end">{formattedDate}</div>
           </div>
+
         </div>
       </Link>
       {/* {isHover && <button className='bg-dark d-flex align-items-center justify-content-center' onClick={handleDelete} style={{ width: "50px" }}>

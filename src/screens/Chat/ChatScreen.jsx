@@ -68,7 +68,7 @@ export default function ChatScreen() {
 
   const messagesEndRef = useRef(null);
 
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const [typing, setTyping] = useState(false); //selftyping
@@ -90,14 +90,6 @@ export default function ChatScreen() {
   const [uploading, setUploading] = useState(false);
 
   const [chatWith, setChatWith] = useState([]);
-
-  useEffect(() => {
-    if (sellerID && userData) {
-      if (userData._id === sellerID) navigate("/");
-      else dispatch(getOrCreate_Chat(sellerID, userData.token));
-    }
-    setSendMessage("");
-  }, []);
 
   useEffect(() => {
     if (userData && chatListData && chatID) {
@@ -125,6 +117,7 @@ export default function ChatScreen() {
   useEffect(() => {
     setMessages(messageData);
   }, [messageData]);
+  // >>>>>>> origin/main
 
   const onConnect = () => {
     setIsConnected(true);
@@ -191,13 +184,19 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_LIST_RESET });
   }, []);
 
-  // useEffect(() => {
-  //   if (userData && sellerID && userData?._id === sellerID) {
-  //     return;
-  //   }
-  // }, [sellerID, userData, chatID, reload]);
+  useEffect(() => {
+    if (userData && sellerID && userData?._id === sellerID) {
+      return;
+    }
+    if (!chatID && userData && sellerID) {
+      dispatch(getOrCreate_Chat(sellerID, userData.token));
+    }
+  }, [sellerID, userData, chatID, reload]);
 
   useEffect(() => {
+    if (userData && sellerID && userData?._id === sellerID) {
+      return;
+    }
     if (userData && chatData && !chatID) {
       dispatch(getMessage(chatData._id, userData.token));
       if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
@@ -206,11 +205,25 @@ export default function ChatScreen() {
       dispatch(getMessage(chatID, userData.token));
       if (socket) socket.emit(JOIN_CHAT_EVENT, chatID);
     }
-  }, [chatID, userData]);
+    if (userData) {
+      dispatch(get_All_Chat(userData._id, userData.token));
+    }
+  }, [chatData, chatID, userData, reload, sellerID]);
 
   useEffect(() => {
-    dispatch(get_All_Chat(userData?._id, userData?.token));
-  }, [chatData, userData]);
+    if (localStorage.getItem("userData")) {
+      userData = JSON.parse(localStorage.getItem("userData"));
+    } else {
+      navigate("/");
+      return;
+    }
+    dispatch(get_All_Chat(userData._id, userData.token));
+    if (userData._id === sellerID) {
+      return;
+    }
+
+    setSendMessage("");
+  }, [dispatch, sellerID, userData, chatID, reload]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -248,7 +261,7 @@ export default function ChatScreen() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messageData]);
+  }, [messageData, messages]);
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
@@ -372,7 +385,7 @@ export default function ChatScreen() {
                   </div>
                   <span
                     className="text-light fs-5 mb-2"
-                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
+                  // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                     <span>Recent Chats</span>
                   </span>
@@ -381,10 +394,6 @@ export default function ChatScreen() {
                     chats.map((list) => {
                       return (
                         <ChatUserList
-                          unread={
-                            unreadMessages.filter((n) => n.chat === chatID)
-                              .length
-                          }
                           list={list}
                           userID={userData._id}
                           key={list._id}
@@ -483,7 +492,11 @@ export default function ChatScreen() {
                       <div>
                         {" "}
                         <Dropdown style={{ width: "42px", height: "48px" }}>
-                          <style>{`.dropdown-toggle::after { display: none;}`}</style>
+                          <style>{`
+      .dropdown-toggle::after {
+        display: none;
+      }
+    `}</style>
                           <Dropdown.Toggle
                             id="dropdown-basic"
                             style={{
@@ -576,7 +589,10 @@ export default function ChatScreen() {
                 {images && (
                   <div className=" input-above">
                     {images.map((file, index) => (
-                      <div key={index} className="d-inline-block  input-img">
+                      <div
+                        key={index}
+                        className="d-inline-block  input-img"
+                      >
                         <img
                           className="mt-2 "
                           src={URL.createObjectURL(file)}
@@ -611,11 +627,11 @@ export default function ChatScreen() {
                   )}
                   {istyping ? (
                     <div>
-                      <Lottie
+                      <Lottie 
                         options={defaultOptions}
-                        // height={50}
+                        height={20}
                         width={70}
-                        style={{ marginBottom: 15, marginLeft: 0 }}
+                        style={{ marginBottom: 1, marginLeft: 10 }}
                       />
                     </div>
                   ) : (
@@ -623,7 +639,7 @@ export default function ChatScreen() {
                   )}
                 </div>
                 {(userData && sellerID && userData._id === sellerID) ||
-                (!sellerID && !chatID) ? (
+                  (!sellerID && !chatID) ? (
                   <></>
                 ) : (
                   <div className="card-footer">

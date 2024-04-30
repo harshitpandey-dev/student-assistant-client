@@ -1384,6 +1384,7 @@ font-family: "Rajdhani", sans-serif;
 .card-footer {
     /* border-radius: 0 0 15px 15px !important; */
     border-top: 0 !important;
+    z-index: 123;
     /* margin: 12px; */
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -1616,6 +1617,15 @@ font-family: "Rajdhani", sans-serif;
 .slide:hover .nav-link {
     color: black !important;
 }
+.ms-menu {
+    z-index: 124 !important;
+}
+
+#ms-menu-trigger,
+.toggle-switch{
+    z-index: 124 !important;
+}
+
 
 @media (min-width:890px) {
     #messages-main .ms-body {
@@ -1636,7 +1646,7 @@ font-family: "Rajdhani", sans-serif;
         top: 0px;
         padding-top: 50px;
         /* width: 250px; */
-        background-color: rgb(101, 132, 140);
+        background-color: rgb(118, 179, 194);
     }
     .style-btn{
         height: auto !important;
