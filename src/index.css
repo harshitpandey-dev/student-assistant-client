@@ -1683,7 +1683,7 @@ font-family: sans-serif;
         .navbar-light .navbar-brand{
             width: 70%;
         }
-        .button-3,.button-3a{
+        .resp{
             font-size: 10px !important;
         }
         .bi-chat{
@@ -2663,4 +2663,29 @@ textarea::-webkit-scrollbar {
     .button-8 {
         min-width: 170px;
     }
+}
+.fix-img{
+    width: 165px;
+    overflow: hidden;
+    object-fit: cover;
+    
+}
+.fix-img img{
+    width: 165px;
+    object-fit: cover;
+}
+@media (max-width: 590px) {
+   .fix-img{
+    width: 100px !important;
+   }
+   .fix-right{
+    padding-left: 20px;
+    width: 100px !important;
+    font-size: 10px !important;
+   }
+   .fix-btn{
+    width: 129px !important;
+    font-size: 10px !important;
+   }
+
 }

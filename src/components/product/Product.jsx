@@ -63,7 +63,7 @@ const Product = ({ product, userID, token }) => {
                 <Link onClick={handleWishlist} className={isWishlisted ? "btn text-light bg-success btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" : "btn text-light bg-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn"} >
                   <FaRegHeart /> {isWishlisted ?"Remove": "wishlist"}
               </Link> */}
-                <Link className='button-3 text-light w-100 mb-4' style={{ cursor: "default" }} >
+                <Link className='button-3  text-light w-100 mb-4' style={{ cursor: "default" }} >
                   <BsMinecart />
                   Your Product
                 </Link>
