@@ -451,7 +451,7 @@ export default function ChatScreen() {
                     style={{ zIndex: 10 }}
                     onClick={() => setOpen(!open)}
                   >
-                    <i className="fa fa-bars text-light"></i>
+                    <i className="fa fa-bars text-dark"></i>
                   </div>
                   <span
                     className=" fs-2 text-light  d-flex flex-row justify-content-between align-items-center humgerber"
