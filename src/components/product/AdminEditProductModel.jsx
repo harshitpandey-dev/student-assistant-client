@@ -92,14 +92,12 @@ const AdminEditProductModel = ({ product }) => {
               
                 <Form.Group controlId="images">
                   {images.length < 4 && (
-                    <> <Form.Label>
-                    Image <small> *Upload Image only</small>{" "}
-                  </Form.Label>
+                    <>
 
                   <Form.File
                     id="image-file"
                     label="Upload Image"
-                    custom
+                    className="button-5"
                     onChange={uploadFileHandler}
                   ></Form.File>
                      <p></p>
@@ -140,7 +138,7 @@ const AdminEditProductModel = ({ product }) => {
                   <div className="w-100 mt-4">
                     <Form className="w-100">
                       <div className="w-100" controlId="name">
-                        <Form.Label>Name of the property </Form.Label>
+                        <Form.Label>Name of the Product </Form.Label>
                         <Form.Control
                           type="text" className="w-100"
                           placeholder="Enter what product do you have"
@@ -150,7 +148,7 @@ const AdminEditProductModel = ({ product }) => {
                       </div>
 
                       
-                      <Form.Group controlId="category">
+                      <Form.Group controlId="category" className="mt-3">
                         <Form.Label>Keyword</Form.Label>
                         <Form.Control
                           type="text"
@@ -161,7 +159,7 @@ const AdminEditProductModel = ({ product }) => {
                         ></Form.Control>
                       </Form.Group>
 
-                      <Form.Group controlId="description">
+                      <Form.Group controlId="description" className="mt-3">
                         <Form.Label>Describe your property </Form.Label>
                         <Form.Control
                           as="textarea"
@@ -172,7 +170,7 @@ const AdminEditProductModel = ({ product }) => {
                           required
                         ></Form.Control>
                       </Form.Group>
-                      <Form.Group controlId="price">
+                      <Form.Group controlId="price" className="mt-3">
                         <Form.Label>Price </Form.Label>
                         <Form.Control
                           type="number"
@@ -182,7 +180,7 @@ const AdminEditProductModel = ({ product }) => {
                         ></Form.Control>
                       </Form.Group>
 
-                      <Form.Group className="mb-5 mt-5" controlId="negotiable">
+                      <Form.Group className=" mt-2" controlId="negotiable">
                         <Form.Check
                           type="checkbox"
                           label="Is the price Negotiable?"
@@ -190,7 +188,7 @@ const AdminEditProductModel = ({ product }) => {
                           onChange={(e) => setNegotiable(e.target.checked)}
                         ></Form.Check>
                       </Form.Group>
-                      <Form.Group className="mb-5 mt-5" controlId="sold">
+                      <Form.Group className="mt-5" controlId="sold">
                         <Form.Check
                           type="checkbox"
                           label="Is the product sold out ?"
@@ -206,12 +204,12 @@ const AdminEditProductModel = ({ product }) => {
           </div>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={submitHandler} variant="primary" className="ms-2">
+          <div onClick={submitHandler} className="ms-2 button-7">
             Update
-          </Button>
-          <Button variant="warning" onClick={handleClose}>
+          </div>
+          <div className=" button-8" onClick={handleClose}>
             close
-          </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

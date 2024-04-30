@@ -22,6 +22,7 @@ const EditProductModel = ({ product }) => {
   const handleShow = () => setShow(true);
 
   const [name, setName] = useState(product.name);
+  const [keywords, setKeyword] = useState(product?.keywords);
 
   const [images, setImages] = useState(product?.images);
 
@@ -60,7 +61,15 @@ const EditProductModel = ({ product }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      updateProduct(product._id, name, images, description, price, negotiable)
+      updateProduct(
+        product._id,
+        name,
+        images,
+        keywords,
+        description,
+        price,
+        negotiable
+      )
     );
     handleClose();
   };
@@ -79,7 +88,7 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <div className="button-3 text-light ms-2" onClick={handleShow} style={{ width: "40%" }}>
+      <div className="button-3a text-light ms-2" onClick={handleShow} style={{ width: "40%" }}>
         Edit Product
       </div>
 
@@ -88,63 +97,79 @@ const EditProductModel = ({ product }) => {
           <Modal.Title className="text-white">Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
-            <Form className="mt-2 mb-2">
-              <Form.Group controlId="name">
-                <Form.Label>
-                  <FormContainer>
-                    <Form>
-                      <Form.Group controlId="name">
-                        <Form.Label>Name of the property </Form.Label>
+          <div className="w-100">
+            <div className="mt-2 mb-2 p-4">
+
+              <Form.Group controlId="images">
+                {images.length < 4 && (
+                  <> 
+
+                    <Form.File
+                      id="image-file"
+                      label="Upload Image"
+                      className="button-5"
+                      onChange={uploadFileHandler}
+                    ></Form.File>
+                    <p></p>
+                    <ul>
+                      <li>* Maximum 4 images can be uploaded</li>
+                      <li>* Size of each image should be less than 2mb</li>
+                    </ul>
+                    {uploading && <Loader />}
+                  </>)}
+                {images && (
+                  <div className="position-relative mt-5">
+                    {images.map((ele, index) => (
+                      <div
+                        key={index}
+                        className="d-inline-block position-relative"
+                      >
+                        <img
+                          className="mt-2"
+                          src={ele}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                          style={{ width: "30px", height: "40px" }}
+                          onClick={() => removeImg(ele)}
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+
+                <div className="w-100">
+                  <div className="w-100 mt-4">
+                    <Form className="w-100">
+                      <div className="w-100 mt-3" controlId="name" >
+                        <Form.Label>Name of the Product </Form.Label>
                         <Form.Control
-                          type="text"
+                          type="text" className="w-100"
                           placeholder="Enter what product do you have"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
+                      </div>
+
+
+                      <Form.Group controlId="category" className="mt-3">
+                        <Form.Label>Keyword</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter keywords like: electronics, books, Furniture.. "
+                          value={keywords}
+                          onChange={(e) => setKeyword(e.target.value)}
+                          required
+                        ></Form.Control>
                       </Form.Group>
 
-                      <Form.Group controlId="images">
-                        <Form.Label>
-                          Image <small> *Upload Image only</small>{" "}
-                        </Form.Label>
-
-                        <Form.File
-                          id="image-file"
-                          label="Choose File"
-                          custom
-                          onChange={uploadFileHandler}
-                        ></Form.File>
-                        {images && (
-                          <div className="position-relative mt-5">
-                            {images.map((ele, index) => (
-                              <div
-                                key={index}
-                                className="d-inline-block position-relative"
-                              >
-                                <img
-                                  className="mt-2"
-                                  src={ele}
-                                  style={{ height: "100px" }}
-                                  alt={`image${index + 1}`}
-                                />
-                                <button
-                                  type="button"
-                                  className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                                  style={{ width: "30px", height: "40px" }}
-                                  onClick={() => removeImg(ele)}
-                                >
-                                  X
-                                </button>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {uploading && <Loader />}
-                      </Form.Group>
-
-                      <Form.Group controlId="description">
+                      <Form.Group controlId="description" className="mt-3">
                         <Form.Label>Describe your property </Form.Label>
                         <Form.Control
                           as="textarea"
@@ -155,7 +180,7 @@ const EditProductModel = ({ product }) => {
                           required
                         ></Form.Control>
                       </Form.Group>
-                      <Form.Group controlId="price">
+                      <Form.Group controlId="price" className="mt-3">
                         <Form.Label>Price </Form.Label>
                         <Form.Control
                           type="number"
@@ -165,7 +190,7 @@ const EditProductModel = ({ product }) => {
                         ></Form.Control>
                       </Form.Group>
 
-                      <Form.Group className="mb-5 mt-5" controlId="negotiable">
+                      <Form.Group className="mt-3" controlId="negotiable">
                         <Form.Check
                           type="checkbox"
                           label="Is the price Negotiable?"
@@ -173,20 +198,21 @@ const EditProductModel = ({ product }) => {
                           onChange={(e) => setNegotiable(e.target.checked)}
                         ></Form.Check>
                       </Form.Group>
+                      
                     </Form>
-                  </FormContainer>
-                </Form.Label>
+                  </div>
+                </div>
               </Form.Group>
-            </Form>
+            </div>
           </div>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={submitHandler} variant="primary" className="ms-2">
+          <div onClick={submitHandler} className="ms-2  button-7">
             Update
-          </Button>
-          <Button variant="warning" onClick={handleClose}>
+          </div>
+          <div className=" button-8" onClick={handleClose}>
             close
-          </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

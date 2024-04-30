@@ -75,12 +75,12 @@ export default function AddEditProfilePic({ user }) {
         </Modal.Body>
 
         <Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={submitHandler} variant="primary" className="ms-2">
+          <div onClick={submitHandler} className="ms-2  button-7">
             Update
-          </Button>
-          <Button variant="warning" onClick={handleClose}>
+          </div>
+          <div className=" button-8" onClick={handleClose}>
             close
-          </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>

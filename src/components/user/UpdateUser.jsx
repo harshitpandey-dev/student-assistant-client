@@ -147,18 +147,18 @@ const UpdateUser = ({ currUser }) => {
           </FormContainer>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Button variant="warning" onClick={handleClose}>
+          {update ? (
+            <div onClick={submitHandler} className="ms-2  button-7">
+              Update Profile
+            </div>
+          ) : (
+              <div type="submit" className="ms-2  button-7" disabled>
+              Update Profile
+            </div>
+          )}
+          <Button className=" button-8" onClick={handleClose}>
             Close
           </Button>
-          {update ? (
-            <Button onClick={submitHandler} variant="primary" className="ms-2">
-              Update Profile
-            </Button>
-          ) : (
-            <Button type="submit" variant="primary" className="ms-2" disabled>
-              Update Profile
-            </Button>
-          )}
         </Modal.Footer>
       </Modal>
     </>

@@ -51,12 +51,12 @@ const AdminDeleteAccountModel = ({ userId }) => {
           </FormContainer>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <Button onClick={submitHandler} variant="primary" className="ms-2">
+          <div onClick={submitHandler} className="ms-2  button-7">
             Delete
-          </Button>
-          <Button variant="warning" onClick={handleClose}>
+          </div>
+          <div className=" button-8" onClick={handleClose}>
             Close
-          </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>
