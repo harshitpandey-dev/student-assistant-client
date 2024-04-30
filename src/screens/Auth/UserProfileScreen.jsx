@@ -54,7 +54,7 @@ const UserUpdateScreen = () => {
                   hover
                   responsive
                   className="table-sm"
-                  variant="danger"
+                  variant="light"
                 >
                   <thead>
                     <tr>

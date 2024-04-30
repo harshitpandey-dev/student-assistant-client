@@ -69,7 +69,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             <Nav className="ml-auto text-center d-flex align-items-center">
-              <div className="d-flex align-items-center slide ">
+              <div className="d-flex align-items-center slide small_fix">
                 <IoIosAddCircle />
 
                 <LinkContainer to="/createproduct">

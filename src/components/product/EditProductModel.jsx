@@ -79,9 +79,9 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} style={{ width: "50%" }}>
+      <div className="button-3a text-light " onClick={handleShow} style={{ width: "50%" }}>
         Edit Product
-      </Button>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton className="bg-secondary">

@@ -63,8 +63,8 @@ const Product = ({ product, userID, token }) => {
 
                   Your Product
                 </Link>
-                <Link onClick={handleWishlist} className={isWishlisted ? "button-2a w-100 text-light" : "button-2 w-100 text-light"} >
-                  <FaRegHeart /> {isWishlisted ? "Remove" : "wishlist"}
+                <Link onClick={handleWishlist} className={isWishlisted ? "button-4 w-100 text-danger" : "button-4 w-100 text-success"} >
+                  <FaRegHeart /> {isWishlisted ? "Remove" : "Add To Wishlist"}
                 </Link>
               </>
             ) : (
@@ -84,8 +84,8 @@ const Product = ({ product, userID, token }) => {
                   </svg>
                   Chat with seller
                 </Link>
-                <Link onClick={handleWishlist} className={isWishlisted ? "button-2a w-100 text-light" : "button-2 w-100 text-light"}  >
-                  <FaRegHeart /> {isWishlisted ? "Remove" : "wishlist"}
+                <Link onClick={handleWishlist} className={isWishlisted ? "button-4 w-100 text-danger" : "button-4 w-100 text-success"}  >
+                  <FaRegHeart /> {isWishlisted ? "Remove" : "Add To Wishlist"}
                 </Link>
               </>
             )}

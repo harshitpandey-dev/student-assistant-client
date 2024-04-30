@@ -244,11 +244,11 @@ export default function ChatScreen() {
     }
   }
 
-  // useEffect(() => {
-  //   if (messagesEndRef.current) {
-  //     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [messageData]);
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messageData]);
 
   const uploadFileHandler = async (e) => {
     const data = e.target.files[0];
