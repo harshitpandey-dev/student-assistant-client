@@ -9,7 +9,7 @@ import { FaEye } from "react-icons/fa";
 import { updateUserWishlist } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 
-export default function WishListDisplay({ product }) {
+export default function WishListDisplay({ product,image }) {
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
@@ -61,11 +61,11 @@ export default function WishListDisplay({ product }) {
   return (
     <>
       <div
-        className="h-100 bg-light text-dark button-6"
+      style={{cursor:"pointer"}}
        
         onClick={handleShow}
       >
-        <FaEye /> Visit
+        <img src={image} alt="194x228" class="img-responsive " style={{ width: "125px", height: "400px" }} />
       </div>
 
       <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
@@ -155,25 +155,27 @@ export default function WishListDisplay({ product }) {
                     <p>{product.description}</p>
                   </div>
 
-                  {isWishlisted ? (
-                    <Button variant="success" onClick={handleWishlist}>
-                      Remove from wishList
-                    </Button>
-                  ) : (
-                    <Button variant="danger" onClick={handleWishlist}>
-                      Add to wishList
-                    </Button>
-                  )}
-                  {isYourProduct ? (
-                    <EditProductModel product={product} />
-                  ) : (
-                    <Button variant="primary">
-                      <Link to={`/chatScreen/${product?.owner?._id}`}>
-                        {" "}
-                        Chat With Seller
-                      </Link>
-                    </Button>
-                  )}
+                  <div className="w-100 d-flex">
+                    {isWishlisted ? (
+                      <div className="remWish  text-danger" style={{ width: "50%" }} onClick={handleWishlist}>
+                        Remove from wishList
+                      </div>
+                    ) : (
+                      <div className="addWish text-success" style={{ width: "50%" }} onClick={handleWishlist}>
+                        Add to wishList
+                      </div>
+                    )}
+                    {isYourProduct ? (
+                      <EditProductModel product={product} />
+                    ) : (
+                      <div className="button-3 text-light m-2" style={{ width: "40%" }}>
+                        <Link to={`/chatScreen/${product?.owner?._id}`} >
+                          {" "}
+                          Chat With Seller
+                        </Link>
+                      </div>
+                    )}
+                    </div>
                 </main>
               </div>
             </div>

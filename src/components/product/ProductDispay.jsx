@@ -151,7 +151,7 @@ export default function ProductDispay({ product, userID, token }) {
                   {isYourProduct ? (
                     <EditProductModel product={product} />
                   ) : (
-                        <div className="button-3 text-light" style={{ width: "50%" }}>
+                        <div className="button-3 text-light m-2" style={{ width: "40%" }}>
                       <Link to={`/chatScreen/${product?.owner?._id}`} >
                         {" "}
                         Chat With Seller

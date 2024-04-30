@@ -79,7 +79,7 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <div className="button-3a text-light " onClick={handleShow} style={{ width: "50%" }}>
+      <div className="button-3 text-light ms-2" onClick={handleShow} style={{ width: "40%" }}>
         Edit Product
       </div>
 

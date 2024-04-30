@@ -2196,6 +2196,7 @@ textarea::-webkit-scrollbar {
     /* margin: 10px; */
     padding: 15px 30px;
     text-align: center;
+    vertical-align: middle;
     /* text-transform: uppercase; */
     font-family: sans-serif;
     transition: 0.5s;
@@ -2538,4 +2539,19 @@ textarea::-webkit-scrollbar {
             }
         }
     }
+}
+
+.wishcard{
+ box-shadow: 6px 6px 6px 6px rgba(31, 30, 30, 0.384);
+}
+.img-responsive:hover{
+    opacity: 0.7;
+}
+
+@media (max-width: 373px) {
+
+    .removeWish{
+        right: 0 !important;
+    }
+
 }
