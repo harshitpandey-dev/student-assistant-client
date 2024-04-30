@@ -1560,6 +1560,10 @@ font-family: "Rajdhani", sans-serif;
 .product-card:hover .card-image {
     opacity: 0.8;
 }
+.card{
+    height: 740px !important;
+    overflow: hidden;
+}
 .style-btn-wishlist{
     color: red !important;
 }

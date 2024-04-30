@@ -60,7 +60,7 @@ export default function ProductDispay({ product, userID, token }) {
 
   return (
     <>
-      <div className="w-100 h-100 bg-light" onClick={handleShow} style={{cursor:"pointer"}}>
+      <div className="w-100  bg-light" onClick={handleShow} style={{cursor:"pointer"}}>
         <Card.Img className='card-image' style={{ height: "300px" }} src={product.images[0]}/>
       </div>
 

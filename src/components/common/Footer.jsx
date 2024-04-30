@@ -10,7 +10,7 @@ const Footer = () => {
 
       >
 
-        <section
+        {/* <section
           className="d-flex justify-content-between p-4"
           style={{ backgroundColor:"#6351ce"}}
  
@@ -43,7 +43,7 @@ const Footer = () => {
             </a>
           </div>
 
-        </section>
+        </section> */}
 
 
 
@@ -78,16 +78,31 @@ const Footer = () => {
           
                 />
                 <p>
-                  <a href="#!" className="text-white">MDBootstrap</a>
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-twitter"></i>
+                </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">MDWordPress</a>
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-google"></i>
+                </a>
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-instagram"></i>
+                </a>
+
                 </p>
                 <p>
-                  <a href="#!" className="text-white">BrandFlow</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">Bootstrap Angular</a>
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-linkedin"></i>
+                </a>
+                <a href="" className="text-white me-4">
+                  <i className="fab fa-github"></i>
+                </a>
+
                 </p>
               </div>
 

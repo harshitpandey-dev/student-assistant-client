@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
 import ProductDispay from "./ProductDispay";
+import { BsMinecart } from "react-icons/bs";
 
 const Product = ({ product, userID, token }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Product = ({ product, userID, token }) => {
 
   return (
     <>
-      <Card className='my-3 p-3 rounded product-card'>
+      <Card className='my-3 p-3 rounded product-card' >
         {/* <Link to={`/product/${product._id}`}> */}
         <ProductDispay product={product}
           userID={userID}
@@ -46,7 +47,7 @@ const Product = ({ product, userID, token }) => {
             <br></br>
 
           </Card.Title>
-          <p className='fs-5 text-secondary'>{product?.keywords}</p>
+          {product?.keywords && <p className='fs-5 text-secondary'>{product?.keywords?.substring(0,30)+"..."}</p>}
           {/* <p style={{ fontFamily: "'Gluten', sans-serif" }}>{product?.description}</p> */}
           {/* </Link> */}
           <Card.Text as='h3' className='text-success ' style={{ fontSize: "33px", fontWeight: "bold" }}>₹ {product.cost.price} {product?.cost?.negotiable && <span className='text-secondary' style={{ fontSize: "15px" }}> (Negotiable)</span>} </Card.Text>
@@ -62,8 +63,8 @@ const Product = ({ product, userID, token }) => {
                 <Link onClick={handleWishlist} className={isWishlisted ? "btn text-light bg-success btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn" : "btn text-light bg-danger btn-circle btn-circle-sm m-1 style-btn-wishlist-pro style-btn"} >
                   <FaRegHeart /> {isWishlisted ?"Remove": "wishlist"}
               </Link> */}
-                <Link className='button-3a text-light w-100 mb-4' style={{ cursor: "default" }} >
-
+                <Link className='button-3 text-light w-100 mb-4' style={{ cursor: "default" }} >
+                  <BsMinecart />
                   Your Product
                 </Link>
                 <Link onClick={handleWishlist} className={isWishlisted ? "remWish text-danger w-100 " : "addWish w-100 text-success"} >
