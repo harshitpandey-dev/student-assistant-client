@@ -42,12 +42,12 @@ const UserUpdateScreen = () => {
       <div className="py-3 " style={{ minHeight: "100vh" }}>
         <Row>
           <Col md={2}></Col>
-          <Col md={8}>
+          <Col md={8} className="p-3">
             {loadinglist ? (
               <Loader />
             ) : (
               <>
-                <h3>My Uploads</h3>
+                <h3 className="mb-2">My Uploads</h3>
                 <Table
                   striped
                   bordered
@@ -135,7 +135,7 @@ const UserUpdateScreen = () => {
 
         <Row>
           <Col md={2}></Col>
-          <Col md={8}>
+          <Col md={8} className="p-4">
             <h3>Setting</h3>
             <table className="m-2 w-100">
               <tr className="mb-4">

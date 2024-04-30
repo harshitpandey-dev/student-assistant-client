@@ -1508,11 +1508,11 @@ font-family: "Rajdhani", sans-serif;
     /* background-color: rgb(1, 1, 1) !important; */
 }
 
-.style-btn:hover {
-    /* width: 250px; */
+/* .style-btn:hover {
+   
     background-color: rgb(232, 233, 238) !important;
     color: green !important;
-}
+} */
 
 .Nav_Bar {
     width: 100vw;
@@ -1538,11 +1538,11 @@ font-family: "Rajdhani", sans-serif;
     background-color: rgb(151, 72, 241) !important;
 }
 
-.style-btn-chat:hover {
+/* .style-btn-chat:hover {
     width: 190px !important;
     background-color: #ededed50 !important;
     color: rgb(151, 72, 241) !important;
-}
+} */
 
 .name-label {
     color: #ffffff;
@@ -1562,11 +1562,11 @@ font-family: "Rajdhani", sans-serif;
     color: red !important;
 }
 
-.style-btn-wishlist:hover,
+/* .style-btn-wishlist:hover,
 .style-btn-wishlist-pro:hover {
     color: red !important;
-    /* width: 150px !important; */
-}
+
+} */
 
 .card-footer,
 .input-above {
@@ -1592,7 +1592,16 @@ font-family: "Rajdhani", sans-serif;
 .price {
     font-size: 25px;
 }
+.searchbox {
+    width: 100% !important;
+}
+.style-btn{
+    height: 70px !important;
+}
 
+.slide{
+    flex-direction: column !important;
+}
 
 @media (min-width:890px) {
     #messages-main .ms-body {
@@ -1615,14 +1624,20 @@ font-family: "Rajdhani", sans-serif;
         /* width: 250px; */
         background-color: rgb(101, 132, 140);
     }
+    .style-btn{
+        height: auto !important;
+    }
+    .fix{
+        margin-right: 36px !important;
+    }
 
         .navbar-light .navbar-toggler{
             width: 50px;
             height: 40px;
         }
-        .search{
+        /* .search{
             padding-top: 30px;
-        }
+        } */
         .navbar-toggler-icon{
                     width: 20px !important;
                 }
@@ -1687,7 +1702,17 @@ font-family: "Rajdhani", sans-serif;
     .serach-user {
         width: 100% !important;
     }
+        .navbar>.container {
+            justify-content: space-evenly !important;
+        }
+                 .searchbox {
+                     width: 200px !important;
+                 }
 
+                 .slide{
+                    display: flex;
+                    flex-direction: row !important;
+                 }
 }
 
 .cart-wrap {
@@ -2166,8 +2191,13 @@ textarea::-webkit-scrollbar {
     transform: scale(0.95);
 }
 
+
+
 @media (max-width: 450px) {
     #messages-main .ms-menu{
         width: 100% !important;
     }
+   
 }
+
+

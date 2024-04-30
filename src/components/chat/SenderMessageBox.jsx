@@ -46,7 +46,7 @@ export default function SenderMessageBox({ msg }) {
         msg={msg?.content}
       />
       <div className="media-body  mt-1">
-        <div
+        { msg?.content &&  <div
           className="mf-content msg-container"
           style={{ fontFamily: "'Gluten', sans-serif" }}
         >
@@ -54,10 +54,10 @@ export default function SenderMessageBox({ msg }) {
           <small className="mf-date msg_time">
             <i className="fa fa-clock-o "></i> {formattedDate}
           </small>
-        </div>
+        </div>}
       </div>
       <img
-        src="https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+        src={msg?.sender?.profile ? msg?.sender?.profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
         style={{borderRadius:"50%"}}
         alt=""
         className="img-avatar box-send-img"

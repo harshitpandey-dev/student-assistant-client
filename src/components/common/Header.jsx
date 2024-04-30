@@ -8,6 +8,10 @@ import { IoIosAddCircle } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { IoInformationCircleOutline } from "react-icons/io5";
+import { TbLogin2 } from "react-icons/tb";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -60,64 +64,85 @@ const Header = () => {
               </span>
             </Navbar.Brand>
           </LinkContainer>
+          {hide ? <></> : <SearchBox className="w-100 h-100" />}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
-            {hide ? <></> : <SearchBox className="w-100 h-100" />}
             <Nav className="ml-auto text-center d-flex align-items-center">
-              <Link
-                to="/createproduct"
-                className="btn text-white btn-circle btn-circle-sm m-1 style-btn"
-              >
-                <IoIosAddCircle /> Sell
-              </Link>
-              <Link
-                to="/wishlist"
-                className="btn text-light btn-circle btn-circle-sm m-1 style-btn-wishlist style-btn"
-              >
-                <FaRegHeart /> Wishlist
-              </Link>
-              {userData && userData.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu">
-                  <LinkContainer to="/admin/userlist">
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/productlist">
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
+              <div className="d-flex align-items-center slide ">
+                <IoIosAddCircle />
 
-                  {/* <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item> */}
-                </NavDropdown>
-              )}
-
-              <LinkContainer to="/about">
-                <Nav.Link>
-                  {/* <i className='far fa-address-card'></i>  */}
-                  <span>About Us</span>
-                </Nav.Link>
-              </LinkContainer>
-              {userData ? (
-                <>
-                  <NavDropdown title={`${ userData.fullname}`} id="username">
-                    <LinkContainer to={`/users/${userData._id}`}>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to={`/chatScreen/`}>
-                      <NavDropdown.Item>Chat</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
-                <LinkContainer to="/login">
+                <LinkContainer to="/createproduct">
                   <Nav.Link>
-                    <i className="fas fa-user"></i> Sign In
+                    {/* <i className='far fa-address-card'></i>  */}
+                    <span>Sell</span>
                   </Nav.Link>
                 </LinkContainer>
+              </div>
+              <div className="d-flex align-items-center slide">
+                <FaRegHeart />
+
+                <LinkContainer to="/wishlist">
+                  <Nav.Link>
+                    {/* <i className='far fa-address-card'></i>  */}
+                    <span>Wishlist</span>
+                  </Nav.Link>
+                </LinkContainer>
+              </div>
+              {userData && userData.isAdmin && (
+                <div className="d-flex align-items-center slide">
+                  <MdAdminPanelSettings />
+
+                  <NavDropdown title="Admin" id="adminmenu" >
+                    <LinkContainer to="/admin/userlist">
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/productlist">
+                      <NavDropdown.Item>Products</NavDropdown.Item>
+                    </LinkContainer>
+
+                    {/* <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item> */}
+                  </NavDropdown>
+                </div>
+              )}
+              <div className="d-flex align-items-center slide">
+                <IoInformationCircleOutline />
+                <LinkContainer to="/about">
+                  <Nav.Link>
+                    {/* <i className='far fa-address-card'></i>  */}
+                    <span>About Us</span>
+                  </Nav.Link>
+                </LinkContainer>
+              </div>
+              {userData ? (
+            
+                  <div className="d-flex  align-items-center slide">
+                    <CgProfile className="fix"/>
+
+                    <NavDropdown title={`${userData.fullname}`} id="username">
+                      <LinkContainer to={`/users/${userData._id}`}>
+                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to={`/chatScreen/`}>
+                        <NavDropdown.Item>Chat</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </div>
+                
+              ) : (
+                  <div className="d-flex  align-items-center slide">
+                    <TbLogin2 />
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                   Sign In
+                  </Nav.Link>
+                </LinkContainer>
+                </div>
               )}
             </Nav>
           </Navbar.Collapse>

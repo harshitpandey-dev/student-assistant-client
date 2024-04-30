@@ -25,7 +25,39 @@ import {
 import axios from "axios";
 import { TOAST_ADD } from "../types/userConstants";
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: PRODUCT_DETAILS_RESET,
+    });
+    dispatch({
+      type: PRODUCT_LIST_REQUEST,
+    });
+    const config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/products/`,config);
+    dispatch({
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data.data.products,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_LIST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listUnsoldProducts = () => async (dispatch) => {
   try {
     dispatch({
       type: PRODUCT_DETAILS_RESET,
@@ -34,7 +66,8 @@ export const listProducts = () => async (dispatch) => {
       type: PRODUCT_LIST_REQUEST,
     });
 
-    const { data } = await axios.get(`/api/products/`);
+
+    const { data } = await axios.get(`/api/products/unsoldproduct`);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data.data.products,

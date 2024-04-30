@@ -28,7 +28,10 @@ export default function ChatUserList({ unread, list, userID, chatID, token }) {
   }
 
   return (
-    <div className={active ? "list-menu active  media" : "list-menu "}>
+    <div
+      className={active ? "list-menu active  media" : "list-menu "}
+      onClick={() => setOpen(false)}
+    >
       <Link
         to={`/chatScreen/chatID/${list._id}`}
         className={

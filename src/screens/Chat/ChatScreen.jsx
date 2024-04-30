@@ -92,6 +92,14 @@ export default function ChatScreen() {
   const [chatWith, setChatWith] = useState([]);
 
   useEffect(() => {
+    if (sellerID && userData) {
+      if (userData._id === sellerID) navigate("/");
+      else dispatch(getOrCreate_Chat(sellerID, userData.token));
+    }
+    setSendMessage("");
+  }, []);
+
+  useEffect(() => {
     if (userData && chatListData && chatID) {
       const activeChat = chatListData?.filter((item) => item._id === chatID);
       const filteredParticipants = activeChat[0]?.participants?.filter(
@@ -183,19 +191,13 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_LIST_RESET });
   }, []);
 
-  useEffect(() => {
-    if (userData && sellerID && userData?._id === sellerID) {
-      return;
-    }
-    if (!chatID && userData && sellerID) {
-      dispatch(getOrCreate_Chat(sellerID, userData.token));
-    }
-  }, [sellerID, userData, chatID, reload]);
+  // useEffect(() => {
+  //   if (userData && sellerID && userData?._id === sellerID) {
+  //     return;
+  //   }
+  // }, [sellerID, userData, chatID, reload]);
 
   useEffect(() => {
-    if (userData && sellerID && userData?._id === sellerID) {
-      return;
-    }
     if (userData && chatData && !chatID) {
       dispatch(getMessage(chatData._id, userData.token));
       if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
@@ -204,25 +206,11 @@ export default function ChatScreen() {
       dispatch(getMessage(chatID, userData.token));
       if (socket) socket.emit(JOIN_CHAT_EVENT, chatID);
     }
-    if (userData) {
-      dispatch(get_All_Chat(userData._id, userData.token));
-    }
-  }, [chatData, chatID, userData, reload, sellerID]);
+  }, [chatID, userData]);
 
   useEffect(() => {
-    if (localStorage.getItem("userData")) {
-      userData = JSON.parse(localStorage.getItem("userData"));
-    } else {
-      navigate("/");
-      return;
-    }
-    dispatch(get_All_Chat(userData._id, userData.token));
-    if (userData._id === sellerID) {
-      return;
-    }
-
-    setSendMessage("");
-  }, [dispatch, sellerID, userData, chatID, reload]);
+    dispatch(get_All_Chat(userData?._id, userData?.token));
+  }, [chatData, userData]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -404,6 +392,7 @@ export default function ChatScreen() {
                             chatID ? chatID : chatData ? chatData._id : ""
                           }
                           token={userData?.token}
+                          setOpen={setOpen}
                         />
                       );
                     })}
@@ -587,10 +576,7 @@ export default function ChatScreen() {
                 {images && (
                   <div className=" input-above">
                     {images.map((file, index) => (
-                      <div
-                        key={index}
-                        className="d-inline-block  input-img"
-                      >
+                      <div key={index} className="d-inline-block  input-img">
                         <img
                           className="mt-2 "
                           src={URL.createObjectURL(file)}

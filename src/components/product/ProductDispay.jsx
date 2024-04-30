@@ -137,26 +137,27 @@ export default function ProductDispay({ product, userID, token }) {
 
                     <p>{product.description}</p>
                   </div>
-
+                 <div className="w-100">
                   {isWishlisted ? (
-                    <Button variant="success" onClick={handleWishlist}>
+                    <Button variant="success" style={{width:"50%"}} onClick={handleWishlist}>
                       Remove from wishList
                     </Button>
                   ) : (
-                    <Button variant="danger" onClick={handleWishlist}>
+                        <Button variant="danger" style={{ width: "50%" }} onClick={handleWishlist}>
                       Add to wishList
                     </Button>
                   )}
                   {isYourProduct ? (
                     <EditProductModel product={product} />
                   ) : (
-                    <Button variant="primary">
-                      <Link to={`/chatScreen/${product?.owner?._id}`}>
+                        <Button variant="primary" style={{ width: "50%" }}>
+                      <Link to={`/chatScreen/${product?.owner?._id}`} >
                         {" "}
                         Chat With Seller
                       </Link>
                     </Button>
                   )}
+                  </div>
                 </main>
               </div>
             </div>
