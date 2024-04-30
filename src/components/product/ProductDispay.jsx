@@ -10,6 +10,7 @@ import { GoDot, GoDotFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { updateUserWishlist } from "../../actions/userActions";
 import EditProductModel from "./EditProductModel";
+import { Card } from "react-bootstrap";
 
 export default function ProductDispay({ product, userID, token }) {
   const dispatch = useDispatch();
@@ -59,8 +60,8 @@ export default function ProductDispay({ product, userID, token }) {
 
   return (
     <>
-      <div className="w-100 h-100 bg-light" onClick={handleShow}>
-        <Product product={product} userID={userID} token={token} />
+      <div className="w-100 h-100 bg-light" onClick={handleShow} style={{cursor:"pointer"}}>
+        <Card.Img className='card-image' style={{ height: "300px" }} src={product.images[0]}/>
       </div>
 
       <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">

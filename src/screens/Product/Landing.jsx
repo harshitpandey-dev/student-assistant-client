@@ -14,6 +14,7 @@ import { USER_WISHLIST_RESET } from "../../types/userConstants";
 import Header from "../../components/common/Header";
 import ProductDispay from "../../components/product/ProductDispay";
 import Footer from "../../components/common/Footer";
+import Product from "../../components/product/Product";
 
 export default function Landing() {
   const match = useParams();
@@ -66,7 +67,7 @@ export default function Landing() {
                 productsForPage.map((product) =>
                   product.owner ? (
                     <Col key={product._id} sm={12} md={6} lg={4}>
-                      <ProductDispay
+                      <Product
                         product={product}
                         userID={userData?._id}
                         token={userData?.token}

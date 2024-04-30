@@ -5,6 +5,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUserWishlist, updateUserWishlist } from "../../actions/userActions";
+import ProductDispay from "./ProductDispay";
 
 const Product = ({ product, userID, token }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,9 @@ const Product = ({ product, userID, token }) => {
     <>
       <Card className='my-3 p-3 rounded product-card'>
         {/* <Link to={`/product/${product._id}`}> */}
-        <Card.Img className='card-image' style={{ height: "300px" }} src={product.images[0]} />
+        <ProductDispay product={product}
+          userID={userID}
+          token={token} />
         {/* </Link> */}
         <Card.Body className='d-flex flex-column align-items-center w-100'>
 
