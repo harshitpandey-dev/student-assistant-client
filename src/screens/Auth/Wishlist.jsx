@@ -7,6 +7,7 @@ import { getUserWishlist } from "../../actions/userActions";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
 import { Table } from "react-bootstrap";
+import WhislistCard from "../../components/user/WhislistCard";
 
 export default function Wishlist() {
   const navigate = useNavigate();
@@ -76,8 +77,8 @@ export default function Wishlist() {
                   </tbody>
                 </table>
               </div> */}
-              <Table
-                // striped
+            
+              {/* <Table
                 bordered
                 hover
                 responsive
@@ -110,7 +111,22 @@ export default function Wishlist() {
                       );
                     })}
                 </tbody>
-              </Table>
+              </Table> */}
+              <div className="w-100 d-flex flex-row flex-wrap">
+                {wishlist &&
+                  wishlist.length > 0 &&
+                  wishlist.map((list, ind) => {
+                    return (
+                      <WhislistCard 
+                        name={list.name}
+                        price={list?.cost?.price}
+                        image={list?.images[0]}
+                        key={list._id}
+                        id={list._id}
+                        product={list} />
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>

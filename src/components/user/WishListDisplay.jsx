@@ -60,13 +60,13 @@ export default function WishListDisplay({ product }) {
 
   return (
     <>
-      <Button
-        className="h-100 bg-light text-dark"
-        style={{ width: "50px" }}
+      <div
+        className="h-100 bg-light text-dark button-6"
+       
         onClick={handleShow}
       >
-        <FaEye />
-      </Button>
+        <FaEye /> Visit
+      </div>
 
       <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
         <Modal.Header closeButton className="bg-secondary ">
