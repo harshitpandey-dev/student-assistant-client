@@ -13,7 +13,7 @@ export default function WhislistCard({ image, name, price, id, product }) {
     }
 
   return (
-        <div class="d-flex flex-row flex-wrap m-3 position-relative bg-secondary text-light" style={{width:"350px"}}>
+        <div class="d-flex flex-row flex-wrap m-3 position-relative  text-dark" style={{width:"350px"}}>
             <div style={{width:"150px",overflow:"hidden"}}>
                 <div class="w-100">
                   <img src={image} alt="194x228" class="img-responsive " style={{width:"150px" ,height:"300px"}} />
@@ -21,13 +21,13 @@ export default function WhislistCard({ image, name, price, id, product }) {
             </div>
         
             <div class="ps-1" style={{width:"200px",overflow:"hidden"}}>
-              <div class="name-product fs-2 text-light">
-                    <h5 class="name fs-4">
+              <div class="name-product fs-2">
+                    <h5 class="name fs-2">
                     
                             {name} 
                       
                     </h5>
-                  <p class="price text-dark">
+                  <p class="price text-success">
                       <span>₹ {price} {product?.cost?.negotiable && (
                           <span className="text-warning fw-bold" style={{ fontSize: "20px" }}>
                               Negotiable
