@@ -1206,7 +1206,7 @@ form-control:focus {
 .list-group-item-heading {
     font-size: 1.2rem;
     padding-top: 5px;
-font-family: "Rajdhani", sans-serif;
+font-family: sans-serif;
     font-weight: 600;
     font-style: normal;
 
@@ -1431,7 +1431,7 @@ font-family: "Rajdhani", sans-serif;
 
 .send_btn {
     /* border-radius: 0 15px 15px 0 !important; */
-    background-color: #8991E4 !important;
+    background-color: #6873ef !important;
     border: 0 !important;
     color: rgb(235, 237, 239) !important;
     cursor: pointer;

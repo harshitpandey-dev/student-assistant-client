@@ -391,7 +391,7 @@ export default function ChatScreen() {
                     </Form>
                   </div>
                   <span
-                    className="text-light fs-5 mb-2"
+                      className=" fs-5 mb-2" style={{ color:"#495057"}}
                   // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                     <span>Recent Chats</span>
