@@ -1733,10 +1733,11 @@ font-family: sans-serif;
         width: 60px !important;
     }
 
-    .style-btn-chat svg {
-        width: 20px;
-        height: 25px;
+    .style-btn-chat svg ,.fix-icon{
+        width: 20px !important;
+        height: 25px !important;
     }
+
 
     .serach-user {
         width: 100% !important;
