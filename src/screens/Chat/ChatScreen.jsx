@@ -184,6 +184,7 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_LIST_RESET });
   }, []);
 
+  console.log(unreadMessages);
   useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
       return;
@@ -209,6 +210,12 @@ export default function ChatScreen() {
       dispatch(get_All_Chat(userData._id, userData.token));
     }
   }, [chatData, chatID, userData, reload, sellerID]);
+
+  useEffect(()=>{
+    if (userData) {
+      dispatch(get_All_Chat(userData._id, userData.token));
+    }
+  },[messages,unreadMessages])
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -343,7 +350,7 @@ export default function ChatScreen() {
                   <div className="d-flex">
                     <span className="badge fs-5 text-danger">
                       <FaBell className="text-light fs-3" />
-                      {/* enter value */}
+                        {unreadMessages.length > 0 && (<span className=" text-light fs-3" >{unreadMessages.length}</span>)}
                     </span>
                   </div>
                 </div>
@@ -402,6 +409,7 @@ export default function ChatScreen() {
                           }
                           token={userData?.token}
                           setOpen={setOpen}
+                         unreadMessages={unreadMessages}
                         />
                       );
                     })}

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { delete_Chat } from "../../actions/chatActions";
 import DeleteChat from "./DeleteChat";
 
-export default function ChatUserList({ list, userID, chatID, token, setOpen }) {
+export default function ChatUserList({ list, userID, chatID, token, setOpen, unreadMessages }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export default function ChatUserList({ list, userID, chatID, token, setOpen }) {
   );
 
   const active = chatID === list._id;
-
+  
   const lastMsg =
     list?.lastMessage?.content.length > 20
       ? list?.lastMessage?.content.substring(0, 20) + "...."
@@ -32,6 +32,18 @@ export default function ChatUserList({ list, userID, chatID, token, setOpen }) {
   if (isNaN(hours)) {
     formattedDate = "";
   }
+  const [unread,setUnread]=useState([]);
+
+  
+  useEffect(()=>{
+    const URM=unreadMessages?.filter((ele)=>ele.chat === list._id);
+    setUnread(URM);
+
+
+  },[unreadMessages,chatID])
+
+
+
 
   return (
     <div className={active ? "list-menu active  media" : "list-menu "} onClick={() => setOpen(false)}>
@@ -48,7 +60,7 @@ export default function ChatUserList({ list, userID, chatID, token, setOpen }) {
           <div className="media-body w-100 ms-2">
             <div className="list-group-item-heading">
               {filteredParticipants[0]?.username}<span class="badge text-danger " style={{ fontSize: "12px" }}>
-                {/* 2 Unread */}
+                {unread.length>0 && <span>{unread.length} unread</span>}
               </span>
             </div>
             <small className="list-group-item-text c-gray text-">{lastMsg}</small>
