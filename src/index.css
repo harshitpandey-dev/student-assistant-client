@@ -1602,7 +1602,7 @@ font-family: sans-serif;
 }
 .searchbox {
     width: 100% !important;
-    background-color: #e6ebf5 !important;
+    /* background-color: #e6ebf5 !important; */
 }
 .form-control,.btn-search{
     background-color: #e6ebf5 !important;
