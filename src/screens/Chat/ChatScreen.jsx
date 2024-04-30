@@ -184,7 +184,7 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_LIST_RESET });
   }, []);
 
-  console.log(unreadMessages);
+  // console.log(unreadMessages);
   useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
       return;

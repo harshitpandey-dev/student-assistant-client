@@ -127,10 +127,7 @@ const ProductCreateScreen = () => {
                     onChange={uploadFileHandler}
                     style={{cursor:"pointer"}}
                   />
-                    {/* <input type="file" id="file" />
-                    <label for="file" class="btn-3">
-                      <span>select</span>
-                    </label> */}
+                  
                   <p></p>
                   <ul>
                     <li>* Maximum 4 images can be uploaded</li>

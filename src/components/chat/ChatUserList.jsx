@@ -59,7 +59,7 @@ export default function ChatUserList({ list, userID, chatID, token, setOpen, unr
           </div>
           <div className="media-body w-100 ms-2">
             <div className="list-group-item-heading">
-              {filteredParticipants[0]?.username}<span class="badge text-danger " style={{ fontSize: "12px" }}>
+              {filteredParticipants[0]?.username}<span className="badge text-danger " style={{ fontSize: "12px" }}>
                 {unread.length>0 && <span>{unread.length} unread</span>}
               </span>
             </div>

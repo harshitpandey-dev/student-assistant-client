@@ -14,21 +14,21 @@ export default function WhislistCard({ image, name, price, id, product }) {
     }
 
   return (
-        <div class="d-flex flex-row flex-wrap m-3 position-relative  text-dark wishcard" style={{width:"300px",height:"400px",overflow:"hidden"}}>
+        <div className="d-flex flex-row flex-wrap m-3 position-relative  text-dark wishcard" style={{width:"300px",height:"400px",overflow:"hidden"}}>
             <div style={{width:"125px",overflow:"hidden"}}>
-                <div class="w-100">
+                <div className="w-100">
                 <WishListDisplay product={product} image={image}/>
                 </div>
             </div>
         
-            <div class="ps-1 mt-5" style={{width:"175px",overflow:"hidden"}}>
-              <div class="name-product fs-2">
-                    <h5 class="name fs-2">
+            <div className="ps-1 mt-5" style={{width:"175px",overflow:"hidden"}}>
+              <div className="name-product fs-2">
+                    <h5 className="name fs-2">
                     
                             {name.substring(0,15)} 
                       
                     </h5>
-                  <p class="price text-success">
+                  <p className="price text-success">
                       <span>₹ {price} {product?.cost?.negotiable && (
                           <span className="text-warning fw-bold" style={{ fontSize: "20px" }}>
                               Negotiable
@@ -36,18 +36,18 @@ export default function WhislistCard({ image, name, price, id, product }) {
                       
                       )}</span>
                     </p>
-                  <span class="tag1"> {product?.sold && (
+                  <span className="tag1"> {product?.sold && (
                       <span className="text-danger" style={{ fontSize: "20px" }}>
                           Sold Out !!
                       </span>
                   )
                   }</span>
                 </div>
-                <div class="description">
+                <div className="description">
                   <p>{product.description.substring(0,50)+"..."}</p>
                 </div>
-                {/* <div class="product-info smart-form " style={{position:"absolute ",bottom:"0"}}>
-                    <div class="w-100 d-flex">
+                {/* <div className="product-info smart-form " style={{position:"absolute ",bottom:"0"}}>
+                    <div className="w-100 d-flex">
                    
                         <div className='w-100' >
                           <WishListDisplay product={product} />

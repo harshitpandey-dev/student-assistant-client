@@ -414,7 +414,7 @@ export const getUserDetails = (id,token) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`/api/users/${id}`, config);
-   console.log(data.data);
+  //  console.log(data.data);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data.data,
@@ -569,7 +569,7 @@ export const updateProfile = (user, formData) => async (dispatch, getState) => {
       type: USER_UPDATE_SUCCESS,
       payload: data.data,
     });
-    console.log(data);
+    // console.log(data);
 
     localStorage.setItem("userData", JSON.stringify(data.data));
     dispatch({
