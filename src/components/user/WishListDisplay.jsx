@@ -62,10 +62,10 @@ export default function WishListDisplay({ product,image }) {
     <>
       <div
       style={{cursor:"pointer"}}
-       
+        className="fix-img"
         onClick={handleShow}
       >
-        <img src={image} alt="194x228" className="img-responsive " style={{ width: "125px", height: "400px" }} />
+        <img src={image} alt="194x228" className="img-responsive " style={{ height:"400px"}} />
       </div>
 
       <Modal show={show} onHide={handleClose} dialogClassName="custom-modal">
