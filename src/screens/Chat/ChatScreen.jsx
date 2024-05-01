@@ -6,11 +6,7 @@ import ChatUserList from "../../components/chat/ChatUserList";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../components/common/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  delete_Chat,
-  get_All_Chat,
-  getOrCreate_Chat,
-} from "../../actions/chatActions";
+import { get_All_Chat, getOrCreate_Chat } from "../../actions/chatActions";
 import { getMessage, postMessage } from "../../actions/messageAction";
 import { CHAT_LIST_RESET, CHAT_RESET } from "../../types/chatConstants";
 import { MESSAGE_RESET } from "../../types/messageConstants";
@@ -22,7 +18,7 @@ import DeleteChat from "../../components/chat/DeleteChat";
 import { IoSend } from "react-icons/io5";
 import EmojiPicker from "emoji-picker-react";
 import { useSocket } from "../../contexts/SocketContext";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import AddEditProfilePic from "../../components/user/AddEditProfilePic";
@@ -139,10 +135,10 @@ export default function ChatScreen() {
   };
 
   const onMessageReceived = (message) => {
-    if (message?.chat !== chatID) {
-      setUnreadMessages((prev) => [...prev, message]);
-    } else {
+    if (message?.chat === chatID) {
       setMessages((prev) => [...prev, message]);
+    } else {
+      setUnreadMessages((prev) => [...prev, message]);
     }
   };
 
@@ -182,40 +178,13 @@ export default function ChatScreen() {
     dispatch({ type: CHAT_RESET });
     dispatch({ type: MESSAGE_RESET });
     dispatch({ type: CHAT_LIST_RESET });
-  }, []);
-
-  // console.log(unreadMessages);
-  useEffect(() => {
     if (userData && sellerID && userData?._id === sellerID) {
       return;
     }
     if (!chatID && userData && sellerID) {
       dispatch(getOrCreate_Chat(sellerID, userData.token));
     }
-  }, [sellerID, userData, chatID, reload]);
-
-  useEffect(() => {
-    if (userData && sellerID && userData?._id === sellerID) {
-      return;
-    }
-    if (userData && chatData && !chatID) {
-      dispatch(getMessage(chatData._id, userData.token));
-      if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
-    }
-    if (userData && chatID) {
-      dispatch(getMessage(chatID, userData.token));
-      if (socket) socket.emit(JOIN_CHAT_EVENT, chatID);
-    }
-    if (userData) {
-      dispatch(get_All_Chat(userData._id, userData.token));
-    }
-  }, [chatData, chatID, userData, reload, sellerID]);
-
-  useEffect(()=>{
-    if (userData) {
-      dispatch(get_All_Chat(userData._id, userData.token));
-    }
-  },[messages,unreadMessages])
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -224,13 +193,27 @@ export default function ChatScreen() {
       navigate("/");
       return;
     }
-    dispatch(get_All_Chat(userData._id, userData.token));
-    if (userData._id === sellerID) {
+    dispatch(get_All_Chat(userData?._id, userData?.token));
+    setSendMessage("");
+  }, [chatData, userData, reload, sellerID, success]);
+
+  useEffect(() => {
+    if (userData && sellerID && userData?._id === sellerID) {
       return;
     }
-
-    setSendMessage("");
-  }, [dispatch, sellerID, userData, chatID, reload]);
+    if (userData && chatData && !chatID) {
+      setUnreadMessages(
+        unreadMessages.filter((msg) => msg.chat !== chatData._id)
+      );
+      dispatch(getMessage(chatData._id, userData.token));
+      if (socket) socket.emit(JOIN_CHAT_EVENT, chatData._id);
+    }
+    if (userData && chatID) {
+      setUnreadMessages(unreadMessages.filter((msg) => msg.chat !== chatID));
+      dispatch(getMessage(chatID, userData.token));
+      if (socket) socket.emit(JOIN_CHAT_EVENT, chatID);
+    }
+  }, [chatData, chatID, userData, reload, sellerID]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -289,9 +272,8 @@ export default function ChatScreen() {
     setSendMessage(e.target.value);
     if (!socket || !isConnected) return;
     if (!typing) {
-      setTyping(true);
-
       socket.emit(TYPING_EVENT, chatID);
+      setTyping(true);
     }
     let lastTypingTime = new Date().getTime();
     var timerLength = 3000;
@@ -343,14 +325,21 @@ export default function ChatScreen() {
 
                   <div
                     className="fs-3  mb-2"
-                      style={{ fontFamily: "'Gluten', sans-serif", color:"#495057"}}
+                    style={{
+                      fontFamily: "'Gluten', sans-serif",
+                      color: "#495057",
+                    }}
                   >
                     Student Assistant
                   </div>
                   <div className="d-flex">
                     <span className="badge fs-5 text-danger">
-                        <FaBell className=" fs-3" style={{color:"#495057"}} />
-                        {unreadMessages.length > 0 && (<span className="  fs-3" style={{ color: "#495057" }}>{unreadMessages.length}</span>)}
+                      <FaBell className="text-light fs-3" />
+                      {unreadMessages.length > 0 && (
+                        <span className=" text-light fs-3">
+                          {unreadMessages.length}
+                        </span>
+                      )}
                     </span>
                   </div>
                 </div>
@@ -391,8 +380,8 @@ export default function ChatScreen() {
                     </Form>
                   </div>
                   <span
-                      className=" fs-5 mb-2" style={{ color:"#495057"}}
-                  // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
+                    className="text-light fs-5 mb-2"
+                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
                   >
                     <span>Recent Chats</span>
                   </span>
@@ -409,7 +398,7 @@ export default function ChatScreen() {
                           }
                           token={userData?.token}
                           setOpen={setOpen}
-                         unreadMessages={unreadMessages}
+                          unreadMessages={unreadMessages}
                         />
                       );
                     })}
@@ -597,10 +586,7 @@ export default function ChatScreen() {
                 {images && (
                   <div className=" input-above">
                     {images.map((file, index) => (
-                      <div
-                        key={index}
-                        className="d-inline-block  input-img"
-                      >
+                      <div key={index} className="d-inline-block  input-img">
                         <img
                           className="mt-2 "
                           src={URL.createObjectURL(file)}
@@ -635,7 +621,7 @@ export default function ChatScreen() {
                   )}
                   {istyping ? (
                     <div>
-                      <Lottie 
+                      <Lottie
                         options={defaultOptions}
                         height={20}
                         width={70}
@@ -647,7 +633,7 @@ export default function ChatScreen() {
                   )}
                 </div>
                 {(userData && sellerID && userData._id === sellerID) ||
-                  (!sellerID && !chatID) ? (
+                (!sellerID && !chatID) ? (
                   <></>
                 ) : (
                   <div className="card-footer">

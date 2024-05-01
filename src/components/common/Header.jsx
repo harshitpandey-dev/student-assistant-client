@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import { useEffect, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
@@ -93,7 +93,7 @@ const Header = () => {
                 <div className="d-flex align-items-center slide">
                   <MdAdminPanelSettings />
 
-                  <NavDropdown title="Admin" id="adminmenu" >
+                  <NavDropdown title="Admin" id="adminmenu">
                     <LinkContainer to="/admin/userlist">
                       <NavDropdown.Item>Users</NavDropdown.Item>
                     </LinkContainer>
@@ -117,31 +117,27 @@ const Header = () => {
                 </LinkContainer>
               </div>
               {userData ? (
-            
-                  <div className="d-flex  align-items-center slide">
-                    <CgProfile className="fix"/>
+                <div className="d-flex  align-items-center slide">
+                  <CgProfile className="fix" />
 
-                    <NavDropdown title={`${userData.fullname}`} id="username">
-                      <LinkContainer to={`/users/${userData._id}`}>
-                        <NavDropdown.Item>Profile</NavDropdown.Item>
-                      </LinkContainer>
-                      <LinkContainer to={`/chatScreen/`}>
-                        <NavDropdown.Item>Chat</NavDropdown.Item>
-                      </LinkContainer>
-                      <NavDropdown.Item onClick={logoutHandler}>
-                        Logout
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </div>
-                
+                  <NavDropdown title={`${userData.fullname}`} id="username">
+                    <LinkContainer to={`/users/${userData._id}`}>
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to={`/chatScreen/`}>
+                      <NavDropdown.Item>Chat</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               ) : (
-                  <div className="d-flex  align-items-center slide">
-                    <TbLogin2 />
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                   Sign In
-                  </Nav.Link>
-                </LinkContainer>
+                <div className="d-flex  align-items-center slide">
+                  <TbLogin2 />
+                  <LinkContainer to="/login">
+                    <Nav.Link>Sign In</Nav.Link>
+                  </LinkContainer>
                 </div>
               )}
             </Nav>
