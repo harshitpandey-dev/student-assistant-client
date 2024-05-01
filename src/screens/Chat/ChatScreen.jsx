@@ -49,7 +49,7 @@ export default function ChatScreen() {
   const chatList = useSelector((state) => state.chatList);
   var { chatListData } = chatList;
   const deleteChat = useSelector((state) => state.deleteChat);
-  var { success, error } = deleteChat;
+  var { success } = deleteChat;
 
   const defaultOptions = {
     loop: true,
@@ -83,7 +83,6 @@ export default function ChatScreen() {
   const [searchUser, setSearchUser] = useState("");
 
   const [images, setImages] = useState([]);
-  const [uploading, setUploading] = useState(false);
 
   const [chatWith, setChatWith] = useState([]);
 
@@ -260,7 +259,6 @@ export default function ChatScreen() {
     imagesData.push(data);
 
     setImages(imagesData);
-    setUploading(false);
   };
 
   const removeImg = (fileToRemove) => {
