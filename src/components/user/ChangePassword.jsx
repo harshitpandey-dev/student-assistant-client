@@ -82,10 +82,10 @@ export default function ChangePassword() {
           ></input>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <div onClick={() => navigate("/forgotpassword")} className=" button-7">
+          <div onClick={() => navigate("/forgotpassword")} className=" button-8">
             Forgot Password
           </div>
-          <div className=" button-8" onClick={handleSubmit}>
+          <div className=" button-7" onClick={handleSubmit}>
             Save Changes
           </div>
         </Modal.Footer>

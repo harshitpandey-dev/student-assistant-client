@@ -324,7 +324,7 @@ export default function ChatScreen() {
                   {/* <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" className="img-avatar pull-left" /> */}
 
                   <div
-                    className="fs-3  mb-2"
+                    className="fs-4  mb-2"
                     style={{
                       fontFamily: "'Gluten', sans-serif",
                       color: "#495057",
@@ -333,10 +333,10 @@ export default function ChatScreen() {
                     Student Assistant
                   </div>
                   <div className="d-flex">
-                    <span className="badge fs-5 text-danger">
-                      <FaBell className="text-light fs-3" />
+                      <span className="badge fs-5 " style={{ color: "#495057" }}>
+                      <FaBell className=" fs-5" />
                       {unreadMessages.length > 0 && (
-                        <span className=" text-light fs-3">
+                        <span className=" fs-5 text-danger">
                           {unreadMessages.length}
                         </span>
                       )}
@@ -380,8 +380,8 @@ export default function ChatScreen() {
                     </Form>
                   </div>
                   <span
-                    className="text-light fs-5 mb-2"
-                    // style={{ fontFamily: "'Gluten', sans-serif" ,textDecoration:"underline"}}
+                    className=" fs-5 mb-2"
+                      style={{ fontFamily: "sans-serif", color:"#495057"}}
                   >
                     <span>Recent Chats</span>
                   </span>
