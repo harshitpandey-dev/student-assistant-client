@@ -15,6 +15,7 @@ import Header from "../../components/common/Header";
 import ProductDispay from "../../components/product/ProductDispay";
 import Footer from "../../components/common/Footer";
 import Product from "../../components/product/Product";
+import { FaHome } from "react-icons/fa";
 
 export default function Landing() {
   const match = useParams();
@@ -52,9 +53,11 @@ export default function Landing() {
       <div className="py-4 container-fluid p-5 " style={{ minHeight: "100vh" }}>
         <Meta />
         {keyword && (
-          <Link className="btn btn-success" to="/">
-            Go Back
-          </Link>
+          <div className="ms-5 mt-2">
+            <Link to="/" className="button-6" >
+              <FaHome /> Back To Home
+            </Link>
+          </div>
         )}
         {loading ? (
           <Loader />

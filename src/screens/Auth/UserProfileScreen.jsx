@@ -12,6 +12,8 @@ import DeleteAccount from "../../components/user/DeleteAccount";
 import UserPrductDeleteModel from "../../components/product/UserPrductDeleteModel";
 import AdminEditProductModel from "../../components/product/AdminEditProductModel";
 import Footer from "../../components/common/Footer";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const UserUpdateScreen = () => {
   const navigate = useNavigate();
@@ -39,6 +41,11 @@ const UserUpdateScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "100px" }}></div>
+      <div className="ms-5 mt-2">
+        <Link to="/" className="button-6" >
+          <FaHome /> Back To Home 
+        </Link>
+      </div>
       <div className="py-3 " style={{ minHeight: "100vh" }}>
         <Row>
           <Col md={2}></Col>

@@ -2,11 +2,19 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AboutUsScreen = () => {
   return (
     <>
       <Header />
+      <div style={{ width: "100vw", height: "100px" }}></div>
+      <div className="ms-5 mt-2">
+        <Link to="/" className="button-6" >
+          <FaHome /> Back To Home
+        </Link>
+      </div>
       <div className="container">
         <div className="row">
           <div className="col-md-6 item">
