@@ -8,6 +8,8 @@ import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
 import { Table } from "react-bootstrap";
 import WhislistCard from "../../components/user/WhislistCard";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 export default function Wishlist() {
   const navigate = useNavigate();
@@ -38,6 +40,11 @@ export default function Wishlist() {
       <Header />
 
       <div style={{ width: "100vw", height: "100px" }}></div>
+      <div className="ms-5 mt-2">
+        <Link to="/" className="button-6" >
+          <FaHome /> Back To Home
+        </Link>
+      </div>
       <div className="cart-wrap " style={{ minHeight: "100vh" }}>
         <div className="p-3">
           <div className="">

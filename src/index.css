@@ -2573,9 +2573,8 @@ textarea::-webkit-scrollbar {
     
     box-sizing: border-box;
     border-color: rgb(87, 11, 168);
-        color: rgb(87, 11, 168);
-        border: 2px solid rgb(87, 11, 168);
-   
+   color: rgb(87, 11, 168);
+   border: 2px solid rgb(87, 11, 168);
     cursor: pointer;
     display: inline-flex;
     fill: #000;
@@ -2604,8 +2603,8 @@ textarea::-webkit-scrollbar {
 .button-7:hover {
    
     background-color: #fff;
-        border: 2px solid #000;
-        color: #000;
+    border: 2px solid #000;
+    color: #000;
 }
 
 

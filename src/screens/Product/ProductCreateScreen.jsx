@@ -9,6 +9,8 @@ import FormContainer from "../../components/common/FormContainer";
 import { useNavigate } from "react-router";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const ProductCreateScreen = () => {
   const navigate = useNavigate();
@@ -104,6 +106,11 @@ const ProductCreateScreen = () => {
       <Header />
 
       <div style={{ width: "100vw", height: "100px" }}></div>
+      <div className="ms-5 mt-2">
+        <Link to="/" className="button-6" >
+          <FaHome /> Back To Home
+        </Link>
+      </div>
       <div className="py-3 ">
         <FormContainer>
           <h1

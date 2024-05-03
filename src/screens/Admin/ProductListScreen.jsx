@@ -12,6 +12,8 @@ import { useNavigate, useParams } from "react-router";
 import AdminProductDeleteModel from "../../components/product/AdminProductDeleteModel";
 import AdminEditProductModel from "../../components/product/AdminEditProductModel";
 import Footer from "../../components/common/Footer";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const ProductListScreen = () => {
   const navigate = useNavigate();
@@ -52,6 +54,11 @@ const ProductListScreen = () => {
     <>
       <Header />
       <div style={{ width: "100vw", height: "100px" }}></div>
+      <div className="ms-5 mt-2">
+        <Link to="/" className="button-6" >
+          <FaHome /> Back To Home
+        </Link>
+      </div>
       <div
         className="py-3 d-flex flex-column p-2"
         style={{ minHeight: "100vh" }}
