@@ -18,13 +18,12 @@ import ProductListScreen from "./screens/Admin/ProductListScreen";
 import ProductCreateScreen from "./screens/Product/ProductCreateScreen";
 import ProductEditScreen from "./screens/Product/ProductEditScreen";
 import UserProfileScreen from "./screens/Auth/UserProfileScreen";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./actions/userActions";
 import ChatScreen from "./screens/Chat/ChatScreen";
 import Wishlist from "./screens/Auth/Wishlist";
 import Alert from "./components/common/Alert";
-import Footer from "./components/common/Footer";
 
 function App() {
   const dispatch = useDispatch();

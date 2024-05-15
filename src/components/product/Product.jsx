@@ -19,26 +19,22 @@ const Product = ({ product, userID, token }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
 
-  let [isWishlisted, setIsWishlisted] = useState(
-    wishlist && wishlist.length > 0
-      ? wishlist?.some((item) => item._id === product._id)
-      : false
-  );
-
   useEffect(() => {
     if (userData) {
       dispatch(getUserWishlist(userData.token));
     }
-  }, [isWishlisted]);
+  }, []);
 
   const isYourProduct = userID === product.owner?._id;
 
+  const isWishlisted =
+    wishlist && wishlist.length > 0
+      ? wishlist?.some((item) => item._id === product._id)
+      : false;
+
   function handleWishlist() {
-    if (!userData) navigate("/login");
-    else {
-      dispatch(updateUserWishlist(product._id, token));
-      setIsWishlisted(!isWishlisted);
-    }
+    dispatch(updateUserWishlist(product._id, token));
+    window.location.reload();
   }
 
   return (
