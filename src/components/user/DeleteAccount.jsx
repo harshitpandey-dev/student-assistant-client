@@ -3,7 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import FormContainer from "../common/FormContainer";
-import { deleteUser, logout } from "../../actions/userActions";
+import { deleteUser } from "../../actions/userActions";
 import { TiUserDelete } from "react-icons/ti";
 import {
   USER_LIST_RESET,
@@ -24,7 +24,7 @@ const DeleteAccount = () => {
   const { userData } = userLogin;
 
   const userDelete = useSelector((state) => state.userDelete);
-  const { success, loading, error } = userDelete;
+  const { success } = userDelete;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -42,8 +42,10 @@ const DeleteAccount = () => {
     dispatch({
       type: USER_UPDATE_RESET,
     });
-    localStorage.removeItem("userData");
-    navigate("/login");
+    if (success) {
+      localStorage.removeItem("userData");
+      navigate("/login");
+    }
   };
 
   return (

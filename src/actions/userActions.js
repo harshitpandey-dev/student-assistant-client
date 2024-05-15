@@ -354,14 +354,12 @@ export const deleteUser = (id, token) => async (dispatch) => {
 
 //user update
 
-export const updateUser = (user,token) => async (dispatch, getState) => {
+export const updateUser = (user, token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_UPDATE_REQUEST,
     });
-    const {
-      userLogin: { userData },
-    } = getState();
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -396,15 +394,11 @@ export const updateUser = (user,token) => async (dispatch, getState) => {
 
 //get user details
 
-export const getUserDetails = (id,token) => async (dispatch, getState) => {
+export const getUserDetails = (id, token) => async (dispatch) => {
   try {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-    const {
-      userLogin: { userData },
-    } = getState();
-
     const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -414,7 +408,7 @@ export const getUserDetails = (id,token) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`/api/users/${id}`, config);
-  //  console.log(data.data);
+    //  console.log(data.data);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data.data,
@@ -547,10 +541,9 @@ export const getUserWishlist = (token) => async (dispatch) => {
   }
 };
 
-
 // update Profile Image
 
-export const updateProfile = (user, formData) => async (dispatch, getState) => {
+export const updateProfile = (user, formData) => async (dispatch) => {
   try {
     dispatch({
       type: USER_UPDATE_REQUEST,

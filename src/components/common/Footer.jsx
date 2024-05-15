@@ -13,7 +13,9 @@ const Footer = () => {
           <div className="container text-center text-md-start mt-5">
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold">Company name</h6>
+                <h6 className="text-uppercase fw-bold">
+                  Student Assistant - HBTU
+                </h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{
@@ -23,9 +25,12 @@ const Footer = () => {
                   }}
                 />
                 <p>
-                  Here you can use rows and columns to organize your footer
-                  content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit.
+                  This is the website for Selling and buying useful items used
+                  in college life on a much lower price then market.
+                </p>
+                <p>
+                  You can only use this website if you are active student at
+                  Harcourt Butler Technical University.
                 </p>
               </div>
 
@@ -94,9 +99,9 @@ const Footer = () => {
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
+                  {/* <a href="#!" className="text-white">
                     Help
-                  </a>
+                  </a> */}
                 </p>
               </div>
 
@@ -111,16 +116,16 @@ const Footer = () => {
                   }}
                 />
                 <p>
-                  <i className="fas fa-home mr-3"></i> New York, NY 10012, US
+                  <i className="fas fa-home mr-3"></i> Nawabganj, Kanpur, India
                 </p>
                 <p>
-                  <i className="fas fa-envelope mr-3"></i> info@example.com
+                  <i className="fas fa-envelope mr-3"></i> paps15009@gmail.com
                 </p>
                 <p>
-                  <i className="fas fa-phone mr-3"></i> + 01 234 567 88
+                  <i className="fas fa-phone mr-3"></i> 8287253559
                 </p>
                 <p>
-                  <i className="fas fa-print mr-3"></i> + 01 234 567 89
+                  <i className="fas fa-phone mr-3"></i> 97928 47118
                 </p>
               </div>
             </div>
@@ -131,7 +136,7 @@ const Footer = () => {
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
-          © 2024 Copyright
+          Student Assistant © 2024 Copyright
         </div>
       </footer>
 

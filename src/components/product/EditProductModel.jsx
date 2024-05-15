@@ -1,18 +1,11 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../common/Message";
 import Loader from "../common/Loader";
-import {
-  deleteProduct,
-  listProductDetails,
-  listProducts,
-  updateProduct,
-} from "../../actions/productActions";
-import FormContainer from "../common/FormContainer";
-import { useNavigate, useParams } from "react-router";
-import { PRODUCT_DETAILS_RESET } from "../../types/productConstants";
+import { deleteProduct, updateProduct } from "../../actions/productActions";
+import { useNavigate } from "react-router";
 
 const EditProductModel = ({ product }) => {
   const navigate = useNavigate();
@@ -88,7 +81,11 @@ const EditProductModel = ({ product }) => {
 
   return (
     <>
-      <div className="button-3 resp text-light ms-2" onClick={handleShow} style={{ width: "40%" }}>
+      <div
+        className="button-3 resp text-light ms-2"
+        onClick={handleShow}
+        style={{ width: "40%" }}
+      >
         Edit Product
       </div>
 
@@ -99,11 +96,9 @@ const EditProductModel = ({ product }) => {
         <Modal.Body>
           <div className="w-100">
             <div className="mt-2 mb-2 p-4">
-
               <Form.Group controlId="images">
                 {images.length < 4 && (
-                  <> 
-
+                  <>
                     <Form.File
                       id="image-file"
                       label="Upload Image"
@@ -116,7 +111,8 @@ const EditProductModel = ({ product }) => {
                       <li>* Size of each image should be less than 2mb</li>
                     </ul>
                     {uploading && <Loader />}
-                  </>)}
+                  </>
+                )}
                 {images && (
                   <div className="position-relative mt-5">
                     {images.map((ele, index) => (
@@ -143,20 +139,19 @@ const EditProductModel = ({ product }) => {
                   </div>
                 )}
 
-
                 <div className="w-100">
                   <div className="w-100 mt-4">
                     <Form className="w-100">
-                      <div className="w-100 mt-3" controlId="name" >
+                      <div className="w-100 mt-3" controlId="name">
                         <Form.Label>Name of the Product </Form.Label>
                         <Form.Control
-                          type="text" className="w-100"
+                          type="text"
+                          className="w-100"
                           placeholder="Enter what product do you have"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
                       </div>
-
 
                       <Form.Group controlId="category" className="mt-3">
                         <Form.Label>Keyword</Form.Label>
@@ -198,7 +193,6 @@ const EditProductModel = ({ product }) => {
                           onChange={(e) => setNegotiable(e.target.checked)}
                         ></Form.Check>
                       </Form.Group>
-                      
                     </Form>
                   </div>
                 </div>
