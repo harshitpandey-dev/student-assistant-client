@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +7,6 @@ import { useNavigate } from "react-router";
 import FormContainer from "../common/FormContainer";
 import Loader from "../common/Loader";
 import { updateUser, getUserDetails } from "../../actions/userActions";
-import {
-  USER_UPDATE_RESET,
-  USER_DETAILS_RESET,
-} from "../../types/userConstants";
 
 const AdminUpdateUser = ({ Edituser }) => {
   const navigate = useNavigate();
@@ -129,7 +126,7 @@ const AdminUpdateUser = ({ Edituser }) => {
               Update Profile
             </div>
           ) : (
-              <div type="submit" className="ms-2  button-7" disabled>
+            <div type="submit" className="ms-2  button-7" disabled>
               Update Profile
             </div>
           )}

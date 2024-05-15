@@ -88,66 +88,64 @@ const AdminEditProductModel = ({ product }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="w-100">
-           <div className="mt-2 mb-2 p-4">
-              
-                <Form.Group controlId="images">
-                  {images.length < 4 && (
-                    <>
-
-                  <Form.File
-                    id="image-file"
-                    label="Upload Image"
-                    className="button-5"
-                    onChange={uploadFileHandler}
-                  ></Form.File>
-                     <p></p>
-                  <ul>
-                    <li>* Maximum 4 images can be uploaded</li>
-                    <li>* Size of each image should be less than 2mb</li>
-                  </ul> 
-                  {uploading && <Loader />}
-                    </>)}
-                  {images && (
-                    <div className="position-relative mt-5">
-                      {images.map((ele, index) => (
-                        <div
-                          key={index}
-                          className="d-inline-block position-relative"
+            <div className="mt-2 mb-2 p-4">
+              <Form.Group controlId="images">
+                {images.length < 4 && (
+                  <>
+                    <Form.File
+                      id="image-file"
+                      label="Upload Image"
+                      className="button-5"
+                      onChange={uploadFileHandler}
+                    ></Form.File>
+                    <p></p>
+                    <ul>
+                      <li>* Maximum 4 images can be uploaded</li>
+                      <li>* Size of each image should be less than 2mb</li>
+                    </ul>
+                    {uploading && <Loader />}
+                  </>
+                )}
+                {images && (
+                  <div className="position-relative mt-5">
+                    {images.map((ele, index) => (
+                      <div
+                        key={index}
+                        className="d-inline-block position-relative"
+                      >
+                        <img
+                          className="mt-2"
+                          src={ele}
+                          style={{ height: "100px" }}
+                          alt={`image${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm position-absolute top-0 end-0"
+                          style={{ width: "30px", height: "40px" }}
+                          onClick={() => removeImg(ele)}
                         >
-                          <img
-                            className="mt-2"
-                            src={ele}
-                            style={{ height: "100px" }}
-                            alt={`image${index + 1}`}
-                          />
-                          <button
-                            type="button"
-                            className="btn btn-danger btn-sm position-absolute top-0 end-0"
-                            style={{ width: "30px", height: "40px" }}
-                            onClick={() => removeImg(ele)}
-                          >
-                            X
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-                   
-                <div className="w-100"> 
+                <div className="w-100">
                   <div className="w-100 mt-4">
                     <Form className="w-100">
                       <div className="w-100" controlId="name">
                         <Form.Label>Name of the Product </Form.Label>
                         <Form.Control
-                          type="text" className="w-100"
+                          type="text"
+                          className="w-100"
                           placeholder="Enter what product do you have"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                         ></Form.Control>
                       </div>
 
-                      
                       <Form.Group controlId="category" className="mt-3">
                         <Form.Label>Keyword</Form.Label>
                         <Form.Control

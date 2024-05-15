@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import FormContainer from "../common/FormContainer";
 import { deleteProduct } from "../../actions/productActions";
 
@@ -11,8 +11,8 @@ const AdminProductDeleteModel = ({ productId }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userData } = userLogin;
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userData } = userLogin;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const AdminProductDeleteModel = ({ productId }) => {
           <div onClick={submitHandler} className="ms-2  button-7">
             Delete
           </div>
-          <div className=" button-8"  onClick={handleClose}>
+          <div className=" button-8" onClick={handleClose}>
             Close
           </div>
         </Modal.Footer>

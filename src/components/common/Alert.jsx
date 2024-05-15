@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Toast from "react-bootstrap/Toast";
 import { TOAST_RESET } from "../../types/userConstants";
 import { useDispatch, useSelector } from "react-redux";

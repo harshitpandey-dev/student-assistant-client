@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import FormContainer from "../common/FormContainer";
 import { deleteUser } from "../../actions/userActions";
 
@@ -10,13 +10,13 @@ const AdminDeleteAccountModel = ({ userId }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userData } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { success, loading, error } = userDelete;
+  // const userDelete = useSelector((state) => state.userDelete);
+  // const { success, loading, error } = userDelete;
 
   const submitHandler = (e) => {
     e.preventDefault();

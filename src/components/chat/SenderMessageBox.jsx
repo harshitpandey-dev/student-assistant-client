@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import OpenImage from "./OpenImage";
 
 export default function SenderMessageBox({ msg }) {
@@ -9,8 +10,6 @@ export default function SenderMessageBox({ msg }) {
   const day = String(date.getDate()).padStart(2, "0");
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
-  const seconds = String(date.getSeconds()).padStart(2, "0");
-
   const formattedDate = ` ${hours}:${minutes} | ${day}-${month}-${year}`;
 
   const [show, setShow] = useState(false);
@@ -46,19 +45,25 @@ export default function SenderMessageBox({ msg }) {
         msg={msg?.content}
       />
       <div className="media-body  mt-1">
-        { msg?.content &&  <div
-          className="mf-content msg-container"
-          style={{ fontFamily: " sans-serif" }}
-        >
-          {msg?.content}
-          <small className="mf-date msg_time">
-            <i className="fa fa-clock-o "></i> {formattedDate}
-          </small>
-        </div>}
+        {msg?.content && (
+          <div
+            className="mf-content msg-container"
+            style={{ fontFamily: " sans-serif" }}
+          >
+            {msg?.content}
+            <small className="mf-date msg_time">
+              <i className="fa fa-clock-o "></i> {formattedDate}
+            </small>
+          </div>
+        )}
       </div>
       <img
-        src={msg?.sender?.profile ? msg?.sender?.profile : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"}
-        style={{borderRadius:"50%"}}
+        src={
+          msg?.sender?.profile
+            ? msg?.sender?.profile
+            : "https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+        }
+        style={{ borderRadius: "50%" }}
         alt=""
         className="img-avatar box-send-img"
       />

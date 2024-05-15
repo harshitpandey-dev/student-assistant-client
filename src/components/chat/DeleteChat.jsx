@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import FormContainer from "../common/FormContainer";
 import { delete_Chat } from "../../actions/chatActions";
 import { CHAT_LIST_RESET, CHAT_RESET } from "../../types/chatConstants";
@@ -51,7 +52,7 @@ const DeleteChat = ({ chatid, token }) => {
           </FormContainer>
         </Modal.Body>
         <Modal.Footer className="d-flex justify-content-center">
-          <div onClick={submitHandler}  className="ms-2 button-7">
+          <div onClick={submitHandler} className="ms-2 button-7">
             Delete
           </div>
           <div className="button-8" onClick={handleClose}>

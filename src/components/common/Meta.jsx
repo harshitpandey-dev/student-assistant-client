@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { Helmet } from "react-helmet";
-import React from "react";
 
 const Meta = ({ title, description, keywords }) => {
   return (
