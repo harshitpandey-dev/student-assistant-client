@@ -41,11 +41,21 @@ function Login() {
     <section className="auth">
       <div className="container h-100">
         <div className="row d-flex align-items-center justify-content-center h-100">
-          <div
-            className="display-1"
-            style={{ fontFamily: "'Gluten', sans-serif" }}
-          >
-            Student <span style={{ color: "#8991E4" }}>Assistant</span>
+          <div className="col-auto">
+            <img
+              src="/src/assets/IMG_3056.PNG"
+              className="img-fluid"
+              alt="Phone image"
+              style={{ width: "100px", height: "auto" }}
+            />
+          </div>
+          <div className="col-auto">
+            <div
+              className="display-1"
+              style={{ fontFamily: "'Gluten', sans-serif" }}
+            >
+              Student <span style={{ color: "#8991E4" }}>Assistant</span>
+            </div>
           </div>
 
           <div className="col-md-8 col-lg-7 col-xl-6">

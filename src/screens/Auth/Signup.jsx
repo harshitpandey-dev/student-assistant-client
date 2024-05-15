@@ -19,6 +19,8 @@ function Signup() {
   });
   const redirect = location.search ? location.search.split("=")[1] : "/";
   const [message, setMessage] = useState(null);
+  const [passwordWarning, setPasswordWarning] = useState(null);
+  const [emailWarning, setEmailWarning] = useState(null);
   const dispatch = useDispatch();
   const userVerification = useSelector((state) => state.userVerification);
   const { verification, loading, error } = userVerification;
@@ -48,6 +50,19 @@ function Signup() {
       setTimeout(() => {
         setMessage(null);
       }, 3000);
+    } else if (!userDetails.email.endsWith("@hbtu.ac.in")) {
+      setEmailWarning("Only HBTU ID accepted");
+      setTimeout(() => {
+        setEmailWarning(null);
+      }, 6000);
+    }
+    if (!validatePassword(userDetails.password)) {
+      setPasswordWarning(
+        "Password must contain at least one special character, one uppercase letter, one lowercase letter, and be at least 8 characters long."
+      );
+      setTimeout(() => {
+        setPasswordWarning(null);
+      }, 3000);
     } else {
       dispatch(
         register(
@@ -61,15 +76,41 @@ function Signup() {
     }
   };
 
+  const validatePassword = (password) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setUserDetails({ ...userDetails, password });
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    setUserDetails({ ...userDetails, email });
+  };
+
   return (
     <section className="auth">
       <div className="container h-100">
         <div className="row d-flex align-items-center justify-content-center h-100">
-          <div
-            className="display-1"
-            style={{ fontFamily: "'Gluten', sans-serif" }}
-          >
-            Student <span style={{ color: "#8991E4" }}>Assistant</span>
+          <div className="col-auto">
+            <img
+              src="/src/assets/IMG_3056.PNG"
+              className="img-fluid"
+              alt="Phone image"
+              style={{ width: "100px", height: "auto" }}
+            />
+          </div>
+          <div className="col-auto">
+            <div
+              className="display-1"
+              style={{ fontFamily: "'Gluten', sans-serif" }}
+            >
+              Student <span style={{ color: "#8991E4" }}>Assistant</span>
+            </div>
           </div>
 
           <div className="col-md-8 col-lg-7 col-xl-6">
@@ -136,13 +177,11 @@ function Signup() {
                   placeholder="Enter Email"
                   size="md"
                   value={userDetails.email}
-                  onChange={(event) => {
-                    setUserDetails({
-                      ...userDetails,
-                      email: event.currentTarget.value,
-                    });
-                  }}
+                  onChange={handleEmailChange}
                 />
+                {emailWarning && (
+                  <div className="text-danger">{emailWarning}</div>
+                )}
               </div>
               <div className="form-outline mb-2">
                 <input
@@ -185,30 +224,12 @@ function Signup() {
                   placeholder="Enter Password"
                   size="md"
                   value={userDetails.password}
-                  onChange={(event) => {
-                    setUserDetails({
-                      ...userDetails,
-                      password: event.currentTarget.value,
-                    });
-                  }}
+                  onChange={handlePasswordChange}
                 />
+                {passwordWarning && (
+                  <div className="text-danger">{passwordWarning}</div>
+                )}
               </div>
-              {/* <div className="form-outline mb-2">
-                <input
-                  type="password"
-                  id="form3Example4"
-                  className="form-control"
-                  placeholder="Confirm Password"
-                  size="md"
-                  value={userDetails.confirmPassword}
-                  onChange={(event) => {
-                    setUserDetails({
-                      ...userDetails,
-                      confirmPassword: event.currentTarget.value,
-                    });
-                  }}
-                />
-              </div> */}
 
               <div className="form-check d-flex flex-row flex-wrap justify-content-center mb-4">
                 <div
