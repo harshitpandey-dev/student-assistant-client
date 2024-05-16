@@ -1,8 +1,8 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "https://studentassistant.vercel.app/api/",
-      "destination": "https://studentassistant.duckdns.org/api"
+      "src": "https://studentassistant.vercel.app/api/",
+      "dest": "https://studentassistant.duckdns.org/api"
     }
   ]
 }
