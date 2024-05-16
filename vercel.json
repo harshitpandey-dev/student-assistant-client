@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "https://studentassistant.vercel.app/api/",
+      "destination": "https://studentassistant.duckdns.org/api"
+    }
+  ]
+}
