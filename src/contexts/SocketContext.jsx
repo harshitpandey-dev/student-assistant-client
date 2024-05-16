@@ -4,7 +4,7 @@ import socketio from "socket.io-client";
 import { useSelector } from "react-redux";
 
 const getSocket = (token) => {
-  return socketio(import.meta.env.VITE_SOCKET_URI, {
+  return socketio("https://studentassistant.duckdns.org", {
     auth: { token },
   });
 };

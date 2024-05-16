@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: import.meta.env.VITE_SERVER_URI,
+        target: "https://studentassistant.duckdns.org/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
