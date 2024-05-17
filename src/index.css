@@ -50,7 +50,7 @@ body {
 }
 
 .stud_img {
-    background-image: url(/src/assets/studentass1.png);
+    background-image: url(/assets/studentass1.png);
     background-size: 950px 636px;
     height: 636px;
     position: absolute;

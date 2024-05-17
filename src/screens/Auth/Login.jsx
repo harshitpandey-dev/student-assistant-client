@@ -43,7 +43,7 @@ function Login() {
         <div className="row d-flex align-items-center justify-content-center h-100">
           <div className="col-auto">
             <img
-              src="/src/assets/IMG_3056.png"
+              src="/assets/IMG_3056.png"
               className="img-fluid"
               alt="Phone image"
               style={{ width: "100px", height: "auto" }}
@@ -60,7 +60,7 @@ function Login() {
 
           <div className="col-md-8 col-lg-7 col-xl-6">
             <img
-              src="/src/assets/studentass1.png"
+              src="/assets/studentass1.png"
               className="img-fluid"
               alt="Phone image"
             />
