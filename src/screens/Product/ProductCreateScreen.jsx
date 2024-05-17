@@ -107,7 +107,7 @@ const ProductCreateScreen = () => {
 
       <div style={{ width: "100vw", height: "100px" }}></div>
       <div className="ms-5 mt-2">
-        <Link to="/" className="button-6" >
+        <Link to="/" className="button-6">
           <FaHome /> Back To Home
         </Link>
       </div>
@@ -125,16 +125,14 @@ const ProductCreateScreen = () => {
             <Form onSubmit={submitHandler}>
               {showImages.length < 4 && (
                 <Form.Group controlId="images">
-                 
-
                   <Form.File
                     id="image-file"
                     className="button-5 m-3"
                     label="Select Image"
                     onChange={uploadFileHandler}
-                    style={{cursor:"pointer"}}
+                    style={{ cursor: "pointer" }}
                   />
-                  
+
                   <p></p>
                   <ul>
                     <li>* Maximum 4 images can be uploaded</li>
@@ -181,7 +179,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-                <Form.Group controlId="category" className="mt-3">
+              <Form.Group controlId="category" className="mt-3">
                 <Form.Label>Keyword</Form.Label>
                 <Form.Control
                   type="text"
@@ -192,7 +190,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group>
 
-                <Form.Group controlId="description" className="mt-3">
+              <Form.Group controlId="description" className="mt-3">
                 <Form.Label>Describe your product</Form.Label>
 
                 <Form.Control
@@ -215,7 +213,7 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group> */}
 
-                <Form.Group className="mt-3" controlId="price" >
+              <Form.Group className="mt-3" controlId="price">
                 <Form.Label>Price </Form.Label>
                 <Form.Control
                   type="number"
@@ -255,9 +253,9 @@ const ProductCreateScreen = () => {
                 ></Form.Control>
               </Form.Group> */}
 
-              <div className="mt-3 w-100 button-6" type="submit" >
+              <Button className="mt-3 w-100 button-6" type="submit">
                 Upload your property
-              </div>
+              </Button>
               {error && <Message variant="danger">{error}</Message>}
               {message && <Message variant="danger">{message}</Message>}
             </Form>

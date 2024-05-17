@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "https://studentassistant.vercel.app/api/",
-      "dest": "https://studentassistant.duckdns.org/api"
-    }
-  ]
-}

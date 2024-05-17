@@ -4,7 +4,7 @@ import socketio from "socket.io-client";
 import { useSelector } from "react-redux";
 
 const getSocket = (token) => {
-  return socketio("https://studentassistant.duckdns.org", {
+  return socketio("http://localhost:8000", {
     auth: { token },
   });
 };
