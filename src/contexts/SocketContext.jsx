@@ -3,12 +3,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 import socketio from "socket.io-client";
 import { useSelector } from "react-redux";
 
+// const getSocket = (token) => {
+//   return socketio("http://localhost:8000", {
+//     auth: { token },
+//   });
+// };
 const getSocket = (token) => {
-  return socketio("http://localhost:8000", {
+  return socketio("https://studentassistant.duckdns.org", {
     auth: { token },
   });
 };
-
 const SocketContext = createContext({
   socket: null,
 });
