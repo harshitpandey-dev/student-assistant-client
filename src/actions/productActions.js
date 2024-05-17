@@ -41,7 +41,7 @@ export const listProducts = (token) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/api/products/`,config);
+    const { data } = await axios.get(`/api/products`, config);
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data.data.products,
@@ -65,7 +65,6 @@ export const listUnsoldProducts = () => async (dispatch) => {
     dispatch({
       type: PRODUCT_LIST_REQUEST,
     });
-
 
     const { data } = await axios.get(`/api/products/unsoldproduct`);
     dispatch({
