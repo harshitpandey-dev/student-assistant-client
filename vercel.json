@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://studentassistant.duckdns.org/api/:path*"
+    }
+  ]
+}
