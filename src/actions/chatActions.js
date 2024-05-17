@@ -54,7 +54,7 @@ export const get_All_Chat = (userID, token) => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    const { data } = await axios.get(`/api/chat/`, config);
+    const { data } = await axios.get(`/api/chat`, config);
     dispatch({
       type: CHAT_LIST_SUCCESS,
       payload: data.data,
